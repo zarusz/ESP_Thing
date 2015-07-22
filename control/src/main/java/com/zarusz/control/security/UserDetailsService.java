@@ -1,8 +1,11 @@
 package com.zarusz.control.security;
 
-import com.zarusz.control.domain.Authority;
-import com.zarusz.control.domain.User;
-import com.zarusz.control.repository.UserRepository;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,13 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.Collections;
-import java.util.List;
+import com.zarusz.control.domain.User;
+import com.zarusz.control.repository.UserRepository;
 
 /**
  * Authenticate a user from the database.
@@ -38,7 +36,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         String lowercaseLogin = login.toLowerCase();
         Optional<User> userFromDatabase =  userRepository.findOneByLogin(lowercaseLogin);
         return userFromDatabase.map(user -> {
-            if (!user.getActivated()) {
+            if (!user.isActivated()) {
                 throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
             }
             List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
