@@ -1,4 +1,4 @@
-package com.zarusz.control.domain.commands;
+package com.zarusz.control.domain.msg.commands;
 
 import com.zarusz.control.domain.topology.Device;
 
@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class DimCommand extends Command {
+public class DimCommand extends TargetingDeviceCommand {
 
 	private float value;
 	

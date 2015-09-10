@@ -72,7 +72,7 @@ public class UserService {
 
     public Optional<User> requestPasswordReset(String mail) {
        return userRepository.findOneByEmail(mail)
-           .filter(user -> user.getActivated() == true)
+           .filter(user -> user.isActivated())
            .map(user -> {
                user.setResetKey(RandomUtil.generateResetKey());
                user.setResetDate(DateTime.now());

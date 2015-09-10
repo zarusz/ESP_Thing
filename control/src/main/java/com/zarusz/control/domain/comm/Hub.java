@@ -38,8 +38,6 @@ public class Hub {
 
 	@OneToMany(mappedBy = "target")
 	@Setter(AccessLevel.PROTECTED)
-	private Set<Connection> inboundConnections = new HashSet<>();
-
-	
+	private Set<Connection> inboundConnections = new HashSet<>();	
 	
 }
