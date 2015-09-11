@@ -1,10 +1,10 @@
 package com.zarusz.control.domain.msg;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
+/**
+ * Created by Tomasz on 9/10/2015.
+ */
 @EqualsAndHashCode(callSuper = true)
-public class Event extends Message {
-
+public class Response extends Message {
 }

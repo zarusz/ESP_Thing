@@ -22,7 +22,7 @@ public class SwitchFeature extends DeviceFeature {
 	public void setOn(boolean on) {
 		this.on = on;
 
-		//OnOffCommand cmd = new OnOffCommand(getDevice(), on);
+		//SwitchCommand cmd = new SwitchCommand(getDevice(), on);
 		//EventBus.publish(cmd);
 	}
 

@@ -1,10 +1,7 @@
 package com.zarusz.control.domain.msg.commands;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import com.zarusz.control.domain.msg.Command;
 import com.zarusz.control.domain.topology.Device;
-
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,17 +12,12 @@ import lombok.Setter;
 public class TargetingDeviceCommand extends Command {
 
 	@Setter(AccessLevel.PROTECTED)
-	private Set<Device> targets = new HashSet<>();
-	
+	private Device device;
+
 	public TargetingDeviceCommand() {
 	}
-	
-	public TargetingDeviceCommand(Device target) {
-		addTarget(target);
-	}
 
-	public void addTarget(Device device) {
-		targets.add(device);
+	public TargetingDeviceCommand(Device device) {
+        this.device = device;
 	}
-
 }
