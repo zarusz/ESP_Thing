@@ -3,17 +3,7 @@ package com.zarusz.control.domain.topology;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.zarusz.control.domain.features.Feature;
 import lombok.AccessLevel;
@@ -40,7 +30,7 @@ public class Device {
 	private Set<DeviceFeature> features = new HashSet<>();
 
 	@ManyToOne(cascade = { CascadeType.PERSIST })
-	//@JoinColumn(name = "partition_id", foreignKey = @ForeignKey(name = "fk_device_partition_id"))
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_device_partition_id"))
 	@Setter(AccessLevel.PACKAGE)
 	private Partition partition;
 

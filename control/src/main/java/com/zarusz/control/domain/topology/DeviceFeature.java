@@ -31,12 +31,12 @@ public class DeviceFeature {
     //private String state;
 
 	@ManyToOne
-	//@JoinColumn(name = "device_id", foreignKey = @ForeignKey(name = "fk_device_feature_device_id") )
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_device_feature_device_id"))
 	@Setter
     private Device device;
 
     @ManyToOne
-    //@JoinColumn(name = "feature_id", foreignKey = @ForeignKey(name = "fk_device_feature_feature_id") )
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_device_feature_feature_id") )
     @Setter
     private Feature feature;
 

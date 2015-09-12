@@ -29,7 +29,7 @@ public class Partition {
 	private Integer id;
 
 	@ManyToOne
-	//@JoinColumn(name = "parent_id", foreignKey = @ForeignKey(name = "fk_partition_parent_id") )
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_partition_parent_id") )
 	@Setter(AccessLevel.PROTECTED)
 	private Partition parent;
 
