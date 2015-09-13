@@ -23,6 +23,7 @@ spring:
         generate-ddl: false
         hibernate:
             ddl-auto: none
+            #naming-strategy: com.zarusz.control.config.hibernate.CustomNamingStrategy
             naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
             #naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
         properties:

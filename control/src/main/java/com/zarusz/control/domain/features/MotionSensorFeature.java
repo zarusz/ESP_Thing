@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 /**
  * Created by Tomasz on 9/10/2015.
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Entity
 @DiscriminatorValue("motion_sensor")
 public class MotionSensorFeature extends DeviceFeature {
 

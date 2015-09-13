@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+   <changeSet author="Tomasz (generated)" id="1442121450596-1">
+      <createTable tableName="connection">
+         <column name="type" type="VARCHAR(31)">
+            <constraints nullable="false"/>
+         </column>
+         <column autoIncrement="true" name="id" type="INT">
+            <constraints primaryKey="true" primaryKeyName="connectionPK"/>
+         </column>
+         <column name="source" type="INT"/>
+         <column name="target" type="INT"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-2">
+      <createTable tableName="device">
+         <column name="type" type="VARCHAR(31)">
+            <constraints nullable="false"/>
+         </column>
+         <column autoIncrement="true" name="id" type="INT">
+            <constraints primaryKey="true" primaryKeyName="devicePK"/>
+         </column>
+         <column name="guid" type="VARCHAR(255)"/>
+         <column name="address" type="VARCHAR(255)"/>
+         <column name="partition" type="INT"/>
+         <column name="hub" type="INT"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-3">
+      <createTable tableName="device_feature">
+         <column name="type" type="VARCHAR(31)">
+            <constraints nullable="false"/>
+         </column>
+         <column autoIncrement="true" name="id" type="INT">
+            <constraints primaryKey="true" primaryKeyName="device_featurePK"/>
+         </column>
+         <column name="port" type="VARCHAR(255)"/>
+         <column name="on" type="BOOLEAN"/>
+         <column name="device" type="INT">
+            <constraints nullable="false"/>
+         </column>
+         <column name="feature" type="INT">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-4">
+      <createTable tableName="feature">
+         <column autoIncrement="true" name="id" type="INT">
+            <constraints primaryKey="true" primaryKeyName="featurePK"/>
+         </column>
+         <column name="display_name" type="VARCHAR(255)"/>
+         <column name="type" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-5">
+      <createTable tableName="hub">
+         <column name="type" type="VARCHAR(31)">
+            <constraints nullable="false"/>
+         </column>
+         <column autoIncrement="true" name="id" type="INT">
+            <constraints primaryKey="true" primaryKeyName="hubPK"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-6">
+      <createTable tableName="partition">
+         <column autoIncrement="true" name="id" type="INT">
+            <constraints primaryKey="true" primaryKeyName="partitionPK"/>
+         </column>
+         <column name="display_name" type="VARCHAR(255)"/>
+         <column name="parent" type="INT"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-7">
+      <addForeignKeyConstraint baseColumnNames="source"
+                               baseTableName="connection"
+                               constraintName="fk_connection_source_id"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="hub"/>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-8">
+      <addForeignKeyConstraint baseColumnNames="target"
+                               baseTableName="connection"
+                               constraintName="fk_connection_target_id"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="hub"/>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-9">
+      <addForeignKeyConstraint baseColumnNames="hub"
+                               baseTableName="device"
+                               constraintName="fk_device_device_id"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="device"/>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-10">
+      <addForeignKeyConstraint baseColumnNames="device"
+                               baseTableName="device_feature"
+                               constraintName="fk_device_feature_device_id"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="device"/>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-11">
+      <addForeignKeyConstraint baseColumnNames="feature"
+                               baseTableName="device_feature"
+                               constraintName="fk_device_feature_feature_id"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="feature"/>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-12">
+      <addForeignKeyConstraint baseColumnNames="partition"
+                               baseTableName="device"
+                               constraintName="fk_device_partition_id"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="partition"/>
+   </changeSet>
+   <changeSet author="Tomasz (generated)" id="1442121450596-13">
+      <addForeignKeyConstraint baseColumnNames="parent"
+                               baseTableName="partition"
+                               constraintName="fk_partition_parent_id"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="partition"/>
+   </changeSet>
+</databaseChangeLog>

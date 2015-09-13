@@ -3,19 +3,19 @@ package com.zarusz.control.domain.topology;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by Tomasz on 9/8/2015.
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Entity
 @DiscriminatorValue("endpoint")
 public class EndpointDevice extends Device {
 
-    @ManyToOne(optional = false, cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_device_device_id"))
     private HubDevice hub;
 
     protected EndpointDevice() {

@@ -22,9 +22,8 @@ import lombok.Setter;
 @Data
 @EqualsAndHashCode(of = { "id" })
 @Entity
-@Table(name = "hub")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "hub_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("hub")
 public class Hub {
 

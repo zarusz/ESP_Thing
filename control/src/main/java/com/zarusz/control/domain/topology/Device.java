@@ -22,7 +22,6 @@ public class Device {
 	@Id
 	@GeneratedValue
 	private Integer id;
-    private String type;
 	private String guid;
 
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "device", orphanRemoval = true)

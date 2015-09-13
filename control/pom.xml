@@ -596,10 +596,10 @@
 					<defaultSchemaName></defaultSchemaName>
 					<username>control_usr</username>
 					<password>Password1</password>
-					<referenceUrl>hibernate:spring:com.zarusz.control.domain?dialect=org.hibernate.dialect.PostgreSQL82Dialect</referenceUrl>
+					<referenceUrl>hibernate:spring:com.zarusz.control.domain?dialect=org.hibernate.dialect.PostgreSQL82Dialect&amp;hibernate.ejb.naming_strategy=org.hibernate.cfg.ImprovedNamingStrategy</referenceUrl>
 					<verbose>true</verbose>
 					<logging>debug</logging>
-					<diffExcludeObjects>oauth_access_token, oauth_approvals,
+                    <diffExcludeObjects>oauth_access_token, oauth_approvals,
 						oauth_client_details, oauth_client_token, oauth_code,
 						oauth_refresh_token, jhi_persistent_audit_event_event_id_seq, jhi_user_id_seq</diffExcludeObjects>
 				</configuration>

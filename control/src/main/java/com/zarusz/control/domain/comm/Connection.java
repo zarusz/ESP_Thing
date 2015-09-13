@@ -10,9 +10,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(of = { "id" })
 @Entity
-@Table(name = "connection")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "connection_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("connection")
 public class Connection {
 

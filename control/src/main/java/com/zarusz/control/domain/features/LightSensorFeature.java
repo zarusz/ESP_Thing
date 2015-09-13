@@ -9,15 +9,15 @@ import javax.persistence.Entity;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@DiscriminatorValue("temp_sensor")
-public class TemperatureSensorFeature extends DeviceFeature {
+@DiscriminatorValue("light_sensor")
+public class LightSensorFeature extends DeviceFeature {
 
     //private float value;
 
-    protected TemperatureSensorFeature() {
+    protected LightSensorFeature() {
     }
 
-    public TemperatureSensorFeature(Device device, Feature feature) {
+    public LightSensorFeature(Device device, Feature feature) {
         super(device, feature);
     }
 
