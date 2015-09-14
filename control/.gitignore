@@ -121,3 +121,9 @@ Desktop.ini
 # Gradle Wrapper
 ######################
 !gradle/wrapper/gradle-wrapper.jar
+
+######################
+# Frontend 
+######################
+src/main/webapp/bower_components/**
+src/main/webapp/bower_components/dist/**

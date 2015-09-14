@@ -12,6 +12,6 @@
     "commit": "4ebf40230c0a73f33597609c6ee8cb811a7cf11f"
   },
   "_source": "git://github.com/lgalfaso/angular-dynamic-locale.git",
-  "_target": "0.1.27",
+  "_target": ">=0.1.27",
   "_originalSource": "angular-dynamic-locale"
 }
