@@ -16,7 +16,6 @@ var App;
             return SideNavCtrl;
         })();
         Component.SideNavCtrl = SideNavCtrl;
-        App.$module.controller(SideNavCtrl.$name, SideNavCtrl);
     })(Component = App.Component || (App.Component = {}));
 })(App || (App = {}));
 //# sourceMappingURL=sidenav.ctrl.js.map

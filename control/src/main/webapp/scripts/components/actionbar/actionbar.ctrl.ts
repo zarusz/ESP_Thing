@@ -2,28 +2,28 @@
 module App.Component {
 
     export class ActionBarCtrl {
-        static $name = "ActionBarCtrl";
-        static $inject = ["$scope", "$mdSidenav", "$mdUtil", "$log"];
+        static $inject = ["$mdSidenav", "$mdUtil"];
 
-        constructor(private $scope,
-                    private $mdSidenav:ng.material.ISidenavService,
-                    private $mdUtil,
-                    private $log:ng.ILogService) {
+        constructor(private $mdSidenav: ng.material.ISidenavService,
+                    private $mdUtil) {
 
-            $scope.toggleLeft = this.buildToggler('left');
+            //var _this = this;
+            //this.toggleSideNav = this.$mdUtil.debounce(() => {
+            //    _this.getSideNav().toggle();
+            //}, 200);
         }
 
-        private buildToggler(navID:string) {
-            var debounceFn = this.$mdUtil.debounce(() => {
-                this.$mdSidenav(navID)
-                    .toggle()
-                    .then(function () {
-                        this.$log.debug("toggle " + navID + " is done");
-                    });
-            }, 200);
-            return debounceFn;
+        private getSideNav() {
+            return this.$mdSidenav("left");
+        }
+
+        toggleSideNav() {
+            this.getSideNav().toggle();
+        }
+
+        closeSideNav() {
+            this.getSideNav().close();
         }
     }
 
-    $module.controller(ActionBarCtrl.$name, ActionBarCtrl);
 }

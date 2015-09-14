@@ -25,16 +25,7 @@
 <![endif]-->
 <!--<div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>-->
 
-<div layout="column">
-    <div ui-view="actionbar" ng-cloak=""></div>
-    <div layout="row" flex>
-        <div ui-view="sidenav" ng-cloak=""></div>
-        <div ui-view="content"></div>
-    </div>
-    <div class="footer">
-        <p translate="footer">This is your footer</p>
-    </div>
-</div>
+<div ui-view></div>
 
 <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
 <script>
@@ -76,7 +67,6 @@
 
 <!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
 <script src="scripts/app/app.module.js"></script>
-<script src="scripts/app/app.js"></script>
 <script src="scripts/app/app.constants.js"></script>
 <script src="scripts/components/actionbar/actionbar.ctrl.js"></script>
 <script src="scripts/components/sidenav/sidenav.ctrl.js"></script>
@@ -141,6 +131,7 @@
 <script src="scripts/app/admin/tracker/tracker.js"></script>
 <script src="scripts/app/admin/tracker/tracker.controller.js"></script>
 <script src="scripts/components/tracker/tracker.service.js"></script>
+<script src="scripts/app/app.js"></script>
 <!-- endbuild -->
 </body>
 </html>

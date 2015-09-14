@@ -15,6 +15,6 @@ module App.Component {
         }
     }
 
-    $module.controller(SideNavCtrl.$name, SideNavCtrl);
+    //$module.controller(SideNavCtrl.$name, SideNavCtrl);
 
 }

@@ -1,12 +1,42 @@
-<md-toolbar>
-    <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" ng-click="toggleLeft()" aria-label="Menu">
-            <md-icon class="fa fa-bars fa-lg"></md-icon>
-        </md-button>
-        <h1>Control</h1>
-        <span flex></span>
-        <md-button class="md-icon-button" aria-label="More">
-            <md-icon class="fa fa-ellipsis-v fa-lg"></md-icon>
-        </md-button>
+<div layout="column">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" ng-click="actionBar.toggleSideNav()" aria-label="Menu">
+                <md-icon class="fa fa-bars fa-lg"></md-icon>
+            </md-button>
+            <h1>Control</h1>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="More">
+                <md-icon class="fa fa-ellipsis-v fa-lg"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div layout="row" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar class="md-theme-indigo">
+                <div class="md-toolbar-tools">
+                    <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="Menu">
+                        <md-icon class="fa fa-bars fa-lg"></md-icon>
+                    </md-button>
+                    <h1>Menu</h1>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="More">
+                        <md-icon class="fa fa-times-circle-o fa-lg"></md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content layout-padding>
+                <p hide-md show-gt-md>
+                    This sidenav is locked open on your device. To go back to the default behavior,
+                    narrow your display.
+                </p>
+            </md-content>
+        </md-sidenav>
+        <div ui-view>
+        </div>
     </div>
-</md-toolbar>
+    <div class="footer">
+        <p translate="footer">This is your footer</p>
+    </div>
+</div>
+
