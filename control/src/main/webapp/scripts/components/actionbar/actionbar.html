@@ -26,10 +26,13 @@
                 </div>
             </md-toolbar>
             <md-content layout-padding>
-                <p hide-md show-gt-md>
-                    This sidenav is locked open on your device. To go back to the default behavior,
-                    narrow your display.
-                </p>
+                <md-subheader class="md-no-sticky">Explore</md-subheader>
+                <md-list-item ng-click="actionBar.navigateTo('site.place')">
+                    <md-icon class="fa fa-building fa-lg"></md-icon>
+                    <p>Rooms</p>
+                </md-list-item>
+
+                <md-divider></md-divider>
             </md-content>
         </md-sidenav>
         <div ui-view>

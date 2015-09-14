@@ -4,9 +4,10 @@ var App;
     var Component;
     (function (Component) {
         var ActionBarCtrl = (function () {
-            function ActionBarCtrl($mdSidenav, $mdUtil) {
+            function ActionBarCtrl($mdSidenav, $mdUtil, $state) {
                 this.$mdSidenav = $mdSidenav;
                 this.$mdUtil = $mdUtil;
+                this.$state = $state;
                 //var _this = this;
                 //this.toggleSideNav = this.$mdUtil.debounce(() => {
                 //    _this.getSideNav().toggle();
@@ -21,7 +22,11 @@ var App;
             ActionBarCtrl.prototype.closeSideNav = function () {
                 this.getSideNav().close();
             };
-            ActionBarCtrl.$inject = ["$mdSidenav", "$mdUtil"];
+            ActionBarCtrl.prototype.navigateTo = function (state) {
+                this.closeSideNav();
+                this.$state.go(state);
+            };
+            ActionBarCtrl.$inject = ["$mdSidenav", "$mdUtil", "$state"];
             return ActionBarCtrl;
         })();
         Component.ActionBarCtrl = ActionBarCtrl;

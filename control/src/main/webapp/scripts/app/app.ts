@@ -1,6 +1,7 @@
 ///<reference path="app.module.ts"/>
 ///<reference path="..\components\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\components\sidenav\sidenav.ctrl.ts"/>
+///<reference path="place\place.ctrl.ts"/>
 module App {
 
     $module
@@ -39,7 +40,7 @@ module App {
     function Run($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
-        $rootScope.$on("$stateChangeStart", function (event, toState, toStateParams) {
+        $rootScope.$on("$stateChangeStart", (event, toState, toStateParams) => {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
 
@@ -48,7 +49,7 @@ module App {
             }
 
             // Update the language
-            Language.getCurrent().then(function (language) {
+            Language.getCurrent().then((language) => {
                 $translate.use(language);
             });
 
@@ -97,14 +98,25 @@ module App {
                     return Auth.authorize();
                 }
                 ],
-                translatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
+                translatePartialLoader: ["$translate", "$translatePartialLoader", ($translate, $translatePartialLoader) => {
                     $translatePartialLoader.addPart("global");
                 }]
             }
         };
 
+        var statePlace = {
+            name: "site.place",
+            url: "/place",
+            templateUrl: "scripts/app/place/place.html",
+            controller: PlaceCtrl,
+            controllerAs: "place"
+        };
+
+
         $urlRouterProvider.otherwise(defaultState.url);
-        $stateProvider.state(defaultState);
+        $stateProvider
+            .state(defaultState)
+            .state(statePlace);
 
         $httpProvider.interceptors.push("authExpiredInterceptor");
         $httpProvider.interceptors.push("authInterceptor");

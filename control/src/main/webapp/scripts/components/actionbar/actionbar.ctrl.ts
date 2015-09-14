@@ -2,10 +2,11 @@
 module App.Component {
 
     export class ActionBarCtrl {
-        static $inject = ["$mdSidenav", "$mdUtil"];
+        static $inject = ["$mdSidenav", "$mdUtil", "$state"];
 
         constructor(private $mdSidenav: ng.material.ISidenavService,
-                    private $mdUtil) {
+                    private $mdUtil,
+                    private $state: ng.ui.IStateService) {
 
             //var _this = this;
             //this.toggleSideNav = this.$mdUtil.debounce(() => {
@@ -23,6 +24,11 @@ module App.Component {
 
         closeSideNav() {
             this.getSideNav().close();
+        }
+
+        navigateTo(state: string) {
+            this.closeSideNav();
+            this.$state.go(state);
         }
     }
 
