@@ -1,0 +1,16 @@
+id;feature;device;port;on
+01;switch;02;p0;NULL
+02;switch;03;p0;NULL
+03;switch;04;p0;NULL
+04;switch;05;p0;NULL
+
+05;switch;06;p0;NULL
+06;color;06;p1;NULL
+07;dim;06;p2;NULL
+08;switch;07;p0;NULL
+09;color;07;p1;NULL
+10;dim;07;p2;NULL
+
+11;sensor_temp;08;p0;NULL
+12;sensor_light;09;p0;NULL
+13;sensor_motion;10;p0;NULL

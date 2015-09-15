@@ -1,0 +1,11 @@
+id;type;partition;hub;guid;display_name;address
+01;hub;02;NULL;guid_sufit;Sufit;NULL
+02;endpoint;02;01;guid_sufit_light1;Światło nad stołem;NULL
+03;endpoint;02;01;guid_sufit_light2;Światło nad sofą 1;NULL
+04;endpoint;02;01;guid_sufit_light3;Światło nad sofą 2;NULL
+05;endpoint;02;01;guid_sufit_light4;Światło nad sofą 3;NULL
+06;endpoint;02;01;guid_sufit_led1;LED nad stołem;NULL
+07;endpoint;02;01;guid_sufit_led2;LED nad sofą;NULL
+08;endpoint;02;01;guid_sufit_sensor_temp;Czujnik temperatury;NULL
+09;endpoint;02;01;guid_sufit_sensor_light;Czujnik światła;NULL
+10;endpoint;02;01;guid_sufit_sensor_movement;Czujnik ruchu;NULL

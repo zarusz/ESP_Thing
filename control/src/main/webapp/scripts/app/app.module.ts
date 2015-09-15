@@ -11,11 +11,11 @@ module App {
         "pascalprecht.translate",
         "ngAnimate",
         "ngMaterial",
-        "ui.bootstrap", // for modal dialogs
         "ngResource",
-        "ui.router",
         "ngCookies",
         "ngCacheBuster",
+        "ui.bootstrap", // for modal dialogs
+        "ui.router",
         "infinite-scroll"]);
 
 }

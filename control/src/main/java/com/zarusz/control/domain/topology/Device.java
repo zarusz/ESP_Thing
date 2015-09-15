@@ -23,6 +23,7 @@ public class Device {
 	@GeneratedValue
 	private Integer id;
 	private String guid;
+    private String displayName;
 
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "device", orphanRemoval = true)
     @Setter(AccessLevel.PROTECTED)

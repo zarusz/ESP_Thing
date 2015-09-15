@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@DiscriminatorValue("motion_sensor")
+@DiscriminatorValue("sensor_motion")
 public class MotionSensorFeature extends DeviceFeature {
 
     protected MotionSensorFeature() {

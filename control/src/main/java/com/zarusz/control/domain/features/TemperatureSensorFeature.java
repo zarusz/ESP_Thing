@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@DiscriminatorValue("temp_sensor")
+@DiscriminatorValue("sensor_temp")
 public class TemperatureSensorFeature extends DeviceFeature {
 
     //private float value;

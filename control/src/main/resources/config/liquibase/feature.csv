@@ -1,0 +1,7 @@
+feature;display_name
+switch;Switch
+color;Color
+dim;Dimming
+sensor_temp;Temperature sensor
+sensor_light;Light sensor
+sensor_motion;Movement sensor

@@ -12,7 +12,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(of = { "id" })
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "feature", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("device_feature")
 public class DeviceFeature {
 
@@ -36,8 +36,7 @@ public class DeviceFeature {
     private Device device;
 
     @ManyToOne
-    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_device_feature_feature_id") )
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_device_feature_feature_id"), name = "feature", insertable = false, updatable = false)
     @Setter
     private Feature feature;
-
 }

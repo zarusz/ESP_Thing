@@ -10,11 +10,11 @@ var App;
         "pascalprecht.translate",
         "ngAnimate",
         "ngMaterial",
-        "ui.bootstrap",
         "ngResource",
-        "ui.router",
         "ngCookies",
         "ngCacheBuster",
+        "ui.bootstrap",
+        "ui.router",
         "infinite-scroll"
     ]);
 })(App || (App = {}));
