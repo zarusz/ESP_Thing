@@ -1,11 +1,12 @@
-package com.zarusz.control.domain.topology;
+package com.zarusz.control.domain.device;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 
-import com.zarusz.control.domain.features.Feature;
+import com.zarusz.control.domain.feature.Feature;
+import com.zarusz.control.domain.partition.Partition;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,7 +32,6 @@ public class Device {
 
 	@ManyToOne(cascade = { CascadeType.PERSIST })
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_device_partition_id"))
-	@Setter(AccessLevel.PACKAGE)
 	private Partition partition;
 
     protected Device() {

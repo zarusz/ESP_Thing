@@ -1,6 +1,6 @@
 package com.zarusz.control.domain.msg.commands;
 
-import com.zarusz.control.domain.topology.DeviceFeature;
+import com.zarusz.control.domain.device.DeviceFeature;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

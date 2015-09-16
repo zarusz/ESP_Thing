@@ -74,7 +74,7 @@ var App;
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
         var defaultState = {
             name: "site",
-            url: "/",
+            abstract: true,
             templateUrl: "scripts/components/actionbar/actionbar.html",
             controller: App.Component.ActionBarCtrl,
             controllerAs: "actionBar",
@@ -94,7 +94,7 @@ var App;
             controller: App.PlaceCtrl,
             controllerAs: "place"
         };
-        $urlRouterProvider.otherwise(defaultState.url);
+        $urlRouterProvider.otherwise("/");
         $stateProvider.state(defaultState).state(statePlace);
         $httpProvider.interceptors.push("authExpiredInterceptor");
         $httpProvider.interceptors.push("authInterceptor");

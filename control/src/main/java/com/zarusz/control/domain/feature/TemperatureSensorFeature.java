@@ -1,7 +1,7 @@
-package com.zarusz.control.domain.features;
+package com.zarusz.control.domain.feature;
 
-import com.zarusz.control.domain.topology.Device;
-import com.zarusz.control.domain.topology.DeviceFeature;
+import com.zarusz.control.domain.device.Device;
+import com.zarusz.control.domain.device.DeviceFeature;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.DiscriminatorValue;
@@ -9,15 +9,15 @@ import javax.persistence.Entity;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@DiscriminatorValue("sensor_light")
-public class LightSensorFeature extends DeviceFeature {
+@DiscriminatorValue("sensor_temp")
+public class TemperatureSensorFeature extends DeviceFeature {
 
     //private float value;
 
-    protected LightSensorFeature() {
+    protected TemperatureSensorFeature() {
     }
 
-    public LightSensorFeature(Device device, Feature feature) {
+    public TemperatureSensorFeature(Device device, Feature feature) {
         super(device, feature);
     }
 

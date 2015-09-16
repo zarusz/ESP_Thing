@@ -1,7 +1,6 @@
 package com.zarusz.control.domain.msg.commands;
 
-import com.zarusz.control.domain.features.SwitchFeature;
-import com.zarusz.control.domain.topology.Device;
+import com.zarusz.control.domain.feature.SwitchFeature;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

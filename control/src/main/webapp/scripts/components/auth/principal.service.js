@@ -1,70 +1,82 @@
+///<reference path="..\..\..\typings\angularjs\angular.d.ts"/>
+///<reference path="..\..\app\app.module.ts"/>
+///<reference path="..\common.ts"/>
 'use strict';
-
-angular.module('controlApp')
-    .factory('Principal', function Principal($q, Account, Tracker) {
-        var _identity,
-            _authenticated = false;
-
-        return {
-            isIdentityResolved: function () {
-                return angular.isDefined(_identity);
-            },
-            isAuthenticated: function () {
-                return _authenticated;
-            },
-            isInRole: function (role) {
-                if (!_authenticated || !_identity || !_identity.roles) {
+var App;
+(function (App) {
+    var Auth;
+    (function (Auth) {
+        var Identity = (function () {
+            function Identity() {
+            }
+            return Identity;
+        })();
+        Auth.Identity = Identity;
+        var Principal = (function () {
+            function Principal($q, account, tracker) {
+                this.$q = $q;
+                this.account = account;
+                this.tracker = tracker;
+                this._authenticated = false;
+            }
+            Principal.prototype.isIdentityResolved = function () {
+                return angular.isDefined(this._identity);
+            };
+            Principal.prototype.isAuthenticated = function () {
+                return this._authenticated;
+            };
+            Principal.prototype.isInRole = function (role) {
+                if (!this._authenticated || !this._identity || !this._identity.roles) {
                     return false;
                 }
-
-                return _identity.roles.indexOf(role) !== -1;
-            },
-            isInAnyRole: function (roles) {
-                if (!_authenticated || !_identity.roles) {
+                return this._identity.roles.indexOf(role) !== -1;
+            };
+            Principal.prototype.isInAnyRole = function (roles) {
+                if (!this._authenticated || !this._identity.roles) {
                     return false;
                 }
-
                 for (var i = 0; i < roles.length; i++) {
                     if (this.isInRole(roles[i])) {
                         return true;
                     }
                 }
-
                 return false;
-            },
-            authenticate: function (identity) {
-                _identity = identity;
-                _authenticated = identity !== null;
-            },
-            identity: function (force) {
-                var deferred = $q.defer();
-
+            };
+            Principal.prototype.authenticate = function (identity) {
+                this._identity = identity;
+                this._authenticated = identity !== null;
+            };
+            Principal.prototype.identity = function (force) {
+                var _this = this;
+                var deferred = this.$q.defer();
                 if (force === true) {
-                    _identity = undefined;
+                    this._identity = undefined;
                 }
-
                 // check and see if we have retrieved the identity data from the server.
                 // if we have, reuse it by immediately resolving
-                if (angular.isDefined(_identity)) {
-                    deferred.resolve(_identity);
-
+                if (angular.isDefined(this._identity)) {
+                    deferred.resolve(this._identity);
                     return deferred.promise;
                 }
-
                 // retrieve the identity data from the server, update the identity object, and then resolve.
-                Account.get().$promise
-                    .then(function (account) {
-                        _identity = account.data;
-                        _authenticated = true;
-                        deferred.resolve(_identity);
-                        Tracker.connect();
-                    })
-                    .catch(function() {
-                        _identity = null;
-                        _authenticated = false;
-                        deferred.resolve(_identity);
-                    });
+                this.account.get().$promise.then(function (account1) {
+                    _this._identity = account1.data;
+                    _this._authenticated = true;
+                    deferred.resolve(_this._identity);
+                    _this.tracker.connect();
+                }).catch(function () {
+                    _this._identity = null;
+                    _this._authenticated = false;
+                    deferred.resolve(_this._identity);
+                });
                 return deferred.promise;
-            }
-        };
-    });
+            };
+            Principal.$name = "Principal";
+            Principal.$inject = [App.NgSvc.$q, "Account", "Tracker"];
+            return Principal;
+        })();
+        Auth.Principal = Principal;
+        App.$module.service(Principal.$name, Principal);
+    })(Auth = App.Auth || (App.Auth = {}));
+})(App || (App = {}));
+//# sourceMappingURL=principal.service.js.map

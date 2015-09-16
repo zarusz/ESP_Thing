@@ -1,7 +1,7 @@
 package com.zarusz.control.domain.msg.commands;
 
 import com.zarusz.control.domain.msg.Command;
-import com.zarusz.control.domain.topology.Device;
+import com.zarusz.control.domain.device.Device;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

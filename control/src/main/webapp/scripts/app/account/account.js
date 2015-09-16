@@ -1,10 +1,12 @@
+///<reference path="..\app.module.ts"/>
 'use strict';
-
-angular.module('controlApp')
-    .config(function ($stateProvider) {
-        $stateProvider
-            .state('account', {
-                abstract: true,
-                parent: 'site'
-            });
+var App;
+(function (App) {
+    App.$module.config(function ($stateProvider) {
+        $stateProvider.state("account", {
+            abstract: true,
+            parent: "site"
+        });
     });
+})(App || (App = {}));
+//# sourceMappingURL=account.js.map

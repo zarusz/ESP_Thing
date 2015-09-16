@@ -1,9 +1,9 @@
-id;parent;display_name
-1;NULL;Mieszkanie
-2;1;Salon
-3;1;Kuchnia
-5;1;Mały pokój
-6;1;Sypialnia
-7;1;Lazienka
-8;1;Korytarz
-9;1;Garderoba
+id;type;parent;display_name
+1;flat;NULL;Mieszkanie
+2;room;1;Salon
+3;room;1;Kuchnia
+5;room;1;Mały pokój
+6;room;1;Sypialnia
+7;room;1;Lazienka
+8;room;1;Korytarz
+9;room;1;Garderoba

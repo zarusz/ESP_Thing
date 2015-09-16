@@ -1,7 +1,7 @@
-package com.zarusz.control.domain.topology;
+package com.zarusz.control.domain.device;
 
-import com.zarusz.control.domain.features.Feature;
-import com.zarusz.control.domain.topology.Device;
+import com.zarusz.control.domain.device.Device;
+import com.zarusz.control.domain.feature.Feature;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;

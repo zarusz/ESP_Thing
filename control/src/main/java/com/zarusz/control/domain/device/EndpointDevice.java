@@ -1,4 +1,4 @@
-package com.zarusz.control.domain.topology;
+package com.zarusz.control.domain.device;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

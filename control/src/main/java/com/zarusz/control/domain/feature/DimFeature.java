@@ -1,10 +1,10 @@
-package com.zarusz.control.domain.features;
+package com.zarusz.control.domain.feature;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import com.zarusz.control.domain.topology.Device;
-import com.zarusz.control.domain.topology.DeviceFeature;
+import com.zarusz.control.domain.device.Device;
+import com.zarusz.control.domain.device.DeviceFeature;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)

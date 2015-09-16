@@ -1,27 +1,39 @@
-'use strict';
-
-angular.module('controlApp')
-    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth) {
-        $scope.user = {};
-        $scope.errors = {};
-
-        $scope.rememberMe = true;
-        $timeout(function (){angular.element('[ng-model="username"]').focus();});
-        $scope.login = function (event) {
+///<reference path="..\..\app.module.ts"/>
+///<reference path="..\..\..\components\common.ts"/>
+"use strict";
+var App;
+(function (App) {
+    var LoginCtrl = (function () {
+        function LoginCtrl($rootScope, $state, auth) {
+            this.$rootScope = $rootScope;
+            this.$state = $state;
+            this.auth = auth;
+            this.user = {};
+            this.rememberMe = true;
+            this.authenticationError = false;
+        }
+        LoginCtrl.prototype.login = function (form, event) {
+            var _this = this;
             event.preventDefault();
-            Auth.login({
-                username: $scope.username,
-                password: $scope.password,
-                rememberMe: $scope.rememberMe
+            this.auth.login({
+                username: form.username,
+                password: form.password,
+                rememberMe: form.rememberMe
             }).then(function () {
-                $scope.authenticationError = false;
-                if ($rootScope.previousStateName === 'register') {
-                    $state.go('home');
-                } else {
-                    $rootScope.back();
+                _this.authenticationError = false;
+                if (_this.$rootScope.previousStateName === "register") {
+                    _this.$state.go("home");
+                }
+                else {
+                    _this.$rootScope.back();
                 }
             }).catch(function () {
-                $scope.authenticationError = true;
+                _this.authenticationError = true;
             });
         };
-    });
+        LoginCtrl.$inject = [App.NgSvc.rootScope, App.NgSvc.state, "Auth"];
+        return LoginCtrl;
+    })();
+    App.LoginCtrl = LoginCtrl;
+})(App || (App = {}));
+//# sourceMappingURL=login.controller.js.map

@@ -1,4 +1,4 @@
-package com.zarusz.control.domain.features;
+package com.zarusz.control.domain.feature;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

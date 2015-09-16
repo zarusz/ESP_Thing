@@ -8,4 +8,4 @@ var App;
     })();
     App.PlaceCtrl = PlaceCtrl;
 })(App || (App = {}));
-//# sourceMappingURL=place.ctrl.js.map
+//# sourceMappingURL=place.controller.js.map

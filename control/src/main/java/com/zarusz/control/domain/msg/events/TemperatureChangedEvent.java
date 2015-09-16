@@ -1,6 +1,6 @@
 package com.zarusz.control.domain.msg.events;
 
-import com.zarusz.control.domain.features.TemperatureSensorFeature;
+import com.zarusz.control.domain.feature.TemperatureSensorFeature;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

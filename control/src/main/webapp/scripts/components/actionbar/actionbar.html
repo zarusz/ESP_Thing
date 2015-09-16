@@ -31,11 +31,16 @@
                     <md-icon class="fa fa-building fa-lg"></md-icon>
                     <p>Rooms</p>
                 </md-list-item>
-
+                <md-divider></md-divider>
+                <md-subheader class="md-no-sticky">Rooms</md-subheader>
+                <md-list-item ng-click="actionBar.navigateTo('site.place')" ng-repeat="room in actionBar.rootPartition.children">
+                    <md-icon class="fa fa-building fa-lg"></md-icon>
+                    <p>{{room.displayName}}</p>
+                </md-list-item>
                 <md-divider></md-divider>
             </md-content>
         </md-sidenav>
-        <div ui-view>
+        <div ui-view="">
         </div>
     </div>
     <div class="footer">

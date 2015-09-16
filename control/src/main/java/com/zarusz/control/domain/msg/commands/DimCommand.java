@@ -1,7 +1,6 @@
 package com.zarusz.control.domain.msg.commands;
 
-import com.zarusz.control.domain.features.DimFeature;
-import com.zarusz.control.domain.topology.Device;
+import com.zarusz.control.domain.feature.DimFeature;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

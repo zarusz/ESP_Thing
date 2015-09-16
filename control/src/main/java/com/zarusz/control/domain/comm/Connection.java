@@ -2,8 +2,6 @@ package com.zarusz.control.domain.comm;
 
 import javax.persistence.*;
 
-import com.zarusz.control.domain.topology.Device;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

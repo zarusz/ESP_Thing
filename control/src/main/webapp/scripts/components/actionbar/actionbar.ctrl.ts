@@ -1,12 +1,27 @@
 ///<reference path="..\..\app\app.module.ts"/>
+///<reference path="..\..\components\partition\partition.service.ts"/>
+///<reference path="..\auth\principal.service.ts"/>
 module App.Component {
 
     export class ActionBarCtrl {
-        static $inject = ["$mdSidenav", "$mdUtil", "$state"];
+        static $inject = ["$mdSidenav", NgSvc.state, Partition.PartitionService.$name, Auth.Principal.$name];
+
+        rootPartition: Partition.Partition;
 
         constructor(private $mdSidenav: ng.material.ISidenavService,
-                    private $mdUtil,
-                    private $state: ng.ui.IStateService) {
+                    private $state: ng.ui.IStateService,
+                    private partitionService: Partition.PartitionService,
+                    private principal: Auth.Principal) {
+
+            if (!this.principal.isAuthenticated()) {
+
+                //auth.authorize();
+                $state.go("login");
+            } else {
+                partitionService.loadRoot().then(r => {
+                    this.rootPartition = r.data;
+                });
+            }
 
             //var _this = this;
             //this.toggleSideNav = this.$mdUtil.debounce(() => {
