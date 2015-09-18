@@ -11,6 +11,7 @@ var App;
             },
             templateUrl: "scripts/app/main/main.html",
             controller: App.PlaceCtrl,
+            controllerAs: App.PlaceCtrl.$nameAs,
             //views: {
             //    "content@": {
             //        templateUrl: "scripts/app/main/main.html",

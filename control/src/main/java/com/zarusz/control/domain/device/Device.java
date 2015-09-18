@@ -7,13 +7,12 @@ import javax.persistence.*;
 
 import com.zarusz.control.domain.feature.Feature;
 import com.zarusz.control.domain.partition.Partition;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 @Data
 @EqualsAndHashCode(of = { "id" })
+@ToString(of = {"id", "displayName", "guid"})
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
@@ -26,11 +25,12 @@ public class Device {
 	private String guid;
     private String displayName;
 
-    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "device", orphanRemoval = true)
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "device", orphanRemoval = true, fetch = FetchType.EAGER)
     @Setter(AccessLevel.PROTECTED)
+    @BatchSize(size = 20)
 	private Set<DeviceFeature> features = new HashSet<>();
 
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_device_partition_id"))
 	private Partition partition;
 

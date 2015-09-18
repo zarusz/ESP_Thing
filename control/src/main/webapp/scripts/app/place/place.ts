@@ -13,6 +13,7 @@ module App {
                     },
                     templateUrl: "scripts/app/main/main.html",
                     controller: PlaceCtrl,
+                    controllerAs: PlaceCtrl.$nameAs,
                     //views: {
                     //    "content@": {
                     //        templateUrl: "scripts/app/main/main.html",
@@ -27,6 +28,4 @@ module App {
                     }
                 });
         });
-
-
 }

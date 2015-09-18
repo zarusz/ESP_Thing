@@ -1,15 +1,16 @@
 package com.zarusz.control.domain.device;
 
-import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.feature.Feature;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(of = { "id" })
+@ToString(of = {"id", "port"})
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "feature", discriminatorType = DiscriminatorType.STRING)
@@ -28,15 +29,14 @@ public class DeviceFeature {
 	@GeneratedValue
 	private Integer id;
     private String port;
-    //private String state;
 
 	@ManyToOne
 	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_device_feature_device_id"))
 	@Setter
     private Device device;
 
-    @ManyToOne
-    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_device_feature_feature_id"), name = "feature", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_device_feature_feature_id"), name = "feature", insertable = false, updatable = false)
     @Setter
     private Feature feature;
 }

@@ -2,6 +2,7 @@ package com.zarusz.control.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zarusz.control.domain.User;
+import com.zarusz.control.domain.partition.Partition;
 import com.zarusz.control.repository.UserRepository;
 import com.zarusz.control.security.AuthoritiesConstants;
 import org.slf4j.Logger;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing users.
@@ -47,9 +50,11 @@ public class UserResource {
     @RequestMapping(value = "/users/{login}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @Transactional
     @Timed
     ResponseEntity<User> getUser(@PathVariable String login) {
         log.debug("REST request to get User : {}", login);
+
         return userRepository.findOneByLogin(login)
                 .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

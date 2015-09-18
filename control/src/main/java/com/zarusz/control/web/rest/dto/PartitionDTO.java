@@ -1,11 +1,11 @@
 package com.zarusz.control.web.rest.dto;
 
-import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.partition.Partition;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Tomasz on 9/14/2015.
@@ -24,12 +24,7 @@ public class PartitionDTO {
     public PartitionDTO(Partition e) {
         id = e.getId();
         displayName = e.getDisplayName();
-        for (Partition child : e.getChildren()) {
-            children.add(new PartitionDTO(child));
-        }
-
-        for (Device device : e.getDevices()) {
-            devices.add(new DeviceDTO(device));
-        }
+        children = e.getChildren().stream().map(PartitionDTO::new).collect(Collectors.toList());
+        devices = e.getDevices().stream().map(DeviceDTO::new).collect(Collectors.toList());
     }
 }

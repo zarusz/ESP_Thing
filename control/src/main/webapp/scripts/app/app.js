@@ -1,7 +1,7 @@
 ///<reference path="app.module.ts"/>
 ///<reference path="..\components\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\components\sidenav\sidenav.ctrl.ts"/>
-///<reference path="place\place.ctrl.ts"/>
+///<reference path="place\place.controller.ts"/>
 var App;
 (function (App) {
     App.$module.factory("authInterceptor", function ($rootScope, $q, $location, localStorageService) {
@@ -87,15 +87,8 @@ var App;
                 }]
             }
         };
-        var statePlace = {
-            name: "site.place",
-            url: "/place",
-            templateUrl: "scripts/app/place/place.html",
-            controller: App.PlaceCtrl,
-            controllerAs: "place"
-        };
         $urlRouterProvider.otherwise("/");
-        $stateProvider.state(defaultState).state(statePlace);
+        $stateProvider.state(defaultState);
         $httpProvider.interceptors.push("authExpiredInterceptor");
         $httpProvider.interceptors.push("authInterceptor");
         // Initialize angular-translate

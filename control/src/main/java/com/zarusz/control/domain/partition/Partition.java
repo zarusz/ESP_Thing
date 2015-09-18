@@ -1,49 +1,50 @@
 package com.zarusz.control.domain.partition;
 
+import com.zarusz.control.domain.device.Device;
+import lombok.*;
+import org.hibernate.annotations.BatchSize;
+
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
-
-import com.zarusz.control.domain.device.Device;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
-
 @Data
-@EqualsAndHashCode(of = { "id" })
+@EqualsAndHashCode(of = {"id"})
+@ToString(of = {"id", "displayName"})
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("partition")
+@BatchSize(size = 10)
 public class Partition {
 
-	@Id
-	@GeneratedValue
-	private Integer id;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name = "fk_partition_parent_id") )
-	@Setter(AccessLevel.PROTECTED)
-	private Partition parent;
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_partition_parent_id"))
+    @Setter(AccessLevel.PROTECTED)
+    private Partition parent;
 
-	@OneToMany(mappedBy = "parent")
-	@Setter(AccessLevel.PROTECTED)
-	private Set<Partition> children = new HashSet<>();
+    @BatchSize(size = 20)
+    @OneToMany(mappedBy = "parent", cascade = {CascadeType.ALL})
+    @Setter(AccessLevel.PROTECTED)
+    private Set<Partition> children = new HashSet<>();
 
-	private String displayName;
+    private String displayName;
 
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "partition")
-	@Setter(AccessLevel.PROTECTED)
-	private Set<Device> devices = new HashSet<>();
+    @BatchSize(size = 20)
+    @OneToMany(mappedBy = "partition", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @Setter(AccessLevel.PROTECTED)
+    private Set<Device> devices = new HashSet<>();
 
-	protected Partition() {
-	}
+    protected Partition() {
+    }
 
-	public Partition(Partition parent) {
-		this.parent = parent;
-	}
+    public Partition(Partition parent) {
+        this.parent = parent;
+    }
 
     public Partition addChild() {
         Partition child = new Partition(this);
@@ -53,16 +54,17 @@ public class Partition {
 
     public void removeChild(Partition child) {
         children.remove(child);
+        child.setParent(null);
     }
 
-	public void addDevice(Device device) {
-		devices.add(device);
-		device.setPartition(this);
-	}
+    public void addDevice(Device device) {
+        devices.add(device);
+        device.setPartition(this);
+    }
 
-	public void removeDevice(Device device) {
-		devices.remove(device);
-		device.setPartition(null);
-	}
+    public void removeDevice(Device device) {
+        devices.remove(device);
+        device.setPartition(null);
+    }
 
 }

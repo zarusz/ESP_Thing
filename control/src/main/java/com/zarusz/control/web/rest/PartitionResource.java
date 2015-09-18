@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 /**
@@ -29,9 +30,10 @@ public class PartitionResource {
     @RequestMapping(value = "/partition",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
     public PartitionDTO getRoot() {
+
         Optional<Partition> root = partitionRepository.findRootFetchChildren();
+
         return root
                 .map(PartitionDTO::new)
                 .orElse(null);

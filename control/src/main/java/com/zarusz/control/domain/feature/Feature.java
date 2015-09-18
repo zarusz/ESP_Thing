@@ -2,6 +2,8 @@ package com.zarusz.control.domain.feature;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 
@@ -9,11 +11,10 @@ import javax.persistence.*;
  * Created by Tomasz on 9/9/2015.
  */
 @Data
-@EqualsAndHashCode(of = { "feature" })
+@EqualsAndHashCode(of = {"feature"})
+@ToString(of = {"feature", "displayName"})
 @Entity
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "feature", discriminatorType = DiscriminatorType.STRING)
-//@DiscriminatorValue("feature")
+@BatchSize(size = 20)
 public class Feature {
     @Id
     private String feature;

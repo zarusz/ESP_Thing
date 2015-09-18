@@ -2,6 +2,8 @@ package com.zarusz.control.domain.device;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 
@@ -9,12 +11,14 @@ import javax.persistence.*;
  * Created by Tomasz on 9/8/2015.
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, of = {})
+@ToString(of = {"id", "displayName", "guid"})
 @Entity
 @DiscriminatorValue("endpoint")
 public class EndpointDevice extends Device {
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @BatchSize(size = 20)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_device_device_id"))
     private HubDevice hub;
 

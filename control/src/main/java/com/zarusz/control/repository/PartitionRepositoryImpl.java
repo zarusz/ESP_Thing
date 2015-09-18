@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,14 +24,17 @@ public class PartitionRepositoryImpl extends SimpleJpaRepository<Partition, Inte
 
     @Override
     public Optional<Partition> findRootFetchChildren() {
-        @SuppressWarnings("JpaQlInspection")
-        String q = "select p from Partition p join fetch p.children c join fetch p.devices d where p.parent is empty";
+        //String q = "select p from Partition p left join fetch p.children c left join fetch p.devices d where p.parent is empty";
+        String q = "select p from Partition p left join fetch p.parent parent where p.parent is empty";
 
-        List<Partition> pList = em
+        Partition p = em
                 .createQuery(q, Partition.class)
-                .getResultList();
+                .getSingleResult();
 
-        Partition p = pList.size() > 0 ? pList.get(0) : null;
+        if (p != null) {
+            CollectionInit.Fetch(p, x -> x.getChildren(), x -> x.getDevices().isEmpty());
+        }
+
         return Optional.of(p);
 
         /*

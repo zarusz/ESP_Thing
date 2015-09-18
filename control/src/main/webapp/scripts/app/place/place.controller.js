@@ -4,6 +4,7 @@ var App;
         function PlaceCtrl() {
         }
         PlaceCtrl.$inject = [];
+        PlaceCtrl.$nameAs = "p";
         return PlaceCtrl;
     })();
     App.PlaceCtrl = PlaceCtrl;

@@ -9,20 +9,17 @@ import lombok.ToString;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-/**
- * Created by Tomasz on 9/10/2015.
- */
 @Data
 @EqualsAndHashCode(callSuper = true, of = {})
 @ToString(of = {"id", "port"})
 @Entity
-@DiscriminatorValue("sensor_motion")
-public class MotionSensorFeature extends DeviceFeature {
+@DiscriminatorValue("color")
+public class ColorFeature extends DeviceFeature {
 
-    protected MotionSensorFeature() {
+    protected ColorFeature() {
     }
 
-    public MotionSensorFeature(Device device, Feature feature) {
+    public ColorFeature(Device device, Feature feature) {
         super(device, feature);
     }
 
