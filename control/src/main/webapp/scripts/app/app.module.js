@@ -1,7 +1,5 @@
-/// <reference path="../../typings/angularjs/angular.d.ts" />
-/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
-/// <reference path="../../typings/angular-material/angular-material.d.ts" />
-"use strict";
+/// <reference path="../components/common.ng.ts" />
+/// <reference path="../components/repository/repository.module.ts" />
 var App;
 (function (App) {
     App.$module = angular.module("controlApp", [
@@ -15,7 +13,8 @@ var App;
         "ngCacheBuster",
         "ui.bootstrap",
         "ui.router",
-        "infinite-scroll"
+        "infinite-scroll",
+        App.Repository.$module.name
     ]);
 })(App || (App = {}));
 //# sourceMappingURL=app.module.js.map

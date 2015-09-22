@@ -1,6 +1,5 @@
 package com.zarusz.control.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import com.zarusz.control.domain.partition.Partition;
 import com.zarusz.control.repository.PartitionRepository;
 import com.zarusz.control.web.rest.dto.PartitionDTO;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 /**
@@ -25,15 +23,14 @@ public class PartitionResource {
     private final Logger log = LoggerFactory.getLogger(PartitionResource.class);
 
     @Inject
-    private PartitionRepository partitionRepository;
+    private PartitionRepository partitionRepo;
 
     @RequestMapping(value = "/partition",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public PartitionDTO getRoot() {
 
-        Optional<Partition> root = partitionRepository.findRootFetchChildren();
-
+        Optional<Partition> root = partitionRepo.findRootFetchChildren();
         return root
                 .map(PartitionDTO::new)
                 .orElse(null);

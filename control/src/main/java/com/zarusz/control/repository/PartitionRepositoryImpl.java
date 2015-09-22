@@ -1,6 +1,7 @@
 package com.zarusz.control.repository;
 
 import com.zarusz.control.domain.partition.Partition;
+import org.hibernate.Hibernate;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -32,7 +33,7 @@ public class PartitionRepositoryImpl extends SimpleJpaRepository<Partition, Inte
                 .getSingleResult();
 
         if (p != null) {
-            CollectionInit.Fetch(p, x -> x.getChildren(), x -> x.getDevices().isEmpty());
+            CollectionInit.Fetch(p, x -> x.getChildren(), x -> Hibernate.initialize(x.getDevices()));
         }
 
         return Optional.of(p);

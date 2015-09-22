@@ -1,0 +1,25 @@
+<div>
+    <ol class="breadcrumb">
+        <li ng-repeat="c in p.crumbs">
+            <a ng-if="$last" class="active" href="">{{c.displayName}}</a>
+            <a ng-if="!$last" ui-sref="partition({partitionId: c.id})">{{c.displayName}}</a>
+        </li>
+    </ol>
+</div>
+<div flex layout="row">
+    <md-content flex class="match_parent height">
+        <md-list>
+            <!--<md-subheader class="md-no-sticky">Clickable Items with Secondary Controls</md-subheader>-->
+
+            <div ng-repeat="device in p.devices">
+                <md-subheader class="md-no-sticky">{{device.displayName}}</md-subheader>
+                <md-list-item ng-repeat="feature in device.features">
+                    <md-icon class="fa fa-bars fa-lg"></md-icon>
+                    <p> {{ feature.displayName }} </p>
+                    <md-switch class="md-secondary" ng-model="device.enabled"></md-switch>
+                </md-list-item>
+                <md-divider></md-divider>
+            </div>
+        </md-list>
+    </md-content>
+</div>

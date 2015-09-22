@@ -1,8 +1,5 @@
-/// <reference path="../../typings/angularjs/angular.d.ts" />
-/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
-/// <reference path="../../typings/angular-material/angular-material.d.ts" />
-"use strict";
-
+/// <reference path="../components/common.ng.ts" />
+/// <reference path="../components/repository/repository.module.ts" />
 module App {
 
     export var $module = angular.module("controlApp", [
@@ -16,6 +13,8 @@ module App {
         "ngCacheBuster",
         "ui.bootstrap", // for modal dialogs
         "ui.router",
-        "infinite-scroll"]);
+        "infinite-scroll",
+        Repository.$module.name
+    ]);
 
 }

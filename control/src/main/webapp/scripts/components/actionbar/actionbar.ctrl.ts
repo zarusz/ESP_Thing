@@ -1,21 +1,21 @@
 ///<reference path="..\..\app\app.module.ts"/>
-///<reference path="..\..\components\partition\partition.service.ts"/>
+///<reference path="..\..\components\repository\repository.module.ts"/>
 ///<reference path="..\auth\principal.service.ts"/>
+///<reference path="..\..\app\partition\partition.ts"/>
 module App.Component {
 
     export class ActionBarCtrl {
-        static $inject = ["$mdSidenav", NgSvc.state, Partition.PartitionService.$name, Auth.Principal.$name];
+        static $inject = ["$mdSidenav", NgSvc.state, Repository.PartitionService.$name, Auth.Principal.$name];
 
-        rootPartition: Partition.Partition;
+        rootPartition: Repository.PartitionModel;
 
         constructor(private $mdSidenav: ng.material.ISidenavService,
                     private $state: ng.ui.IStateService,
-                    private partitionService: Partition.PartitionService,
+                    private partitionService: Repository.PartitionService,
                     private principal: Auth.Principal) {
 
             if (!this.principal.isAuthenticated()) {
 
-                //auth.authorize();
                 $state.go("login");
             } else {
                 partitionService.loadRoot().then(r => {
@@ -44,6 +44,12 @@ module App.Component {
         navigateTo(state: string) {
             this.closeSideNav();
             this.$state.go(state);
+        }
+
+        navigateToPartition(partition: Repository.PartitionModel) {
+            this.closeSideNav();
+            var params = new PartitionParams(partition.id);
+            this.$state.go("partition", params);
         }
     }
 

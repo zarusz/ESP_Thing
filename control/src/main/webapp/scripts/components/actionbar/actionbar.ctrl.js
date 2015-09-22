@@ -1,6 +1,7 @@
 ///<reference path="..\..\app\app.module.ts"/>
-///<reference path="..\..\components\partition\partition.service.ts"/>
+///<reference path="..\..\components\repository\repository.module.ts"/>
 ///<reference path="..\auth\principal.service.ts"/>
+///<reference path="..\..\app\partition\partition.ts"/>
 var App;
 (function (App) {
     var Component;
@@ -13,7 +14,6 @@ var App;
                 this.partitionService = partitionService;
                 this.principal = principal;
                 if (!this.principal.isAuthenticated()) {
-                    //auth.authorize();
                     $state.go("login");
                 }
                 else {
@@ -39,7 +39,12 @@ var App;
                 this.closeSideNav();
                 this.$state.go(state);
             };
-            ActionBarCtrl.$inject = ["$mdSidenav", App.NgSvc.state, Component.Partition.PartitionService.$name, App.Auth.Principal.$name];
+            ActionBarCtrl.prototype.navigateToPartition = function (partition) {
+                this.closeSideNav();
+                var params = new App.PartitionParams(partition.id);
+                this.$state.go("partition", params);
+            };
+            ActionBarCtrl.$inject = ["$mdSidenav", App.NgSvc.state, App.Repository.PartitionService.$name, App.Auth.Principal.$name];
             return ActionBarCtrl;
         })();
         Component.ActionBarCtrl = ActionBarCtrl;

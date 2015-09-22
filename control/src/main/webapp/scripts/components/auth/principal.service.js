@@ -1,6 +1,5 @@
-///<reference path="..\..\..\typings\angularjs\angular.d.ts"/>
+///<reference path="..\common.ng.ts"/>
 ///<reference path="..\..\app\app.module.ts"/>
-///<reference path="..\common.ts"/>
 'use strict';
 var App;
 (function (App) {

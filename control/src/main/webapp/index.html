@@ -16,6 +16,7 @@
     <!-- endbuild -->
     <!-- build:css assets/styles/main.css -->
     <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/site.css">
     <!-- endbuild -->
 </head>
 <body ng-app="controlApp">
@@ -25,7 +26,9 @@
 <![endif]-->
 <!--<div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>-->
 
-<div ui-view></div>
+<div ui-view style="height: 100%;" layout="column">
+
+</div>
 
 <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
 <script>
@@ -61,15 +64,21 @@
 <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
 <script src="bower_components/sockjs-client/dist/sockjs.js"></script>
 <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 
 <!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
+
+<script src="scripts/components/common.ng.js"></script>
+
+<script src="scripts/components/repository/partition.service.js"></script>
+<script src="scripts/components/repository/device.service.js"></script>
+<script src="scripts/components/repository/repository.module.js"></script>
+
 <script src="scripts/app/app.module.js"></script>
 <script src="scripts/app/app.constants.js"></script>
-
-<script src="scripts/components/common.js"></script>
 
 <script src="scripts/components/auth/auth.service.js"></script>
 <script src="scripts/components/auth/principal.service.js"></script>
@@ -79,8 +88,6 @@
 <script src="scripts/components/auth/services/password.service.js"></script>
 <script src="scripts/components/auth/services/register.service.js"></script>
 
-<script src="scripts/components/partition/partition.module.js"></script>
-<script src="scripts/components/partition/partition.service.js"></script>
 <script src="scripts/components/actionbar/actionbar.ctrl.js"></script>
 <script src="scripts/components/sidenav/sidenav.ctrl.js"></script>
 <script src="scripts/components/form/form.directive.js"></script>
@@ -97,6 +104,11 @@
 <script src="scripts/components/util/base64.service.js"></script>
 <script src="scripts/components/util/parse-links.service.js"></script>
 <script src="scripts/components/util/dateutil.service.js"></script>
+
+<script src="scripts/components/language/language.service.js"></script>
+<script src="scripts/components/language/language.controller.js"></script>
+<script src="scripts/components/auth/provider/auth.oauth2.service.js"></script>
+<script src="scripts/components/tracker/tracker.service.js"></script>
 
 <script src="scripts/app/account/account.js"></script>
 <script src="scripts/app/account/activate/activate.js"></script>
@@ -135,14 +147,11 @@
 <script src="scripts/app/main/main.js"></script>
 <script src="scripts/app/place/place.controller.js"></script>
 <script src="scripts/app/place/place.js"></script>
-
-<script src="scripts/components/language/language.service.js"></script>
-<script src="scripts/components/language/language.controller.js"></script>
-<script src="scripts/components/auth/provider/auth.oauth2.service.js"></script>
+<script src="scripts/app/partition/partition.controller.js"></script>
+<script src="scripts/app/partition/partition.js"></script>
 
 <script src="scripts/app/admin/tracker/tracker.js"></script>
 <script src="scripts/app/admin/tracker/tracker.controller.js"></script>
-<script src="scripts/components/tracker/tracker.service.js"></script>
 
 <script src="scripts/app/app.js"></script>
 <!-- endbuild -->

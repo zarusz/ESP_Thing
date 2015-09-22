@@ -1,4 +1,4 @@
-<div layout="column">
+<div flex layout="column" style="height: 100%;">
     <md-toolbar>
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button" ng-click="actionBar.toggleSideNav()" aria-label="Menu">
@@ -11,40 +11,41 @@
             </md-button>
         </div>
     </md-toolbar>
-    <div layout="row" flex>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-            <md-toolbar class="md-theme-indigo">
-                <div class="md-toolbar-tools">
-                    <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="Menu">
-                        <md-icon class="fa fa-bars fa-lg"></md-icon>
-                    </md-button>
-                    <h1>Menu</h1>
-                    <span flex></span>
-                    <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="More">
-                        <md-icon class="fa fa-times-circle-o fa-lg"></md-icon>
-                    </md-button>
+    <div flex layout="row">
+        <div>
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+                <md-toolbar class="md-theme-indigo">
+                    <div class="md-toolbar-tools">
+                        <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="Menu">
+                            <md-icon class="fa fa-bars fa-lg"></md-icon>
+                        </md-button>
+                        <h1>Menu</h1>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="More">
+                            <md-icon class="fa fa-times-circle-o fa-lg"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <div flex layout="row">
+                    <md-content flex class="match_parent height">
+                        <md-subheader class="md-no-sticky">Explore</md-subheader>
+                        <md-list-item ng-click="actionBar.navigateTo('site.place')">
+                            <md-icon class="fa fa-building fa-lg"></md-icon>
+                            <p>Rooms</p>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-subheader class="md-no-sticky">{{actionBar.rootPartition.displayName}}</md-subheader>
+                        <md-list-item ng-click="actionBar.navigateToPartition(p)" ng-repeat="p in actionBar.rootPartition.children">
+                            <md-icon class="fa fa-tags fa-lg"></md-icon>
+                            <p>{{p.displayName}}</p>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                    </md-content>
                 </div>
-            </md-toolbar>
-            <md-content layout-padding>
-                <md-subheader class="md-no-sticky">Explore</md-subheader>
-                <md-list-item ng-click="actionBar.navigateTo('site.place')">
-                    <md-icon class="fa fa-building fa-lg"></md-icon>
-                    <p>Rooms</p>
-                </md-list-item>
-                <md-divider></md-divider>
-                <md-subheader class="md-no-sticky">Rooms</md-subheader>
-                <md-list-item ng-click="actionBar.navigateTo('site.place')" ng-repeat="room in actionBar.rootPartition.children">
-                    <md-icon class="fa fa-building fa-lg"></md-icon>
-                    <p>{{room.displayName}}</p>
-                </md-list-item>
-                <md-divider></md-divider>
-            </md-content>
-        </md-sidenav>
-        <div ui-view="">
+            </md-sidenav>
+        </div>
+        <div flex layout="row">
+            <div flex ui-view layout="column"></div>
         </div>
     </div>
-    <div class="footer">
-        <p translate="footer">This is your footer</p>
-    </div>
 </div>
-
