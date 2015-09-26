@@ -24,6 +24,7 @@ public class Device {
 	private Integer id;
 	private String guid;
     private String displayName;
+    private Integer displayPriority;
 
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "device", orphanRemoval = true, fetch = FetchType.EAGER)
     @Setter(AccessLevel.PROTECTED)

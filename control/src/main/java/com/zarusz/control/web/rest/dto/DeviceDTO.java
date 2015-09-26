@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class DeviceDTO {
     private Integer id;
     private String displayName;
+    private Integer displayPriority;
     private List<FeatureDTO> features;
 
     public DeviceDTO() {
@@ -21,6 +22,7 @@ public class DeviceDTO {
     public DeviceDTO(Device e) {
         id = e.getId();
         displayName = e.getDisplayName();
+        displayPriority = e.getDisplayPriority();
         features = e.getFeatures().stream().map(FeatureDTO::new).collect(Collectors.toList());
     }
 }

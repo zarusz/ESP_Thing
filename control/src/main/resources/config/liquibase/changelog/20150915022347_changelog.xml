@@ -24,6 +24,7 @@
                 <constraints primaryKey="true" primaryKeyName="devicePK"/>
             </column>
             <column name="display_name" type="VARCHAR(255)"/>
+            <column name="display_priority" type="int4"/>
             <column name="guid" type="VARCHAR(255)"/>
             <column name="address" type="VARCHAR(255)"/>
             <column name="partition" type="INT"/>
@@ -51,6 +52,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="display_name" type="VARCHAR(255)"/>
+            <column name="display_priority" type="int4"/>
         </createTable>
     </changeSet>
     <changeSet author="Tomasz (generated)" id="1442283833184-5">
@@ -143,8 +145,8 @@
                                  referencedColumnNames="id"
                                  referencedTableName="partition"/>
     </changeSet>
-    <changeSet author="Tomasz (generated)" id="1442283833184-15">
 
+    <changeSet author="Tomasz (generated)" id="1442283833184-15">
         <loadUpdateData
                 encoding="UTF-8"
                 file="config/liquibase/partition.csv"
@@ -177,4 +179,5 @@
                 primaryKey="id"
                 tableName="device_feature"/>
     </changeSet>
+
 </databaseChangeLog>

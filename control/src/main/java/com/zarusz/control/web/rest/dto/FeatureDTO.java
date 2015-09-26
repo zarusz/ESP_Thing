@@ -12,6 +12,7 @@ public class FeatureDTO {
     private Integer id;
     private String type;
     private String displayName;
+    private Integer displayPriority;
 
     public FeatureDTO() {
 
@@ -21,5 +22,6 @@ public class FeatureDTO {
         this.id = deviceFeature.getId();
         this.type = deviceFeature.getFeature().getFeature();
         this.displayName = deviceFeature.getFeature().getDisplayName();
+        this.displayPriority = deviceFeature.getFeature().getDisplayPriority();
     }
 }

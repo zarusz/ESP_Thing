@@ -1,7 +1,7 @@
-feature;display_name
-switch;Switch
-color;Color
-dim;Dimming
-sensor_temp;Temperature sensor
-sensor_light;Light sensor
-sensor_motion;Movement sensor
+feature;display_name;display_priority
+switch;Switch;01
+dim;Dimming;02
+color;Color;03
+sensor_temp;Temperature sensor;04
+sensor_motion;Movement sensor;05
+sensor_light;Light sensor;06

@@ -16,7 +16,7 @@ import lombok.ToString;
 @DiscriminatorValue("switch")
 public class SwitchFeature extends DeviceFeature {
 
-	private boolean on;
+	private Boolean on;
 
 	protected SwitchFeature() {
 	}

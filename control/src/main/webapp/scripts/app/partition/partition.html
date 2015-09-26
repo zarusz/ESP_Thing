@@ -11,9 +11,9 @@
         <md-list>
             <!--<md-subheader class="md-no-sticky">Clickable Items with Secondary Controls</md-subheader>-->
 
-            <div ng-repeat="device in p.devices">
+            <div ng-repeat="device in p.devices | orderBy : 'displayPriority'">
                 <md-subheader class="md-no-sticky">{{device.displayName}}</md-subheader>
-                <md-list-item ng-repeat="feature in device.features" feature="feature" layout="row">
+                <md-list-item ng-repeat="feature in device.features | orderBy : 'displayPriority'" feature="feature" layout="row">
                     <!--<feature feature="feature"></feature>-->
                 </md-list-item>
                 <md-divider></md-divider>
