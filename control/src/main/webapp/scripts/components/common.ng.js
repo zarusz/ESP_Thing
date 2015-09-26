@@ -18,5 +18,29 @@ var App;
         return NgSvc;
     })();
     App.NgSvc = NgSvc;
+    var NgEvent = (function () {
+        function NgEvent() {
+        }
+        NgEvent.destroy = "$destroy";
+        return NgEvent;
+    })();
+    App.NgEvent = NgEvent;
+    var BaseDirective = (function () {
+        function BaseDirective() {
+            var _this = this;
+            this.linkScope = null;
+            this.link = function (scope, element, attributes) {
+                _this.linkScope = scope;
+                _this.linkScope.$on(NgEvent.destroy, function () { return _this.destroy(); });
+                _this.onLink(scope, element, attributes);
+            };
+        }
+        BaseDirective.prototype.destroy = function () {
+        };
+        BaseDirective.prototype.onLink = function (scope, element, attributes) {
+        };
+        return BaseDirective;
+    })();
+    App.BaseDirective = BaseDirective;
 })(App || (App = {}));
 //# sourceMappingURL=common.ng.js.map

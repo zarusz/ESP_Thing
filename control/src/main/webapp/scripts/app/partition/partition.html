@@ -13,10 +13,8 @@
 
             <div ng-repeat="device in p.devices">
                 <md-subheader class="md-no-sticky">{{device.displayName}}</md-subheader>
-                <md-list-item ng-repeat="feature in device.features">
-                    <md-icon class="fa fa-bars fa-lg"></md-icon>
-                    <p> {{ feature.displayName }} </p>
-                    <md-switch class="md-secondary" ng-model="device.enabled"></md-switch>
+                <md-list-item ng-repeat="feature in device.features" feature="feature" layout="row">
+                    <!--<feature feature="feature"></feature>-->
                 </md-list-item>
                 <md-divider></md-divider>
             </div>

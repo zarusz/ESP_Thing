@@ -17,4 +17,29 @@ module App {
         static state = "$state";
         static stateParams = "$stateParams";
     }
+
+    export class NgEvent {
+        static destroy = "$destroy";
+    }
+
+    export class BaseDirective<TScope extends ng.IScope> implements ng.IDirective {
+
+        linkScope: TScope = null;
+
+        constructor() {
+        }
+
+        link = (scope: TScope, element: ng.IAugmentedJQuery, attributes: ng.IAttributes) => {
+            this.linkScope = scope;
+            this.linkScope.$on(NgEvent.destroy, () => this.destroy());
+            this.onLink(scope, element, attributes);
+        }
+
+        destroy() {
+        }
+
+        onLink(scope: TScope, element: ng.IAugmentedJQuery, attributes: ng.IAttributes) {
+
+        }
+    }
 }
