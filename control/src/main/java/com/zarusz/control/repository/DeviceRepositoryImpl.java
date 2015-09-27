@@ -1,12 +1,17 @@
 package com.zarusz.control.repository;
 
+import com.zarusz.control.domain.comm.Hub;
 import com.zarusz.control.domain.device.Device;
+import com.zarusz.control.domain.device.EndpointDevice;
+import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.domain.partition.Partition;
+import org.hibernate.Hibernate;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,6 +36,9 @@ public class DeviceRepositoryImpl extends SimpleJpaRepository<Device, Integer> i
                 .createQuery(q, Device.class)
                 .setParameter("partitionId", partitionId)
                 .getResultList();
+
+        // initialize all associated endpoint devices
+        //devices.stream().filter(x -> x instanceof HubDevice).forEach(d -> Hibernate.initialize(((HubDevice) d).getEndpoints()));
 
         return devices;
     }

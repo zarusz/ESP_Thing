@@ -2,6 +2,7 @@ feature;display_name;display_priority
 switch;Switch;01
 dim;Dimming;02
 color;Color;03
-sensor_temp;Temperature sensor;04
-sensor_motion;Movement sensor;05
-sensor_light;Light sensor;06
+led;LED;04
+sensor_temp;Temperature sensor;05
+sensor_motion;Movement sensor;06
+sensor_light;Light sensor;07

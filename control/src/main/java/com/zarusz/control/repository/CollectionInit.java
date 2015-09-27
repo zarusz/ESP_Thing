@@ -9,6 +9,16 @@ import java.util.function.Function;
  */
 public class CollectionInit {
 
+    public static <E> void Fetch(Collection<E> nodes, Function<E, Collection<E>> selector, Consumer<E> action) {
+        for (E node : nodes) {
+            Fetch(node, selector, action);
+        }
+    }
+
+    public static <E> void Fetch(Collection<E> nodes, Function<E, Collection<E>> selector) {
+        Fetch(nodes, selector, null);
+    }
+
     public static <E> void Fetch(E node, Function<E, Collection<E>> selector, Consumer<E> action) {
         if (action != null) {
             action.accept(node);

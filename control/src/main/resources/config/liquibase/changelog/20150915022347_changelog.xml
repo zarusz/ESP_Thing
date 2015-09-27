@@ -25,6 +25,7 @@
             </column>
             <column name="display_name" type="VARCHAR(255)"/>
             <column name="display_priority" type="int4"/>
+            <column name="display_icon" type="VARCHAR(255)"/>
             <column name="guid" type="VARCHAR(255)"/>
             <column name="address" type="VARCHAR(255)"/>
             <column name="partition" type="INT"/>

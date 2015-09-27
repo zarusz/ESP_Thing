@@ -7,10 +7,10 @@ id;feature;device;port;on
 05;switch;05;p0;NULL
 
 06;switch;06;p0;NULL
-07;color;06;p1;NULL
+07;led;06;p1;NULL
 08;dim;06;p2;NULL
 09;switch;07;p0;NULL
-10;color;07;p1;NULL
+10;led;07;p1;NULL
 11;dim;07;p2;NULL
 
 12;sensor_temp;08;p0;NULL
