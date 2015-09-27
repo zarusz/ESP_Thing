@@ -12,8 +12,7 @@
         </div>
     </md-toolbar>
     <div flex layout="row">
-        <div>
-            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
                 <md-toolbar class="md-theme-indigo">
                     <div class="md-toolbar-tools">
                         <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="Menu">
@@ -26,26 +25,22 @@
                         </md-button>
                     </div>
                 </md-toolbar>
-                <div flex layout="row">
-                    <md-content flex class="match_parent height">
-                        <md-subheader class="md-no-sticky">Explore</md-subheader>
-                        <md-list-item ng-click="actionBar.navigateTo('site.place')">
-                            <md-icon class="fa fa-building fa-lg"></md-icon>
-                            <p>Rooms</p>
-                        </md-list-item>
-                        <md-divider></md-divider>
-                        <md-subheader class="md-no-sticky">{{actionBar.rootPartition.displayName}}</md-subheader>
-                        <md-list-item ng-click="actionBar.navigateToPartition(p)" ng-repeat="p in actionBar.rootPartition.children">
-                            <md-icon class="fa fa-tags fa-lg"></md-icon>
-                            <p>{{p.displayName}}</p>
-                        </md-list-item>
-                        <md-divider></md-divider>
-                    </md-content>
-                </div>
+                <md-content flex layout="column">
+                    <md-subheader class="md-no-sticky">Explore</md-subheader>
+                    <md-list-item ng-click="actionBar.navigateTo('site.place')">
+                        <md-icon class="fa fa-building fa-lg"></md-icon>
+                        <p>Rooms</p>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                    <md-subheader class="md-no-sticky">{{actionBar.rootPartition.displayName}}</md-subheader>
+                    <md-list-item ng-click="actionBar.navigateToPartition(p)" ng-repeat="p in actionBar.rootPartition.children">
+                        <md-icon class="fa fa-tags fa-lg"></md-icon>
+                        <p>{{p.displayName}}</p>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                </md-content>
             </md-sidenav>
-        </div>
-        <div flex layout="row">
-            <div flex ui-view layout="column"></div>
+        <div flex ui-view layout="column">
         </div>
     </div>
 </div>
