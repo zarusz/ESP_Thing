@@ -2,6 +2,7 @@
 ///<reference path="..\components\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\components\sidenav\sidenav.ctrl.ts"/>
 ///<reference path="place\place.controller.ts"/>
+///<reference path="..\components\common.eventbus.ts"/>
 var App;
 (function (App) {
     App.$module.factory("authInterceptor", function ($rootScope, $q, $location, localStorageService) {
@@ -104,5 +105,6 @@ var App;
     }
     App.$module.run(Run);
     App.$module.config(Configure);
+    App.$module.service(App.EventBus.$name, App.EventBus);
 })(App || (App = {}));
 //# sourceMappingURL=app.js.map

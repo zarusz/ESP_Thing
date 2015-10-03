@@ -2,6 +2,7 @@
 ///<reference path="..\components\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\components\sidenav\sidenav.ctrl.ts"/>
 ///<reference path="place\place.controller.ts"/>
+///<reference path="..\components\common.eventbus.ts"/>
 module App {
 
     $module
@@ -128,4 +129,6 @@ module App {
 
     $module.run(Run);
     $module.config(Configure);
+
+    $module.service(EventBus.$name, EventBus);
 }

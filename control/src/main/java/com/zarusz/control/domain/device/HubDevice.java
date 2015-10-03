@@ -1,8 +1,6 @@
 package com.zarusz.control.domain.device;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
@@ -12,9 +10,8 @@ import java.util.Set;
 /**
  * Created by Tomasz on 9/8/2015.
  */
-@Data
-@EqualsAndHashCode(callSuper = true, of = {})
-@ToString(of = {"id", "displayName", "guid"})
+@Setter
+@Getter
 @Entity
 @DiscriminatorValue("hub")
 public class HubDevice extends Device {
@@ -23,7 +20,7 @@ public class HubDevice extends Device {
 
     @BatchSize(size = 20)
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "hub", orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<EndpointDevice> endpoints = new HashSet<>();
+    private Set<EndpointDevice> endpoints;
 
     protected HubDevice() {
     }
@@ -31,6 +28,7 @@ public class HubDevice extends Device {
     public HubDevice(String guid, String address) {
         super(guid);
         this.address = address;
+        this.endpoints = new HashSet<>();
     }
 
     public EndpointDevice addEndpoint(EndpointDevice endpoint) {

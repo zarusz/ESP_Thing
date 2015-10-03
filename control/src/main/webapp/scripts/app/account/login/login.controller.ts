@@ -1,5 +1,5 @@
 ///<reference path="..\..\app.module.ts"/>
-///<reference path="..\..\..\components\common.ts"/>
+///<reference path="..\..\..\components\common.ng.ts"/>
 "use strict";
 module App {
 

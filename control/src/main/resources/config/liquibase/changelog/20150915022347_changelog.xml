@@ -40,11 +40,19 @@
             <column autoIncrement="true" name="id" type="INT">
                 <constraints primaryKey="true" primaryKeyName="device_featurePK"/>
             </column>
-            <column name="port" type="VARCHAR(255)"/>
-            <column name="on" type="BOOLEAN"/>
             <column name="device" type="INT">
                 <constraints nullable="false"/>
             </column>
+            <column name="port" type="VARCHAR(255)"/>
+            <column name="updated" type="timestamp"/>
+            <column name="on" type="BOOLEAN"/>
+            <column name="red" type="int4"/>
+            <column name="green" type="int4"/>
+            <column name="blue" type="int4"/>
+            <column name="intensity" type="float4"/>
+            <column name="movement" type="BOOLEAN"/>
+            <column name="state" type="int4"/>
+            <column name="temperature" type="float4"/>
         </createTable>
     </changeSet>
     <changeSet author="Tomasz (generated)" id="1442283833184-4">
@@ -145,40 +153,6 @@
                                  initiallyDeferred="false"
                                  referencedColumnNames="id"
                                  referencedTableName="partition"/>
-    </changeSet>
-
-    <changeSet author="Tomasz (generated)" id="1442283833184-15">
-        <loadUpdateData
-                encoding="UTF-8"
-                file="config/liquibase/partition.csv"
-                separator=";"
-                quotchar="&quot;"
-                primaryKey="id"
-                tableName="partition"/>
-
-        <loadUpdateData
-                encoding="UTF-8"
-                file="config/liquibase/feature.csv"
-                separator=";"
-                quotchar="&quot;"
-                primaryKey="feature"
-                tableName="feature"/>
-
-        <loadUpdateData
-                encoding="UTF-8"
-                file="config/liquibase/device.csv"
-                separator=";"
-                quotchar="&quot;"
-                primaryKey="id"
-                tableName="device"/>
-
-        <loadUpdateData
-                encoding="UTF-8"
-                file="config/liquibase/device_feature.csv"
-                separator=";"
-                quotchar="&quot;"
-                primaryKey="id"
-                tableName="device_feature"/>
     </changeSet>
 
 </databaseChangeLog>

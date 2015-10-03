@@ -1,8 +1,6 @@
 package com.zarusz.control.domain.device;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
@@ -10,9 +8,8 @@ import javax.persistence.*;
 /**
  * Created by Tomasz on 9/8/2015.
  */
-@Data
-@EqualsAndHashCode(callSuper = true, of = {})
-@ToString(of = {"id", "displayName", "guid"})
+@Getter
+@Setter
 @Entity
 @DiscriminatorValue("endpoint")
 public class EndpointDevice extends Device {

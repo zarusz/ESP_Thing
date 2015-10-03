@@ -2,6 +2,6 @@
     <div flex="30" layout layout-align="start center">
         <span class="md-body-1">{{ feature.displayName }}</span>
     </div>
-    <md-slider flex md-discrete ng-model="feature.dim" step="1" min="1" max="255" aria-label="light intensity">
+    <md-slider flex md-discrete ng-model="feature.state.intensity" step="1" min="0" max="100" aria-label="light intensity">
     </md-slider>
 </div>

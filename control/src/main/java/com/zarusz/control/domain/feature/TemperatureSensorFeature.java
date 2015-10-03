@@ -2,21 +2,19 @@ package com.zarusz.control.domain.feature;
 
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.DeviceFeature;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
+import org.joda.time.DateTime;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-@Data
-@EqualsAndHashCode(callSuper = true, of = {})
-@ToString(of = {"id", "port"})
+@Getter
+@Setter
 @Entity
 @DiscriminatorValue("sensor_temp")
 public class TemperatureSensorFeature extends DeviceFeature {
 
-    //private float value;
+    private float temperature;
 
     protected TemperatureSensorFeature() {
     }
