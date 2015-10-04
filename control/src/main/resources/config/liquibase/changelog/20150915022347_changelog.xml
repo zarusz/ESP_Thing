@@ -83,6 +83,7 @@
                 <constraints primaryKey="true" primaryKeyName="partitionPK"/>
             </column>
             <column name="display_name" type="VARCHAR(255)"/>
+            <column name="display_priority" type="int4"/>
             <column name="parent" type="INT"/>
         </createTable>
     </changeSet>

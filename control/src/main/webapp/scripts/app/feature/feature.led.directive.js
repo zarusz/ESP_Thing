@@ -13,14 +13,20 @@ var App;
     (function (Feature) {
         var FeatureLedDirective = (function (_super) {
             __extends(FeatureLedDirective, _super);
-            function FeatureLedDirective() {
-                _super.apply(this, arguments);
+            function FeatureLedDirective(deviceService) {
+                _super.call(this);
+                this.deviceService = deviceService;
                 this.restrict = "EA";
                 this.templateUrl = "scripts/app/feature/feature.led.html";
             }
             FeatureLedDirective.prototype.onLink = function (scope, element, attributes) {
+                scope.select = function (newMode) {
+                    scope.feature.state.mode = newMode;
+                    scope.notifyStateChanged();
+                };
             };
             FeatureLedDirective.$name = "featureLed";
+            FeatureLedDirective.$inject = [App.Repository.DeviceService.$name];
             return FeatureLedDirective;
         })(App.BaseDirective);
         Feature.FeatureLedDirective = FeatureLedDirective;

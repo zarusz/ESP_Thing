@@ -10,7 +10,7 @@ module App {
         static rootScope = "$rootScope";
         static scope = "$scope";
         static http = "$http";
-        static $q = "$q";
+        static q = "$q";
 
         // Angular UI Router
 
@@ -41,5 +41,22 @@ module App {
         onLink(scope: TScope, element: ng.IAugmentedJQuery, attributes: ng.IAttributes) {
 
         }
+    }
+
+    export class NgUtils {
+
+        /*
+        static directive(module: ng.IModule, name: string, serviceConstructor: Function): ng.IModule {
+            var depNames = _.clone(serviceConstructor.$inject);
+            var createFunc = (...args: any[]) => new serviceConstructor(args);
+            depNames.push();
+
+
+            module.directive(name, depNames)     ;
+
+            return module;
+        }
+        */
+
     }
 }

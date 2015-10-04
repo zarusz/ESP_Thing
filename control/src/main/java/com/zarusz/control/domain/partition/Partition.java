@@ -30,20 +30,23 @@ public class Partition {
     @BatchSize(size = 20)
     @OneToMany(mappedBy = "parent", cascade = {CascadeType.ALL})
     @Setter(AccessLevel.PROTECTED)
-    private Set<Partition> children = new HashSet<>();
+    private Set<Partition> children;
 
     private String displayName;
+    private Integer displayPriority;
 
     @BatchSize(size = 20)
     @OneToMany(mappedBy = "partition", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @Setter(AccessLevel.PROTECTED)
-    private Set<Device> devices = new HashSet<>();
+    private Set<Device> devices;
 
     protected Partition() {
     }
 
     public Partition(Partition parent) {
         this.parent = parent;
+        this.children = new HashSet<>();
+        this.devices = new HashSet<>();
     }
 
     public Partition addChild() {

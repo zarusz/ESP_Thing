@@ -15,7 +15,7 @@
                 <span ng-if="device.displayIcon" class="{{device.displayIcon}}"></span>
                 {{device.displayName}}
             </md-subheader>
-            <md-list-item ng-repeat="feature in device.features | orderBy : 'displayPriority'" feature="feature" layout="row">
+            <md-list-item ng-repeat="feature in device.features | orderBy : 'displayPriority'" device="$parent.device" feature="feature" layout="row">
                 <!--<feature feature="feature"></feature>-->
             </md-list-item>
             <md-divider></md-divider>

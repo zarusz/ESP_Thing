@@ -10,15 +10,15 @@ var App;
         })();
         Repository.PartitionModel = PartitionModel;
         var PartitionService = (function () {
-            function PartitionService($http, q) {
-                this.$http = $http;
+            function PartitionService(http, q) {
+                this.http = http;
                 this.q = q;
                 this.partitionById = {};
                 this.loadRoot();
             }
             PartitionService.prototype.loadRoot = function () {
                 var _this = this;
-                this.rootLoading = this.$http.get("/api/partition").success(function (p) {
+                this.rootLoading = this.http.get("/api/partition").success(function (p) {
                     _this.setRoot(p);
                     _this.rootLoading = null;
                 });
@@ -51,7 +51,7 @@ var App;
                 return deferred.promise;
             };
             PartitionService.$name = "PartitionService";
-            PartitionService.$inject = [App.NgSvc.http, App.NgSvc.$q];
+            PartitionService.$inject = [App.NgSvc.http, App.NgSvc.q];
             return PartitionService;
         })();
         Repository.PartitionService = PartitionService;

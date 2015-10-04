@@ -9,7 +9,7 @@ module App.Auth {
 
     export class Principal {
         static $name = "Principal";
-        static $inject = [NgSvc.$q, "Account", "Tracker"];
+        static $inject = [NgSvc.q, "Account", "Tracker"];
 
         private _identity: Identity;
         private _authenticated = false;

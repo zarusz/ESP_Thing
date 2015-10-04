@@ -12,17 +12,25 @@ var App;
     (function (Feature) {
         var FeatureDirective = (function (_super) {
             __extends(FeatureDirective, _super);
-            function FeatureDirective() {
-                _super.apply(this, arguments);
+            function FeatureDirective(deviceService) {
+                _super.call(this);
+                this.deviceService = deviceService;
                 this.restrict = "EA";
                 this.transclude = true;
                 this.scope = {};
                 this.templateUrl = "scripts/app/feature/feature.html";
             }
             FeatureDirective.prototype.onLink = function (scope, element, attributes) {
+                var _this = this;
                 scope.$parent.$watch(attributes.feature, function (newValue) {
                     scope.feature = newValue;
                 });
+                scope.$parent.$watch(attributes.device, function (newValue) {
+                    scope.device = newValue;
+                });
+                scope.notifyStateChanged = function () {
+                    _this.deviceService.updateFeatureState(scope.device, scope.feature);
+                };
             };
             FeatureDirective.$name = "feature";
             return FeatureDirective;

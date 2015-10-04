@@ -71,7 +71,7 @@ var App;
                 return deferred.promise;
             };
             Principal.$name = "Principal";
-            Principal.$inject = [App.NgSvc.$q, "Account", "Tracker"];
+            Principal.$inject = [App.NgSvc.q, "Account", "Tracker"];
             return Principal;
         })();
         Auth.Principal = Principal;

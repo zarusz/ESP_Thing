@@ -5,9 +5,9 @@
 ///<reference path="feature.led.directive.ts"/>
 module App.Feature {
 
-    $module.directive(FeatureDirective.$name, [() => new FeatureDirective()]);
-    $module.directive(FeatureSwitchDirective.$name, [() => new FeatureSwitchDirective()]);
-    $module.directive(FeatureDimDirective.$name, [() => new FeatureDimDirective()]);
-    $module.directive(FeatureLedDirective.$name, [() => new FeatureLedDirective()]);
+    $module.directive(FeatureDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureDirective(deviceService)]);
+    $module.directive(FeatureSwitchDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureSwitchDirective(deviceService)]);
+    $module.directive(FeatureDimDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureDimDirective(deviceService)]);
+    $module.directive(FeatureLedDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureLedDirective(deviceService)]);
 
 }

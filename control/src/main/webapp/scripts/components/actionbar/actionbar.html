@@ -33,7 +33,7 @@
                     </md-list-item>
                     <md-divider></md-divider>
                     <md-subheader class="md-no-sticky">{{actionBar.rootPartition.displayName}}</md-subheader>
-                    <md-list-item ng-click="actionBar.navigateToPartition(p)" ng-repeat="p in actionBar.rootPartition.children">
+                    <md-list-item ng-click="actionBar.navigateToPartition(p)" ng-repeat="p in actionBar.rootPartition.children | orderBy : 'displayPriority'">
                         <md-icon class="fa fa-tags fa-lg"></md-icon>
                         <p>{{p.displayName}}</p>
                     </md-list-item>

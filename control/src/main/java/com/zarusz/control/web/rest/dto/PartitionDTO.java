@@ -15,6 +15,7 @@ public class PartitionDTO {
 
     private Integer id;
     private String displayName;
+    private Integer displayPriority;
     private List<PartitionDTO> children = new ArrayList<>();
 
     public PartitionDTO() {
@@ -23,6 +24,7 @@ public class PartitionDTO {
     public PartitionDTO(Partition e) {
         id = e.getId();
         displayName = e.getDisplayName();
+        displayPriority = e.getDisplayPriority();
         children = e.getChildren().stream().map(PartitionDTO::new).collect(Collectors.toList());
     }
 }

@@ -13,14 +13,17 @@ var App;
     (function (Feature) {
         var FeatureSwitchDirective = (function (_super) {
             __extends(FeatureSwitchDirective, _super);
-            function FeatureSwitchDirective() {
-                _super.apply(this, arguments);
+            function FeatureSwitchDirective(deviceService) {
+                _super.call(this);
+                this.deviceService = deviceService;
                 this.restrict = "EA";
                 this.templateUrl = "scripts/app/feature/feature.switch.html";
             }
             FeatureSwitchDirective.prototype.onLink = function (scope, element, attributes) {
+                scope.$watch(function (s) { return s.feature.state.on; }, function () { return scope.notifyStateChanged(); });
             };
             FeatureSwitchDirective.$name = "featureSwitch";
+            FeatureSwitchDirective.$inject = [App.Repository.DeviceService.$name];
             return FeatureSwitchDirective;
         })(App.BaseDirective);
         Feature.FeatureSwitchDirective = FeatureSwitchDirective;

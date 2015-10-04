@@ -13,14 +13,17 @@ var App;
     (function (Feature) {
         var FeatureDimDirective = (function (_super) {
             __extends(FeatureDimDirective, _super);
-            function FeatureDimDirective() {
-                _super.apply(this, arguments);
+            function FeatureDimDirective(deviceService) {
+                _super.call(this);
+                this.deviceService = deviceService;
                 this.restrict = "EA";
                 this.templateUrl = "scripts/app/feature/feature.dim.html";
             }
             FeatureDimDirective.prototype.onLink = function (scope, element, attributes) {
+                scope.$watch(function (s) { return s.feature.state.intensity; }, function () { return scope.notifyStateChanged(); });
             };
             FeatureDimDirective.$name = "featureDim";
+            FeatureDimDirective.$inject = [App.Repository.DeviceService.$name];
             return FeatureDimDirective;
         })(App.BaseDirective);
         Feature.FeatureDimDirective = FeatureDimDirective;

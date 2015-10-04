@@ -11,8 +11,12 @@ var App;
             DeviceService.prototype.getAllByPartitionId = function (partitionId) {
                 return this.$http.get("/api/device", { params: { partitionId: partitionId } });
             };
+            DeviceService.prototype.updateFeatureState = function (device, feature) {
+                var url = "api/device/" + device.id + "/feature/" + feature.id + "/state";
+                return this.$http.post(url, feature.state);
+            };
             DeviceService.$name = "DeviceService";
-            DeviceService.$inject = [App.NgSvc.http, App.NgSvc.$q];
+            DeviceService.$inject = [App.NgSvc.http, App.NgSvc.q];
             return DeviceService;
         })();
         Repository.DeviceService = DeviceService;

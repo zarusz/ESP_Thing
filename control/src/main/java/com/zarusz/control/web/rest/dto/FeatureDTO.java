@@ -18,7 +18,6 @@ public class FeatureDTO {
     private FeatureStateDTO state;
 
     public FeatureDTO() {
-
     }
 
     public FeatureDTO(DeviceFeature deviceFeature) {

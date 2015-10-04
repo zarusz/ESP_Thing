@@ -7,10 +7,10 @@ var App;
 (function (App) {
     var Feature;
     (function (Feature) {
-        App.$module.directive(Feature.FeatureDirective.$name, [function () { return new Feature.FeatureDirective(); }]);
-        App.$module.directive(Feature.FeatureSwitchDirective.$name, [function () { return new Feature.FeatureSwitchDirective(); }]);
-        App.$module.directive(Feature.FeatureDimDirective.$name, [function () { return new Feature.FeatureDimDirective(); }]);
-        App.$module.directive(Feature.FeatureLedDirective.$name, [function () { return new Feature.FeatureLedDirective(); }]);
+        App.$module.directive(Feature.FeatureDirective.$name, [App.Repository.DeviceService.$name, function (deviceService) { return new Feature.FeatureDirective(deviceService); }]);
+        App.$module.directive(Feature.FeatureSwitchDirective.$name, [App.Repository.DeviceService.$name, function (deviceService) { return new Feature.FeatureSwitchDirective(deviceService); }]);
+        App.$module.directive(Feature.FeatureDimDirective.$name, [App.Repository.DeviceService.$name, function (deviceService) { return new Feature.FeatureDimDirective(deviceService); }]);
+        App.$module.directive(Feature.FeatureLedDirective.$name, [App.Repository.DeviceService.$name, function (deviceService) { return new Feature.FeatureLedDirective(deviceService); }]);
     })(Feature = App.Feature || (App.Feature = {}));
 })(App || (App = {}));
 //# sourceMappingURL=feature.js.map

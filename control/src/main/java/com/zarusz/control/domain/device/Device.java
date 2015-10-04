@@ -2,6 +2,7 @@ package com.zarusz.control.domain.device;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
@@ -64,13 +65,21 @@ public class Device {
         return null;
     }
 
-    public Set<DeviceFeature> getFeaturesOfType(Feature feature) {
-        Set<DeviceFeature> featuresOfType = new HashSet<>();
+    public DeviceFeature getFeatureById(int featureId) {
         for (DeviceFeature deviceFeature : features) {
-            if (feature.equals(deviceFeature.getFeature())) {
-                featuresOfType.add(deviceFeature);
+            if (deviceFeature.getId() == featureId) {
+                return deviceFeature;
             }
         }
+        return null;
+    }
+
+    public Set<DeviceFeature> getFeaturesOfType(Feature feature) {
+        Set<DeviceFeature> featuresOfType = features.stream()
+                .filter(deviceFeature -> feature.equals(deviceFeature.getFeature()))
+                .collect(Collectors.toSet());
+
         return featuresOfType;
     }
+
 }

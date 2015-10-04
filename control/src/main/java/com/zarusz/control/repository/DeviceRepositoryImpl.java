@@ -42,4 +42,16 @@ public class DeviceRepositoryImpl extends SimpleJpaRepository<Device, Integer> i
 
         return devices;
     }
+
+    @Override
+    public Device findOne(Integer id) {
+        final String q = "select distinct d from Device d left join fetch d.features df left join fetch df.feature f where d.id = :id";
+
+        Device device = em
+                .createQuery(q, Device.class)
+                .setParameter("id", id)
+                .getSingleResult();
+
+        return device;
+    }
 }

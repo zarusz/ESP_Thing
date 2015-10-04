@@ -3,14 +3,23 @@
 ///<reference path="feature.directive.ts"/>
 module App.Feature {
 
-    export class FeatureDimDirective extends BaseDirective<IFeatureScope> {
+    interface IDimFeatureScope extends IFeatureScope<Repository.IDimFeatureStateModel> {
+
+    }
+
+    export class FeatureDimDirective extends BaseDirective<IDimFeatureScope> {
         static $name = "featureDim";
+        static $inject = [Repository.DeviceService.$name];
 
         restrict = "EA";
         templateUrl = "scripts/app/feature/feature.dim.html";
 
-        onLink(scope: IFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
+        constructor(private deviceService: Repository.DeviceService) {
+            super();
+        }
 
+        onLink(scope: IDimFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
+            scope.$watch((s: IDimFeatureScope) => s.feature.state.intensity, () => scope.notifyStateChanged());
         }
 
     }

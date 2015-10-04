@@ -4,6 +4,7 @@ module App.Repository {
     export class PartitionModel {
         id: number;
         displayName: string;
+        displayPriority: number;
         children: Array<PartitionModel>;
         parent: PartitionModel;
     }
@@ -11,20 +12,20 @@ module App.Repository {
     export class PartitionService {
 
         static $name = "PartitionService";
-        static $inject = [NgSvc.http, NgSvc.$q];
+        static $inject = [NgSvc.http, NgSvc.q];
 
         private root: PartitionModel;
         private rootLoading: ng.IPromise<any>;
         private partitionById: { [id: number]: PartitionModel } = {};
 
-        constructor(private $http: ng.IHttpService,
+        constructor(private http: ng.IHttpService,
                     private q: ng.IQService) {
 
             this.loadRoot();
         }
 
         loadRoot() {
-            this.rootLoading = this.$http.get<PartitionModel>("/api/partition").success(p => {
+            this.rootLoading = this.http.get<PartitionModel>("/api/partition").success(p => {
                 this.setRoot(p);
                 this.rootLoading = null;
             });

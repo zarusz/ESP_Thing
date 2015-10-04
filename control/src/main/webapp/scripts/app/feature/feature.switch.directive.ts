@@ -3,14 +3,23 @@
 ///<reference path="feature.directive.ts"/>
 module App.Feature {
 
-    export class FeatureSwitchDirective extends BaseDirective<IFeatureScope> {
+    interface ISwitchFeatureScope extends IFeatureScope<Repository.ISwitchFeatureStateModel> {
+
+    }
+
+    export class FeatureSwitchDirective extends BaseDirective<ISwitchFeatureScope> {
         static $name = "featureSwitch";
+        static $inject = [Repository.DeviceService.$name];
 
         restrict = "EA";
         templateUrl = "scripts/app/feature/feature.switch.html";
 
-        onLink(scope: IFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
+        constructor(private deviceService: Repository.DeviceService) {
+            super();
+        }
 
+        onLink(scope: ISwitchFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
+            scope.$watch((s: ISwitchFeatureScope) => s.feature.state.on, () => scope.notifyStateChanged());
         }
 
     }

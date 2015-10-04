@@ -11,7 +11,7 @@ var App;
         NgSvc.rootScope = "$rootScope";
         NgSvc.scope = "$scope";
         NgSvc.http = "$http";
-        NgSvc.$q = "$q";
+        NgSvc.q = "$q";
         // Angular UI Router
         NgSvc.state = "$state";
         NgSvc.stateParams = "$stateParams";
@@ -42,5 +42,11 @@ var App;
         return BaseDirective;
     })();
     App.BaseDirective = BaseDirective;
+    var NgUtils = (function () {
+        function NgUtils() {
+        }
+        return NgUtils;
+    })();
+    App.NgUtils = NgUtils;
 })(App || (App = {}));
 //# sourceMappingURL=common.ng.js.map
