@@ -5,6 +5,7 @@ module App.Feature {
     export interface IFeatureScope<T extends Repository.IFeatureStateModel> extends ng.IScope {
         device: Repository.IDeviceModel;
         feature: Repository.IFeatureModel<T>;
+        timeoutHandle: ng.IPromise<void>;
         notifyStateChanged();
     }
 
@@ -21,7 +22,9 @@ module App.Feature {
         scope = {};
         templateUrl = "scripts/app/feature/feature.html";
 
-        constructor(private deviceService: Repository.DeviceService) {
+        constructor(private deviceService: Repository.DeviceService,
+                    private timeout: ng.ITimeoutService) {
+
             super();
         }
 
@@ -34,7 +37,14 @@ module App.Feature {
             });
 
             scope.notifyStateChanged = () => {
-                this.deviceService.updateFeatureState(scope.device, scope.feature);
+                if (scope.timeoutHandle) {
+                    this.timeout.cancel(scope.timeoutHandle);
+                }
+
+                scope.timeoutHandle = this.timeout(() => {
+                    scope.timeoutHandle = null;
+                    this.deviceService.updateFeatureState(scope.device, scope.feature);
+                }, 1000);
             };
         }
 

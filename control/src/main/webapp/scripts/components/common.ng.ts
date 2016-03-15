@@ -11,6 +11,7 @@ module App {
         static scope = "$scope";
         static http = "$http";
         static q = "$q";
+        static timeout = "$timeout";
 
         // Angular UI Router
 

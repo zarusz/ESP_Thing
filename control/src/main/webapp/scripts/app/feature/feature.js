@@ -7,7 +7,7 @@ var App;
 (function (App) {
     var Feature;
     (function (Feature) {
-        App.$module.directive(Feature.FeatureDirective.$name, [App.Repository.DeviceService.$name, function (deviceService) { return new Feature.FeatureDirective(deviceService); }]);
+        App.$module.directive(Feature.FeatureDirective.$name, [App.Repository.DeviceService.$name, App.NgSvc.timeout, function (deviceService, timeout) { return new Feature.FeatureDirective(deviceService, timeout); }]);
         App.$module.directive(Feature.FeatureSwitchDirective.$name, [App.Repository.DeviceService.$name, function (deviceService) { return new Feature.FeatureSwitchDirective(deviceService); }]);
         App.$module.directive(Feature.FeatureDimDirective.$name, [App.Repository.DeviceService.$name, function (deviceService) { return new Feature.FeatureDimDirective(deviceService); }]);
         App.$module.directive(Feature.FeatureLedDirective.$name, [App.Repository.DeviceService.$name, function (deviceService) { return new Feature.FeatureLedDirective(deviceService); }]);

@@ -12,6 +12,7 @@ var App;
         NgSvc.scope = "$scope";
         NgSvc.http = "$http";
         NgSvc.q = "$q";
+        NgSvc.timeout = "$timeout";
         // Angular UI Router
         NgSvc.state = "$state";
         NgSvc.stateParams = "$stateParams";
