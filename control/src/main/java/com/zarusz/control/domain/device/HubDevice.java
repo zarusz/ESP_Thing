@@ -20,24 +20,24 @@ public class HubDevice extends Device {
 
     @BatchSize(size = 20)
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "hub", orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<EndpointDevice> endpoints;
+    private Set<Device> endpoints;
 
     protected HubDevice() {
     }
 
     public HubDevice(String guid, String address) {
-        super(guid);
+        super(guid, null);
         this.address = address;
         this.endpoints = new HashSet<>();
     }
 
-    public EndpointDevice addEndpoint(EndpointDevice endpoint) {
+    public Device addEndpoint(Device endpoint) {
         endpoints.add(endpoint);
         endpoint.setHub(this);
         return endpoint;
     }
 
-    public void removeEndpoint(EndpointDevice endpoint) {
+    public void removeEndpoint(Device endpoint) {
         endpoints.remove(endpoint);
         endpoint.setHub(null);
     }

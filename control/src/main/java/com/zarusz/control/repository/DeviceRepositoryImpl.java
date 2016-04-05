@@ -45,7 +45,7 @@ public class DeviceRepositoryImpl extends SimpleJpaRepository<Device, Integer> i
 
     @Override
     public Device findOne(Integer id) {
-        final String q = "select distinct d from Device d left join fetch d.features df left join fetch df.feature f where d.id = :id";
+        final String q = "select distinct d from Device d left join fetch d.hub h left join fetch d.features df left join fetch df.feature f where d.id = :id";
 
         Device device = em
                 .createQuery(q, Device.class)

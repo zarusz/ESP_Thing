@@ -14,17 +14,11 @@ import javax.persistence.*;
 @DiscriminatorValue("endpoint")
 public class EndpointDevice extends Device {
 
-    @BatchSize(size = 20)
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_device_device_id"))
-    private HubDevice hub;
-
     protected EndpointDevice() {
     }
 
     public EndpointDevice(String guid, HubDevice hub) {
-        super(guid);
-        this.hub = hub;
+        super(guid, hub);
         hub.addEndpoint(this);
     }
 

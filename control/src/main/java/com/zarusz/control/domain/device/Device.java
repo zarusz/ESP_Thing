@@ -33,15 +33,22 @@ public class Device {
     @BatchSize(size = 20)
 	private Set<DeviceFeature> features = new HashSet<>();
 
-	@ManyToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
+    @BatchSize(size = 20)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_device_device_id"))
+    @Setter(AccessLevel.PROTECTED)
+    private HubDevice hub;
+
+    @ManyToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_device_partition_id"))
 	private Partition partition;
 
     protected Device() {
     }
 
-    public Device(String guid) {
+    public Device(String guid, HubDevice hub) {
         this.guid = guid;
+        this.hub = hub;
     }
 
 	public DeviceFeature addFeature(Feature feature) {

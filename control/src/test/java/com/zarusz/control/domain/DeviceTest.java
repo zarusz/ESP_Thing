@@ -13,8 +13,8 @@ public class DeviceTest {
     @Test
     public void devicesWithSameIdAreEqual() {
         // arrange
-        Device d1 = new Device("guid1");
-        Device d2 = new Device("guid1");
+        Device d1 = new Device("guid1", null);
+        Device d2 = new Device("guid1", null);
 
         d1.setId(10);
         d2.setId(10);
@@ -32,8 +32,8 @@ public class DeviceTest {
     @Test
     public void devicesWithDifferentIdAreNotEqual() {
         // arrange
-        Device d1 = new Device("guid1");
-        Device d2 = new Device("guid1");
+        Device d1 = new Device("guid1", null);
+        Device d2 = new Device("guid1", null);
 
         d1.setId(11);
         d2.setId(10);
