@@ -45,4 +45,5 @@ public abstract class FeatureStateDTO {
         return null;
     }
 
+    public abstract void handle(DeviceFeature feature);
 }

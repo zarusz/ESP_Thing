@@ -1,5 +1,6 @@
 package com.zarusz.control.web.rest.dto.feature;
 
+import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.feature.DimFeature;
 import lombok.Data;
 
@@ -19,4 +20,7 @@ public class DimFeatureStateDTO extends FeatureStateDTO {
         intensity = feature.getIntensity();
     }
 
+    @Override
+    public void handle(DeviceFeature feature) {
+    }
 }

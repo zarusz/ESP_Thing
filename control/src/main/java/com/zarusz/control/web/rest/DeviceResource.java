@@ -48,6 +48,7 @@ public class DeviceResource {
         if (device != null) {
             DeviceFeature feature = device.getFeatureById(featureId);
             if (feature != null) {
+                state.handle(feature);
                 return;
             }
         }

@@ -1,5 +1,6 @@
 package com.zarusz.control.web.rest.dto.feature;
 
+import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.feature.LEDFeature;
 import lombok.Data;
 
@@ -16,6 +17,11 @@ public class LEDFeatureStateDTO extends FeatureStateDTO {
 
     public LEDFeatureStateDTO(LEDFeature feature) {
         mode = feature.getState();
+    }
+
+    @Override
+    public void handle(DeviceFeature feature) {
+
     }
 }
 

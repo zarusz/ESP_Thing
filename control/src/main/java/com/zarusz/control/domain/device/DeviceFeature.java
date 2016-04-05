@@ -35,11 +35,9 @@ public class DeviceFeature {
 
 	@ManyToOne
 	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_device_feature_device_id"))
-	@Setter
     private Device device;
 
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_device_feature_feature_id"), name = "feature", insertable = false, updatable = false)
-    @Setter
     private Feature feature;
 }

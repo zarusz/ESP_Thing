@@ -1,5 +1,6 @@
 package com.zarusz.control.web.rest.dto.feature;
 
+import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.feature.SwitchFeature;
 import lombok.Data;
 
@@ -18,5 +19,11 @@ public class SwitchFeatureStateDTO extends FeatureStateDTO {
     public SwitchFeatureStateDTO(SwitchFeature feature) {
         super(feature);
         this.on = feature.isOn();
+    }
+
+    @Override
+    public void handle(DeviceFeature feature) {
+        SwitchFeature switchFeature = (SwitchFeature) feature;
+        switchFeature.setOn(on);
     }
 }

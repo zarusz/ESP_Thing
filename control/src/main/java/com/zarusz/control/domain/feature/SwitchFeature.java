@@ -1,32 +1,33 @@
 package com.zarusz.control.domain.feature;
 
+import com.zarusz.control.domain.common.EventBus;
+import com.zarusz.control.domain.device.Device;
+import com.zarusz.control.domain.device.DeviceFeature;
+import com.zarusz.control.domain.msg.commands.SwitchCommand;
+import lombok.Getter;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import com.zarusz.control.domain.device.Device;
-import com.zarusz.control.domain.device.DeviceFeature;
-import lombok.*;
-
-@Getter
-@Setter
 @Entity
 @DiscriminatorValue("switch")
 public class SwitchFeature extends DeviceFeature {
 
+    @Getter
 	private Boolean on;
 
 	protected SwitchFeature() {
 	}
 
 	public SwitchFeature(Device device, Feature feature) {
-		super(device, feature);
+        super(device, feature);
 	}
 
 	public void setOn(boolean on) {
 		this.on = on;
 
-		//SwitchCommand cmd = new SwitchCommand(getDevice(), on);
-		//EventBus.publish(cmd);
+		SwitchCommand cmd = new SwitchCommand(this, on);
+        EventBus.current().publish(cmd);
 	}
 
 	public boolean isOn() {

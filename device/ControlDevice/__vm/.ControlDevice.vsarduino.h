@@ -105,6 +105,4 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <..\ControlDevice\HttpTestApp.h>
 #include <..\ControlDevice\MainApp.cpp>
 #include <..\ControlDevice\MainApp.h>
-#include <..\ControlDevice\MqttTestApp.cpp>
-#include <..\ControlDevice\MqttTestApp.h>
 #endif

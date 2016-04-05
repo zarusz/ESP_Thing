@@ -17,7 +17,7 @@
 	<groupId>com.zarusz.control</groupId>
 	<artifactId>control</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 
 	<name>control</name>
 
@@ -26,7 +26,7 @@
 	</prerequisites>
 
 	<properties>
-		<lombok.version>1.16.4</lombok.version>
+		<lombok.version>1.16.8</lombok.version>
 		<HikariCP.version>2.3.7</HikariCP.version>
 		<assertj-core.version>3.1.0</assertj-core.version>
 		<awaitility.version>1.4.0</awaitility.version>
@@ -382,12 +382,13 @@
 			<version>${metrics-spark-reporter.version}</version>
 		</dependency>
 		<!-- App specific -->
-		<dependency>
-			<groupId>net.engio</groupId>
-			<artifactId>mbassador</artifactId>
-			<version>1.2.1</version>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>net.engio</groupId>
+            <artifactId>mbassador</artifactId>
+            <version>1.2.4.2</version>
+        </dependency>
+        </dependency>
+    </dependencies>
 	<build>
 		<resources>
 			<resource>
