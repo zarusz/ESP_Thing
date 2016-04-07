@@ -1,0 +1,42 @@
+//package device.commands;
+
+option java_package = "com.zarusz.control.device.messages";
+option java_outer_classname = "DeviceMessageProtos";
+
+message DeviceSwitchCommand {
+  required int32 message_id = 1;
+  required int32 port = 2;
+  required bool on = 3;
+}
+
+message DeviceIRCommand {
+  required int32 message_id = 1;
+  required int32 port = 2;
+  required bytes value = 3;
+}
+
+message CommandAckResponse {
+  required int32 message_id = 1;
+}
+
+message DeviceTemperatureMeasuredEvent {
+  required string device = 1;
+  required int32 port = 2;
+  required sint32 value = 3;
+}
+
+message DeviceMovementDetectedEvent {
+  required string device = 1;
+  required int32 port = 2;
+}
+
+message DeviceMessage {
+
+  optional DeviceSwitchCommand switch = 1;
+  optional DeviceIRCommand ir = 2;
+
+  optional CommandAckResponse ack = 32;
+
+  optional DeviceTemperatureMeasuredEvent temperatureMeasure = 64;
+  optional DeviceMovementDetectedEvent movementDetection = 65;
+}

@@ -2,6 +2,9 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <PubSubClient.h>
+#include <pb_encode.h>
+#include <pb_decode.h>
+#include "DeviceCommands.pb.h"
 #include "MainApp.h"
 /*
 Basic ESP8266 MQTT example

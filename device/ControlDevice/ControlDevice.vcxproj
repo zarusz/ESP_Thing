@@ -42,16 +42,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>e:\dev\esp_mqtt\mqtt\include;e:\dev\esp_mqtt\include;e:\dev\esp_mqtt\modules\include;$(IncludePath)</IncludePath>
-    <SourcePath>e:\dev\esp_mqtt\mqtt;e:\dev\esp_mqtt\modules;$(SourcePath)</SourcePath>
-    <LibraryPath>e:\dev\ESP8266_NONOS_SDK_V1.5.1_16_01_08\esp_iot_sdk_v1.5.1\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>e:\dev\nanopb;$(IncludePath)</IncludePath>
+    <SourcePath>e:\dev\nanopb;$(SourcePath)</SourcePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\cores\esp8266;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\variants\generic;E:\dev\home\device\ControlDevice;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266HTTPClient\src;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266HTTPClient\src\utility;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266WiFi\src;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266WiFi\src\utility;E:\documents\Arduino\libraries\PubSubClient\src;E:\documents\Arduino\libraries\PubSubClient\src\utility;c:\Program Files (x86)\Arduino\libraries;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\txv20cat.sss\Micro Platforms\default\debuggers;E:\documents\Arduino\libraries;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0/tools/sdk/include;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2\xtensa-lx106-elf\include\c++\4.8.2;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2\xtensa-lx106-elf\include\c++\4.8.2\xtensa-lx106-elf;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2\xtensa-lx106-elf\include;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2\lib\gcc\xtensa-lx106-elf\4.8.2\include;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\tools\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\cores\esp8266;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\variants\generic;E:\dev\home\device\ControlDevice;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266HTTPClient\src;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266HTTPClient\src\utility;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266WiFi\src;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266WiFi\src\utility;E:\documents\Arduino\libraries\PubSubClient\src;E:\documents\Arduino\libraries\PubSubClient\src\utility;c:\Program Files (x86)\Arduino\libraries;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\txv20cat.sss\Micro Platforms\default\debuggers;E:\documents\Arduino\libraries;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0/tools/sdk/include;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\cores\esp8266;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\variants\generic;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266WiFi\src;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries\ESP8266HTTPClient\src;E:\documents\Arduino\libraries\PubSubClient\src;c:\Program Files (x86)\Arduino\libraries;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\txv20cat.sss\Micro Platforms\default\debuggers;E:\documents\Arduino\libraries;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2\xtensa-lx106-elf\include\c++\4.8.2;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2\xtensa-lx106-elf\include\c++\4.8.2\xtensa-lx106-elf;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2\xtensa-lx106-elf\include;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2\lib\gcc\xtensa-lx106-elf\4.8.2\include;C:\Users\Tomasz\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.1.0\tools\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>E:\dev\home\device\ControlDevice\__vm\.ControlDevice.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__ESP8266_ESp8266__;__ESP8266_ESP8266__;__ets__;ICACHE_FLASH;F_CPU=80000000L;ARDUINO=10607;ARDUINO_ESP8266_ESP01;ARDUINO_ARCH_ESP8266;ESP8266;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -80,11 +80,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DeviceCommands.pb.h" />
     <ClInclude Include="HttpTestApp.h" />
     <ClInclude Include="MainApp.h" />
     <ClInclude Include="__vm\.ControlDevice.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DeviceCommands.pb.c" />
     <ClCompile Include="HttpTestApp.cpp" />
     <ClCompile Include="MainApp.cpp" />
   </ItemGroup>

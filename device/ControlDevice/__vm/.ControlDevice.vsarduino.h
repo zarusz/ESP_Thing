@@ -101,6 +101,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <..\ControlDevice\ControlDevice.ino>
+#include <..\ControlDevice\DeviceCommands.pb.c>
+#include <..\ControlDevice\DeviceCommands.pb.h>
 #include <..\ControlDevice\HttpTestApp.cpp>
 #include <..\ControlDevice\HttpTestApp.h>
 #include <..\ControlDevice\MainApp.cpp>

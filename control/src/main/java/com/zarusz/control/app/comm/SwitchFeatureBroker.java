@@ -1,6 +1,5 @@
 package com.zarusz.control.app.comm;
 
-import com.zarusz.control.domain.device.EndpointDevice;
 import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.domain.msg.commands.SwitchCommand;
 import com.zarusz.control.domain.msg.commands.TargetingDeviceCommand;
