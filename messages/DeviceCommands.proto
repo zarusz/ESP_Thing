@@ -32,11 +32,11 @@ message DeviceMovementDetectedEvent {
 
 message DeviceMessage {
 
-  optional DeviceSwitchCommand switch = 1;
-  optional DeviceIRCommand ir = 2;
+  optional DeviceSwitchCommand switchCommand = 1;
+  optional DeviceIRCommand irCommand = 2;
 
-  optional CommandAckResponse ack = 32;
+  optional CommandAckResponse ackResponse = 32;
 
-  optional DeviceTemperatureMeasuredEvent temperatureMeasure = 64;
-  optional DeviceMovementDetectedEvent movementDetection = 65;
+  optional DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;
+  optional DeviceMovementDetectedEvent movementDetectionEvent = 65;
 }

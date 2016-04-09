@@ -1,5 +1,6 @@
 package com.zarusz.control.app.comm;
 
+import com.zarusz.control.device.messages.DeviceMessageProtos;
 import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.domain.msg.commands.SwitchCommand;
 import com.zarusz.control.domain.msg.commands.TargetingDeviceCommand;
@@ -11,8 +12,8 @@ import org.fusesource.mqtt.client.MQTT;
 import org.fusesource.mqtt.client.QoS;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 @Data
 public class SwitchFeatureBroker extends BaseGatewayBroker {
@@ -54,10 +55,23 @@ public class SwitchFeatureBroker extends BaseGatewayBroker {
                 hubDevice = cmd.getDevice().getHub();
             }
 
-            String topic = "/device/" + hubDevice.getGuid();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream(256);
+
+            String topic = "device/" + hubDevice.getGuid();
             String msg = "Hello from hub! Switch: " + cmd.getDeviceFeature().getPort() + ", on: " + cmd.isOn();
-            byte[] payload = msg.getBytes(StandardCharsets.US_ASCII);
-            mqttConnection.publish(topic, payload, QoS.AT_LEAST_ONCE, false);
+
+
+            DeviceMessageProtos.DeviceSwitchCommand.Builder switchCommand = DeviceMessageProtos.DeviceSwitchCommand.newBuilder();
+            switchCommand.setMessageId(1234);
+            switchCommand.setPort(1);
+            switchCommand.setOn(cmd.isOn());
+
+            DeviceMessageProtos.DeviceMessage.Builder deviceMessage = DeviceMessageProtos.DeviceMessage.newBuilder();
+            deviceMessage.setSwitchCommand(switchCommand);
+
+            deviceMessage.build().writeTo(outputStream);
+
+            mqttConnection.publish(topic, outputStream.toByteArray(), QoS.AT_LEAST_ONCE, false);
         } catch (Exception e) {
             log.error("Cannot publish on the MQTT client.", e);
         }

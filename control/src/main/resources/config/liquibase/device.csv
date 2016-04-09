@@ -1,11 +1,11 @@
 id;type;partition;hub;guid;display_name;display_priority;display_icon;address
-01;hub;02;NULL;guid_sufit;Sufit;00;fa fa-cubes;NULL
-02;endpoint;02;01;guid_sufit_light1;Światło nad stołem;01;fa fa-lightbulb-o;NULL
-03;endpoint;02;01;guid_sufit_light2;Światło nad sofą 1;03;fa fa-lightbulb-o;NULL
-04;endpoint;02;01;guid_sufit_light3;Światło nad sofą 2;04;fa fa-lightbulb-o;NULL
-05;endpoint;02;01;guid_sufit_light4;Światło nad sofą 3;05;fa fa-lightbulb-o;NULL
-06;endpoint;02;01;guid_sufit_led1;LED nad stołem;02;fa fa-sun-o;NULL
-07;endpoint;02;01;guid_sufit_led2;LED nad sofą;06;fa fa-sun-o;NULL
-08;endpoint;02;01;guid_sufit_sensor_temp;Czujnik temperatury;07;fa fa-fire;NULL
-09;endpoint;02;01;guid_sufit_sensor_light;Czujnik światła;08;fa fa-rss;NULL
-10;endpoint;02;01;guid_sufit_sensor_movement;Czujnik ruchu;09;fa fa-rss;NULL
+01;hub;02;NULL;dev_sufit;Sufit;00;fa fa-cubes;NULL
+02;endpoint;02;01;dev_sufit_light1;Światło nad stołem;01;fa fa-lightbulb-o;NULL
+03;endpoint;02;01;dev_sufit_light2;Światło nad sofą 1;03;fa fa-lightbulb-o;NULL
+04;endpoint;02;01;dev_sufit_light3;Światło nad sofą 2;04;fa fa-lightbulb-o;NULL
+05;endpoint;02;01;dev_sufit_light4;Światło nad sofą 3;05;fa fa-lightbulb-o;NULL
+06;endpoint;02;01;dev_sufit_led1;LED nad stołem;02;fa fa-sun-o;NULL
+07;endpoint;02;01;dev_sufit_led2;LED nad sofą;06;fa fa-sun-o;NULL
+08;endpoint;02;01;dev_sufit_sensor_temp;Czujnik temperatury;07;fa fa-fire;NULL
+09;endpoint;02;01;dev_sufit_sensor_light;Czujnik światła;08;fa fa-rss;NULL
+10;endpoint;02;01;dev_sufit_sensor_movement;Czujnik ruchu;09;fa fa-rss;NULL

@@ -3,32 +3,26 @@
 #ifndef _MAINAPP_h
 #define _MAINAPP_h
 
-#if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
-#else
-	#include "WProgram.h"
-#endif
-
+#include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+#include "DeviceConfig.h"
+#include "DeviceCommands.pb.h"
 
 class MainApp {
 private:
-
-	const char* networkSsid;
-	const char* networkPassword;
-	const char* mqttServer;
-	const char* nodeId;
-
+	DeviceConfig deviceConfig;
 	WiFiClient espClient;
 	PubSubClient pubSubClient;
+
+	String deviceInTopic;
 
 	long lastMsg = 0;
 	char msg[256];
 	int value = 0;
 
 public:
-	MainApp(const char * newtworkSsid, const char * networkPassword, const char * mqttServer, const char * nodeId, MQTT_CALLBACK_SIGNATURE);
+	MainApp(MQTT_CALLBACK_SIGNATURE);
 	virtual ~MainApp();
 
 	void Init();
@@ -39,8 +33,11 @@ public:
 protected:
 	void SetupWifi();
 	void ReconnectPubSub();
+
+	bool DecodeMessage(byte* payload, unsigned int length, DeviceMessage& deviceMessage) const;
+	void DebugRetrievedMessage(char* topic, byte* payload, unsigned int length);
+	void HandleDeviceMessage(DeviceMessage& deviceMessage);
 };
 
 
 #endif
-

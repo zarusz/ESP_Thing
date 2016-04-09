@@ -2801,69 +2801,69 @@ public final class DeviceMessageProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .DeviceSwitchCommand switch = 1;</code>
+     * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
      */
-    boolean hasSwitch();
+    boolean hasSwitchCommand();
     /**
-     * <code>optional .DeviceSwitchCommand switch = 1;</code>
+     * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand getSwitch();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand getSwitchCommand();
     /**
-     * <code>optional .DeviceSwitchCommand switch = 1;</code>
+     * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder getSwitchOrBuilder();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder getSwitchCommandOrBuilder();
 
     /**
-     * <code>optional .DeviceIRCommand ir = 2;</code>
+     * <code>optional .DeviceIRCommand irCommand = 2;</code>
      */
-    boolean hasIr();
+    boolean hasIrCommand();
     /**
-     * <code>optional .DeviceIRCommand ir = 2;</code>
+     * <code>optional .DeviceIRCommand irCommand = 2;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getIr();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getIrCommand();
     /**
-     * <code>optional .DeviceIRCommand ir = 2;</code>
+     * <code>optional .DeviceIRCommand irCommand = 2;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder getIrOrBuilder();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder getIrCommandOrBuilder();
 
     /**
-     * <code>optional .CommandAckResponse ack = 32;</code>
+     * <code>optional .CommandAckResponse ackResponse = 32;</code>
      */
-    boolean hasAck();
+    boolean hasAckResponse();
     /**
-     * <code>optional .CommandAckResponse ack = 32;</code>
+     * <code>optional .CommandAckResponse ackResponse = 32;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse getAck();
+    com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse getAckResponse();
     /**
-     * <code>optional .CommandAckResponse ack = 32;</code>
+     * <code>optional .CommandAckResponse ackResponse = 32;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder getAckOrBuilder();
+    com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder getAckResponseOrBuilder();
 
     /**
-     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
      */
-    boolean hasTemperatureMeasure();
+    boolean hasTemperatureMeasureEvent();
     /**
-     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent getTemperatureMeasure();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent getTemperatureMeasureEvent();
     /**
-     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder getTemperatureMeasureOrBuilder();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder getTemperatureMeasureEventOrBuilder();
 
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
      */
-    boolean hasMovementDetection();
+    boolean hasMovementDetectionEvent();
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent getMovementDetection();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent getMovementDetectionEvent();
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionOrBuilder();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionEventOrBuilder();
   }
   /**
    * Protobuf type {@code DeviceMessage}
@@ -2920,12 +2920,12 @@ public final class DeviceMessageProtos {
             case 10: {
               com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.Builder subBuilder = null;
               if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                subBuilder = switch_.toBuilder();
+                subBuilder = switchCommand_.toBuilder();
               }
-              switch_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.PARSER, extensionRegistry);
+              switchCommand_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(switch_);
-                switch_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(switchCommand_);
+                switchCommand_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000001;
               break;
@@ -2933,12 +2933,12 @@ public final class DeviceMessageProtos {
             case 18: {
               com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder subBuilder = null;
               if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = ir_.toBuilder();
+                subBuilder = irCommand_.toBuilder();
               }
-              ir_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.PARSER, extensionRegistry);
+              irCommand_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(ir_);
-                ir_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(irCommand_);
+                irCommand_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000002;
               break;
@@ -2946,12 +2946,12 @@ public final class DeviceMessageProtos {
             case 258: {
               com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.Builder subBuilder = null;
               if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = ack_.toBuilder();
+                subBuilder = ackResponse_.toBuilder();
               }
-              ack_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.PARSER, extensionRegistry);
+              ackResponse_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(ack_);
-                ack_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(ackResponse_);
+                ackResponse_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000004;
               break;
@@ -2959,12 +2959,12 @@ public final class DeviceMessageProtos {
             case 514: {
               com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.Builder subBuilder = null;
               if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                subBuilder = temperatureMeasure_.toBuilder();
+                subBuilder = temperatureMeasureEvent_.toBuilder();
               }
-              temperatureMeasure_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.PARSER, extensionRegistry);
+              temperatureMeasureEvent_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(temperatureMeasure_);
-                temperatureMeasure_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(temperatureMeasureEvent_);
+                temperatureMeasureEvent_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000008;
               break;
@@ -2972,12 +2972,12 @@ public final class DeviceMessageProtos {
             case 522: {
               com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder subBuilder = null;
               if (((bitField0_ & 0x00000010) == 0x00000010)) {
-                subBuilder = movementDetection_.toBuilder();
+                subBuilder = movementDetectionEvent_.toBuilder();
               }
-              movementDetection_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.PARSER, extensionRegistry);
+              movementDetectionEvent_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(movementDetection_);
-                movementDetection_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(movementDetectionEvent_);
+                movementDetectionEvent_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000010;
               break;
@@ -3022,117 +3022,117 @@ public final class DeviceMessageProtos {
     }
 
     private int bitField0_;
-    public static final int SWITCH_FIELD_NUMBER = 1;
-    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand switch_;
+    public static final int SWITCHCOMMAND_FIELD_NUMBER = 1;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand switchCommand_;
     /**
-     * <code>optional .DeviceSwitchCommand switch = 1;</code>
+     * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
      */
-    public boolean hasSwitch() {
+    public boolean hasSwitchCommand() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional .DeviceSwitchCommand switch = 1;</code>
+     * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand getSwitch() {
-      return switch_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand getSwitchCommand() {
+      return switchCommand_;
     }
     /**
-     * <code>optional .DeviceSwitchCommand switch = 1;</code>
+     * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder getSwitchOrBuilder() {
-      return switch_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder getSwitchCommandOrBuilder() {
+      return switchCommand_;
     }
 
-    public static final int IR_FIELD_NUMBER = 2;
-    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand ir_;
+    public static final int IRCOMMAND_FIELD_NUMBER = 2;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand irCommand_;
     /**
-     * <code>optional .DeviceIRCommand ir = 2;</code>
+     * <code>optional .DeviceIRCommand irCommand = 2;</code>
      */
-    public boolean hasIr() {
+    public boolean hasIrCommand() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional .DeviceIRCommand ir = 2;</code>
+     * <code>optional .DeviceIRCommand irCommand = 2;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getIr() {
-      return ir_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getIrCommand() {
+      return irCommand_;
     }
     /**
-     * <code>optional .DeviceIRCommand ir = 2;</code>
+     * <code>optional .DeviceIRCommand irCommand = 2;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder getIrOrBuilder() {
-      return ir_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder getIrCommandOrBuilder() {
+      return irCommand_;
     }
 
-    public static final int ACK_FIELD_NUMBER = 32;
-    private com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse ack_;
+    public static final int ACKRESPONSE_FIELD_NUMBER = 32;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse ackResponse_;
     /**
-     * <code>optional .CommandAckResponse ack = 32;</code>
+     * <code>optional .CommandAckResponse ackResponse = 32;</code>
      */
-    public boolean hasAck() {
+    public boolean hasAckResponse() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional .CommandAckResponse ack = 32;</code>
+     * <code>optional .CommandAckResponse ackResponse = 32;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse getAck() {
-      return ack_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse getAckResponse() {
+      return ackResponse_;
     }
     /**
-     * <code>optional .CommandAckResponse ack = 32;</code>
+     * <code>optional .CommandAckResponse ackResponse = 32;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder getAckOrBuilder() {
-      return ack_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder getAckResponseOrBuilder() {
+      return ackResponse_;
     }
 
-    public static final int TEMPERATUREMEASURE_FIELD_NUMBER = 64;
-    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent temperatureMeasure_;
+    public static final int TEMPERATUREMEASUREEVENT_FIELD_NUMBER = 64;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent temperatureMeasureEvent_;
     /**
-     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
      */
-    public boolean hasTemperatureMeasure() {
+    public boolean hasTemperatureMeasureEvent() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent getTemperatureMeasure() {
-      return temperatureMeasure_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent getTemperatureMeasureEvent() {
+      return temperatureMeasureEvent_;
     }
     /**
-     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+     * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder getTemperatureMeasureOrBuilder() {
-      return temperatureMeasure_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder getTemperatureMeasureEventOrBuilder() {
+      return temperatureMeasureEvent_;
     }
 
-    public static final int MOVEMENTDETECTION_FIELD_NUMBER = 65;
-    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent movementDetection_;
+    public static final int MOVEMENTDETECTIONEVENT_FIELD_NUMBER = 65;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent movementDetectionEvent_;
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
      */
-    public boolean hasMovementDetection() {
+    public boolean hasMovementDetectionEvent() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent getMovementDetection() {
-      return movementDetection_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent getMovementDetectionEvent() {
+      return movementDetectionEvent_;
     }
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionOrBuilder() {
-      return movementDetection_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionEventOrBuilder() {
+      return movementDetectionEvent_;
     }
 
     private void initFields() {
-      switch_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance();
-      ir_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
-      ack_ = com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance();
-      temperatureMeasure_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
-      movementDetection_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
+      switchCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance();
+      irCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
+      ackResponse_ = com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance();
+      temperatureMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
+      movementDetectionEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3140,32 +3140,32 @@ public final class DeviceMessageProtos {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (hasSwitch()) {
-        if (!getSwitch().isInitialized()) {
+      if (hasSwitchCommand()) {
+        if (!getSwitchCommand().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
       }
-      if (hasIr()) {
-        if (!getIr().isInitialized()) {
+      if (hasIrCommand()) {
+        if (!getIrCommand().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
       }
-      if (hasAck()) {
-        if (!getAck().isInitialized()) {
+      if (hasAckResponse()) {
+        if (!getAckResponse().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
       }
-      if (hasTemperatureMeasure()) {
-        if (!getTemperatureMeasure().isInitialized()) {
+      if (hasTemperatureMeasureEvent()) {
+        if (!getTemperatureMeasureEvent().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
       }
-      if (hasMovementDetection()) {
-        if (!getMovementDetection().isInitialized()) {
+      if (hasMovementDetectionEvent()) {
+        if (!getMovementDetectionEvent().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -3178,19 +3178,19 @@ public final class DeviceMessageProtos {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, switch_);
+        output.writeMessage(1, switchCommand_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, ir_);
+        output.writeMessage(2, irCommand_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(32, ack_);
+        output.writeMessage(32, ackResponse_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(64, temperatureMeasure_);
+        output.writeMessage(64, temperatureMeasureEvent_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(65, movementDetection_);
+        output.writeMessage(65, movementDetectionEvent_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -3203,23 +3203,23 @@ public final class DeviceMessageProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, switch_);
+          .computeMessageSize(1, switchCommand_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, ir_);
+          .computeMessageSize(2, irCommand_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(32, ack_);
+          .computeMessageSize(32, ackResponse_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(64, temperatureMeasure_);
+          .computeMessageSize(64, temperatureMeasureEvent_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(65, movementDetection_);
+          .computeMessageSize(65, movementDetectionEvent_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3330,11 +3330,11 @@ public final class DeviceMessageProtos {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getSwitchFieldBuilder();
-          getIrFieldBuilder();
-          getAckFieldBuilder();
-          getTemperatureMeasureFieldBuilder();
-          getMovementDetectionFieldBuilder();
+          getSwitchCommandFieldBuilder();
+          getIrCommandFieldBuilder();
+          getAckResponseFieldBuilder();
+          getTemperatureMeasureEventFieldBuilder();
+          getMovementDetectionEventFieldBuilder();
         }
       }
       private static Builder create() {
@@ -3343,34 +3343,34 @@ public final class DeviceMessageProtos {
 
       public Builder clear() {
         super.clear();
-        if (switchBuilder_ == null) {
-          switch_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance();
+        if (switchCommandBuilder_ == null) {
+          switchCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance();
         } else {
-          switchBuilder_.clear();
+          switchCommandBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        if (irBuilder_ == null) {
-          ir_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
+        if (irCommandBuilder_ == null) {
+          irCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
         } else {
-          irBuilder_.clear();
+          irCommandBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
-        if (ackBuilder_ == null) {
-          ack_ = com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance();
+        if (ackResponseBuilder_ == null) {
+          ackResponse_ = com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance();
         } else {
-          ackBuilder_.clear();
+          ackResponseBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000004);
-        if (temperatureMeasureBuilder_ == null) {
-          temperatureMeasure_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
+        if (temperatureMeasureEventBuilder_ == null) {
+          temperatureMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
         } else {
-          temperatureMeasureBuilder_.clear();
+          temperatureMeasureEventBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
-        if (movementDetectionBuilder_ == null) {
-          movementDetection_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
+        if (movementDetectionEventBuilder_ == null) {
+          movementDetectionEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
         } else {
-          movementDetectionBuilder_.clear();
+          movementDetectionEventBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000010);
         return this;
@@ -3404,42 +3404,42 @@ public final class DeviceMessageProtos {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        if (switchBuilder_ == null) {
-          result.switch_ = switch_;
+        if (switchCommandBuilder_ == null) {
+          result.switchCommand_ = switchCommand_;
         } else {
-          result.switch_ = switchBuilder_.build();
+          result.switchCommand_ = switchCommandBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        if (irBuilder_ == null) {
-          result.ir_ = ir_;
+        if (irCommandBuilder_ == null) {
+          result.irCommand_ = irCommand_;
         } else {
-          result.ir_ = irBuilder_.build();
+          result.irCommand_ = irCommandBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        if (ackBuilder_ == null) {
-          result.ack_ = ack_;
+        if (ackResponseBuilder_ == null) {
+          result.ackResponse_ = ackResponse_;
         } else {
-          result.ack_ = ackBuilder_.build();
+          result.ackResponse_ = ackResponseBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        if (temperatureMeasureBuilder_ == null) {
-          result.temperatureMeasure_ = temperatureMeasure_;
+        if (temperatureMeasureEventBuilder_ == null) {
+          result.temperatureMeasureEvent_ = temperatureMeasureEvent_;
         } else {
-          result.temperatureMeasure_ = temperatureMeasureBuilder_.build();
+          result.temperatureMeasureEvent_ = temperatureMeasureEventBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        if (movementDetectionBuilder_ == null) {
-          result.movementDetection_ = movementDetection_;
+        if (movementDetectionEventBuilder_ == null) {
+          result.movementDetectionEvent_ = movementDetectionEvent_;
         } else {
-          result.movementDetection_ = movementDetectionBuilder_.build();
+          result.movementDetectionEvent_ = movementDetectionEventBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -3457,52 +3457,52 @@ public final class DeviceMessageProtos {
 
       public Builder mergeFrom(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMessage other) {
         if (other == com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMessage.getDefaultInstance()) return this;
-        if (other.hasSwitch()) {
-          mergeSwitch(other.getSwitch());
+        if (other.hasSwitchCommand()) {
+          mergeSwitchCommand(other.getSwitchCommand());
         }
-        if (other.hasIr()) {
-          mergeIr(other.getIr());
+        if (other.hasIrCommand()) {
+          mergeIrCommand(other.getIrCommand());
         }
-        if (other.hasAck()) {
-          mergeAck(other.getAck());
+        if (other.hasAckResponse()) {
+          mergeAckResponse(other.getAckResponse());
         }
-        if (other.hasTemperatureMeasure()) {
-          mergeTemperatureMeasure(other.getTemperatureMeasure());
+        if (other.hasTemperatureMeasureEvent()) {
+          mergeTemperatureMeasureEvent(other.getTemperatureMeasureEvent());
         }
-        if (other.hasMovementDetection()) {
-          mergeMovementDetection(other.getMovementDetection());
+        if (other.hasMovementDetectionEvent()) {
+          mergeMovementDetectionEvent(other.getMovementDetectionEvent());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
-        if (hasSwitch()) {
-          if (!getSwitch().isInitialized()) {
+        if (hasSwitchCommand()) {
+          if (!getSwitchCommand().isInitialized()) {
             
             return false;
           }
         }
-        if (hasIr()) {
-          if (!getIr().isInitialized()) {
+        if (hasIrCommand()) {
+          if (!getIrCommand().isInitialized()) {
             
             return false;
           }
         }
-        if (hasAck()) {
-          if (!getAck().isInitialized()) {
+        if (hasAckResponse()) {
+          if (!getAckResponse().isInitialized()) {
             
             return false;
           }
         }
-        if (hasTemperatureMeasure()) {
-          if (!getTemperatureMeasure().isInitialized()) {
+        if (hasTemperatureMeasureEvent()) {
+          if (!getTemperatureMeasureEvent().isInitialized()) {
             
             return false;
           }
         }
-        if (hasMovementDetection()) {
-          if (!getMovementDetection().isInitialized()) {
+        if (hasMovementDetectionEvent()) {
+          if (!getMovementDetectionEvent().isInitialized()) {
             
             return false;
           }
@@ -3529,584 +3529,584 @@ public final class DeviceMessageProtos {
       }
       private int bitField0_;
 
-      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand switch_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance();
+      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand switchCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder> switchBuilder_;
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder> switchCommandBuilder_;
       /**
-       * <code>optional .DeviceSwitchCommand switch = 1;</code>
+       * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
        */
-      public boolean hasSwitch() {
+      public boolean hasSwitchCommand() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .DeviceSwitchCommand switch = 1;</code>
+       * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand getSwitch() {
-        if (switchBuilder_ == null) {
-          return switch_;
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand getSwitchCommand() {
+        if (switchCommandBuilder_ == null) {
+          return switchCommand_;
         } else {
-          return switchBuilder_.getMessage();
+          return switchCommandBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .DeviceSwitchCommand switch = 1;</code>
+       * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
        */
-      public Builder setSwitch(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand value) {
-        if (switchBuilder_ == null) {
+      public Builder setSwitchCommand(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand value) {
+        if (switchCommandBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          switch_ = value;
+          switchCommand_ = value;
           onChanged();
         } else {
-          switchBuilder_.setMessage(value);
+          switchCommandBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
       /**
-       * <code>optional .DeviceSwitchCommand switch = 1;</code>
+       * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
        */
-      public Builder setSwitch(
+      public Builder setSwitchCommand(
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.Builder builderForValue) {
-        if (switchBuilder_ == null) {
-          switch_ = builderForValue.build();
+        if (switchCommandBuilder_ == null) {
+          switchCommand_ = builderForValue.build();
           onChanged();
         } else {
-          switchBuilder_.setMessage(builderForValue.build());
+          switchCommandBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
         return this;
       }
       /**
-       * <code>optional .DeviceSwitchCommand switch = 1;</code>
+       * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
        */
-      public Builder mergeSwitch(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand value) {
-        if (switchBuilder_ == null) {
+      public Builder mergeSwitchCommand(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand value) {
+        if (switchCommandBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              switch_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance()) {
-            switch_ =
-              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.newBuilder(switch_).mergeFrom(value).buildPartial();
+              switchCommand_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance()) {
+            switchCommand_ =
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.newBuilder(switchCommand_).mergeFrom(value).buildPartial();
           } else {
-            switch_ = value;
+            switchCommand_ = value;
           }
           onChanged();
         } else {
-          switchBuilder_.mergeFrom(value);
+          switchCommandBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
       /**
-       * <code>optional .DeviceSwitchCommand switch = 1;</code>
+       * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
        */
-      public Builder clearSwitch() {
-        if (switchBuilder_ == null) {
-          switch_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance();
+      public Builder clearSwitchCommand() {
+        if (switchCommandBuilder_ == null) {
+          switchCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance();
           onChanged();
         } else {
-          switchBuilder_.clear();
+          switchCommandBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
       /**
-       * <code>optional .DeviceSwitchCommand switch = 1;</code>
+       * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.Builder getSwitchBuilder() {
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.Builder getSwitchCommandBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
-        return getSwitchFieldBuilder().getBuilder();
+        return getSwitchCommandFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .DeviceSwitchCommand switch = 1;</code>
+       * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder getSwitchOrBuilder() {
-        if (switchBuilder_ != null) {
-          return switchBuilder_.getMessageOrBuilder();
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder getSwitchCommandOrBuilder() {
+        if (switchCommandBuilder_ != null) {
+          return switchCommandBuilder_.getMessageOrBuilder();
         } else {
-          return switch_;
+          return switchCommand_;
         }
       }
       /**
-       * <code>optional .DeviceSwitchCommand switch = 1;</code>
+       * <code>optional .DeviceSwitchCommand switchCommand = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder> 
-          getSwitchFieldBuilder() {
-        if (switchBuilder_ == null) {
-          switchBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getSwitchCommandFieldBuilder() {
+        if (switchCommandBuilder_ == null) {
+          switchCommandBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder>(
-                  getSwitch(),
+                  getSwitchCommand(),
                   getParentForChildren(),
                   isClean());
-          switch_ = null;
+          switchCommand_ = null;
         }
-        return switchBuilder_;
+        return switchCommandBuilder_;
       }
 
-      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand ir_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
+      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand irCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder> irBuilder_;
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder> irCommandBuilder_;
       /**
-       * <code>optional .DeviceIRCommand ir = 2;</code>
+       * <code>optional .DeviceIRCommand irCommand = 2;</code>
        */
-      public boolean hasIr() {
+      public boolean hasIrCommand() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional .DeviceIRCommand ir = 2;</code>
+       * <code>optional .DeviceIRCommand irCommand = 2;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getIr() {
-        if (irBuilder_ == null) {
-          return ir_;
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getIrCommand() {
+        if (irCommandBuilder_ == null) {
+          return irCommand_;
         } else {
-          return irBuilder_.getMessage();
+          return irCommandBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .DeviceIRCommand ir = 2;</code>
+       * <code>optional .DeviceIRCommand irCommand = 2;</code>
        */
-      public Builder setIr(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand value) {
-        if (irBuilder_ == null) {
+      public Builder setIrCommand(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand value) {
+        if (irCommandBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ir_ = value;
+          irCommand_ = value;
           onChanged();
         } else {
-          irBuilder_.setMessage(value);
+          irCommandBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .DeviceIRCommand ir = 2;</code>
+       * <code>optional .DeviceIRCommand irCommand = 2;</code>
        */
-      public Builder setIr(
+      public Builder setIrCommand(
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder builderForValue) {
-        if (irBuilder_ == null) {
-          ir_ = builderForValue.build();
+        if (irCommandBuilder_ == null) {
+          irCommand_ = builderForValue.build();
           onChanged();
         } else {
-          irBuilder_.setMessage(builderForValue.build());
+          irCommandBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .DeviceIRCommand ir = 2;</code>
+       * <code>optional .DeviceIRCommand irCommand = 2;</code>
        */
-      public Builder mergeIr(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand value) {
-        if (irBuilder_ == null) {
+      public Builder mergeIrCommand(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand value) {
+        if (irCommandBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              ir_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance()) {
-            ir_ =
-              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.newBuilder(ir_).mergeFrom(value).buildPartial();
+              irCommand_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance()) {
+            irCommand_ =
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.newBuilder(irCommand_).mergeFrom(value).buildPartial();
           } else {
-            ir_ = value;
+            irCommand_ = value;
           }
           onChanged();
         } else {
-          irBuilder_.mergeFrom(value);
+          irCommandBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .DeviceIRCommand ir = 2;</code>
+       * <code>optional .DeviceIRCommand irCommand = 2;</code>
        */
-      public Builder clearIr() {
-        if (irBuilder_ == null) {
-          ir_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
+      public Builder clearIrCommand() {
+        if (irCommandBuilder_ == null) {
+          irCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
           onChanged();
         } else {
-          irBuilder_.clear();
+          irCommandBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       /**
-       * <code>optional .DeviceIRCommand ir = 2;</code>
+       * <code>optional .DeviceIRCommand irCommand = 2;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder getIrBuilder() {
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder getIrCommandBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
-        return getIrFieldBuilder().getBuilder();
+        return getIrCommandFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .DeviceIRCommand ir = 2;</code>
+       * <code>optional .DeviceIRCommand irCommand = 2;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder getIrOrBuilder() {
-        if (irBuilder_ != null) {
-          return irBuilder_.getMessageOrBuilder();
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder getIrCommandOrBuilder() {
+        if (irCommandBuilder_ != null) {
+          return irCommandBuilder_.getMessageOrBuilder();
         } else {
-          return ir_;
+          return irCommand_;
         }
       }
       /**
-       * <code>optional .DeviceIRCommand ir = 2;</code>
+       * <code>optional .DeviceIRCommand irCommand = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder> 
-          getIrFieldBuilder() {
-        if (irBuilder_ == null) {
-          irBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getIrCommandFieldBuilder() {
+        if (irCommandBuilder_ == null) {
+          irCommandBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder>(
-                  getIr(),
+                  getIrCommand(),
                   getParentForChildren(),
                   isClean());
-          ir_ = null;
+          irCommand_ = null;
         }
-        return irBuilder_;
+        return irCommandBuilder_;
       }
 
-      private com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse ack_ = com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance();
+      private com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse ackResponse_ = com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse, com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder> ackBuilder_;
+          com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse, com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder> ackResponseBuilder_;
       /**
-       * <code>optional .CommandAckResponse ack = 32;</code>
+       * <code>optional .CommandAckResponse ackResponse = 32;</code>
        */
-      public boolean hasAck() {
+      public boolean hasAckResponse() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional .CommandAckResponse ack = 32;</code>
+       * <code>optional .CommandAckResponse ackResponse = 32;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse getAck() {
-        if (ackBuilder_ == null) {
-          return ack_;
+      public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse getAckResponse() {
+        if (ackResponseBuilder_ == null) {
+          return ackResponse_;
         } else {
-          return ackBuilder_.getMessage();
+          return ackResponseBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .CommandAckResponse ack = 32;</code>
+       * <code>optional .CommandAckResponse ackResponse = 32;</code>
        */
-      public Builder setAck(com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse value) {
-        if (ackBuilder_ == null) {
+      public Builder setAckResponse(com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse value) {
+        if (ackResponseBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ack_ = value;
+          ackResponse_ = value;
           onChanged();
         } else {
-          ackBuilder_.setMessage(value);
+          ackResponseBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .CommandAckResponse ack = 32;</code>
+       * <code>optional .CommandAckResponse ackResponse = 32;</code>
        */
-      public Builder setAck(
+      public Builder setAckResponse(
           com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.Builder builderForValue) {
-        if (ackBuilder_ == null) {
-          ack_ = builderForValue.build();
+        if (ackResponseBuilder_ == null) {
+          ackResponse_ = builderForValue.build();
           onChanged();
         } else {
-          ackBuilder_.setMessage(builderForValue.build());
+          ackResponseBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .CommandAckResponse ack = 32;</code>
+       * <code>optional .CommandAckResponse ackResponse = 32;</code>
        */
-      public Builder mergeAck(com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse value) {
-        if (ackBuilder_ == null) {
+      public Builder mergeAckResponse(com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse value) {
+        if (ackResponseBuilder_ == null) {
           if (((bitField0_ & 0x00000004) == 0x00000004) &&
-              ack_ != com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance()) {
-            ack_ =
-              com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.newBuilder(ack_).mergeFrom(value).buildPartial();
+              ackResponse_ != com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance()) {
+            ackResponse_ =
+              com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.newBuilder(ackResponse_).mergeFrom(value).buildPartial();
           } else {
-            ack_ = value;
+            ackResponse_ = value;
           }
           onChanged();
         } else {
-          ackBuilder_.mergeFrom(value);
+          ackResponseBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .CommandAckResponse ack = 32;</code>
+       * <code>optional .CommandAckResponse ackResponse = 32;</code>
        */
-      public Builder clearAck() {
-        if (ackBuilder_ == null) {
-          ack_ = com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance();
+      public Builder clearAckResponse() {
+        if (ackResponseBuilder_ == null) {
+          ackResponse_ = com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.getDefaultInstance();
           onChanged();
         } else {
-          ackBuilder_.clear();
+          ackResponseBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       /**
-       * <code>optional .CommandAckResponse ack = 32;</code>
+       * <code>optional .CommandAckResponse ackResponse = 32;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.Builder getAckBuilder() {
+      public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.Builder getAckResponseBuilder() {
         bitField0_ |= 0x00000004;
         onChanged();
-        return getAckFieldBuilder().getBuilder();
+        return getAckResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .CommandAckResponse ack = 32;</code>
+       * <code>optional .CommandAckResponse ackResponse = 32;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder getAckOrBuilder() {
-        if (ackBuilder_ != null) {
-          return ackBuilder_.getMessageOrBuilder();
+      public com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder getAckResponseOrBuilder() {
+        if (ackResponseBuilder_ != null) {
+          return ackResponseBuilder_.getMessageOrBuilder();
         } else {
-          return ack_;
+          return ackResponse_;
         }
       }
       /**
-       * <code>optional .CommandAckResponse ack = 32;</code>
+       * <code>optional .CommandAckResponse ackResponse = 32;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse, com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder> 
-          getAckFieldBuilder() {
-        if (ackBuilder_ == null) {
-          ackBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getAckResponseFieldBuilder() {
+        if (ackResponseBuilder_ == null) {
+          ackResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse, com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponse.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.CommandAckResponseOrBuilder>(
-                  getAck(),
+                  getAckResponse(),
                   getParentForChildren(),
                   isClean());
-          ack_ = null;
+          ackResponse_ = null;
         }
-        return ackBuilder_;
+        return ackResponseBuilder_;
       }
 
-      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent temperatureMeasure_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
+      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent temperatureMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder> temperatureMeasureBuilder_;
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder> temperatureMeasureEventBuilder_;
       /**
-       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
        */
-      public boolean hasTemperatureMeasure() {
+      public boolean hasTemperatureMeasureEvent() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent getTemperatureMeasure() {
-        if (temperatureMeasureBuilder_ == null) {
-          return temperatureMeasure_;
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent getTemperatureMeasureEvent() {
+        if (temperatureMeasureEventBuilder_ == null) {
+          return temperatureMeasureEvent_;
         } else {
-          return temperatureMeasureBuilder_.getMessage();
+          return temperatureMeasureEventBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
        */
-      public Builder setTemperatureMeasure(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent value) {
-        if (temperatureMeasureBuilder_ == null) {
+      public Builder setTemperatureMeasureEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent value) {
+        if (temperatureMeasureEventBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          temperatureMeasure_ = value;
+          temperatureMeasureEvent_ = value;
           onChanged();
         } else {
-          temperatureMeasureBuilder_.setMessage(value);
+          temperatureMeasureEventBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
        */
-      public Builder setTemperatureMeasure(
+      public Builder setTemperatureMeasureEvent(
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.Builder builderForValue) {
-        if (temperatureMeasureBuilder_ == null) {
-          temperatureMeasure_ = builderForValue.build();
+        if (temperatureMeasureEventBuilder_ == null) {
+          temperatureMeasureEvent_ = builderForValue.build();
           onChanged();
         } else {
-          temperatureMeasureBuilder_.setMessage(builderForValue.build());
+          temperatureMeasureEventBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
        */
-      public Builder mergeTemperatureMeasure(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent value) {
-        if (temperatureMeasureBuilder_ == null) {
+      public Builder mergeTemperatureMeasureEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent value) {
+        if (temperatureMeasureEventBuilder_ == null) {
           if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              temperatureMeasure_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance()) {
-            temperatureMeasure_ =
-              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.newBuilder(temperatureMeasure_).mergeFrom(value).buildPartial();
+              temperatureMeasureEvent_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance()) {
+            temperatureMeasureEvent_ =
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.newBuilder(temperatureMeasureEvent_).mergeFrom(value).buildPartial();
           } else {
-            temperatureMeasure_ = value;
+            temperatureMeasureEvent_ = value;
           }
           onChanged();
         } else {
-          temperatureMeasureBuilder_.mergeFrom(value);
+          temperatureMeasureEventBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
        */
-      public Builder clearTemperatureMeasure() {
-        if (temperatureMeasureBuilder_ == null) {
-          temperatureMeasure_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
+      public Builder clearTemperatureMeasureEvent() {
+        if (temperatureMeasureEventBuilder_ == null) {
+          temperatureMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
           onChanged();
         } else {
-          temperatureMeasureBuilder_.clear();
+          temperatureMeasureEventBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       /**
-       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.Builder getTemperatureMeasureBuilder() {
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.Builder getTemperatureMeasureEventBuilder() {
         bitField0_ |= 0x00000008;
         onChanged();
-        return getTemperatureMeasureFieldBuilder().getBuilder();
+        return getTemperatureMeasureEventFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder getTemperatureMeasureOrBuilder() {
-        if (temperatureMeasureBuilder_ != null) {
-          return temperatureMeasureBuilder_.getMessageOrBuilder();
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder getTemperatureMeasureEventOrBuilder() {
+        if (temperatureMeasureEventBuilder_ != null) {
+          return temperatureMeasureEventBuilder_.getMessageOrBuilder();
         } else {
-          return temperatureMeasure_;
+          return temperatureMeasureEvent_;
         }
       }
       /**
-       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasure = 64;</code>
+       * <code>optional .DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder> 
-          getTemperatureMeasureFieldBuilder() {
-        if (temperatureMeasureBuilder_ == null) {
-          temperatureMeasureBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getTemperatureMeasureEventFieldBuilder() {
+        if (temperatureMeasureEventBuilder_ == null) {
+          temperatureMeasureEventBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder>(
-                  getTemperatureMeasure(),
+                  getTemperatureMeasureEvent(),
                   getParentForChildren(),
                   isClean());
-          temperatureMeasure_ = null;
+          temperatureMeasureEvent_ = null;
         }
-        return temperatureMeasureBuilder_;
+        return temperatureMeasureEventBuilder_;
       }
 
-      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent movementDetection_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
+      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent movementDetectionEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder> movementDetectionBuilder_;
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder> movementDetectionEventBuilder_;
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
        */
-      public boolean hasMovementDetection() {
+      public boolean hasMovementDetectionEvent() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent getMovementDetection() {
-        if (movementDetectionBuilder_ == null) {
-          return movementDetection_;
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent getMovementDetectionEvent() {
+        if (movementDetectionEventBuilder_ == null) {
+          return movementDetectionEvent_;
         } else {
-          return movementDetectionBuilder_.getMessage();
+          return movementDetectionEventBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
        */
-      public Builder setMovementDetection(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent value) {
-        if (movementDetectionBuilder_ == null) {
+      public Builder setMovementDetectionEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent value) {
+        if (movementDetectionEventBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          movementDetection_ = value;
+          movementDetectionEvent_ = value;
           onChanged();
         } else {
-          movementDetectionBuilder_.setMessage(value);
+          movementDetectionEventBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000010;
         return this;
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
        */
-      public Builder setMovementDetection(
+      public Builder setMovementDetectionEvent(
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder builderForValue) {
-        if (movementDetectionBuilder_ == null) {
-          movementDetection_ = builderForValue.build();
+        if (movementDetectionEventBuilder_ == null) {
+          movementDetectionEvent_ = builderForValue.build();
           onChanged();
         } else {
-          movementDetectionBuilder_.setMessage(builderForValue.build());
+          movementDetectionEventBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000010;
         return this;
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
        */
-      public Builder mergeMovementDetection(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent value) {
-        if (movementDetectionBuilder_ == null) {
+      public Builder mergeMovementDetectionEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent value) {
+        if (movementDetectionEventBuilder_ == null) {
           if (((bitField0_ & 0x00000010) == 0x00000010) &&
-              movementDetection_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance()) {
-            movementDetection_ =
-              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.newBuilder(movementDetection_).mergeFrom(value).buildPartial();
+              movementDetectionEvent_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance()) {
+            movementDetectionEvent_ =
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.newBuilder(movementDetectionEvent_).mergeFrom(value).buildPartial();
           } else {
-            movementDetection_ = value;
+            movementDetectionEvent_ = value;
           }
           onChanged();
         } else {
-          movementDetectionBuilder_.mergeFrom(value);
+          movementDetectionEventBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000010;
         return this;
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
        */
-      public Builder clearMovementDetection() {
-        if (movementDetectionBuilder_ == null) {
-          movementDetection_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
+      public Builder clearMovementDetectionEvent() {
+        if (movementDetectionEventBuilder_ == null) {
+          movementDetectionEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
           onChanged();
         } else {
-          movementDetectionBuilder_.clear();
+          movementDetectionEventBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder getMovementDetectionBuilder() {
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder getMovementDetectionEventBuilder() {
         bitField0_ |= 0x00000010;
         onChanged();
-        return getMovementDetectionFieldBuilder().getBuilder();
+        return getMovementDetectionEventFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionOrBuilder() {
-        if (movementDetectionBuilder_ != null) {
-          return movementDetectionBuilder_.getMessageOrBuilder();
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionEventOrBuilder() {
+        if (movementDetectionEventBuilder_ != null) {
+          return movementDetectionEventBuilder_.getMessageOrBuilder();
         } else {
-          return movementDetection_;
+          return movementDetectionEvent_;
         }
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetection = 65;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 65;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder> 
-          getMovementDetectionFieldBuilder() {
-        if (movementDetectionBuilder_ == null) {
-          movementDetectionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getMovementDetectionEventFieldBuilder() {
+        if (movementDetectionEventBuilder_ == null) {
+          movementDetectionEventBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder>(
-                  getMovementDetection(),
+                  getMovementDetectionEvent(),
                   getParentForChildren(),
                   isClean());
-          movementDetection_ = null;
+          movementDetectionEvent_ = null;
         }
-        return movementDetectionBuilder_;
+        return movementDetectionEventBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:DeviceMessage)
@@ -4167,14 +4167,15 @@ public final class DeviceMessageProtos {
       "\005\"M\n\036DeviceTemperatureMeasuredEvent\022\016\n\006d" +
       "evice\030\001 \002(\t\022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\021" +
       "\";\n\033DeviceMovementDetectedEvent\022\016\n\006devic" +
-      "e\030\001 \002(\t\022\014\n\004port\030\002 \002(\005\"\353\001\n\rDeviceMessage\022" +
-      "$\n\006switch\030\001 \001(\0132\024.DeviceSwitchCommand\022\034\n",
-      "\002ir\030\002 \001(\0132\020.DeviceIRCommand\022 \n\003ack\030  \001(\013" +
-      "2\023.CommandAckResponse\022;\n\022temperatureMeas" +
-      "ure\030@ \001(\0132\037.DeviceTemperatureMeasuredEve" +
-      "nt\0227\n\021movementDetection\030A \001(\0132\034.DeviceMo" +
-      "vementDetectedEventB9\n\"com.zarusz.contro" +
-      "l.device.messagesB\023DeviceMessageProtos"
+      "e\030\001 \002(\t\022\014\n\004port\030\002 \002(\005\"\213\002\n\rDeviceMessage\022" +
+      "+\n\rswitchCommand\030\001 \001(\0132\024.DeviceSwitchCom",
+      "mand\022#\n\tirCommand\030\002 \001(\0132\020.DeviceIRComman" +
+      "d\022(\n\013ackResponse\030  \001(\0132\023.CommandAckRespo" +
+      "nse\022@\n\027temperatureMeasureEvent\030@ \001(\0132\037.D" +
+      "eviceTemperatureMeasuredEvent\022<\n\026movemen" +
+      "tDetectionEvent\030A \001(\0132\034.DeviceMovementDe" +
+      "tectedEventB9\n\"com.zarusz.control.device" +
+      ".messagesB\023DeviceMessageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4223,7 +4224,7 @@ public final class DeviceMessageProtos {
     internal_static_DeviceMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_DeviceMessage_descriptor,
-        new java.lang.String[] { "Switch", "Ir", "Ack", "TemperatureMeasure", "MovementDetection", });
+        new java.lang.String[] { "SwitchCommand", "IrCommand", "AckResponse", "TemperatureMeasureEvent", "MovementDetectionEvent", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

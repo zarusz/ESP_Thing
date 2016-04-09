@@ -1,10 +1,4 @@
 ﻿#include <Arduino.h>
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
-#include <PubSubClient.h>
-#include <pb_encode.h>
-#include <pb_decode.h>
-#include "DeviceCommands.pb.h"
 #include "MainApp.h"
 /*
 Basic ESP8266 MQTT example
@@ -36,7 +30,7 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json
 
 void callback(char* topic, byte* payload, unsigned int length);
 
-MainApp mainApp("WareHouse_24GHz", "bonifacy", "raspberrypi", "node_sufit", callback);
+MainApp mainApp(callback);
 
 void setup()
 {
