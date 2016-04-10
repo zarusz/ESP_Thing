@@ -1,6 +1,7 @@
 package com.zarusz.control.config;
 
-import com.zarusz.control.app.comm.SwitchFeatureBroker;
+import com.zarusz.control.app.comm.mqtt.MqttBrokerGatewayHandler;
+import com.zarusz.control.app.comm.SwitchFeatureHandler;
 import com.zarusz.control.domain.common.EventBus;
 import net.engio.mbassy.bus.MBassador;
 import org.fusesource.mqtt.client.MQTT;
@@ -32,16 +33,20 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public SwitchFeatureBroker switchFeatureBroker(MBassador bus, MQTT mqttClient) throws Exception {
-        return new SwitchFeatureBroker(bus, mqttClient);
-    }
-
-    @Bean
     public MQTT mqttClient() throws URISyntaxException {
         MQTT mqttClient = new MQTT();
         mqttClient.setClientId("hub");
         mqttClient.setHost("raspberrypi", 1883);
-
         return mqttClient;
+    }
+
+    @Bean
+    public MqttBrokerGatewayHandler brokerGateway(MBassador bus, MQTT mqttClient) throws Exception {
+        return new MqttBrokerGatewayHandler(bus, mqttClient);
+    }
+
+    @Bean
+    public SwitchFeatureHandler switchFeatureBroker(MBassador bus) throws Exception {
+        return new SwitchFeatureHandler(bus);
     }
 }

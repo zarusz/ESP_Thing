@@ -1,7 +1,29 @@
 //package device.commands;
-
+import "nanopb.proto";
 option java_package = "com.zarusz.control.device.messages";
 option java_outer_classname = "DeviceMessageProtos";
+
+/* Description (begin) */
+enum DevicePortFeature {
+  option allow_alias = true;
+  SWITCH = 0;
+  IR = 1;
+}
+
+message DevicePort {
+  required int32 port = 1;
+  optional string description = 2 [(nanopb).max_size = 64];
+  required DevicePortFeature feature = 3;
+}
+
+message DeviceDescription {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  repeated DevicePort ports = 2 [(nanopb).max_count = 16];
+}
+
+/* Description (end) */
+
+/* Commands (begin) */
 
 message DeviceSwitchCommand {
   required int32 message_id = 1;
@@ -15,28 +37,46 @@ message DeviceIRCommand {
   required bytes value = 3;
 }
 
+message DeviceMessage {
+  optional DeviceSwitchCommand switchCommand = 1;
+  optional DeviceIRCommand irCommand = 2;
+}
+
+/* Commands (end) */
+
 message CommandAckResponse {
   required int32 message_id = 1;
 }
 
+message DeviceConnectedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+}
+
+message DeviceDisconnectedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+}
+
+message DeviceHearbeatEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required int32 sequence_id = 2;
+}
+
 message DeviceTemperatureMeasuredEvent {
-  required string device = 1;
+  required string device_id = 1 [(nanopb).max_size = 32];
   required int32 port = 2;
   required sint32 value = 3;
 }
 
 message DeviceMovementDetectedEvent {
-  required string device = 1;
+  required string device_id = 1 [(nanopb).max_size = 32];
   required int32 port = 2;
 }
 
-message DeviceMessage {
+message DeviceEvents {
+  optional DeviceConnectedEvent deviceConnectedEvent = 1;
+  optional DeviceHearbeatEvent deviceHearbeatEvent = 2;
+  optional DeviceDisconnectedEvent deviceDisconnectedEvent = 3;
 
-  optional DeviceSwitchCommand switchCommand = 1;
-  optional DeviceIRCommand irCommand = 2;
-
-  optional CommandAckResponse ackResponse = 32;
-
-  optional DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 64;
-  optional DeviceMovementDetectedEvent movementDetectionEvent = 65;
+  optional DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 4;
+  optional DeviceMovementDetectedEvent movementDetectionEvent = 5;
 }

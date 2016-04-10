@@ -17,6 +17,8 @@ private:
 
 	String deviceInTopic;
 
+	DeviceDescription deviceDescription;
+
 	long lastMsg = 0;
 	char msg[256];
 	int value = 0;
@@ -34,9 +36,17 @@ protected:
 	void SetupWifi();
 	void ReconnectPubSub();
 
-	bool DecodeMessage(byte* payload, unsigned int length, DeviceMessage& deviceMessage) const;
-	void DebugRetrievedMessage(char* topic, byte* payload, unsigned int length);
+	bool DecodeMessage(byte* payload, unsigned int length, const pb_field_t* msg_fields, void* msg) const;
+	bool EncodeMessage(byte* payload, unsigned int maxLength, unsigned int& length, const pb_field_t* msg_fields, const void* msg) const;
+
+  bool PublishMessage(const char* topic, const pb_field_t* msg_fields, const void* msg);
+
+	void DebugRetrievedMessage(const char* topic, byte* payload, unsigned int length);
 	void HandleDeviceMessage(DeviceMessage& deviceMessage);
+
+	void OnStart();
+	void OnStop();
+	void OnLoop();
 };
 
 

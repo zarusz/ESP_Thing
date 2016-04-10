@@ -1,0 +1,48 @@
+package com.zarusz.control.app.comm;
+
+import com.zarusz.control.device.messages.DeviceMessageProtos;
+import com.zarusz.control.domain.device.HubDevice;
+import com.zarusz.control.domain.msg.commands.SwitchCommand;
+import com.zarusz.control.domain.msg.commands.TargetingDeviceCommand;
+import net.engio.mbassy.bus.MBassador;
+import net.engio.mbassy.listener.Handler;
+import org.slf4j.LoggerFactory;
+
+public class SwitchFeatureHandler extends AbstractHandler {
+
+    public SwitchFeatureHandler(MBassador bus) throws Exception {
+        super(bus, LoggerFactory.getLogger(SwitchFeatureHandler.class));
+    }
+
+    @Handler
+    public void handleDeviceCommand(TargetingDeviceCommand cmd) {
+        // TODO: send to device
+        log.debug("Generic device command received.");
+    }
+
+    @Handler
+    public void handleSwitch(SwitchCommand cmd) {
+        // TODO: send to device
+        log.debug("Switch to {} on device feature {}.", cmd.isOn() ? "on" : "off", cmd.getDeviceFeature().getId());
+        try {
+            HubDevice hubDevice;
+            if (cmd.getDevice() instanceof HubDevice) {
+                hubDevice = (HubDevice) cmd.getDevice();
+            } else {
+                hubDevice = cmd.getDevice().getHub();
+            }
+
+            DeviceMessageProtos.DeviceSwitchCommand.Builder switchCommand = DeviceMessageProtos.DeviceSwitchCommand.newBuilder();
+            switchCommand.setMessageId(1234);
+            switchCommand.setPort(1);
+            switchCommand.setOn(cmd.isOn());
+
+            DeviceMessageProtos.DeviceMessage.Builder deviceMessage = DeviceMessageProtos.DeviceMessage.newBuilder();
+            deviceMessage.setSwitchCommand(switchCommand);
+
+            bus.publish(new PublishMessageCommand(Topics.getDeviceTopic(hubDevice), deviceMessage.build()));
+        } catch (Exception e) {
+            log.error("Cannot publish the message.", e);
+        }
+    }
+}
