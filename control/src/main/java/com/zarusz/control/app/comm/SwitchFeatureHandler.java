@@ -15,13 +15,13 @@ public class SwitchFeatureHandler extends AbstractHandler {
     }
 
     @Handler
-    public void handleDeviceCommand(TargetingDeviceCommand cmd) {
+    public void onDeviceCommand(TargetingDeviceCommand cmd) {
         // TODO: send to device
         log.debug("Generic device command received.");
     }
 
     @Handler
-    public void handleSwitch(SwitchCommand cmd) {
+    public void onSwitchCommand(SwitchCommand cmd) {
         // TODO: send to device
         log.debug("Switch to {} on device feature {}.", cmd.isOn() ? "on" : "off", cmd.getDeviceFeature().getId());
         try {
