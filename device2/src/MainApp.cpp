@@ -7,6 +7,7 @@
 #include <pb_encode.h>
 #include <pb_decode.h>
 #include "FeatureControllers/SwitchFeatureController.h"
+#include "FeatureControllers/TempFeatureController.h"
 
 #define DEVICE_UNIQUE_ID "dev_sufit"
 #define TOPIC_DEVICE_EVENTS "device/events"
@@ -16,7 +17,8 @@ MainApp::MainApp(MQTT_CALLBACK_SIGNATURE)
 	: pubSubClient(espClient),
 		deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi")
 {
-	features.push_back(new SwitchFeatureController(10, 0, false));
+	features.push_back(new SwitchFeatureController(10, this, 0, false));
+	features.push_back(new TempFeatureController(30, this, 2));
 
 	deviceInTopic = String("device/") + deviceConfig.uniqueId;
 
@@ -187,7 +189,7 @@ void MainApp::HandleDeviceMessage(DeviceMessage& deviceMessage)
 {
 	Serial.println("HandleDeviceMessage (start)");
 	for(auto it = features.begin(); it != features.end(); ++it) {
-		(*it)->Handle(*this, deviceMessage);
+		(*it)->Handle(deviceMessage);
 	}
 	Serial.println("HandleDeviceMessage (finish)");
 	// TODO send ACK Message back to sender
@@ -242,5 +244,10 @@ void MainApp::OnLoop() {
 		strcpy(deviceEvents.deviceHearbeatEvent.device_id, deviceConfig.uniqueId);
 		deviceEvents.deviceHearbeatEvent.sequence_id = value;
 		PublishMessage(TOPIC_DEVICE_EVENTS, DeviceEvents_fields, &deviceEvents);
+	}
+
+	for (auto it = features.begin(); it != features.end(); ++it)
+	{
+		(*it)->Loop();
 	}
 }

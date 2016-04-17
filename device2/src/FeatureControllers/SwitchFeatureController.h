@@ -12,10 +12,10 @@ protected:
   void SetState(bool on);
 
 public:
-  SwitchFeatureController(int port, int pin, bool onIsHigh);
+  SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh);
 
-  virtual void Handle(CommHub& commHub, DeviceMessage& deviceMessage);
-  virtual void Loop(CommHub& commHub);
+  virtual void Handle(DeviceMessage& deviceMessage);
+  virtual void Loop();
 };
 
 #endif

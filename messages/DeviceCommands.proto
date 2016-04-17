@@ -64,7 +64,13 @@ message DeviceHearbeatEvent {
 message DeviceTemperatureMeasuredEvent {
   required string device_id = 1 [(nanopb).max_size = 32];
   required int32 port = 2;
-  required sint32 value = 3;
+  required float value = 3;
+}
+
+message DeviceHumidityMeasuredEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required int32 port = 2;
+  required float value = 3;
 }
 
 message DeviceMovementDetectedEvent {
@@ -78,5 +84,6 @@ message DeviceEvents {
   optional DeviceDisconnectedEvent deviceDisconnectedEvent = 3;
 
   optional DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 4;
-  optional DeviceMovementDetectedEvent movementDetectionEvent = 5;
+  optional DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;
+  optional DeviceMovementDetectedEvent movementDetectionEvent = 6;
 }

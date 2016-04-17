@@ -1,20 +1,21 @@
 #ifndef _FeatureController_h
 #define _FeatureController_h
 
-#include "../CommHub.h"
+#include "../DeviceContext.h"
 #include "../DeviceCommands.pb.h"
 
 class FeatureController
 {
 protected:
   int port;
+  DeviceContext* context;
 
 public:
-  FeatureController(int port);
+  FeatureController(int port, DeviceContext* context);
   virtual ~FeatureController();
 
-  virtual void Handle(CommHub& commHub, DeviceMessage& deviceMessage) = 0;
-  virtual void Loop(CommHub& commHub) = 0;
+  virtual void Handle(DeviceMessage& deviceMessage) = 0;
+  virtual void Loop() = 0;
 };
 
 

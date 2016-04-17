@@ -1,6 +1,7 @@
 package com.zarusz.control.config;
 
 import com.zarusz.control.app.comm.DeviceHeartbeatHandler;
+import com.zarusz.control.app.comm.TemperatureFeatureHandler;
 import com.zarusz.control.app.comm.mqtt.MqttBrokerGatewayHandler;
 import com.zarusz.control.app.comm.SwitchFeatureHandler;
 import com.zarusz.control.domain.common.EventBus;
@@ -47,8 +48,13 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public SwitchFeatureHandler switchFeatureBroker(MBassador bus) throws Exception {
+    public SwitchFeatureHandler switchFeatureHandler(MBassador bus) throws Exception {
         return new SwitchFeatureHandler(bus);
+    }
+
+    @Bean
+    public TemperatureFeatureHandler temperatureFeatureHandler(MBassador bus) throws Exception {
+        return new TemperatureFeatureHandler(bus);
     }
 
     @Bean

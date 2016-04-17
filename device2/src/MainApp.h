@@ -9,11 +9,12 @@
 #include "DeviceConfig.h"
 #include "DeviceCommands.pb.h"
 #include "CommHub.h"
+#include "DeviceContext.h"
 #include "FeatureControllers/FeatureController.h"
 #include <vector>
 #include <memory>
 
-class MainApp : public CommHub
+class MainApp : public CommHub, public DeviceContext
 {
 private:
 	DeviceConfig deviceConfig;
@@ -35,6 +36,9 @@ public:
 	void Loop();
 
 	virtual void Callback(char* topic, byte* payload, unsigned int length);
+
+	virtual DeviceConfig& GetConfig() { return deviceConfig; }
+  virtual CommHub& GetCommHub() { return *this; }
 
 protected:
 	void SetupWifi();

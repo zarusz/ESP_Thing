@@ -1,7 +1,7 @@
 #include "SwitchFeatureController.h"
 
-SwitchFeatureController::SwitchFeatureController(int port, int pin, bool onIsHigh)
-  : FeatureController(port)
+SwitchFeatureController::SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh)
+  : FeatureController(port, context)
 {
   this->pin = pin;
   this->onIsHigh = onIsHigh;
@@ -10,7 +10,7 @@ SwitchFeatureController::SwitchFeatureController(int port, int pin, bool onIsHig
   SetState(false);
 }
 
-void SwitchFeatureController::Handle(CommHub& commHub, DeviceMessage& deviceMessage)
+void SwitchFeatureController::Handle(DeviceMessage& deviceMessage)
 {
   if (!deviceMessage.has_switchCommand || deviceMessage.switchCommand.port != port)
   {
@@ -32,6 +32,6 @@ void SwitchFeatureController::SetState(bool on)
 }
 
 
-void SwitchFeatureController::Loop(CommHub& commHub)
+void SwitchFeatureController::Loop()
 {
 }

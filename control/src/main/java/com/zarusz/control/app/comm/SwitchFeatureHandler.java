@@ -34,7 +34,7 @@ public class SwitchFeatureHandler extends AbstractHandler {
 
             DeviceMessageProtos.DeviceSwitchCommand.Builder switchCommand = DeviceMessageProtos.DeviceSwitchCommand.newBuilder();
             switchCommand.setMessageId(1234);
-            switchCommand.setPort(10);
+            switchCommand.setPort(cmd.getDeviceFeature().getPort());
             switchCommand.setOn(cmd.isOn());
 
             DeviceMessageProtos.DeviceMessage.Builder deviceMessage = DeviceMessageProtos.DeviceMessage.newBuilder();

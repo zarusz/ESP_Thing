@@ -5456,13 +5456,13 @@ public final class DeviceMessageProtos {
     int getPort();
 
     /**
-     * <code>required sint32 value = 3;</code>
+     * <code>required float value = 3;</code>
      */
     boolean hasValue();
     /**
-     * <code>required sint32 value = 3;</code>
+     * <code>required float value = 3;</code>
      */
-    int getValue();
+    float getValue();
   }
   /**
    * Protobuf type {@code DeviceTemperatureMeasuredEvent}
@@ -5527,9 +5527,9 @@ public final class DeviceMessageProtos {
               port_ = input.readInt32();
               break;
             }
-            case 24: {
+            case 29: {
               bitField0_ |= 0x00000004;
-              value_ = input.readSInt32();
+              value_ = input.readFloat();
               break;
             }
           }
@@ -5630,24 +5630,24 @@ public final class DeviceMessageProtos {
     }
 
     public static final int VALUE_FIELD_NUMBER = 3;
-    private int value_;
+    private float value_;
     /**
-     * <code>required sint32 value = 3;</code>
+     * <code>required float value = 3;</code>
      */
     public boolean hasValue() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required sint32 value = 3;</code>
+     * <code>required float value = 3;</code>
      */
-    public int getValue() {
+    public float getValue() {
       return value_;
     }
 
     private void initFields() {
       deviceId_ = "";
       port_ = 0;
-      value_ = 0;
+      value_ = 0F;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -5681,7 +5681,7 @@ public final class DeviceMessageProtos {
         output.writeInt32(2, port_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeSInt32(3, value_);
+        output.writeFloat(3, value_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -5702,7 +5702,7 @@ public final class DeviceMessageProtos {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt32Size(3, value_);
+          .computeFloatSize(3, value_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5825,7 +5825,7 @@ public final class DeviceMessageProtos {
         bitField0_ = (bitField0_ & ~0x00000001);
         port_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        value_ = 0;
+        value_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -6041,34 +6041,34 @@ public final class DeviceMessageProtos {
         return this;
       }
 
-      private int value_ ;
+      private float value_ ;
       /**
-       * <code>required sint32 value = 3;</code>
+       * <code>required float value = 3;</code>
        */
       public boolean hasValue() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required sint32 value = 3;</code>
+       * <code>required float value = 3;</code>
        */
-      public int getValue() {
+      public float getValue() {
         return value_;
       }
       /**
-       * <code>required sint32 value = 3;</code>
+       * <code>required float value = 3;</code>
        */
-      public Builder setValue(int value) {
+      public Builder setValue(float value) {
         bitField0_ |= 0x00000004;
         value_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required sint32 value = 3;</code>
+       * <code>required float value = 3;</code>
        */
       public Builder clearValue() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        value_ = 0;
+        value_ = 0F;
         onChanged();
         return this;
       }
@@ -6082,6 +6082,662 @@ public final class DeviceMessageProtos {
     }
 
     // @@protoc_insertion_point(class_scope:DeviceTemperatureMeasuredEvent)
+  }
+
+  public interface DeviceHumidityMeasuredEventOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:DeviceHumidityMeasuredEvent)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    boolean hasDeviceId();
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    java.lang.String getDeviceId();
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getDeviceIdBytes();
+
+    /**
+     * <code>required int32 port = 2;</code>
+     */
+    boolean hasPort();
+    /**
+     * <code>required int32 port = 2;</code>
+     */
+    int getPort();
+
+    /**
+     * <code>required float value = 3;</code>
+     */
+    boolean hasValue();
+    /**
+     * <code>required float value = 3;</code>
+     */
+    float getValue();
+  }
+  /**
+   * Protobuf type {@code DeviceHumidityMeasuredEvent}
+   */
+  public static final class DeviceHumidityMeasuredEvent extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:DeviceHumidityMeasuredEvent)
+      DeviceHumidityMeasuredEventOrBuilder {
+    // Use DeviceHumidityMeasuredEvent.newBuilder() to construct.
+    private DeviceHumidityMeasuredEvent(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private DeviceHumidityMeasuredEvent(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final DeviceHumidityMeasuredEvent defaultInstance;
+    public static DeviceHumidityMeasuredEvent getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public DeviceHumidityMeasuredEvent getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private DeviceHumidityMeasuredEvent(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              deviceId_ = bs;
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              port_ = input.readInt32();
+              break;
+            }
+            case 29: {
+              bitField0_ |= 0x00000004;
+              value_ = input.readFloat();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceHumidityMeasuredEvent_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceHumidityMeasuredEvent_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.class, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<DeviceHumidityMeasuredEvent> PARSER =
+        new com.google.protobuf.AbstractParser<DeviceHumidityMeasuredEvent>() {
+      public DeviceHumidityMeasuredEvent parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DeviceHumidityMeasuredEvent(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeviceHumidityMeasuredEvent> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int DEVICE_ID_FIELD_NUMBER = 1;
+    private java.lang.Object deviceId_;
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    public boolean hasDeviceId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    public java.lang.String getDeviceId() {
+      java.lang.Object ref = deviceId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          deviceId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDeviceIdBytes() {
+      java.lang.Object ref = deviceId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        deviceId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PORT_FIELD_NUMBER = 2;
+    private int port_;
+    /**
+     * <code>required int32 port = 2;</code>
+     */
+    public boolean hasPort() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required int32 port = 2;</code>
+     */
+    public int getPort() {
+      return port_;
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 3;
+    private float value_;
+    /**
+     * <code>required float value = 3;</code>
+     */
+    public boolean hasValue() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>required float value = 3;</code>
+     */
+    public float getValue() {
+      return value_;
+    }
+
+    private void initFields() {
+      deviceId_ = "";
+      port_ = 0;
+      value_ = 0F;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasDeviceId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasPort()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasValue()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getDeviceIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, port_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeFloat(3, value_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getDeviceIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, port_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, value_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code DeviceHumidityMeasuredEvent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:DeviceHumidityMeasuredEvent)
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEventOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceHumidityMeasuredEvent_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceHumidityMeasuredEvent_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.class, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.Builder.class);
+      }
+
+      // Construct using com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        deviceId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        port_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        value_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceHumidityMeasuredEvent_descriptor;
+      }
+
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent getDefaultInstanceForType() {
+        return com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.getDefaultInstance();
+      }
+
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent build() {
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent buildPartial() {
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent result = new com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.deviceId_ = deviceId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.port_ = port_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.value_ = value_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent) {
+          return mergeFrom((com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent other) {
+        if (other == com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.getDefaultInstance()) return this;
+        if (other.hasDeviceId()) {
+          bitField0_ |= 0x00000001;
+          deviceId_ = other.deviceId_;
+          onChanged();
+        }
+        if (other.hasPort()) {
+          setPort(other.getPort());
+        }
+        if (other.hasValue()) {
+          setValue(other.getValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasDeviceId()) {
+          
+          return false;
+        }
+        if (!hasPort()) {
+          
+          return false;
+        }
+        if (!hasValue()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object deviceId_ = "";
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public boolean hasDeviceId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public java.lang.String getDeviceId() {
+        java.lang.Object ref = deviceId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            deviceId_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDeviceIdBytes() {
+        java.lang.Object ref = deviceId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          deviceId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public Builder setDeviceId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        deviceId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public Builder clearDeviceId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        deviceId_ = getDefaultInstance().getDeviceId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public Builder setDeviceIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        deviceId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int port_ ;
+      /**
+       * <code>required int32 port = 2;</code>
+       */
+      public boolean hasPort() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required int32 port = 2;</code>
+       */
+      public int getPort() {
+        return port_;
+      }
+      /**
+       * <code>required int32 port = 2;</code>
+       */
+      public Builder setPort(int value) {
+        bitField0_ |= 0x00000002;
+        port_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 port = 2;</code>
+       */
+      public Builder clearPort() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        port_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private float value_ ;
+      /**
+       * <code>required float value = 3;</code>
+       */
+      public boolean hasValue() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>required float value = 3;</code>
+       */
+      public float getValue() {
+        return value_;
+      }
+      /**
+       * <code>required float value = 3;</code>
+       */
+      public Builder setValue(float value) {
+        bitField0_ |= 0x00000004;
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required float value = 3;</code>
+       */
+      public Builder clearValue() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        value_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:DeviceHumidityMeasuredEvent)
+    }
+
+    static {
+      defaultInstance = new DeviceHumidityMeasuredEvent(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:DeviceHumidityMeasuredEvent)
   }
 
   public interface DeviceMovementDetectedEventOrBuilder extends
@@ -6711,15 +7367,28 @@ public final class DeviceMessageProtos {
     com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEventOrBuilder getTemperatureMeasureEventOrBuilder();
 
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+     * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+     */
+    boolean hasHumidityMeasureEvent();
+    /**
+     * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+     */
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent getHumidityMeasureEvent();
+    /**
+     * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+     */
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEventOrBuilder getHumidityMeasureEventOrBuilder();
+
+    /**
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
      */
     boolean hasMovementDetectionEvent();
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
      */
     com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent getMovementDetectionEvent();
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
      */
     com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionEventOrBuilder();
   }
@@ -6828,8 +7497,21 @@ public final class DeviceMessageProtos {
               break;
             }
             case 42: {
-              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder subBuilder = null;
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.Builder subBuilder = null;
               if (((bitField0_ & 0x00000010) == 0x00000010)) {
+                subBuilder = humidityMeasureEvent_.toBuilder();
+              }
+              humidityMeasureEvent_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(humidityMeasureEvent_);
+                humidityMeasureEvent_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000010;
+              break;
+            }
+            case 50: {
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000020) == 0x00000020)) {
                 subBuilder = movementDetectionEvent_.toBuilder();
               }
               movementDetectionEvent_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.PARSER, extensionRegistry);
@@ -6837,7 +7519,7 @@ public final class DeviceMessageProtos {
                 subBuilder.mergeFrom(movementDetectionEvent_);
                 movementDetectionEvent_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000020;
               break;
             }
           }
@@ -6964,22 +7646,43 @@ public final class DeviceMessageProtos {
       return temperatureMeasureEvent_;
     }
 
-    public static final int MOVEMENTDETECTIONEVENT_FIELD_NUMBER = 5;
-    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent movementDetectionEvent_;
+    public static final int HUMIDITYMEASUREEVENT_FIELD_NUMBER = 5;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent humidityMeasureEvent_;
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+     * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
      */
-    public boolean hasMovementDetectionEvent() {
+    public boolean hasHumidityMeasureEvent() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+     * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+     */
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent getHumidityMeasureEvent() {
+      return humidityMeasureEvent_;
+    }
+    /**
+     * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+     */
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEventOrBuilder getHumidityMeasureEventOrBuilder() {
+      return humidityMeasureEvent_;
+    }
+
+    public static final int MOVEMENTDETECTIONEVENT_FIELD_NUMBER = 6;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent movementDetectionEvent_;
+    /**
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
+     */
+    public boolean hasMovementDetectionEvent() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
      */
     public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent getMovementDetectionEvent() {
       return movementDetectionEvent_;
     }
     /**
-     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+     * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
      */
     public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionEventOrBuilder() {
       return movementDetectionEvent_;
@@ -6990,6 +7693,7 @@ public final class DeviceMessageProtos {
       deviceHearbeatEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHearbeatEvent.getDefaultInstance();
       deviceDisconnectedEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceDisconnectedEvent.getDefaultInstance();
       temperatureMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
+      humidityMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.getDefaultInstance();
       movementDetectionEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
@@ -7022,6 +7726,12 @@ public final class DeviceMessageProtos {
           return false;
         }
       }
+      if (hasHumidityMeasureEvent()) {
+        if (!getHumidityMeasureEvent().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       if (hasMovementDetectionEvent()) {
         if (!getMovementDetectionEvent().isInitialized()) {
           memoizedIsInitialized = 0;
@@ -7048,7 +7758,10 @@ public final class DeviceMessageProtos {
         output.writeMessage(4, temperatureMeasureEvent_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, movementDetectionEvent_);
+        output.writeMessage(5, humidityMeasureEvent_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeMessage(6, movementDetectionEvent_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -7077,7 +7790,11 @@ public final class DeviceMessageProtos {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, movementDetectionEvent_);
+          .computeMessageSize(5, humidityMeasureEvent_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, movementDetectionEvent_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -7192,6 +7909,7 @@ public final class DeviceMessageProtos {
           getDeviceHearbeatEventFieldBuilder();
           getDeviceDisconnectedEventFieldBuilder();
           getTemperatureMeasureEventFieldBuilder();
+          getHumidityMeasureEventFieldBuilder();
           getMovementDetectionEventFieldBuilder();
         }
       }
@@ -7225,12 +7943,18 @@ public final class DeviceMessageProtos {
           temperatureMeasureEventBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
+        if (humidityMeasureEventBuilder_ == null) {
+          humidityMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.getDefaultInstance();
+        } else {
+          humidityMeasureEventBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
         if (movementDetectionEventBuilder_ == null) {
           movementDetectionEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
         } else {
           movementDetectionEventBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -7294,6 +8018,14 @@ public final class DeviceMessageProtos {
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
+        if (humidityMeasureEventBuilder_ == null) {
+          result.humidityMeasureEvent_ = humidityMeasureEvent_;
+        } else {
+          result.humidityMeasureEvent_ = humidityMeasureEventBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
         if (movementDetectionEventBuilder_ == null) {
           result.movementDetectionEvent_ = movementDetectionEvent_;
         } else {
@@ -7327,6 +8059,9 @@ public final class DeviceMessageProtos {
         if (other.hasTemperatureMeasureEvent()) {
           mergeTemperatureMeasureEvent(other.getTemperatureMeasureEvent());
         }
+        if (other.hasHumidityMeasureEvent()) {
+          mergeHumidityMeasureEvent(other.getHumidityMeasureEvent());
+        }
         if (other.hasMovementDetectionEvent()) {
           mergeMovementDetectionEvent(other.getMovementDetectionEvent());
         }
@@ -7355,6 +8090,12 @@ public final class DeviceMessageProtos {
         }
         if (hasTemperatureMeasureEvent()) {
           if (!getTemperatureMeasureEvent().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasHumidityMeasureEvent()) {
+          if (!getHumidityMeasureEvent().isInitialized()) {
             
             return false;
           }
@@ -7851,17 +8592,133 @@ public final class DeviceMessageProtos {
         return temperatureMeasureEventBuilder_;
       }
 
+      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent humidityMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEventOrBuilder> humidityMeasureEventBuilder_;
+      /**
+       * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+       */
+      public boolean hasHumidityMeasureEvent() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+       */
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent getHumidityMeasureEvent() {
+        if (humidityMeasureEventBuilder_ == null) {
+          return humidityMeasureEvent_;
+        } else {
+          return humidityMeasureEventBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+       */
+      public Builder setHumidityMeasureEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent value) {
+        if (humidityMeasureEventBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          humidityMeasureEvent_ = value;
+          onChanged();
+        } else {
+          humidityMeasureEventBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+       */
+      public Builder setHumidityMeasureEvent(
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.Builder builderForValue) {
+        if (humidityMeasureEventBuilder_ == null) {
+          humidityMeasureEvent_ = builderForValue.build();
+          onChanged();
+        } else {
+          humidityMeasureEventBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+       */
+      public Builder mergeHumidityMeasureEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent value) {
+        if (humidityMeasureEventBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+              humidityMeasureEvent_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.getDefaultInstance()) {
+            humidityMeasureEvent_ =
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.newBuilder(humidityMeasureEvent_).mergeFrom(value).buildPartial();
+          } else {
+            humidityMeasureEvent_ = value;
+          }
+          onChanged();
+        } else {
+          humidityMeasureEventBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+       */
+      public Builder clearHumidityMeasureEvent() {
+        if (humidityMeasureEventBuilder_ == null) {
+          humidityMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.getDefaultInstance();
+          onChanged();
+        } else {
+          humidityMeasureEventBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+      /**
+       * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+       */
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.Builder getHumidityMeasureEventBuilder() {
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return getHumidityMeasureEventFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+       */
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEventOrBuilder getHumidityMeasureEventOrBuilder() {
+        if (humidityMeasureEventBuilder_ != null) {
+          return humidityMeasureEventBuilder_.getMessageOrBuilder();
+        } else {
+          return humidityMeasureEvent_;
+        }
+      }
+      /**
+       * <code>optional .DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEventOrBuilder> 
+          getHumidityMeasureEventFieldBuilder() {
+        if (humidityMeasureEventBuilder_ == null) {
+          humidityMeasureEventBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEventOrBuilder>(
+                  getHumidityMeasureEvent(),
+                  getParentForChildren(),
+                  isClean());
+          humidityMeasureEvent_ = null;
+        }
+        return humidityMeasureEventBuilder_;
+      }
+
       private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent movementDetectionEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder> movementDetectionEventBuilder_;
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
        */
       public boolean hasMovementDetectionEvent() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
        */
       public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent getMovementDetectionEvent() {
         if (movementDetectionEventBuilder_ == null) {
@@ -7871,7 +8728,7 @@ public final class DeviceMessageProtos {
         }
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
        */
       public Builder setMovementDetectionEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent value) {
         if (movementDetectionEventBuilder_ == null) {
@@ -7883,11 +8740,11 @@ public final class DeviceMessageProtos {
         } else {
           movementDetectionEventBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
        */
       public Builder setMovementDetectionEvent(
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder builderForValue) {
@@ -7897,15 +8754,15 @@ public final class DeviceMessageProtos {
         } else {
           movementDetectionEventBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
        */
       public Builder mergeMovementDetectionEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent value) {
         if (movementDetectionEventBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+          if (((bitField0_ & 0x00000020) == 0x00000020) &&
               movementDetectionEvent_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance()) {
             movementDetectionEvent_ =
               com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.newBuilder(movementDetectionEvent_).mergeFrom(value).buildPartial();
@@ -7916,11 +8773,11 @@ public final class DeviceMessageProtos {
         } else {
           movementDetectionEventBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
        */
       public Builder clearMovementDetectionEvent() {
         if (movementDetectionEventBuilder_ == null) {
@@ -7929,19 +8786,19 @@ public final class DeviceMessageProtos {
         } else {
           movementDetectionEventBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
        */
       public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder getMovementDetectionEventBuilder() {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return getMovementDetectionEventFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
        */
       public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionEventOrBuilder() {
         if (movementDetectionEventBuilder_ != null) {
@@ -7951,7 +8808,7 @@ public final class DeviceMessageProtos {
         }
       }
       /**
-       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 5;</code>
+       * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder> 
@@ -8029,6 +8886,11 @@ public final class DeviceMessageProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_DeviceTemperatureMeasuredEvent_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_DeviceHumidityMeasuredEvent_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_DeviceHumidityMeasuredEvent_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_DeviceMovementDetectedEvent_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -8065,19 +8927,23 @@ public final class DeviceMessageProtos {
       "ceHearbeatEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010" +
       " \022\023\n\013sequence_id\030\002 \002(\005\"W\n\036DeviceTemperat" +
       "ureMeasuredEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002" +
-      "\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\021\"E\n\033Devic" +
-      "eMovementDetectedEvent\022\030\n\tdevice_id\030\001 \002(",
-      "\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\"\261\002\n\014DeviceEvents\022" +
-      "3\n\024deviceConnectedEvent\030\001 \001(\0132\025.DeviceCo" +
-      "nnectedEvent\0221\n\023deviceHearbeatEvent\030\002 \001(" +
-      "\0132\024.DeviceHearbeatEvent\0229\n\027deviceDisconn" +
-      "ectedEvent\030\003 \001(\0132\030.DeviceDisconnectedEve" +
-      "nt\022@\n\027temperatureMeasureEvent\030\004 \001(\0132\037.De" +
-      "viceTemperatureMeasuredEvent\022<\n\026movement" +
-      "DetectionEvent\030\005 \001(\0132\034.DeviceMovementDet" +
-      "ectedEvent*+\n\021DevicePortFeature\022\n\n\006SWITC" +
-      "H\020\000\022\006\n\002IR\020\001\032\002\020\001B9\n\"com.zarusz.control.de",
-      "vice.messagesB\023DeviceMessageProtos"
+      "\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\002\"T\n\033Devic" +
+      "eHumidityMeasuredEvent\022\030\n\tdevice_id\030\001 \002(",
+      "\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\002\"E\n" +
+      "\033DeviceMovementDetectedEvent\022\030\n\tdevice_i" +
+      "d\030\001 \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\"\355\002\n\014DeviceE" +
+      "vents\0223\n\024deviceConnectedEvent\030\001 \001(\0132\025.De" +
+      "viceConnectedEvent\0221\n\023deviceHearbeatEven" +
+      "t\030\002 \001(\0132\024.DeviceHearbeatEvent\0229\n\027deviceD" +
+      "isconnectedEvent\030\003 \001(\0132\030.DeviceDisconnec" +
+      "tedEvent\022@\n\027temperatureMeasureEvent\030\004 \001(" +
+      "\0132\037.DeviceTemperatureMeasuredEvent\022:\n\024hu" +
+      "midityMeasureEvent\030\005 \001(\0132\034.DeviceHumidit",
+      "yMeasuredEvent\022<\n\026movementDetectionEvent" +
+      "\030\006 \001(\0132\034.DeviceMovementDetectedEvent*+\n\021" +
+      "DevicePortFeature\022\n\n\006SWITCH\020\000\022\006\n\002IR\020\001\032\002\020" +
+      "\001B9\n\"com.zarusz.control.device.messagesB" +
+      "\023DeviceMessageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8152,20 +9018,27 @@ public final class DeviceMessageProtos {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_DeviceTemperatureMeasuredEvent_descriptor,
         new java.lang.String[] { "DeviceId", "Port", "Value", });
-    internal_static_DeviceMovementDetectedEvent_descriptor =
+    internal_static_DeviceHumidityMeasuredEvent_descriptor =
       getDescriptor().getMessageTypes().get(10);
+    internal_static_DeviceHumidityMeasuredEvent_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_DeviceHumidityMeasuredEvent_descriptor,
+        new java.lang.String[] { "DeviceId", "Port", "Value", });
+    internal_static_DeviceMovementDetectedEvent_descriptor =
+      getDescriptor().getMessageTypes().get(11);
     internal_static_DeviceMovementDetectedEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_DeviceMovementDetectedEvent_descriptor,
         new java.lang.String[] { "DeviceId", "Port", });
     internal_static_DeviceEvents_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_DeviceEvents_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_DeviceEvents_descriptor,
-        new java.lang.String[] { "DeviceConnectedEvent", "DeviceHearbeatEvent", "DeviceDisconnectedEvent", "TemperatureMeasureEvent", "MovementDetectionEvent", });
+        new java.lang.String[] { "DeviceConnectedEvent", "DeviceHearbeatEvent", "DeviceDisconnectedEvent", "TemperatureMeasureEvent", "HumidityMeasureEvent", "MovementDetectionEvent", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
+    registry.add(fi.kapsi.koti.jpa.nanopb.Nanopb.nanopb);
     registry.add(fi.kapsi.koti.jpa.nanopb.Nanopb.nanopb);
     registry.add(fi.kapsi.koti.jpa.nanopb.Nanopb.nanopb);
     registry.add(fi.kapsi.koti.jpa.nanopb.Nanopb.nanopb);

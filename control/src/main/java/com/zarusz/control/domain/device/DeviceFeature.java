@@ -30,7 +30,7 @@ public class DeviceFeature {
 	@Id
 	@GeneratedValue
 	private Integer id;
-    private String port;
+    private Integer port;
 	private Date updated;
 
 	@ManyToOne

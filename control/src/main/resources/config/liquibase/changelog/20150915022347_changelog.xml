@@ -43,7 +43,7 @@
             <column name="device" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="port" type="VARCHAR(255)"/>
+            <column name="port" type="int4"/>
             <column name="updated" type="timestamp"/>
             <column name="on" type="BOOLEAN"/>
             <column name="red" type="int4"/>
