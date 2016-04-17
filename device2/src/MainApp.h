@@ -8,16 +8,20 @@
 #include <PubSubClient.h>
 #include "DeviceConfig.h"
 #include "DeviceCommands.pb.h"
+#include "CommHub.h"
+#include "FeatureControllers/FeatureController.h"
+#include <vector>
+#include <memory>
 
-class MainApp {
+class MainApp : public CommHub
+{
 private:
 	DeviceConfig deviceConfig;
 	WiFiClient espClient;
 	PubSubClient pubSubClient;
-
 	String deviceInTopic;
-
 	DeviceDescription deviceDescription;
+	std::vector<FeatureController*> features;
 
 	long lastMsg = 0;
 	char msg[256];
@@ -39,14 +43,15 @@ protected:
 	bool DecodeMessage(byte* payload, unsigned int length, const pb_field_t* msg_fields, void* msg) const;
 	bool EncodeMessage(byte* payload, unsigned int maxLength, unsigned int& length, const pb_field_t* msg_fields, const void* msg) const;
 
-  bool PublishMessage(const char* topic, const pb_field_t* msg_fields, const void* msg);
-
 	void DebugRetrievedMessage(const char* topic, byte* payload, unsigned int length);
 	void HandleDeviceMessage(DeviceMessage& deviceMessage);
 
 	void OnStart();
 	void OnStop();
 	void OnLoop();
+
+public:
+	bool PublishMessage(const char* topic, const pb_field_t* msg_fields, const void* msg);
 };
 
 

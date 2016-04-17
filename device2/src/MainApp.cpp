@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <pb_encode.h>
 #include <pb_decode.h>
+#include "FeatureControllers/SwitchFeatureController.h"
 
 #define DEVICE_UNIQUE_ID "dev_sufit"
 #define TOPIC_DEVICE_EVENTS "device/events"
@@ -15,6 +16,8 @@ MainApp::MainApp(MQTT_CALLBACK_SIGNATURE)
 	: pubSubClient(espClient),
 		deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi")
 {
+	features.push_back(new SwitchFeatureController(10, 0, false));
+
 	deviceInTopic = String("device/") + deviceConfig.uniqueId;
 
 	pubSubClient.setServer(deviceConfig.mqttBroker, 1883);
@@ -23,6 +26,11 @@ MainApp::MainApp(MQTT_CALLBACK_SIGNATURE)
 
 MainApp::~MainApp()
 {
+	// std::vector<SwitchFeatureController*>::iterator
+	for(auto it = features.begin(); it != features.end(); ++it)
+	{
+    delete *it;
+	}
 }
 
 void MainApp::Init()
@@ -177,24 +185,11 @@ void MainApp::DebugRetrievedMessage(const char* topic, byte* payload, unsigned i
 
 void MainApp::HandleDeviceMessage(DeviceMessage& deviceMessage)
 {
-	if (deviceMessage.has_switchCommand)
-	{
-		DeviceSwitchCommand* cmd = &deviceMessage.switchCommand;
-
-		String msg = String("Recieved SwitchCommand for port ") + cmd->port + " with " + (cmd->on ? "turn on" : "turn off");
-		Serial.println(msg);
-		if (cmd->on)
-		{
-			digitalWrite(BUILTIN_LED, LOW);   // Turn the LED on (Note that LOW is the voltage level
-											  // but actually the LED is on; this is because
-											  // it is acive low on the ESP-01)
-		}
-		else
-		{
-			digitalWrite(BUILTIN_LED, HIGH);  // Turn the LED off by making the voltage HIGH
-		}
+	Serial.println("HandleDeviceMessage (start)");
+	for(auto it = features.begin(); it != features.end(); ++it) {
+		(*it)->Handle(*this, deviceMessage);
 	}
-
+	Serial.println("HandleDeviceMessage (finish)");
 	// TODO send ACK Message back to sender
 }
 
