@@ -27,7 +27,12 @@ public class TemperatureSensorFeature extends DeviceFeature {
         // TODO
     }
 
-	//public float getMeasuredTemperature() {
+    public void updateValue(float value) {
+        setTemperature(value);
+        // TODO record history
+    }
+
+    //public float getMeasuredTemperature() {
     //    return value;
     //}
 

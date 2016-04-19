@@ -7,13 +7,14 @@
 class TempFeatureController : public FeatureController
 {
 protected:
+  int portForHumidity;
   int pin;
   DHT dht;
   long lastMsgMs;
   int updateIntervalMs;
 
 public:
-  TempFeatureController(int port, DeviceContext* context, int pin);
+  TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin);
   virtual ~TempFeatureController();
 
   virtual void Handle(DeviceMessage& deviceMessage);

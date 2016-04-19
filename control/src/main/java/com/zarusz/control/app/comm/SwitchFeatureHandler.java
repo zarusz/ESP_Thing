@@ -23,7 +23,6 @@ public class SwitchFeatureHandler extends AbstractHandler {
     @Handler
     public void onSwitchCommand(SwitchCommand cmd) {
         // TODO: send to device
-        log.debug("Switch to {} on device feature {}.", cmd.isOn() ? "on" : "off", cmd.getDeviceFeature().getId());
         try {
             HubDevice hubDevice;
             if (cmd.getDevice() instanceof HubDevice) {
@@ -31,6 +30,7 @@ public class SwitchFeatureHandler extends AbstractHandler {
             } else {
                 hubDevice = cmd.getDevice().getHub();
             }
+            log.debug("Switch to {} on device {} port {}.", cmd.isOn() ? "on" : "off", hubDevice.getGuid(), cmd.getDeviceFeature().getPort());
 
             DeviceMessageProtos.DeviceSwitchCommand.Builder switchCommand = DeviceMessageProtos.DeviceSwitchCommand.newBuilder();
             switchCommand.setMessageId(1234);

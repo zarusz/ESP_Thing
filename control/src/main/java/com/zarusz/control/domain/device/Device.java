@@ -63,7 +63,7 @@ public class Device {
         }
     }
 
-    public DeviceFeature getFeatureByPort(String port) {
+    public DeviceFeature getFeatureByPort(Integer port) {
         for (DeviceFeature deviceFeature : features) {
             if (port.equals(deviceFeature.getPort())) {
                 return deviceFeature;

@@ -9,14 +9,18 @@ import com.zarusz.control.app.comm.Topics;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
 import net.engio.mbassy.bus.MBassador;
 import net.engio.mbassy.listener.Handler;
-import net.engio.mbassy.listener.Invoke;
 import org.fusesource.mqtt.client.BlockingConnection;
 import org.fusesource.mqtt.client.MQTT;
 import org.fusesource.mqtt.client.QoS;
 import org.fusesource.mqtt.client.Topic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import javax.inject.Inject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -41,6 +45,9 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
         Topics.DeviceDescription,
         Topics.DeviceEvents
     };
+
+    @Inject
+    private PlatformTransactionManager txManager;
 
     public MqttBrokerGatewayHandler(MBassador bus, MQTT mqttClient) throws Exception {
         super(bus, LoggerFactory.getLogger(MqttBrokerGatewayHandler.class));
@@ -76,17 +83,6 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
             mqttConnection = null;
         }
         super.close();
-    }
-
-    protected void dispatchMessage(org.fusesource.mqtt.client.Message msg) {
-        try {
-            MessageLite typedMsg = readMessage(msg.getTopic(), msg.getPayload());
-            if (typedMsg != null) {
-                bus.publishAsync(new MessageReceivedEvent(msg.getTopic(), typedMsg));
-            }
-            msg.ack();
-        } catch (InvalidProtocolBufferException e) {
-        }
     }
 
     protected void publishMessage(PublishMessageCommand cmd) {
@@ -166,10 +162,27 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
 
         MessageReceivedEvent receivedEvent;
         while((receivedEvent = dispatchQueue.poll()) != null) {
-            bus.publishAsync(receivedEvent);
+            dispatchMessage(receivedEvent);
             activityPerformed = true;
         }
 
         return activityPerformed;
+    }
+
+    private void dispatchMessage(MessageReceivedEvent receivedEvent) {
+
+        DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+        def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+        TransactionStatus status = txManager.getTransaction(def);
+        try {
+            // execute your business logic here
+            bus.publish(receivedEvent);
+        }
+        catch (Exception e) {
+            txManager.rollback(status);
+            log.error("Could not dispatch message.", e);
+        }
+        txManager.commit(status);
     }
 }

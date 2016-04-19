@@ -1,8 +1,9 @@
 #include "TempFeatureController.h"
 
-TempFeatureController::TempFeatureController(int port, DeviceContext* context, int pin)
+TempFeatureController::TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin)
   : FeatureController(port, context), dht(pin, DHT22)
 {
+  this->portForHumidity = portForHumidity;
   this->pin = pin;
   lastMsgMs = 0;
   updateIntervalMs = 10000;
@@ -32,26 +33,24 @@ void TempFeatureController::Loop()
 
     DeviceEvents events = DeviceEvents_init_zero;
 
-    if (!isnan(h))
-    {
-      Serial.println(String("The humidity is ") + h);
-
-      events.has_humidityMeasureEvent = true;
-      // TODO: fix me
-      strcpy(events.humidityMeasureEvent.device_id, context->GetConfig().uniqueId);
-      events.humidityMeasureEvent.port = port;
-      events.humidityMeasureEvent.value = h;
-    }
-
     if (!isnan(t))
     {
       Serial.println(String("The temperature is ") + t);
 
       events.has_temperatureMeasureEvent = true;
-      // TODO: fix me
       strcpy(events.temperatureMeasureEvent.device_id, context->GetConfig().uniqueId);
       events.temperatureMeasureEvent.port = port;
       events.temperatureMeasureEvent.value = t;
+    }
+
+    if (!isnan(h))
+    {
+      Serial.println(String("The humidity is ") + h);
+
+      events.has_humidityMeasureEvent = true;
+      strcpy(events.humidityMeasureEvent.device_id, context->GetConfig().uniqueId);
+      events.humidityMeasureEvent.port = portForHumidity;
+      events.humidityMeasureEvent.value = h;
     }
 
     if (events.has_humidityMeasureEvent || events.has_temperatureMeasureEvent)

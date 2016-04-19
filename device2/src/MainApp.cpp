@@ -18,7 +18,7 @@ MainApp::MainApp(MQTT_CALLBACK_SIGNATURE)
 		deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi")
 {
 	features.push_back(new SwitchFeatureController(10, this, 0, false));
-	features.push_back(new TempFeatureController(30, this, 2));
+	features.push_back(new TempFeatureController(30, 31, this, 2));
 
 	deviceInTopic = String("device/") + deviceConfig.uniqueId;
 
@@ -234,7 +234,7 @@ void MainApp::OnStop() {
 
 void MainApp::OnLoop() {
 	long now = millis();
-	if (now - lastMsg > 2000) {
+	if (now - lastMsg > 10000) {
 		lastMsg = now;
 		++value;
 		Serial.println(String("Publish DeviceHearbeatEvent. ") + value);

@@ -1,6 +1,7 @@
 package com.zarusz.control.repository;
 
 import com.zarusz.control.domain.device.Device;
+import com.zarusz.control.domain.device.HubDevice;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
@@ -14,4 +15,5 @@ public interface DeviceRepository extends CrudRepository<Device, Integer> {
 
     List<Device> findAllInPartition(int partitionId);
 
+    HubDevice findHubByGuid(String deviceId);
 }

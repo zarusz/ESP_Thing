@@ -53,6 +53,7 @@
             <column name="movement" type="BOOLEAN"/>
             <column name="state" type="int4"/>
             <column name="temperature" type="float4"/>
+            <column name="humidity" type="float4"/>
         </createTable>
     </changeSet>
     <changeSet author="Tomasz (generated)" id="1442283833184-4">
