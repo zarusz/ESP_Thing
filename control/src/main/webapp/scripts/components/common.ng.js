@@ -17,14 +17,14 @@ var App;
         NgSvc.state = "$state";
         NgSvc.stateParams = "$stateParams";
         return NgSvc;
-    })();
+    }());
     App.NgSvc = NgSvc;
     var NgEvent = (function () {
         function NgEvent() {
         }
         NgEvent.destroy = "$destroy";
         return NgEvent;
-    })();
+    }());
     App.NgEvent = NgEvent;
     var BaseDirective = (function () {
         function BaseDirective() {
@@ -41,13 +41,13 @@ var App;
         BaseDirective.prototype.onLink = function (scope, element, attributes) {
         };
         return BaseDirective;
-    })();
+    }());
     App.BaseDirective = BaseDirective;
     var NgUtils = (function () {
         function NgUtils() {
         }
         return NgUtils;
-    })();
+    }());
     App.NgUtils = NgUtils;
 })(App || (App = {}));
 //# sourceMappingURL=common.ng.js.map

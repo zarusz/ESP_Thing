@@ -3,9 +3,7 @@ package com.zarusz.control.web.rest.dto.feature;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.zarusz.control.domain.device.DeviceFeature;
-import com.zarusz.control.domain.feature.DimFeature;
-import com.zarusz.control.domain.feature.LEDFeature;
-import com.zarusz.control.domain.feature.SwitchFeature;
+import com.zarusz.control.domain.feature.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -41,6 +39,12 @@ public abstract class FeatureStateDTO {
         }
         if (feature instanceof LEDFeature) {
             return new LEDFeatureStateDTO((LEDFeature) feature);
+        }
+        if (feature instanceof TemperatureSensorFeature) {
+            return new TemperatureSensorFeatureStateDTO((TemperatureSensorFeature) feature);
+        }
+        if (feature instanceof HumiditySensorFeature) {
+            return new HumiditySensorFeatureStateDTO((HumiditySensorFeature) feature);
         }
         return null;
     }

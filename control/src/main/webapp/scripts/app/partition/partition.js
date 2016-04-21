@@ -2,8 +2,10 @@
 ///<reference path="partition.controller.ts"/>
 var App;
 (function (App) {
-    App.$module.config(function ($stateProvider) {
-        $stateProvider.state("partition", {
+    App.$module
+        .config(function ($stateProvider) {
+        $stateProvider
+            .state("partition", {
             parent: "site",
             url: "/partition/{partitionId}",
             //data: {
@@ -17,9 +19,9 @@ var App;
             controllerAs: App.PartitionCtrl.$nameAs,
             resolve: {
                 mainTranslatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart("main");
-                    return $translate.refresh();
-                }]
+                        $translatePartialLoader.addPart("main");
+                        return $translate.refresh();
+                    }]
             }
         });
     });

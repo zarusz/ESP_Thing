@@ -18,7 +18,7 @@ var App;
             DeviceService.$name = "DeviceService";
             DeviceService.$inject = [App.NgSvc.http, App.NgSvc.q];
             return DeviceService;
-        })();
+        }());
         Repository.DeviceService = DeviceService;
     })(Repository = App.Repository || (App.Repository = {}));
 })(App || (App = {}));

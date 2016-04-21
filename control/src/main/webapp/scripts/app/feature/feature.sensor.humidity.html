@@ -1,0 +1,11 @@
+<div class="feature">
+    <div class="text-center">
+        <i class="fa fa-fw fa-tint"></i>
+        <span>{{ feature.state.humidity | number : 0 }}</span> %
+    </div>
+
+    <md-progress-linear md-mode="determinate"
+                        value="{{feature.state.humidity}}"
+                        ng-class="{ 'md-warn' : feature.state.humidity < 40 || feature.state.humidity > 60 }" >
+    </md-progress-linear>
+</div>

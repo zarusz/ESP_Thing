@@ -7,7 +7,7 @@ var App;
             function PartitionModel() {
             }
             return PartitionModel;
-        })();
+        }());
         Repository.PartitionModel = PartitionModel;
         var PartitionService = (function () {
             function PartitionService(http, q) {
@@ -53,7 +53,7 @@ var App;
             PartitionService.$name = "PartitionService";
             PartitionService.$inject = [App.NgSvc.http, App.NgSvc.q];
             return PartitionService;
-        })();
+        }());
         Repository.PartitionService = PartitionService;
     })(Repository = App.Repository || (App.Repository = {}));
 })(App || (App = {}));

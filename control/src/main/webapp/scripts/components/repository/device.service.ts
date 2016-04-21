@@ -17,6 +17,13 @@ module App.Repository {
         on: boolean;
     }
 
+    export interface ISensorTemperatureFeatureStateModel extends IFeatureStateModel {
+        temperature: number;
+    }
+
+    export interface ISensorHumidityFeatureStateModel extends IFeatureStateModel {
+        humidity: number;
+    }
 
     export interface IFeatureModel<T extends IFeatureStateModel> {
         id: number;

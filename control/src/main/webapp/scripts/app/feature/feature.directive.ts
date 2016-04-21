@@ -17,7 +17,7 @@ module App.Feature {
     export class FeatureDirective extends BaseDirective<IFeatureScope<Repository.IFeatureStateModel>> {
         static $name = "feature";
 
-        restrict = "EA";
+        restrict = "E";
         transclude = true;
         scope = {};
         templateUrl = "scripts/app/feature/feature.html";

@@ -6,7 +6,7 @@ var App;
             this.partitionId = partitionId;
         }
         return PartitionParams;
-    })();
+    }());
     App.PartitionParams = PartitionParams;
     var PartitionCtrl = (function () {
         function PartitionCtrl(partitionService, deviceService, state, stateParams) {
@@ -44,7 +44,7 @@ var App;
         ];
         PartitionCtrl.$nameAs = "p";
         return PartitionCtrl;
-    })();
+    }());
     App.PartitionCtrl = PartitionCtrl;
 })(App || (App = {}));
 //# sourceMappingURL=partition.controller.js.map

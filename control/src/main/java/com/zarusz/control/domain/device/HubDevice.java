@@ -45,12 +45,13 @@ public class HubDevice extends Device {
     @Override
     public DeviceFeature getFeatureByPort(Integer port) {
         DeviceFeature f = super.getFeatureByPort(port);
-        if (f == null) {
-            for (Device endpoint : endpoints) {
-                f = endpoint.getFeatureByPort(port);
-                if (f != null) {
-                    return f;
-                }
+        if (f != null) {
+            return f;
+        }
+        for (Device endpoint : endpoints) {
+            f = endpoint.getFeatureByPort(port);
+            if (f != null) {
+                return f;
             }
         }
         return null;
