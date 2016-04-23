@@ -31,15 +31,15 @@ message DeviceSwitchCommand {
   required bool on = 3;
 }
 
-message DeviceIRCommand {
+message DeviceIRSendCommand {
   required int32 message_id = 1;
   required int32 port = 2;
-  required bytes value = 3;
+  required int32 value = 3;
 }
 
 message DeviceMessage {
   optional DeviceSwitchCommand switchCommand = 1;
-  optional DeviceIRCommand irCommand = 2;
+  optional DeviceIRSendCommand irSendCommand = 2;
 }
 
 /* Commands (end) */
@@ -78,6 +78,12 @@ message DeviceMovementDetectedEvent {
   required int32 port = 2;
 }
 
+message DeviceIRReceivedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required int32 port = 2;
+  required int32 value = 3;
+}
+
 message DeviceEvents {
   optional DeviceConnectedEvent deviceConnectedEvent = 1;
   optional DeviceHearbeatEvent deviceHearbeatEvent = 2;
@@ -86,4 +92,6 @@ message DeviceEvents {
   optional DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 4;
   optional DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;
   optional DeviceMovementDetectedEvent movementDetectionEvent = 6;
+
+  optional DeviceIRReceivedEvent irReceivedEvent = 7;
 }

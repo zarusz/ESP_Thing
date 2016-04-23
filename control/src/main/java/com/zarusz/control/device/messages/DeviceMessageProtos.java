@@ -2184,8 +2184,8 @@ public final class DeviceMessageProtos {
     // @@protoc_insertion_point(class_scope:DeviceSwitchCommand)
   }
 
-  public interface DeviceIRCommandOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:DeviceIRCommand)
+  public interface DeviceIRSendCommandOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:DeviceIRSendCommand)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -2207,34 +2207,34 @@ public final class DeviceMessageProtos {
     int getPort();
 
     /**
-     * <code>required bytes value = 3;</code>
+     * <code>required int32 value = 3;</code>
      */
     boolean hasValue();
     /**
-     * <code>required bytes value = 3;</code>
+     * <code>required int32 value = 3;</code>
      */
-    com.google.protobuf.ByteString getValue();
+    int getValue();
   }
   /**
-   * Protobuf type {@code DeviceIRCommand}
+   * Protobuf type {@code DeviceIRSendCommand}
    */
-  public static final class DeviceIRCommand extends
+  public static final class DeviceIRSendCommand extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:DeviceIRCommand)
-      DeviceIRCommandOrBuilder {
-    // Use DeviceIRCommand.newBuilder() to construct.
-    private DeviceIRCommand(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:DeviceIRSendCommand)
+      DeviceIRSendCommandOrBuilder {
+    // Use DeviceIRSendCommand.newBuilder() to construct.
+    private DeviceIRSendCommand(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private DeviceIRCommand(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private DeviceIRSendCommand(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final DeviceIRCommand defaultInstance;
-    public static DeviceIRCommand getDefaultInstance() {
+    private static final DeviceIRSendCommand defaultInstance;
+    public static DeviceIRSendCommand getDefaultInstance() {
       return defaultInstance;
     }
 
-    public DeviceIRCommand getDefaultInstanceForType() {
+    public DeviceIRSendCommand getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -2244,7 +2244,7 @@ public final class DeviceMessageProtos {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private DeviceIRCommand(
+    private DeviceIRSendCommand(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2277,9 +2277,9 @@ public final class DeviceMessageProtos {
               port_ = input.readInt32();
               break;
             }
-            case 26: {
+            case 24: {
               bitField0_ |= 0x00000004;
-              value_ = input.readBytes();
+              value_ = input.readInt32();
               break;
             }
           }
@@ -2296,28 +2296,28 @@ public final class DeviceMessageProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRCommand_descriptor;
+      return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRSendCommand_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRCommand_fieldAccessorTable
+      return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRSendCommand_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.class, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder.class);
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.class, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<DeviceIRCommand> PARSER =
-        new com.google.protobuf.AbstractParser<DeviceIRCommand>() {
-      public DeviceIRCommand parsePartialFrom(
+    public static com.google.protobuf.Parser<DeviceIRSendCommand> PARSER =
+        new com.google.protobuf.AbstractParser<DeviceIRSendCommand>() {
+      public DeviceIRSendCommand parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DeviceIRCommand(input, extensionRegistry);
+        return new DeviceIRSendCommand(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<DeviceIRCommand> getParserForType() {
+    public com.google.protobuf.Parser<DeviceIRSendCommand> getParserForType() {
       return PARSER;
     }
 
@@ -2353,24 +2353,24 @@ public final class DeviceMessageProtos {
     }
 
     public static final int VALUE_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString value_;
+    private int value_;
     /**
-     * <code>required bytes value = 3;</code>
+     * <code>required int32 value = 3;</code>
      */
     public boolean hasValue() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required bytes value = 3;</code>
+     * <code>required int32 value = 3;</code>
      */
-    public com.google.protobuf.ByteString getValue() {
+    public int getValue() {
       return value_;
     }
 
     private void initFields() {
       messageId_ = 0;
       port_ = 0;
-      value_ = com.google.protobuf.ByteString.EMPTY;
+      value_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2404,7 +2404,7 @@ public final class DeviceMessageProtos {
         output.writeInt32(2, port_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, value_);
+        output.writeInt32(3, value_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2425,7 +2425,7 @@ public final class DeviceMessageProtos {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, value_);
+          .computeInt32Size(3, value_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2439,53 +2439,53 @@ public final class DeviceMessageProtos {
       return super.writeReplace();
     }
 
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseFrom(
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseFrom(
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseFrom(byte[] data)
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseFrom(
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseFrom(java.io.InputStream input)
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseFrom(
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseDelimitedFrom(java.io.InputStream input)
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseDelimitedFrom(
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseFrom(
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parseFrom(
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2494,7 +2494,7 @@ public final class DeviceMessageProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand prototype) {
+    public static Builder newBuilder(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -2506,25 +2506,25 @@ public final class DeviceMessageProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code DeviceIRCommand}
+     * Protobuf type {@code DeviceIRSendCommand}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:DeviceIRCommand)
-        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder {
+        // @@protoc_insertion_point(builder_implements:DeviceIRSendCommand)
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommandOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRCommand_descriptor;
+        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRSendCommand_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRCommand_fieldAccessorTable
+        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRSendCommand_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.class, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder.class);
+                com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.class, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.Builder.class);
       }
 
-      // Construct using com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.newBuilder()
+      // Construct using com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2548,7 +2548,7 @@ public final class DeviceMessageProtos {
         bitField0_ = (bitField0_ & ~0x00000001);
         port_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        value_ = com.google.protobuf.ByteString.EMPTY;
+        value_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -2559,23 +2559,23 @@ public final class DeviceMessageProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRCommand_descriptor;
+        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRSendCommand_descriptor;
       }
 
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getDefaultInstanceForType() {
-        return com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand getDefaultInstanceForType() {
+        return com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.getDefaultInstance();
       }
 
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand build() {
-        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand result = buildPartial();
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand build() {
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand buildPartial() {
-        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand result = new com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand(this);
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand buildPartial() {
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand result = new com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -2596,16 +2596,16 @@ public final class DeviceMessageProtos {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand) {
-          return mergeFrom((com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand)other);
+        if (other instanceof com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand) {
+          return mergeFrom((com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand other) {
-        if (other == com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand other) {
+        if (other == com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.getDefaultInstance()) return this;
         if (other.hasMessageId()) {
           setMessageId(other.getMessageId());
         }
@@ -2639,11 +2639,11 @@ public final class DeviceMessageProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand parsedMessage = null;
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand) e.getUnfinishedMessage();
+          parsedMessage = (com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -2718,50 +2718,47 @@ public final class DeviceMessageProtos {
         return this;
       }
 
-      private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
+      private int value_ ;
       /**
-       * <code>required bytes value = 3;</code>
+       * <code>required int32 value = 3;</code>
        */
       public boolean hasValue() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required bytes value = 3;</code>
+       * <code>required int32 value = 3;</code>
        */
-      public com.google.protobuf.ByteString getValue() {
+      public int getValue() {
         return value_;
       }
       /**
-       * <code>required bytes value = 3;</code>
+       * <code>required int32 value = 3;</code>
        */
-      public Builder setValue(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+      public Builder setValue(int value) {
+        bitField0_ |= 0x00000004;
         value_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required bytes value = 3;</code>
+       * <code>required int32 value = 3;</code>
        */
       public Builder clearValue() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        value_ = getDefaultInstance().getValue();
+        value_ = 0;
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:DeviceIRCommand)
+      // @@protoc_insertion_point(builder_scope:DeviceIRSendCommand)
     }
 
     static {
-      defaultInstance = new DeviceIRCommand(true);
+      defaultInstance = new DeviceIRSendCommand(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:DeviceIRCommand)
+    // @@protoc_insertion_point(class_scope:DeviceIRSendCommand)
   }
 
   public interface DeviceMessageOrBuilder extends
@@ -2782,17 +2779,17 @@ public final class DeviceMessageProtos {
     com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommandOrBuilder getSwitchCommandOrBuilder();
 
     /**
-     * <code>optional .DeviceIRCommand irCommand = 2;</code>
+     * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
      */
-    boolean hasIrCommand();
+    boolean hasIrSendCommand();
     /**
-     * <code>optional .DeviceIRCommand irCommand = 2;</code>
+     * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getIrCommand();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand getIrSendCommand();
     /**
-     * <code>optional .DeviceIRCommand irCommand = 2;</code>
+     * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder getIrCommandOrBuilder();
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommandOrBuilder getIrSendCommandOrBuilder();
   }
   /**
    * Protobuf type {@code DeviceMessage}
@@ -2860,14 +2857,14 @@ public final class DeviceMessageProtos {
               break;
             }
             case 18: {
-              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder subBuilder = null;
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.Builder subBuilder = null;
               if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = irCommand_.toBuilder();
+                subBuilder = irSendCommand_.toBuilder();
               }
-              irCommand_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.PARSER, extensionRegistry);
+              irSendCommand_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(irCommand_);
-                irCommand_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(irSendCommand_);
+                irSendCommand_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000002;
               break;
@@ -2933,30 +2930,30 @@ public final class DeviceMessageProtos {
       return switchCommand_;
     }
 
-    public static final int IRCOMMAND_FIELD_NUMBER = 2;
-    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand irCommand_;
+    public static final int IRSENDCOMMAND_FIELD_NUMBER = 2;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand irSendCommand_;
     /**
-     * <code>optional .DeviceIRCommand irCommand = 2;</code>
+     * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
      */
-    public boolean hasIrCommand() {
+    public boolean hasIrSendCommand() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional .DeviceIRCommand irCommand = 2;</code>
+     * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getIrCommand() {
-      return irCommand_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand getIrSendCommand() {
+      return irSendCommand_;
     }
     /**
-     * <code>optional .DeviceIRCommand irCommand = 2;</code>
+     * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
      */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder getIrCommandOrBuilder() {
-      return irCommand_;
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommandOrBuilder getIrSendCommandOrBuilder() {
+      return irSendCommand_;
     }
 
     private void initFields() {
       switchCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceSwitchCommand.getDefaultInstance();
-      irCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
+      irSendCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2970,8 +2967,8 @@ public final class DeviceMessageProtos {
           return false;
         }
       }
-      if (hasIrCommand()) {
-        if (!getIrCommand().isInitialized()) {
+      if (hasIrSendCommand()) {
+        if (!getIrSendCommand().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -2987,7 +2984,7 @@ public final class DeviceMessageProtos {
         output.writeMessage(1, switchCommand_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, irCommand_);
+        output.writeMessage(2, irSendCommand_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -3004,7 +3001,7 @@ public final class DeviceMessageProtos {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, irCommand_);
+          .computeMessageSize(2, irSendCommand_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3116,7 +3113,7 @@ public final class DeviceMessageProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getSwitchCommandFieldBuilder();
-          getIrCommandFieldBuilder();
+          getIrSendCommandFieldBuilder();
         }
       }
       private static Builder create() {
@@ -3131,10 +3128,10 @@ public final class DeviceMessageProtos {
           switchCommandBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        if (irCommandBuilder_ == null) {
-          irCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
+        if (irSendCommandBuilder_ == null) {
+          irSendCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.getDefaultInstance();
         } else {
-          irCommandBuilder_.clear();
+          irSendCommandBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
@@ -3176,10 +3173,10 @@ public final class DeviceMessageProtos {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        if (irCommandBuilder_ == null) {
-          result.irCommand_ = irCommand_;
+        if (irSendCommandBuilder_ == null) {
+          result.irSendCommand_ = irSendCommand_;
         } else {
-          result.irCommand_ = irCommandBuilder_.build();
+          result.irSendCommand_ = irSendCommandBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -3200,8 +3197,8 @@ public final class DeviceMessageProtos {
         if (other.hasSwitchCommand()) {
           mergeSwitchCommand(other.getSwitchCommand());
         }
-        if (other.hasIrCommand()) {
-          mergeIrCommand(other.getIrCommand());
+        if (other.hasIrSendCommand()) {
+          mergeIrSendCommand(other.getIrSendCommand());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3214,8 +3211,8 @@ public final class DeviceMessageProtos {
             return false;
           }
         }
-        if (hasIrCommand()) {
-          if (!getIrCommand().isInitialized()) {
+        if (hasIrSendCommand()) {
+          if (!getIrSendCommand().isInitialized()) {
             
             return false;
           }
@@ -3358,120 +3355,120 @@ public final class DeviceMessageProtos {
         return switchCommandBuilder_;
       }
 
-      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand irCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
+      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand irSendCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder> irCommandBuilder_;
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommandOrBuilder> irSendCommandBuilder_;
       /**
-       * <code>optional .DeviceIRCommand irCommand = 2;</code>
+       * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
        */
-      public boolean hasIrCommand() {
+      public boolean hasIrSendCommand() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional .DeviceIRCommand irCommand = 2;</code>
+       * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand getIrCommand() {
-        if (irCommandBuilder_ == null) {
-          return irCommand_;
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand getIrSendCommand() {
+        if (irSendCommandBuilder_ == null) {
+          return irSendCommand_;
         } else {
-          return irCommandBuilder_.getMessage();
+          return irSendCommandBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .DeviceIRCommand irCommand = 2;</code>
+       * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
        */
-      public Builder setIrCommand(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand value) {
-        if (irCommandBuilder_ == null) {
+      public Builder setIrSendCommand(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand value) {
+        if (irSendCommandBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          irCommand_ = value;
+          irSendCommand_ = value;
           onChanged();
         } else {
-          irCommandBuilder_.setMessage(value);
+          irSendCommandBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .DeviceIRCommand irCommand = 2;</code>
+       * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
        */
-      public Builder setIrCommand(
-          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder builderForValue) {
-        if (irCommandBuilder_ == null) {
-          irCommand_ = builderForValue.build();
+      public Builder setIrSendCommand(
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.Builder builderForValue) {
+        if (irSendCommandBuilder_ == null) {
+          irSendCommand_ = builderForValue.build();
           onChanged();
         } else {
-          irCommandBuilder_.setMessage(builderForValue.build());
+          irSendCommandBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .DeviceIRCommand irCommand = 2;</code>
+       * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
        */
-      public Builder mergeIrCommand(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand value) {
-        if (irCommandBuilder_ == null) {
+      public Builder mergeIrSendCommand(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand value) {
+        if (irSendCommandBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              irCommand_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance()) {
-            irCommand_ =
-              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.newBuilder(irCommand_).mergeFrom(value).buildPartial();
+              irSendCommand_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.getDefaultInstance()) {
+            irSendCommand_ =
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.newBuilder(irSendCommand_).mergeFrom(value).buildPartial();
           } else {
-            irCommand_ = value;
+            irSendCommand_ = value;
           }
           onChanged();
         } else {
-          irCommandBuilder_.mergeFrom(value);
+          irSendCommandBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .DeviceIRCommand irCommand = 2;</code>
+       * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
        */
-      public Builder clearIrCommand() {
-        if (irCommandBuilder_ == null) {
-          irCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.getDefaultInstance();
+      public Builder clearIrSendCommand() {
+        if (irSendCommandBuilder_ == null) {
+          irSendCommand_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.getDefaultInstance();
           onChanged();
         } else {
-          irCommandBuilder_.clear();
+          irSendCommandBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       /**
-       * <code>optional .DeviceIRCommand irCommand = 2;</code>
+       * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder getIrCommandBuilder() {
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.Builder getIrSendCommandBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
-        return getIrCommandFieldBuilder().getBuilder();
+        return getIrSendCommandFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .DeviceIRCommand irCommand = 2;</code>
+       * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
        */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder getIrCommandOrBuilder() {
-        if (irCommandBuilder_ != null) {
-          return irCommandBuilder_.getMessageOrBuilder();
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommandOrBuilder getIrSendCommandOrBuilder() {
+        if (irSendCommandBuilder_ != null) {
+          return irSendCommandBuilder_.getMessageOrBuilder();
         } else {
-          return irCommand_;
+          return irSendCommand_;
         }
       }
       /**
-       * <code>optional .DeviceIRCommand irCommand = 2;</code>
+       * <code>optional .DeviceIRSendCommand irSendCommand = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder> 
-          getIrCommandFieldBuilder() {
-        if (irCommandBuilder_ == null) {
-          irCommandBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRCommandOrBuilder>(
-                  getIrCommand(),
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommandOrBuilder> 
+          getIrSendCommandFieldBuilder() {
+        if (irSendCommandBuilder_ == null) {
+          irSendCommandBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommand.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRSendCommandOrBuilder>(
+                  getIrSendCommand(),
                   getParentForChildren(),
                   isClean());
-          irCommand_ = null;
+          irSendCommand_ = null;
         }
-        return irCommandBuilder_;
+        return irSendCommandBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:DeviceMessage)
@@ -7310,6 +7307,662 @@ public final class DeviceMessageProtos {
     // @@protoc_insertion_point(class_scope:DeviceMovementDetectedEvent)
   }
 
+  public interface DeviceIRReceivedEventOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:DeviceIRReceivedEvent)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    boolean hasDeviceId();
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    java.lang.String getDeviceId();
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getDeviceIdBytes();
+
+    /**
+     * <code>required int32 port = 2;</code>
+     */
+    boolean hasPort();
+    /**
+     * <code>required int32 port = 2;</code>
+     */
+    int getPort();
+
+    /**
+     * <code>required int32 value = 3;</code>
+     */
+    boolean hasValue();
+    /**
+     * <code>required int32 value = 3;</code>
+     */
+    int getValue();
+  }
+  /**
+   * Protobuf type {@code DeviceIRReceivedEvent}
+   */
+  public static final class DeviceIRReceivedEvent extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:DeviceIRReceivedEvent)
+      DeviceIRReceivedEventOrBuilder {
+    // Use DeviceIRReceivedEvent.newBuilder() to construct.
+    private DeviceIRReceivedEvent(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private DeviceIRReceivedEvent(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final DeviceIRReceivedEvent defaultInstance;
+    public static DeviceIRReceivedEvent getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public DeviceIRReceivedEvent getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private DeviceIRReceivedEvent(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              deviceId_ = bs;
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              port_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              value_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRReceivedEvent_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRReceivedEvent_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.class, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<DeviceIRReceivedEvent> PARSER =
+        new com.google.protobuf.AbstractParser<DeviceIRReceivedEvent>() {
+      public DeviceIRReceivedEvent parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DeviceIRReceivedEvent(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeviceIRReceivedEvent> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int DEVICE_ID_FIELD_NUMBER = 1;
+    private java.lang.Object deviceId_;
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    public boolean hasDeviceId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    public java.lang.String getDeviceId() {
+      java.lang.Object ref = deviceId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          deviceId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string device_id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDeviceIdBytes() {
+      java.lang.Object ref = deviceId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        deviceId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PORT_FIELD_NUMBER = 2;
+    private int port_;
+    /**
+     * <code>required int32 port = 2;</code>
+     */
+    public boolean hasPort() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required int32 port = 2;</code>
+     */
+    public int getPort() {
+      return port_;
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 3;
+    private int value_;
+    /**
+     * <code>required int32 value = 3;</code>
+     */
+    public boolean hasValue() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>required int32 value = 3;</code>
+     */
+    public int getValue() {
+      return value_;
+    }
+
+    private void initFields() {
+      deviceId_ = "";
+      port_ = 0;
+      value_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasDeviceId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasPort()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasValue()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getDeviceIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, port_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, value_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getDeviceIdBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, port_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, value_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code DeviceIRReceivedEvent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:DeviceIRReceivedEvent)
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEventOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRReceivedEvent_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRReceivedEvent_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.class, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.Builder.class);
+      }
+
+      // Construct using com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        deviceId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        port_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        value_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.zarusz.control.device.messages.DeviceMessageProtos.internal_static_DeviceIRReceivedEvent_descriptor;
+      }
+
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent getDefaultInstanceForType() {
+        return com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.getDefaultInstance();
+      }
+
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent build() {
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent buildPartial() {
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent result = new com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.deviceId_ = deviceId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.port_ = port_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.value_ = value_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent) {
+          return mergeFrom((com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent other) {
+        if (other == com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.getDefaultInstance()) return this;
+        if (other.hasDeviceId()) {
+          bitField0_ |= 0x00000001;
+          deviceId_ = other.deviceId_;
+          onChanged();
+        }
+        if (other.hasPort()) {
+          setPort(other.getPort());
+        }
+        if (other.hasValue()) {
+          setValue(other.getValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasDeviceId()) {
+          
+          return false;
+        }
+        if (!hasPort()) {
+          
+          return false;
+        }
+        if (!hasValue()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object deviceId_ = "";
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public boolean hasDeviceId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public java.lang.String getDeviceId() {
+        java.lang.Object ref = deviceId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            deviceId_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDeviceIdBytes() {
+        java.lang.Object ref = deviceId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          deviceId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public Builder setDeviceId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        deviceId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public Builder clearDeviceId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        deviceId_ = getDefaultInstance().getDeviceId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string device_id = 1;</code>
+       */
+      public Builder setDeviceIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        deviceId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int port_ ;
+      /**
+       * <code>required int32 port = 2;</code>
+       */
+      public boolean hasPort() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required int32 port = 2;</code>
+       */
+      public int getPort() {
+        return port_;
+      }
+      /**
+       * <code>required int32 port = 2;</code>
+       */
+      public Builder setPort(int value) {
+        bitField0_ |= 0x00000002;
+        port_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 port = 2;</code>
+       */
+      public Builder clearPort() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        port_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int value_ ;
+      /**
+       * <code>required int32 value = 3;</code>
+       */
+      public boolean hasValue() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>required int32 value = 3;</code>
+       */
+      public int getValue() {
+        return value_;
+      }
+      /**
+       * <code>required int32 value = 3;</code>
+       */
+      public Builder setValue(int value) {
+        bitField0_ |= 0x00000004;
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 value = 3;</code>
+       */
+      public Builder clearValue() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        value_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:DeviceIRReceivedEvent)
+    }
+
+    static {
+      defaultInstance = new DeviceIRReceivedEvent(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:DeviceIRReceivedEvent)
+  }
+
   public interface DeviceEventsOrBuilder extends
       // @@protoc_insertion_point(interface_extends:DeviceEvents)
       com.google.protobuf.MessageOrBuilder {
@@ -7391,6 +8044,19 @@ public final class DeviceMessageProtos {
      * <code>optional .DeviceMovementDetectedEvent movementDetectionEvent = 6;</code>
      */
     com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEventOrBuilder getMovementDetectionEventOrBuilder();
+
+    /**
+     * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+     */
+    boolean hasIrReceivedEvent();
+    /**
+     * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+     */
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent getIrReceivedEvent();
+    /**
+     * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+     */
+    com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEventOrBuilder getIrReceivedEventOrBuilder();
   }
   /**
    * Protobuf type {@code DeviceEvents}
@@ -7520,6 +8186,19 @@ public final class DeviceMessageProtos {
                 movementDetectionEvent_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000020;
+              break;
+            }
+            case 58: {
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000040) == 0x00000040)) {
+                subBuilder = irReceivedEvent_.toBuilder();
+              }
+              irReceivedEvent_ = input.readMessage(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(irReceivedEvent_);
+                irReceivedEvent_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000040;
               break;
             }
           }
@@ -7688,6 +8367,27 @@ public final class DeviceMessageProtos {
       return movementDetectionEvent_;
     }
 
+    public static final int IRRECEIVEDEVENT_FIELD_NUMBER = 7;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent irReceivedEvent_;
+    /**
+     * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+     */
+    public boolean hasIrReceivedEvent() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+     */
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent getIrReceivedEvent() {
+      return irReceivedEvent_;
+    }
+    /**
+     * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+     */
+    public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEventOrBuilder getIrReceivedEventOrBuilder() {
+      return irReceivedEvent_;
+    }
+
     private void initFields() {
       deviceConnectedEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceConnectedEvent.getDefaultInstance();
       deviceHearbeatEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHearbeatEvent.getDefaultInstance();
@@ -7695,6 +8395,7 @@ public final class DeviceMessageProtos {
       temperatureMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceTemperatureMeasuredEvent.getDefaultInstance();
       humidityMeasureEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceHumidityMeasuredEvent.getDefaultInstance();
       movementDetectionEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceMovementDetectedEvent.getDefaultInstance();
+      irReceivedEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -7738,6 +8439,12 @@ public final class DeviceMessageProtos {
           return false;
         }
       }
+      if (hasIrReceivedEvent()) {
+        if (!getIrReceivedEvent().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -7762,6 +8469,9 @@ public final class DeviceMessageProtos {
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeMessage(6, movementDetectionEvent_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeMessage(7, irReceivedEvent_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -7795,6 +8505,10 @@ public final class DeviceMessageProtos {
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, movementDetectionEvent_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, irReceivedEvent_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -7911,6 +8625,7 @@ public final class DeviceMessageProtos {
           getTemperatureMeasureEventFieldBuilder();
           getHumidityMeasureEventFieldBuilder();
           getMovementDetectionEventFieldBuilder();
+          getIrReceivedEventFieldBuilder();
         }
       }
       private static Builder create() {
@@ -7955,6 +8670,12 @@ public final class DeviceMessageProtos {
           movementDetectionEventBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000020);
+        if (irReceivedEventBuilder_ == null) {
+          irReceivedEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.getDefaultInstance();
+        } else {
+          irReceivedEventBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -8031,6 +8752,14 @@ public final class DeviceMessageProtos {
         } else {
           result.movementDetectionEvent_ = movementDetectionEventBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        if (irReceivedEventBuilder_ == null) {
+          result.irReceivedEvent_ = irReceivedEvent_;
+        } else {
+          result.irReceivedEvent_ = irReceivedEventBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -8064,6 +8793,9 @@ public final class DeviceMessageProtos {
         }
         if (other.hasMovementDetectionEvent()) {
           mergeMovementDetectionEvent(other.getMovementDetectionEvent());
+        }
+        if (other.hasIrReceivedEvent()) {
+          mergeIrReceivedEvent(other.getIrReceivedEvent());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -8102,6 +8834,12 @@ public final class DeviceMessageProtos {
         }
         if (hasMovementDetectionEvent()) {
           if (!getMovementDetectionEvent().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasIrReceivedEvent()) {
+          if (!getIrReceivedEvent().isInitialized()) {
             
             return false;
           }
@@ -8824,6 +9562,122 @@ public final class DeviceMessageProtos {
         return movementDetectionEventBuilder_;
       }
 
+      private com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent irReceivedEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEventOrBuilder> irReceivedEventBuilder_;
+      /**
+       * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+       */
+      public boolean hasIrReceivedEvent() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+       */
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent getIrReceivedEvent() {
+        if (irReceivedEventBuilder_ == null) {
+          return irReceivedEvent_;
+        } else {
+          return irReceivedEventBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+       */
+      public Builder setIrReceivedEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent value) {
+        if (irReceivedEventBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          irReceivedEvent_ = value;
+          onChanged();
+        } else {
+          irReceivedEventBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+       */
+      public Builder setIrReceivedEvent(
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.Builder builderForValue) {
+        if (irReceivedEventBuilder_ == null) {
+          irReceivedEvent_ = builderForValue.build();
+          onChanged();
+        } else {
+          irReceivedEventBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+       */
+      public Builder mergeIrReceivedEvent(com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent value) {
+        if (irReceivedEventBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+              irReceivedEvent_ != com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.getDefaultInstance()) {
+            irReceivedEvent_ =
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.newBuilder(irReceivedEvent_).mergeFrom(value).buildPartial();
+          } else {
+            irReceivedEvent_ = value;
+          }
+          onChanged();
+        } else {
+          irReceivedEventBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+       */
+      public Builder clearIrReceivedEvent() {
+        if (irReceivedEventBuilder_ == null) {
+          irReceivedEvent_ = com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.getDefaultInstance();
+          onChanged();
+        } else {
+          irReceivedEventBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      /**
+       * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+       */
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.Builder getIrReceivedEventBuilder() {
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return getIrReceivedEventFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+       */
+      public com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEventOrBuilder getIrReceivedEventOrBuilder() {
+        if (irReceivedEventBuilder_ != null) {
+          return irReceivedEventBuilder_.getMessageOrBuilder();
+        } else {
+          return irReceivedEvent_;
+        }
+      }
+      /**
+       * <code>optional .DeviceIRReceivedEvent irReceivedEvent = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEventOrBuilder> 
+          getIrReceivedEventFieldBuilder() {
+        if (irReceivedEventBuilder_ == null) {
+          irReceivedEventBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEvent.Builder, com.zarusz.control.device.messages.DeviceMessageProtos.DeviceIRReceivedEventOrBuilder>(
+                  getIrReceivedEvent(),
+                  getParentForChildren(),
+                  isClean());
+          irReceivedEvent_ = null;
+        }
+        return irReceivedEventBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:DeviceEvents)
     }
 
@@ -8851,10 +9705,10 @@ public final class DeviceMessageProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_DeviceSwitchCommand_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_DeviceIRCommand_descriptor;
+    internal_static_DeviceIRSendCommand_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_DeviceIRCommand_fieldAccessorTable;
+      internal_static_DeviceIRSendCommand_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_DeviceMessage_descriptor;
   private static
@@ -8896,6 +9750,11 @@ public final class DeviceMessageProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_DeviceMovementDetectedEvent_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_DeviceIRReceivedEvent_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_DeviceIRReceivedEvent_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_DeviceEvents_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -8916,34 +9775,38 @@ public final class DeviceMessageProtos {
       "_id\030\001 \002(\tB\005\222?\002\010 \022!\n\005ports\030\002 \003(\0132\013.Device" +
       "PortB\005\222?\002\020\020\"C\n\023DeviceSwitchCommand\022\022\n\nme" +
       "ssage_id\030\001 \002(\005\022\014\n\004port\030\002 \002(\005\022\n\n\002on\030\003 \002(\010" +
-      "\"B\n\017DeviceIRCommand\022\022\n\nmessage_id\030\001 \002(\005\022" +
-      "\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\014\"a\n\rDeviceMe" +
-      "ssage\022+\n\rswitchCommand\030\001 \001(\0132\024.DeviceSwi",
-      "tchCommand\022#\n\tirCommand\030\002 \001(\0132\020.DeviceIR" +
-      "Command\"(\n\022CommandAckResponse\022\022\n\nmessage" +
-      "_id\030\001 \002(\005\"0\n\024DeviceConnectedEvent\022\030\n\tdev" +
-      "ice_id\030\001 \002(\tB\005\222?\002\010 \"3\n\027DeviceDisconnecte" +
-      "dEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010 \"D\n\023Devi" +
-      "ceHearbeatEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010" +
-      " \022\023\n\013sequence_id\030\002 \002(\005\"W\n\036DeviceTemperat" +
-      "ureMeasuredEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002" +
-      "\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\002\"T\n\033Devic" +
-      "eHumidityMeasuredEvent\022\030\n\tdevice_id\030\001 \002(",
-      "\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\002\"E\n" +
-      "\033DeviceMovementDetectedEvent\022\030\n\tdevice_i" +
-      "d\030\001 \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\"\355\002\n\014DeviceE" +
-      "vents\0223\n\024deviceConnectedEvent\030\001 \001(\0132\025.De" +
-      "viceConnectedEvent\0221\n\023deviceHearbeatEven" +
-      "t\030\002 \001(\0132\024.DeviceHearbeatEvent\0229\n\027deviceD" +
-      "isconnectedEvent\030\003 \001(\0132\030.DeviceDisconnec" +
-      "tedEvent\022@\n\027temperatureMeasureEvent\030\004 \001(" +
-      "\0132\037.DeviceTemperatureMeasuredEvent\022:\n\024hu" +
-      "midityMeasureEvent\030\005 \001(\0132\034.DeviceHumidit",
-      "yMeasuredEvent\022<\n\026movementDetectionEvent" +
-      "\030\006 \001(\0132\034.DeviceMovementDetectedEvent*+\n\021" +
-      "DevicePortFeature\022\n\n\006SWITCH\020\000\022\006\n\002IR\020\001\032\002\020" +
-      "\001B9\n\"com.zarusz.control.device.messagesB" +
-      "\023DeviceMessageProtos"
+      "\"F\n\023DeviceIRSendCommand\022\022\n\nmessage_id\030\001 " +
+      "\002(\005\022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\005\"i\n\rDevi" +
+      "ceMessage\022+\n\rswitchCommand\030\001 \001(\0132\024.Devic",
+      "eSwitchCommand\022+\n\rirSendCommand\030\002 \001(\0132\024." +
+      "DeviceIRSendCommand\"(\n\022CommandAckRespons" +
+      "e\022\022\n\nmessage_id\030\001 \002(\005\"0\n\024DeviceConnected" +
+      "Event\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010 \"3\n\027Devic" +
+      "eDisconnectedEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222" +
+      "?\002\010 \"D\n\023DeviceHearbeatEvent\022\030\n\tdevice_id" +
+      "\030\001 \002(\tB\005\222?\002\010 \022\023\n\013sequence_id\030\002 \002(\005\"W\n\036De" +
+      "viceTemperatureMeasuredEvent\022\030\n\tdevice_i" +
+      "d\030\001 \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 " +
+      "\002(\002\"T\n\033DeviceHumidityMeasuredEvent\022\030\n\tde",
+      "vice_id\030\001 \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005va" +
+      "lue\030\003 \002(\002\"E\n\033DeviceMovementDetectedEvent" +
+      "\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005" +
+      "\"N\n\025DeviceIRReceivedEvent\022\030\n\tdevice_id\030\001" +
+      " \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\005" +
+      "\"\236\003\n\014DeviceEvents\0223\n\024deviceConnectedEven" +
+      "t\030\001 \001(\0132\025.DeviceConnectedEvent\0221\n\023device" +
+      "HearbeatEvent\030\002 \001(\0132\024.DeviceHearbeatEven" +
+      "t\0229\n\027deviceDisconnectedEvent\030\003 \001(\0132\030.Dev" +
+      "iceDisconnectedEvent\022@\n\027temperatureMeasu",
+      "reEvent\030\004 \001(\0132\037.DeviceTemperatureMeasure" +
+      "dEvent\022:\n\024humidityMeasureEvent\030\005 \001(\0132\034.D" +
+      "eviceHumidityMeasuredEvent\022<\n\026movementDe" +
+      "tectionEvent\030\006 \001(\0132\034.DeviceMovementDetec" +
+      "tedEvent\022/\n\017irReceivedEvent\030\007 \001(\0132\026.Devi" +
+      "ceIRReceivedEvent*+\n\021DevicePortFeature\022\n" +
+      "\n\006SWITCH\020\000\022\006\n\002IR\020\001\032\002\020\001B9\n\"com.zarusz.con" +
+      "trol.device.messagesB\023DeviceMessageProto" +
+      "s"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8976,18 +9839,18 @@ public final class DeviceMessageProtos {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_DeviceSwitchCommand_descriptor,
         new java.lang.String[] { "MessageId", "Port", "On", });
-    internal_static_DeviceIRCommand_descriptor =
+    internal_static_DeviceIRSendCommand_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_DeviceIRCommand_fieldAccessorTable = new
+    internal_static_DeviceIRSendCommand_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_DeviceIRCommand_descriptor,
+        internal_static_DeviceIRSendCommand_descriptor,
         new java.lang.String[] { "MessageId", "Port", "Value", });
     internal_static_DeviceMessage_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_DeviceMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_DeviceMessage_descriptor,
-        new java.lang.String[] { "SwitchCommand", "IrCommand", });
+        new java.lang.String[] { "SwitchCommand", "IrSendCommand", });
     internal_static_CommandAckResponse_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_CommandAckResponse_fieldAccessorTable = new
@@ -9030,14 +9893,21 @@ public final class DeviceMessageProtos {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_DeviceMovementDetectedEvent_descriptor,
         new java.lang.String[] { "DeviceId", "Port", });
-    internal_static_DeviceEvents_descriptor =
+    internal_static_DeviceIRReceivedEvent_descriptor =
       getDescriptor().getMessageTypes().get(12);
+    internal_static_DeviceIRReceivedEvent_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_DeviceIRReceivedEvent_descriptor,
+        new java.lang.String[] { "DeviceId", "Port", "Value", });
+    internal_static_DeviceEvents_descriptor =
+      getDescriptor().getMessageTypes().get(13);
     internal_static_DeviceEvents_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_DeviceEvents_descriptor,
-        new java.lang.String[] { "DeviceConnectedEvent", "DeviceHearbeatEvent", "DeviceDisconnectedEvent", "TemperatureMeasureEvent", "HumidityMeasureEvent", "MovementDetectionEvent", });
+        new java.lang.String[] { "DeviceConnectedEvent", "DeviceHearbeatEvent", "DeviceDisconnectedEvent", "TemperatureMeasureEvent", "HumidityMeasureEvent", "MovementDetectionEvent", "IrReceivedEvent", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
+    registry.add(fi.kapsi.koti.jpa.nanopb.Nanopb.nanopb);
     registry.add(fi.kapsi.koti.jpa.nanopb.Nanopb.nanopb);
     registry.add(fi.kapsi.koti.jpa.nanopb.Nanopb.nanopb);
     registry.add(fi.kapsi.koti.jpa.nanopb.Nanopb.nanopb);

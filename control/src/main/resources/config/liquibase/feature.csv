@@ -3,6 +3,8 @@ switch;Switch;01
 dim;Dimming;02
 color;Color;03
 led;LED;04
+ir_out;IR Transceiver;04
+ir_in;IR Receiver;05
 sensor_temp;Temperature sensor;05
 sensor_humidity;Humidity sensor;06
 sensor_motion;Movement sensor;07

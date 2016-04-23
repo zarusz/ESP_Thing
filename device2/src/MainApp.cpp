@@ -8,6 +8,8 @@
 #include <pb_decode.h>
 #include "FeatureControllers/SwitchFeatureController.h"
 #include "FeatureControllers/TempFeatureController.h"
+#include "FeatureControllers/IRTransceiverFeatureController.h"
+#include "FeatureControllers/IRReceiverFeatureController.h"
 
 #define DEVICE_UNIQUE_ID "dev_sufit"
 #define TOPIC_DEVICE_EVENTS "device/events"
@@ -17,8 +19,10 @@ MainApp::MainApp(MQTT_CALLBACK_SIGNATURE)
 	: pubSubClient(espClient),
 		deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi")
 {
-	features.push_back(new SwitchFeatureController(10, this, 0, false));
-	features.push_back(new TempFeatureController(30, 31, this, 2));
+	//features.push_back(new SwitchFeatureController(10, this, 0, false));
+	//features.push_back(new TempFeatureController(30, 31, this, 2));
+	features.push_back(new IRTransceiverFeatureController(40, this, 0));
+	features.push_back(new IRReceiverFeatureController(41, this, 2));
 
 	deviceInTopic = String("device/") + deviceConfig.uniqueId;
 

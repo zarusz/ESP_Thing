@@ -1,6 +1,7 @@
 package com.zarusz.control.config;
 
 import com.zarusz.control.app.comm.DeviceHeartbeatHandler;
+import com.zarusz.control.app.comm.IRReceiverFeatureHandler;
 import com.zarusz.control.app.comm.TemperatureFeatureHandler;
 import com.zarusz.control.app.comm.mqtt.MqttBrokerGatewayHandler;
 import com.zarusz.control.app.comm.SwitchFeatureHandler;
@@ -58,7 +59,13 @@ public class ApplicationConfiguration {
     }
 
     @Bean
+    public IRReceiverFeatureHandler irReceiverFeatureHandler(MBassador bus) throws Exception {
+        return new IRReceiverFeatureHandler(bus);
+    }
+
+    @Bean
     public DeviceHeartbeatHandler deviceHeartbeatHandler(MBassador bus) throws Exception {
         return new DeviceHeartbeatHandler(bus);
     }
+
 }
