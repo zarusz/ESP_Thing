@@ -9,8 +9,8 @@ module App.Repository {
         intensity: number;
     }
 
-    export interface ILedFeatureStateModel extends IFeatureStateModel {
-        mode: number;
+    export interface IRemoteFeatureStateModel extends IFeatureStateModel {
+        value: number;
     }
 
     export interface ISwitchFeatureStateModel extends IFeatureStateModel {

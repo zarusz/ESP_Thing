@@ -13,6 +13,8 @@
 #include "FeatureControllers/FeatureController.h"
 #include <vector>
 #include <memory>
+#include "Pins/Pins.h"
+#include "Pins/ShiftRegisterPins.h"
 
 class MainApp : public CommHub, public DeviceContext
 {
@@ -23,6 +25,7 @@ private:
 	String deviceInTopic;
 	DeviceDescription deviceDescription;
 	std::vector<FeatureController*> features;
+	ShiftRegisterPins pins;
 
 	long lastMsg = 0;
 	char msg[256];
@@ -39,6 +42,7 @@ public:
 
 	virtual DeviceConfig& GetConfig() { return deviceConfig; }
   virtual CommHub& GetCommHub() { return *this; }
+	virtual Pins& GetPins() { return pins; }
 
 protected:
 	void SetupWifi();

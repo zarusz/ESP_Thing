@@ -1,20 +1,20 @@
 package com.zarusz.control.domain.msg.commands;
 
+import com.zarusz.control.domain.feature.IROutFeature;
 import com.zarusz.control.domain.feature.SwitchFeature;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SwitchCommand extends TargetingDeviceFeatureCommand<SwitchFeature> {
+public class IRCommand extends TargetingDeviceFeatureCommand<IROutFeature> {
 
     @Getter
-	private boolean on;
+	private int value;
 
-	public SwitchCommand(SwitchFeature feature, boolean on) {
+	public IRCommand(IROutFeature feature, int value) {
 		super(feature);
-		this.on = on;
+		this.value = value;
 	}
 }

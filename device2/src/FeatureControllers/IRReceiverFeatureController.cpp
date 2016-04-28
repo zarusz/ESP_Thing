@@ -19,8 +19,7 @@ void IRReceiverFeatureController::Loop()
 {
   if (irrecv.decode(&results))
   {
-    Serial.print(String("Recived IR bits: ") + results.bits + ", type: " + results.decode_type + ", value: ");
-    Serial.println(results.value, HEX);
+    Serial.println(String("Recived IR bits: ") + results.bits + ", value: " + results.value);
     irrecv.resume(); // Receive the next value
 
     DeviceEvents events = DeviceEvents_init_zero;

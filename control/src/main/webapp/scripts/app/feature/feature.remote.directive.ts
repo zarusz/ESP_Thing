@@ -3,24 +3,24 @@
 ///<reference path="feature.directive.ts"/>
 module App.Feature {
 
-    interface ILedFeatureScope extends IFeatureScope<Repository.ILedFeatureStateModel> {
+    interface IRemoteFeatureScope extends IFeatureScope<Repository.IRemoteFeatureStateModel> {
         select(mode: number);
     }
 
-    export class FeatureLedDirective extends BaseDirective<ILedFeatureScope> {
-        static $name = "featureLed";
+    export class FeatureRemoteDirective extends BaseDirective<IRemoteFeatureScope> {
+        static $name = "featureRemote";
         static $inject = [Repository.DeviceService.$name];
 
         restrict = "EA";
-        templateUrl = "scripts/app/feature/feature.led.html";
+        templateUrl = "scripts/app/feature/feature.remote.html";
 
         constructor(private deviceService: Repository.DeviceService) {
             super();
         }
 
-        onLink(scope: ILedFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
-            scope.select = (newMode)=> {
-                scope.feature.state.mode = newMode;
+        onLink(scope: IRemoteFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
+            scope.select = (newValue)=> {
+                scope.feature.state.value = newValue;
                 scope.notifyStateChanged();
             };
 

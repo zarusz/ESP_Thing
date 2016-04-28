@@ -34,7 +34,7 @@ message DeviceSwitchCommand {
 message DeviceIRSendCommand {
   required int32 message_id = 1;
   required int32 port = 2;
-  required int32 value = 3;
+  required uint32 value = 3;
 }
 
 message DeviceMessage {
@@ -81,7 +81,7 @@ message DeviceMovementDetectedEvent {
 message DeviceIRReceivedEvent {
   required string device_id = 1 [(nanopb).max_size = 32];
   required int32 port = 2;
-  required int32 value = 3;
+  required uint32 value = 3;
 }
 
 message DeviceEvents {

@@ -4,6 +4,9 @@
   min-width: 40px;
   min-height: 40px;
 }
+.led button.md-button.x2 {
+  min-width: 90px;
+}
 .led button.md-button > span {
   display: inline-block;
   min-width: 1px;

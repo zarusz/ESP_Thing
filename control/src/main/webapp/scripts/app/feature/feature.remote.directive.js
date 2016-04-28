@@ -10,25 +10,25 @@ var App;
 (function (App) {
     var Feature;
     (function (Feature) {
-        var FeatureLedDirective = (function (_super) {
-            __extends(FeatureLedDirective, _super);
-            function FeatureLedDirective(deviceService) {
+        var FeatureRemoteDirective = (function (_super) {
+            __extends(FeatureRemoteDirective, _super);
+            function FeatureRemoteDirective(deviceService) {
                 _super.call(this);
                 this.deviceService = deviceService;
                 this.restrict = "EA";
-                this.templateUrl = "scripts/app/feature/feature.led.html";
+                this.templateUrl = "scripts/app/feature/feature.remote.html";
             }
-            FeatureLedDirective.prototype.onLink = function (scope, element, attributes) {
-                scope.select = function (newMode) {
-                    scope.feature.state.mode = newMode;
+            FeatureRemoteDirective.prototype.onLink = function (scope, element, attributes) {
+                scope.select = function (newValue) {
+                    scope.feature.state.value = newValue;
                     scope.notifyStateChanged();
                 };
             };
-            FeatureLedDirective.$name = "featureLed";
-            FeatureLedDirective.$inject = [App.Repository.DeviceService.$name];
-            return FeatureLedDirective;
+            FeatureRemoteDirective.$name = "featureRemote";
+            FeatureRemoteDirective.$inject = [App.Repository.DeviceService.$name];
+            return FeatureRemoteDirective;
         }(App.BaseDirective));
-        Feature.FeatureLedDirective = FeatureLedDirective;
+        Feature.FeatureRemoteDirective = FeatureRemoteDirective;
     })(Feature = App.Feature || (App.Feature = {}));
 })(App || (App = {}));
-//# sourceMappingURL=feature.led.directive.js.map
+//# sourceMappingURL=feature.remote.directive.js.map

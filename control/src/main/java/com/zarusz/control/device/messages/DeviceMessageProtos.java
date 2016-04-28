@@ -2207,11 +2207,11 @@ public final class DeviceMessageProtos {
     int getPort();
 
     /**
-     * <code>required int32 value = 3;</code>
+     * <code>required uint32 value = 3;</code>
      */
     boolean hasValue();
     /**
-     * <code>required int32 value = 3;</code>
+     * <code>required uint32 value = 3;</code>
      */
     int getValue();
   }
@@ -2279,7 +2279,7 @@ public final class DeviceMessageProtos {
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              value_ = input.readInt32();
+              value_ = input.readUInt32();
               break;
             }
           }
@@ -2355,13 +2355,13 @@ public final class DeviceMessageProtos {
     public static final int VALUE_FIELD_NUMBER = 3;
     private int value_;
     /**
-     * <code>required int32 value = 3;</code>
+     * <code>required uint32 value = 3;</code>
      */
     public boolean hasValue() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required int32 value = 3;</code>
+     * <code>required uint32 value = 3;</code>
      */
     public int getValue() {
       return value_;
@@ -2404,7 +2404,7 @@ public final class DeviceMessageProtos {
         output.writeInt32(2, port_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, value_);
+        output.writeUInt32(3, value_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2425,7 +2425,7 @@ public final class DeviceMessageProtos {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, value_);
+          .computeUInt32Size(3, value_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2720,19 +2720,19 @@ public final class DeviceMessageProtos {
 
       private int value_ ;
       /**
-       * <code>required int32 value = 3;</code>
+       * <code>required uint32 value = 3;</code>
        */
       public boolean hasValue() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required int32 value = 3;</code>
+       * <code>required uint32 value = 3;</code>
        */
       public int getValue() {
         return value_;
       }
       /**
-       * <code>required int32 value = 3;</code>
+       * <code>required uint32 value = 3;</code>
        */
       public Builder setValue(int value) {
         bitField0_ |= 0x00000004;
@@ -2741,7 +2741,7 @@ public final class DeviceMessageProtos {
         return this;
       }
       /**
-       * <code>required int32 value = 3;</code>
+       * <code>required uint32 value = 3;</code>
        */
       public Builder clearValue() {
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -7335,11 +7335,11 @@ public final class DeviceMessageProtos {
     int getPort();
 
     /**
-     * <code>required int32 value = 3;</code>
+     * <code>required uint32 value = 3;</code>
      */
     boolean hasValue();
     /**
-     * <code>required int32 value = 3;</code>
+     * <code>required uint32 value = 3;</code>
      */
     int getValue();
   }
@@ -7408,7 +7408,7 @@ public final class DeviceMessageProtos {
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              value_ = input.readInt32();
+              value_ = input.readUInt32();
               break;
             }
           }
@@ -7511,13 +7511,13 @@ public final class DeviceMessageProtos {
     public static final int VALUE_FIELD_NUMBER = 3;
     private int value_;
     /**
-     * <code>required int32 value = 3;</code>
+     * <code>required uint32 value = 3;</code>
      */
     public boolean hasValue() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required int32 value = 3;</code>
+     * <code>required uint32 value = 3;</code>
      */
     public int getValue() {
       return value_;
@@ -7560,7 +7560,7 @@ public final class DeviceMessageProtos {
         output.writeInt32(2, port_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, value_);
+        output.writeUInt32(3, value_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -7581,7 +7581,7 @@ public final class DeviceMessageProtos {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, value_);
+          .computeUInt32Size(3, value_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -7922,19 +7922,19 @@ public final class DeviceMessageProtos {
 
       private int value_ ;
       /**
-       * <code>required int32 value = 3;</code>
+       * <code>required uint32 value = 3;</code>
        */
       public boolean hasValue() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required int32 value = 3;</code>
+       * <code>required uint32 value = 3;</code>
        */
       public int getValue() {
         return value_;
       }
       /**
-       * <code>required int32 value = 3;</code>
+       * <code>required uint32 value = 3;</code>
        */
       public Builder setValue(int value) {
         bitField0_ |= 0x00000004;
@@ -7943,7 +7943,7 @@ public final class DeviceMessageProtos {
         return this;
       }
       /**
-       * <code>required int32 value = 3;</code>
+       * <code>required uint32 value = 3;</code>
        */
       public Builder clearValue() {
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -9776,7 +9776,7 @@ public final class DeviceMessageProtos {
       "PortB\005\222?\002\020\020\"C\n\023DeviceSwitchCommand\022\022\n\nme" +
       "ssage_id\030\001 \002(\005\022\014\n\004port\030\002 \002(\005\022\n\n\002on\030\003 \002(\010" +
       "\"F\n\023DeviceIRSendCommand\022\022\n\nmessage_id\030\001 " +
-      "\002(\005\022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\005\"i\n\rDevi" +
+      "\002(\005\022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\r\"i\n\rDevi" +
       "ceMessage\022+\n\rswitchCommand\030\001 \001(\0132\024.Devic",
       "eSwitchCommand\022+\n\rirSendCommand\030\002 \001(\0132\024." +
       "DeviceIRSendCommand\"(\n\022CommandAckRespons" +
@@ -9792,7 +9792,7 @@ public final class DeviceMessageProtos {
       "lue\030\003 \002(\002\"E\n\033DeviceMovementDetectedEvent" +
       "\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005" +
       "\"N\n\025DeviceIRReceivedEvent\022\030\n\tdevice_id\030\001" +
-      " \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\005" +
+      " \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\r" +
       "\"\236\003\n\014DeviceEvents\0223\n\024deviceConnectedEven" +
       "t\030\001 \001(\0132\025.DeviceConnectedEvent\0221\n\023device" +
       "HearbeatEvent\030\002 \001(\0132\024.DeviceHearbeatEven" +
