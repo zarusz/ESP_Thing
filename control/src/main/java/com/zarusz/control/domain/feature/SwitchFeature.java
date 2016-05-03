@@ -6,6 +6,7 @@ import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.msg.commands.SwitchCommand;
 import lombok.Getter;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
 public class SwitchFeature extends DeviceFeature {
 
     @Getter
+    @Column(name="`on`")
 	private Boolean on;
 
 	protected SwitchFeature() {

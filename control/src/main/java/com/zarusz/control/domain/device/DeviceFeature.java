@@ -32,6 +32,8 @@ public class DeviceFeature {
 	private Integer id;
     private Integer port;
 	private Date updated;
+    private String displayName;
+    private String displayIcon;
 
 	@ManyToOne
 	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "fk_device_feature_device_id"))

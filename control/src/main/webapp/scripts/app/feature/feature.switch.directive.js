@@ -19,7 +19,10 @@ var App;
                 this.templateUrl = "scripts/app/feature/feature.switch.html";
             }
             FeatureSwitchDirective.prototype.onLink = function (scope, element, attributes) {
-                scope.$watch(function (s) { return s.feature.state.on; }, function () { return scope.notifyStateChanged(); });
+                scope.$watch(function (s) { return s.feature.state.on; }, function (newValue, oldValue) {
+                    if (oldValue != newValue)
+                        scope.notifyStateChanged();
+                });
             };
             FeatureSwitchDirective.$name = "featureSwitch";
             FeatureSwitchDirective.$inject = [App.Repository.DeviceService.$name];

@@ -19,6 +19,7 @@ public class Feature {
     @Id
     private String feature;
     private String displayName;
+    private String displayIcon;
     private Integer displayPriority;
 }
 

@@ -19,7 +19,13 @@ module App.Feature {
         }
 
         onLink(scope: ISwitchFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
-            scope.$watch((s: ISwitchFeatureScope) => s.feature.state.on, () => scope.notifyStateChanged());
+            scope.$watch(
+                (s: ISwitchFeatureScope) => s.feature.state.on,
+                (newValue: boolean, oldValue?: boolean) => {
+                    if (oldValue != newValue)
+                        scope.notifyStateChanged();
+                }
+            );
         }
 
     }

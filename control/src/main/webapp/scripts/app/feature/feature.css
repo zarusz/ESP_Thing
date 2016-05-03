@@ -1,4 +1,11 @@
 .feature {
-  margin: 0 15px;
+  padding: 0 15px;
   display: inline-block;
+  min-width: 120px;
+}
+.feature .feature-1x {
+  width: 120px;
+}
+.feature .feature-2x {
+  width: 180px;
 }

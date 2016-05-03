@@ -10,9 +10,11 @@ import com.zarusz.control.web.rest.util.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +29,8 @@ public class DeviceResource {
 
     @Inject
     private DeviceRepository deviceRepo;
+    @Inject
+    private PlatformTransactionManager txManager;
 
     @RequestMapping(value = "/device", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DeviceDTO> getByPartition(@RequestParam("partitionId") int partitionId) {
@@ -40,6 +44,7 @@ public class DeviceResource {
     }
 
     @RequestMapping(value = "/device/{deviceId}/feature/{featureId}/state", method = RequestMethod.POST)
+    @Transactional
     public void changeFeatureState(@PathVariable("deviceId") int deviceId,
                                    @PathVariable("featureId") int featureId,
                                    @RequestBody FeatureStateDTO state) {
