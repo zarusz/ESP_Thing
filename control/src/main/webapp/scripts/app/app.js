@@ -5,7 +5,8 @@
 ///<reference path="..\components\common.eventbus.ts"/>
 var App;
 (function (App) {
-    App.$module.factory("authInterceptor", function ($rootScope, $q, $location, localStorageService) {
+    App.$module
+        .factory("authInterceptor", function ($rootScope, $q, $location, localStorageService) {
         return {
             // Add authorization token to headers
             request: function (config) {
@@ -17,7 +18,8 @@ var App;
                 return config;
             }
         };
-    }).factory("authExpiredInterceptor", function ($rootScope, $q, $injector, localStorageService) {
+    })
+        .factory("authExpiredInterceptor", function ($rootScope, $q, $injector, localStorageService) {
         return {
             responseError: function (response) {
                 // token has expired
@@ -76,20 +78,25 @@ var App;
         var defaultState = {
             name: "site",
             abstract: true,
+            data: {
+                roles: ["ROLE_USER"]
+            },
             templateUrl: "scripts/components/actionbar/actionbar.html",
             controller: App.Component.ActionBarCtrl,
             controllerAs: "actionBar",
             resolve: {
                 authorize: ["Auth", function (Auth) {
-                    return Auth.authorize();
-                }],
+                        return Auth.authorize();
+                    }
+                ],
                 translatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart("global");
-                }]
+                        $translatePartialLoader.addPart("global");
+                    }]
             }
         };
         $urlRouterProvider.otherwise("/");
-        $stateProvider.state(defaultState);
+        $stateProvider
+            .state(defaultState);
         $httpProvider.interceptors.push("authExpiredInterceptor");
         $httpProvider.interceptors.push("authInterceptor");
         // Initialize angular-translate

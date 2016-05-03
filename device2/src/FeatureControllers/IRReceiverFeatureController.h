@@ -10,6 +10,8 @@ protected:
   IRrecv irrecv;
   decode_results results;
 
+  IRFormat GetFormat() const;
+
 public:
   IRReceiverFeatureController(int port, DeviceContext* context, int pin);
   virtual ~IRReceiverFeatureController();
@@ -17,6 +19,5 @@ public:
   virtual void Handle(DeviceMessage& deviceMessage);
   virtual void Loop();
 };
-
 
 #endif

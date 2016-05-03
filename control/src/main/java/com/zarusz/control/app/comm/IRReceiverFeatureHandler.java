@@ -35,7 +35,7 @@ public class IRReceiverFeatureHandler extends AbstractHandler {
             return;
         }
         DeviceMessageProtos.DeviceIRReceivedEvent ir = e.getMessage().getIrReceivedEvent();
-        log.info("Received IR signal on port {} with value {}.", ir.getPort(), ir.getValue());
+        log.info("Received IR signal on port {} with data {}, bits {}, format {}.", ir.getPort(), ir.getValue().getData(), ir.getValue().getBits(), ir.getValue().getFormat());
 
         HubDevice device = deviceRepo.findHubByGuid(ir.getDeviceId());
         if (device != null) {

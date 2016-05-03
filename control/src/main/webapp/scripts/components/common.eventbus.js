@@ -36,7 +36,7 @@ var App;
         EventBus.$name = "EventBus";
         EventBus.$inject = [];
         return EventBus;
-    })();
+    }());
     App.EventBus = EventBus;
 })(App || (App = {}));
 //# sourceMappingURL=common.eventbus.js.map

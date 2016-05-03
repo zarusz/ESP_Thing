@@ -9,7 +9,7 @@ var App;
             function Identity() {
             }
             return Identity;
-        })();
+        }());
         Auth.Identity = Identity;
         var Principal = (function () {
             function Principal($q, account, tracker) {
@@ -58,12 +58,14 @@ var App;
                     return deferred.promise;
                 }
                 // retrieve the identity data from the server, update the identity object, and then resolve.
-                this.account.get().$promise.then(function (account1) {
+                this.account.get().$promise
+                    .then(function (account1) {
                     _this._identity = account1.data;
                     _this._authenticated = true;
                     deferred.resolve(_this._identity);
                     _this.tracker.connect();
-                }).catch(function () {
+                })
+                    .catch(function () {
                     _this._identity = null;
                     _this._authenticated = false;
                     deferred.resolve(_this._identity);
@@ -73,7 +75,7 @@ var App;
             Principal.$name = "Principal";
             Principal.$inject = [App.NgSvc.q, "Account", "Tracker"];
             return Principal;
-        })();
+        }());
         Auth.Principal = Principal;
         App.$module.service(Principal.$name, Principal);
     })(Auth = App.Auth || (App.Auth = {}));

@@ -14,14 +14,11 @@ module App.Component {
                     private partitionService: Repository.PartitionService,
                     private principal: Auth.Principal) {
 
-            if (!this.principal.isAuthenticated()) {
-
-                $state.go("login");
-            } else {
+            this.principal.identity(true).then(() => {
                 partitionService.loadRoot().then(r => {
                     this.rootPartition = r.data;
                 });
-            }
+            });
 
             //var _this = this;
             //this.toggleSideNav = this.$mdUtil.debounce(() => {

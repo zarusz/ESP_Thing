@@ -4,7 +4,7 @@
 module App.Feature {
 
     interface IRemoteFeatureScope extends IFeatureScope<Repository.IRemoteFeatureStateModel> {
-        select(mode: number);
+        select(mode: string);
     }
 
     export class FeatureRemoteDirective extends BaseDirective<IRemoteFeatureScope> {
@@ -19,8 +19,9 @@ module App.Feature {
         }
 
         onLink(scope: IRemoteFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
-            scope.select = (newValue)=> {
-                scope.feature.state.value = newValue;
+            scope.select = (newValue: string) => {
+                var numValue = parseInt(newValue, 16);
+                scope.feature.state.value = numValue;
                 scope.notifyStateChanged();
             };
 

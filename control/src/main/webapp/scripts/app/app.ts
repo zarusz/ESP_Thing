@@ -91,6 +91,9 @@ module App {
         var defaultState = {
             name: "site",
             abstract: true,
+            data: {
+              roles: ["ROLE_USER"]
+            },
             templateUrl: "scripts/components/actionbar/actionbar.html",
             controller: Component.ActionBarCtrl,
             controllerAs: "actionBar",

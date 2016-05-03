@@ -20,7 +20,8 @@ var App;
             }
             FeatureRemoteDirective.prototype.onLink = function (scope, element, attributes) {
                 scope.select = function (newValue) {
-                    scope.feature.state.value = newValue;
+                    var numValue = parseInt(newValue, 16);
+                    scope.feature.state.value = numValue;
                     scope.notifyStateChanged();
                 };
             };

@@ -31,10 +31,22 @@ message DeviceSwitchCommand {
   required bool on = 3;
 }
 
+enum IRFormat {
+  Unknown = 0;
+  NEC = 1;
+  SONY = 2;
+}
+
+message IRValue {
+  required IRFormat format = 1;
+  required uint32 bits = 2;
+  required uint32 data = 3;
+}
+
 message DeviceIRSendCommand {
   required int32 message_id = 1;
   required int32 port = 2;
-  required uint32 value = 3;
+  required IRValue value = 3;
 }
 
 message DeviceMessage {
@@ -81,7 +93,7 @@ message DeviceMovementDetectedEvent {
 message DeviceIRReceivedEvent {
   required string device_id = 1 [(nanopb).max_size = 32];
   required int32 port = 2;
-  required uint32 value = 3;
+  required IRValue value = 3;
 }
 
 message DeviceEvents {

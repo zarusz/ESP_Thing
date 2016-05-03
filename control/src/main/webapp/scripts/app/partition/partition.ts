@@ -8,9 +8,9 @@ module App {
                 .state("partition", {
                     parent: "site",
                     url: "/partition/{partitionId}",
-                    //data: {
-                    //    partitionId: null
-                    //},
+                    data: {
+                        roles: ["ROLE_USER"]
+                    },
                     params: {
                         partitionId: null
                     },

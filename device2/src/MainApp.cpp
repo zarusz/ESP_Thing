@@ -18,7 +18,7 @@
 MainApp::MainApp(MQTT_CALLBACK_SIGNATURE)
 	: pubSubClient(espClient),
 		deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi"),
-		pins(12, 13, 14, 20)
+		pins(13, 14, 12, 20)
 {
 	features.push_back(new SwitchFeatureController(10, this, 20, false));
 	features.push_back(new SwitchFeatureController(11, this, 21, false));
@@ -29,9 +29,10 @@ MainApp::MainApp(MQTT_CALLBACK_SIGNATURE)
 	features.push_back(new SwitchFeatureController(16, this, 26, false));
 	features.push_back(new SwitchFeatureController(17, this, 27, false));
 
-	features.push_back(new TempFeatureController(30, 31, this, 4));
-	features.push_back(new IRReceiverFeatureController(41, this, 2));
-	features.push_back(new IRTransceiverFeatureController(40, this, 15));
+	features.push_back(new TempFeatureController(30, 31, this, 2));
+	features.push_back(new IRReceiverFeatureController(41, this, 4));
+	features.push_back(new IRTransceiverFeatureController(40, this, 16));
+	features.push_back(new IRTransceiverFeatureController(50, this, 5));
 
 	deviceInTopic = String("device/") + deviceConfig.uniqueId;
 

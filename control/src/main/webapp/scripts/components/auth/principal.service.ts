@@ -63,7 +63,6 @@ module App.Auth {
             // if we have, reuse it by immediately resolving
             if (angular.isDefined(this._identity)) {
                 deferred.resolve(this._identity);
-
                 return deferred.promise;
             }
 

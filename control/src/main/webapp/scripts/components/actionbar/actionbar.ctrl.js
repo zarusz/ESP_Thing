@@ -13,14 +13,11 @@ var App;
                 this.$state = $state;
                 this.partitionService = partitionService;
                 this.principal = principal;
-                if (!this.principal.isAuthenticated()) {
-                    $state.go("login");
-                }
-                else {
+                this.principal.identity(true).then(function () {
                     partitionService.loadRoot().then(function (r) {
                         _this.rootPartition = r.data;
                     });
-                }
+                });
                 //var _this = this;
                 //this.toggleSideNav = this.$mdUtil.debounce(() => {
                 //    _this.getSideNav().toggle();
@@ -46,7 +43,7 @@ var App;
             };
             ActionBarCtrl.$inject = ["$mdSidenav", App.NgSvc.state, App.Repository.PartitionService.$name, App.Auth.Principal.$name];
             return ActionBarCtrl;
-        })();
+        }());
         Component.ActionBarCtrl = ActionBarCtrl;
     })(Component = App.Component || (App.Component = {}));
 })(App || (App = {}));

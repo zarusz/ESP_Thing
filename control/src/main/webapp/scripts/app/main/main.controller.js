@@ -11,7 +11,7 @@ var App;
         }
         MainCtrl.$inject = ["$scope", "Principal"];
         return MainCtrl;
-    })();
+    }());
     App.MainCtrl = MainCtrl;
 })(App || (App = {}));
 //# sourceMappingURL=main.controller.js.map

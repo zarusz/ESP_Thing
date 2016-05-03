@@ -2,8 +2,10 @@
 ///<reference path="place.controller.ts"/>
 var App;
 (function (App) {
-    App.$module.config(function ($stateProvider) {
-        $stateProvider.state("place", {
+    App.$module
+        .config(function ($stateProvider) {
+        $stateProvider
+            .state("place", {
             parent: "site",
             url: "/place",
             data: {
@@ -20,9 +22,9 @@ var App;
             //},
             resolve: {
                 mainTranslatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart("main");
-                    return $translate.refresh();
-                }]
+                        $translatePartialLoader.addPart("main");
+                        return $translate.refresh();
+                    }]
             }
         });
     });

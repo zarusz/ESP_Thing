@@ -27,8 +27,8 @@ authentication:
     oauth:
         clientid: controlapp
         secret: mySecretOAuthSecret
-        # Token is valid 30 minutes
-        tokenValidityInSeconds: 1800
+        # Token is valid 24 hours
+        tokenValidityInSeconds: 86400
 
 swagger:
     title: control API

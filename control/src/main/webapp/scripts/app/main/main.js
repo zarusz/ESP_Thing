@@ -3,8 +3,10 @@
 "use strict";
 var App;
 (function (App) {
-    App.$module.config(function ($stateProvider) {
-        $stateProvider.state("home", {
+    App.$module
+        .config(function ($stateProvider) {
+        $stateProvider
+            .state("home", {
             parent: "site",
             url: "/",
             data: {
@@ -20,9 +22,9 @@ var App;
             //},
             resolve: {
                 mainTranslatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart("main");
-                    return $translate.refresh();
-                }]
+                        $translatePartialLoader.addPart("main");
+                        return $translate.refresh();
+                    }]
             }
         });
     });
