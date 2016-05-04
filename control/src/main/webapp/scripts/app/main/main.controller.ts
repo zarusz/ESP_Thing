@@ -1,7 +1,6 @@
-///<reference path="..\app.module.ts"/>
 'use strict';
 
-module App {
+module App.Main {
 
     export class MainCtrl {
         static $inject = ["$scope", "Principal"];

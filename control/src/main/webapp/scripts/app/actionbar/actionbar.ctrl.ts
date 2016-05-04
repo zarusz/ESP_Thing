@@ -1,6 +1,5 @@
-///<reference path="..\..\app\app.module.ts"/>
 ///<reference path="..\..\components\repository\repository.module.ts"/>
-///<reference path="..\auth\principal.service.ts"/>
+///<reference path="..\..\components\auth\principal.service.ts"/>
 ///<reference path="..\..\app\partition\partition.ts"/>
 module App.Component {
 
@@ -45,7 +44,7 @@ module App.Component {
 
         navigateToPartition(partition: Repository.PartitionModel) {
             this.closeSideNav();
-            var params = new PartitionParams(partition.id);
+            var params = new Partition.PartitionParams(partition.id);
             this.$state.go("partition", params);
         }
     }

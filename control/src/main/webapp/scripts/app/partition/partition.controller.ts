@@ -1,5 +1,5 @@
 ///<reference path="..\..\components\repository\repository.module.ts"/>
-module App {
+module App.Partition {
 
     export class PartitionParams {
         constructor(public partitionId: number) {

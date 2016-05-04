@@ -1,41 +1,54 @@
 ///<reference path="app.module.ts"/>
-///<reference path="..\components\actionbar\actionbar.ctrl.ts"/>
+///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\components\sidenav\sidenav.ctrl.ts"/>
 ///<reference path="place\place.controller.ts"/>
 ///<reference path="..\components\common.eventbus.ts"/>
 module App {
 
+    var $module = angular.module("controlApp2", [
+        "LocalStorageModule",
+        "tmh.dynamicLocale",
+        "pascalprecht.translate",
+        "ngAnimate",
+        "ngMaterial",
+        "ngResource",
+        "ngCookies",
+        "ngCacheBuster",
+        "ui.bootstrap", // for modal dialogs
+        "ui.router",
+        "infinite-scroll",
+        Repository.$module.name,
+        Partition.$module.name,
+        Feature.$module.name
+    ]);
+
     $module
-        .factory("authInterceptor", function ($rootScope, $q, $location, localStorageService) {
-            return {
-                // Add authorization token to headers
-                request: function (config) {
-                    config.headers = config.headers || {};
-                    var token = localStorageService.get("token");
+        .factory("authInterceptor", ($rootScope, $q, $location, localStorageService) => {
+            // Add authorization token to headers
+            request: (config) => {
+                config.headers = config.headers || {};
+                var token = localStorageService.get("token");
 
-                    if (token && token.expires_at && token.expires_at > new Date().getTime()) {
-                        config.headers.Authorization = "Bearer " + token.access_token;
-                    }
-
-                    return config;
+                if (token && token.expires_at && token.expires_at > new Date().getTime()) {
+                    config.headers.Authorization = "Bearer " + token.access_token;
                 }
-            };
+
+                return config;
+            }
         })
-        .factory("authExpiredInterceptor", function ($rootScope, $q, $injector, localStorageService) {
-            return {
-                responseError: function (response) {
-                    // token has expired
-                    if (response.status === 401 && (response.data.error == "invalid_token" || response.data.error == "Unauthorized")) {
-                        localStorageService.remove("token");
-                        var Principal = $injector.get("Principal");
-                        if (Principal.isAuthenticated()) {
-                            var Auth = $injector.get("Auth");
-                            Auth.authorize(true);
-                        }
+        .factory("authExpiredInterceptor", ($rootScope, $q, $injector, localStorageService) => {
+            responseError: (response) => {
+                // token has expired
+                if (response.status === 401 && (response.data.error == "invalid_token" || response.data.error == "Unauthorized")) {
+                    localStorageService.remove("token");
+                    var Principal = $injector.get("Principal");
+                    if (Principal.isAuthenticated()) {
+                        var Auth = $injector.get("Auth");
+                        Auth.authorize(true);
                     }
-                    return $q.reject(response);
                 }
-            };
+                return $q.reject(response);
+            }
         });
 
     function Run($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {

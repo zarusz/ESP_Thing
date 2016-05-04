@@ -1,7 +1,8 @@
-///<reference path="..\app.module.ts"/>
+/// <reference path="../../components/common.ng.ts" />
 ///<reference path="partition.controller.ts"/>
-module App {
+module App.Partition {
 
+    export var $module = angular.module("Partition", []);
     $module
         .config(($stateProvider) => {
             $stateProvider

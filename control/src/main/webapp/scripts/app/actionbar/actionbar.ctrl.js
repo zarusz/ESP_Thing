@@ -1,6 +1,5 @@
-///<reference path="..\..\app\app.module.ts"/>
 ///<reference path="..\..\components\repository\repository.module.ts"/>
-///<reference path="..\auth\principal.service.ts"/>
+///<reference path="..\..\components\auth\principal.service.ts"/>
 ///<reference path="..\..\app\partition\partition.ts"/>
 var App;
 (function (App) {
@@ -38,7 +37,7 @@ var App;
             };
             ActionBarCtrl.prototype.navigateToPartition = function (partition) {
                 this.closeSideNav();
-                var params = new App.PartitionParams(partition.id);
+                var params = new App.Partition.PartitionParams(partition.id);
                 this.$state.go("partition", params);
             };
             ActionBarCtrl.$inject = ["$mdSidenav", App.NgSvc.state, App.Repository.PartitionService.$name, App.Auth.Principal.$name];
