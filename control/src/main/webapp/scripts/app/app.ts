@@ -103,7 +103,7 @@ module App.Main {
             data: {
               roles: ["ROLE_USER"]
             },
-            templateUrl: "scripts/components/actionbar/actionbar.html",
+            templateUrl: "scripts/app/actionbar/actionbar.html",
             controller: Component.ActionBarCtrl,
             controllerAs: "actionBar",
             resolve: {
