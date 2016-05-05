@@ -1,8 +1,8 @@
 'use strict';
 
-module App.Main {
+module App.Home {
 
-    export class MainCtrl {
+    export class HomeCtrl {
         static $inject = ["$scope", "Principal"];
 
         constructor($scope: any, principal) {

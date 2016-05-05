@@ -5,13 +5,15 @@
 ///<reference path="place\place.controller.ts"/>
 ///<reference path="..\app\feature\feature.ts"/>
 ///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
+///<reference path="..\app\home\home.ts"/>
 module App.Main {
 
     var $module = angular.module("controlAppMain", [
         App.$module.name,
         Repository.$module.name,
         Partition.$module.name,
-        Feature.$module.name
+        Feature.$module.name,
+        Home.$module.name
     ]);
 
     $module
@@ -104,7 +106,7 @@ module App.Main {
               roles: ["ROLE_USER"]
             },
             templateUrl: "scripts/app/actionbar/actionbar.html",
-            controller: Component.ActionBarCtrl,
+            controller: ActionBarCtrl,
             controllerAs: "actionBar",
             resolve: {
                 authorize: ["Auth", (Auth) => {

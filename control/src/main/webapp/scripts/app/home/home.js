@@ -1,12 +1,12 @@
 /// <reference path="../../components/common.ng.ts" />
-///<reference path="main.controller.ts"/>
+///<reference path="home.controller.ts"/>
 "use strict";
 var App;
 (function (App) {
-    var Main;
-    (function (Main) {
-        Main.$module = angular.module("Home", []);
-        Main.$module
+    var Home;
+    (function (Home) {
+        Home.$module = angular.module("Home", []);
+        Home.$module
             .config(function ($stateProvider) {
             $stateProvider
                 .state("home", {
@@ -15,8 +15,8 @@ var App;
                 data: {
                     roles: []
                 },
-                templateUrl: "scripts/app/main/main.html",
-                controller: Main.MainCtrl,
+                templateUrl: "scripts/app/home/home.html",
+                controller: Home.HomeCtrl,
                 //views: {
                 //    "content@": {
                 //        templateUrl: "scripts/app/main/main.html",
@@ -31,6 +31,6 @@ var App;
                 }
             });
         });
-    })(Main = App.Main || (App.Main = {}));
+    })(Home = App.Home || (App.Home = {}));
 })(App || (App = {}));
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=home.js.map

@@ -5,6 +5,7 @@
 ///<reference path="place\place.controller.ts"/>
 ///<reference path="..\app\feature\feature.ts"/>
 ///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
+///<reference path="..\app\home\home.ts"/>
 var App;
 (function (App) {
     var Main;
@@ -13,7 +14,8 @@ var App;
             App.$module.name,
             App.Repository.$module.name,
             App.Partition.$module.name,
-            App.Feature.$module.name
+            App.Feature.$module.name,
+            App.Home.$module.name
         ]);
         $module
             .factory("authInterceptor", function ($rootScope, $q, $location, localStorageService) {
@@ -92,7 +94,7 @@ var App;
                     roles: ["ROLE_USER"]
                 },
                 templateUrl: "scripts/app/actionbar/actionbar.html",
-                controller: App.Component.ActionBarCtrl,
+                controller: App.ActionBarCtrl,
                 controllerAs: "actionBar",
                 resolve: {
                     authorize: ["Auth", function (Auth) {

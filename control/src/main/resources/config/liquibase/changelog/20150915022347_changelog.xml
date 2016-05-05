@@ -3,18 +3,6 @@
                    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet author="Tomasz (generated)" id="1442283833184-1">
-        <createTable tableName="connection">
-            <column name="type" type="VARCHAR(31)">
-                <constraints nullable="false"/>
-            </column>
-            <column autoIncrement="true" name="id" type="INT">
-                <constraints primaryKey="true" primaryKeyName="connectionPK"/>
-            </column>
-            <column name="source" type="INT"/>
-            <column name="target" type="INT"/>
-        </createTable>
-    </changeSet>
     <changeSet author="Tomasz (generated)" id="1442283833184-2">
         <createTable tableName="device">
             <column name="type" type="VARCHAR(31)">
@@ -95,24 +83,6 @@
         <addPrimaryKey columnNames="feature"
                        constraintName="featurePK"
                        tableName="feature"/>
-    </changeSet>
-    <changeSet author="Tomasz (generated)" id="1442283833184-8">
-        <addForeignKeyConstraint baseColumnNames="source"
-                                 baseTableName="connection"
-                                 constraintName="fk_connection_source_id"
-                                 deferrable="false"
-                                 initiallyDeferred="false"
-                                 referencedColumnNames="id"
-                                 referencedTableName="hub"/>
-    </changeSet>
-    <changeSet author="Tomasz (generated)" id="1442283833184-9">
-        <addForeignKeyConstraint baseColumnNames="target"
-                                 baseTableName="connection"
-                                 constraintName="fk_connection_target_id"
-                                 deferrable="false"
-                                 initiallyDeferred="false"
-                                 referencedColumnNames="id"
-                                 referencedTableName="hub"/>
     </changeSet>
     <changeSet author="Tomasz (generated)" id="1442283833184-10">
         <addForeignKeyConstraint baseColumnNames="hub"

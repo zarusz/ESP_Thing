@@ -1,7 +1,7 @@
 /// <reference path="../../components/common.ng.ts" />
-///<reference path="main.controller.ts"/>
+///<reference path="home.controller.ts"/>
 "use strict";
-module App.Main {
+module App.Home {
 
     export var $module = angular.module("Home", []);
     $module
@@ -13,8 +13,8 @@ module App.Main {
                     data: {
                         roles: []
                     },
-                    templateUrl: "scripts/app/main/main.html",
-                    controller: MainCtrl,
+                    templateUrl: "scripts/app/home/home.html",
+                    controller: HomeCtrl,
                     //views: {
                     //    "content@": {
                     //        templateUrl: "scripts/app/main/main.html",

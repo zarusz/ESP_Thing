@@ -1,7 +1,7 @@
 ///<reference path="..\..\components\repository\repository.module.ts"/>
 ///<reference path="..\..\components\auth\principal.service.ts"/>
 ///<reference path="..\..\app\partition\partition.ts"/>
-module App.Component {
+module App {
 
     export class ActionBarCtrl {
         static $inject = ["$mdSidenav", NgSvc.state, Repository.PartitionService.$name, Auth.Principal.$name];

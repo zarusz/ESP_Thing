@@ -33,7 +33,7 @@ var App;
         };
         LoginCtrl.$inject = [App.NgSvc.rootScope, App.NgSvc.state, "Auth"];
         return LoginCtrl;
-    })();
+    }());
     App.LoginCtrl = LoginCtrl;
 })(App || (App = {}));
 //# sourceMappingURL=login.controller.js.map

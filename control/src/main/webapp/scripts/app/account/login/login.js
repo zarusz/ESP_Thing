@@ -3,8 +3,10 @@
 "use strict";
 var App;
 (function (App) {
-    App.$module.config(function ($stateProvider) {
-        $stateProvider.state("login", {
+    App.$module
+        .config(function ($stateProvider) {
+        $stateProvider
+            .state("login", {
             parent: "site",
             url: "/login",
             data: {
@@ -22,9 +24,9 @@ var App;
             //},
             resolve: {
                 translatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart("login");
-                    return $translate.refresh();
-                }]
+                        $translatePartialLoader.addPart("login");
+                        return $translate.refresh();
+                    }]
             }
         });
     });
