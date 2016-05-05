@@ -1,4 +1,4 @@
-///<reference path="..\app.module.ts"/>
+/// <reference path="../../components/common.ng.ts" />
 ///<reference path="feature.directive.ts"/>
 ///<reference path="feature.switch.directive.ts"/>
 ///<reference path="feature.dim.directive.ts"/>
@@ -8,6 +8,7 @@
 
 module App.Feature {
 
+    export var $module = angular.module("Feature", []);
     $module.directive(FeatureDirective.$name, [Repository.DeviceService.$name, NgSvc.timeout, (deviceService, timeout) => new FeatureDirective(deviceService, timeout)]);
     $module.directive(FeatureSwitchDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureSwitchDirective(deviceService)]);
     $module.directive(FeatureDimDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureDimDirective(deviceService)]);

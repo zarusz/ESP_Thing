@@ -1,5 +1,4 @@
 /// <reference path="../components/common.ng.ts" />
-/// <reference path="../components/repository/repository.module.ts" />
 module App {
 
     export var $module = angular.module("controlApp", [
@@ -14,7 +13,6 @@ module App {
         "ui.bootstrap", // for modal dialogs
         "ui.router",
         "infinite-scroll",
-        Repository.$module.name
     ]);
 
 }

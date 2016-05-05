@@ -1,8 +1,9 @@
-///<reference path="..\app.module.ts"/>
+/// <reference path="../../components/common.ng.ts" />
 ///<reference path="main.controller.ts"/>
 "use strict";
-module App {
+module App.Main {
 
+    export var $module = angular.module("Home", []);
     $module
         .config(($stateProvider) => {
             $stateProvider

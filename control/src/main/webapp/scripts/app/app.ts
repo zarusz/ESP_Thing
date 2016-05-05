@@ -1,15 +1,24 @@
+///<reference path="..\components\common.ng.ts" />
+///<reference path="..\components\common.eventbus.ts"/>
 ///<reference path="app.module.ts"/>
-///<reference path="..\components\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\components\sidenav\sidenav.ctrl.ts"/>
 ///<reference path="place\place.controller.ts"/>
-///<reference path="..\components\common.eventbus.ts"/>
-module App {
+///<reference path="..\app\feature\feature.ts"/>
+///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
+module App.Main {
+
+    var $module = angular.module("controlAppMain", [
+        App.$module.name,
+        Repository.$module.name,
+        Partition.$module.name,
+        Feature.$module.name
+    ]);
 
     $module
-        .factory("authInterceptor", function ($rootScope, $q, $location, localStorageService) {
+        .factory("authInterceptor", ($rootScope, $q, $location, localStorageService) => {
             return {
                 // Add authorization token to headers
-                request: function (config) {
+                request: (config) => {
                     config.headers = config.headers || {};
                     var token = localStorageService.get("token");
 
@@ -21,9 +30,9 @@ module App {
                 }
             };
         })
-        .factory("authExpiredInterceptor", function ($rootScope, $q, $injector, localStorageService) {
+        .factory("authExpiredInterceptor", ($rootScope, $q, $injector, localStorageService) => {
             return {
-                responseError: function (response) {
+                responseError: (response) => {
                     // token has expired
                     if (response.status === 401 && (response.data.error == "invalid_token" || response.data.error == "Unauthorized")) {
                         localStorageService.remove("token");
@@ -94,7 +103,7 @@ module App {
             data: {
               roles: ["ROLE_USER"]
             },
-            templateUrl: "scripts/components/actionbar/actionbar.html",
+            templateUrl: "scripts/app/actionbar/actionbar.html",
             controller: Component.ActionBarCtrl,
             controllerAs: "actionBar",
             resolve: {

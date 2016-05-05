@@ -37,9 +37,13 @@ module.exports = function (config) {
             'main/webapp/bower_components/underscore/underscore.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
-            'main/webapp/scripts/app/app.js',
-            'main/webapp/scripts/app/**/*.js',
+            'main/webapp/scripts/app/app.module.js',
+            'main/webapp/scripts/app/app.constants.js',
+            'main/webapp/scripts/components/common.ng.js',
+            'main/webapp/scripts/components/common.eventbus.js',
             'main/webapp/scripts/components/**/*.{js,html}',
+            'main/webapp/scripts/app/**/*.js',
+            'main/webapp/scripts/app/app.js',
             'test/javascript/**/!(karma.conf).js'
         ],
 
