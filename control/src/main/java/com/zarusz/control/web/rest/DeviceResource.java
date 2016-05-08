@@ -29,8 +29,6 @@ public class DeviceResource {
 
     @Inject
     private DeviceRepository deviceRepo;
-    @Inject
-    private PlatformTransactionManager txManager;
 
     @RequestMapping(value = "/device", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DeviceDTO> getByPartition(@RequestParam("partitionId") int partitionId) {

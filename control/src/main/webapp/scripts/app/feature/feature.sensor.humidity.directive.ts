@@ -13,6 +13,7 @@ module App.Feature {
 
         restrict = "EA";
         templateUrl = "scripts/app/feature/feature.sensor.humidity.html";
+        replace = true;
 
         constructor(private deviceService: Repository.DeviceService) {
             super();

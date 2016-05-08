@@ -11,11 +11,14 @@ var App;
         NgSvc.rootScope = "$rootScope";
         NgSvc.scope = "$scope";
         NgSvc.http = "$http";
+        NgSvc.cookies = "$cookies";
         NgSvc.q = "$q";
         NgSvc.timeout = "$timeout";
         // Angular UI Router
         NgSvc.state = "$state";
         NgSvc.stateParams = "$stateParams";
+        //
+        NgSvc.localStorageService = "localStorageService";
         return NgSvc;
     }());
     App.NgSvc = NgSvc;

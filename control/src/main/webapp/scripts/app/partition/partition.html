@@ -16,8 +16,10 @@
                 {{device.displayName}}
             </md-subheader>
             <md-list-item>
-                <feature ng-repeat="feature in device.features | orderBy : 'displayPriority'" feature="feature" device="$parent.device" class="feature">
-                </feature>
+                <div class="features">
+                    <feature ng-repeat="feature in device.features | orderBy : 'displayPriority'" feature="feature" device="$parent.device" class="feature">
+                    </feature>
+                </div>
             </md-list-item>
             <md-divider></md-divider>
         </div>

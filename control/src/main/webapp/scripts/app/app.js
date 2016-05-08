@@ -111,6 +111,9 @@ var App;
                 .state(defaultState);
             $httpProvider.interceptors.push("authExpiredInterceptor");
             $httpProvider.interceptors.push("authInterceptor");
+            //enable CSRF
+            $httpProvider.defaults.xsrfCookieName = 'CSRF-TOKEN';
+            $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';
             // Initialize angular-translate
             $translateProvider.useLoader("$translatePartialLoader", {
                 urlTemplate: "i18n/{lang}/{part}.json"
@@ -124,7 +127,6 @@ var App;
         }
         $module.run(Run);
         $module.config(Configure);
-        $module.service(App.EventBus.$name, App.EventBus);
     })(Main = App.Main || (App.Main = {}));
 })(App || (App = {}));
 //# sourceMappingURL=app.js.map

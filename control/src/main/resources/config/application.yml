@@ -30,11 +30,8 @@ authentication:
         # Token is valid 24 hours
         tokenValidityInSeconds: 86400
 
-swagger:
-    title: control API
-    description: control applications and beyond!
-    version: 0.0.1
-    termsOfServiceUrl: http://jhipster.github.io/
-    contact:
-    license: Apache 2.0
-    licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+control:
+    mqtt:
+        client_id: hub
+        host: raspberrypi
+        port: 1883

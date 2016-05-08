@@ -9,15 +9,15 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class TemperatureChangedEvent extends SensorChangedEvent<TemperatureSensorFeature> {
+public class TemperatureChangedEvent extends TypedFeatureStateChangedEvent<TemperatureSensorFeature> {
 
-    private float temperature;
+    private float oldValue;
 
     public TemperatureChangedEvent() {
     }
 
-    public TemperatureChangedEvent(TemperatureSensorFeature feature, float temperature) {
+    public TemperatureChangedEvent(TemperatureSensorFeature feature, float oldValue) {
         super(feature);
-        this.temperature = temperature;
+        this.oldValue = oldValue;
     }
 }

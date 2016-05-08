@@ -1,6 +1,6 @@
-<div layout="row" class="feature-2x">
+<div layout="row" class="switch feature-2x">
     <div flex>
-        <md-switch ng-model="feature.state.on" aria-label="On/Off Switch" layout-align="center center"></md-switch>
+        <md-switch ng-model="feature.state.on" ng-click="notifyStateChanged()" aria-label="On/Off Switch" layout-align="center center"></md-switch>
     </div>
     <div flex="60" layout layout-align="start center">
         <span ng-if="::feature.displayIcon" class="{{::feature.displayIcon}}"></span>

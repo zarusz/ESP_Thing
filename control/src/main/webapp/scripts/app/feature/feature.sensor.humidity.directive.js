@@ -17,6 +17,7 @@ var App;
                 this.deviceService = deviceService;
                 this.restrict = "EA";
                 this.templateUrl = "scripts/app/feature/feature.sensor.humidity.html";
+                this.replace = true;
             }
             FeatureSensorHumidityDirective.prototype.onLink = function (scope, element, attributes) {
                 //scope.$watch((s: ISensorTemperatureFeatureScope) => s.feature.state.on, () => scope.notifyStateChanged());

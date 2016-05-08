@@ -3,8 +3,8 @@ package com.zarusz.control.app.comm.mqtt;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.MessageLite;
 import com.zarusz.control.app.comm.AbstractHandler;
-import com.zarusz.control.app.comm.MessageReceivedEvent;
-import com.zarusz.control.app.comm.PublishMessageCommand;
+import com.zarusz.control.app.comm.messages.MessageReceivedEvent;
+import com.zarusz.control.app.comm.messages.PublishMessageCommand;
 import com.zarusz.control.app.comm.Topics;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
 import net.engio.mbassy.bus.MBassador;
@@ -137,6 +137,15 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
     private boolean runCycle() {
         if (mqttConnection == null) {
             return false;
+        }
+
+        if (!mqttConnection.isConnected()) {
+            try {
+                mqttConnection.connect();
+            } catch (Exception e) {
+                log.error("Could not reconnect the mqtt connection.", e);
+                return false;
+            }
         }
 
         boolean activityPerformed = false;

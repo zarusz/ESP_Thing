@@ -51,3 +51,7 @@ cache:
     timeToLiveSeconds: 3600
     ehcache:
         maxBytesLocalHeap: 16M
+
+control:
+    mqtt:
+        client_id: hub-dev

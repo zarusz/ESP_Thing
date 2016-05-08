@@ -15,6 +15,7 @@ public class WebsocketSecurityConfiguration extends AbstractSecurityWebSocketMes
             .nullDestMatcher().authenticated()
             // matches any destination that starts with /rooms/
             .simpDestMatchers("/topic/**").authenticated()
+            //.simpDestMatchers("/topic/**").anonymous()
             // (i.e. cannot send messages directly to /topic/, /queue/)
             // (i.e. cannot subscribe to /topic/messages/* to get messages sent to
             // /topic/messages-user<id>)

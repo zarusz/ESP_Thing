@@ -4,6 +4,7 @@ import com.zarusz.control.domain.common.EventBus;
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.msg.commands.SwitchCommand;
+import com.zarusz.control.domain.msg.events.SwitchChangedEvent;
 import lombok.Getter;
 
 import javax.persistence.Column;
@@ -26,10 +27,14 @@ public class SwitchFeature extends DeviceFeature {
 	}
 
 	public void setOn(boolean on) {
-		this.on = on;
+        boolean oldValue = this.on;
+        this.on = on;
 
-		SwitchCommand cmd = new SwitchCommand(this, on);
-        EventBus.current().publish(cmd);
+        EventBus.current().publish(new SwitchCommand(this, on));
+
+        if (oldValue != on) {
+            EventBus.current().publish(new SwitchChangedEvent(this, oldValue));
+        }
 	}
 
 	public boolean isOn() {

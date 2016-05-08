@@ -1,7 +1,8 @@
-/// <reference path="../components/common.ng.ts" />
+/// <reference path="../components/common.module.ts" />
 module App {
 
     export var $module = angular.module("controlApp", [
+        Common.$module.name,
         "LocalStorageModule",
         "tmh.dynamicLocale",
         "pascalprecht.translate",

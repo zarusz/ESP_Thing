@@ -1,7 +1,10 @@
 package com.zarusz.control.domain.feature;
 
+import com.zarusz.control.domain.common.EventBus;
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.DeviceFeature;
+import com.zarusz.control.domain.msg.events.HumidityChangedEvent;
+import com.zarusz.control.domain.msg.events.TemperatureChangedEvent;
 import lombok.*;
 import org.joda.time.DateTime;
 
@@ -23,13 +26,15 @@ public class TemperatureSensorFeature extends DeviceFeature {
         super(device, feature);
     }
 
-    public void measureTemperature() {
-        // TODO
-    }
-
     public void updateValue(float value) {
+        float oldValue = temperature;
+
         setTemperature(value);
         // TODO record history
+
+        if (oldValue != temperature) {
+            EventBus.current().publish(new TemperatureChangedEvent(this, oldValue));
+        }
     }
 
     //public float getMeasuredTemperature() {

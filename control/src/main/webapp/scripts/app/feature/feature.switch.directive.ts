@@ -1,32 +1,28 @@
 ///<reference path="..\..\components\common.ng.ts"/>
 ///<reference path="..\..\components\repository\device.service.ts"/>
 ///<reference path="feature.directive.ts"/>
+///<reference path="feature.service.ts"/>
 module App.Feature {
 
     interface ISwitchFeatureScope extends IFeatureScope<Repository.ISwitchFeatureStateModel> {
-
     }
 
-    export class FeatureSwitchDirective extends BaseDirective<ISwitchFeatureScope> {
+    export class FeatureSwitchDirective implements ng.IDirective {
         static $name = "featureSwitch";
-        static $inject = [Repository.DeviceService.$name];
+        static $inject = [
+            Repository.DeviceService.$name,
+            EventBus.$name
+        ];
 
         restrict = "EA";
         templateUrl = "scripts/app/feature/feature.switch.html";
+        replace = true;
 
-        constructor(private deviceService: Repository.DeviceService) {
-            super();
+        constructor(private deviceService: Repository.DeviceService,
+                    private eventBus: IEventBus) {
         }
 
-        onLink(scope: ISwitchFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
-            scope.$watch(
-                (s: ISwitchFeatureScope) => s.feature.state.on,
-                (newValue: boolean, oldValue?: boolean) => {
-                    if (oldValue != newValue)
-                        scope.notifyStateChanged();
-                }
-            );
-        }
-
+        link = (scope: ISwitchFeatureScope, element: ng.IAugmentedJQuery, attributes: ng.IAttributes) => {
+        };
     }
 }

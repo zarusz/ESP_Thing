@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class MovementDetectedEvent extends SensorChangedEvent<MotionSensorFeature> {
+public class MovementDetectedEvent extends TypedFeatureStateChangedEvent<MotionSensorFeature> {
 
     public MovementDetectedEvent() {
     }

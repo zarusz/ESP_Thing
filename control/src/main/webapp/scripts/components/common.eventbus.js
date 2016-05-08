@@ -1,3 +1,4 @@
+/// <reference path="common.ng.ts"/>
 "use strict";
 var App;
 (function (App) {

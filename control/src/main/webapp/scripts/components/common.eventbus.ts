@@ -1,3 +1,4 @@
+/// <reference path="common.ng.ts"/>
 "use strict";
 module App {
 
@@ -51,4 +52,5 @@ module App {
         }
 
     }
+    
 }

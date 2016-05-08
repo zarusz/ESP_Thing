@@ -1,33 +1,28 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 ///<reference path="..\..\components\common.ng.ts"/>
 ///<reference path="..\..\components\repository\device.service.ts"/>
 ///<reference path="feature.directive.ts"/>
+///<reference path="feature.service.ts"/>
 var App;
 (function (App) {
     var Feature;
     (function (Feature) {
-        var FeatureSwitchDirective = (function (_super) {
-            __extends(FeatureSwitchDirective, _super);
-            function FeatureSwitchDirective(deviceService) {
-                _super.call(this);
+        var FeatureSwitchDirective = (function () {
+            function FeatureSwitchDirective(deviceService, eventBus) {
                 this.deviceService = deviceService;
+                this.eventBus = eventBus;
                 this.restrict = "EA";
                 this.templateUrl = "scripts/app/feature/feature.switch.html";
+                this.replace = true;
+                this.link = function (scope, element, attributes) {
+                };
             }
-            FeatureSwitchDirective.prototype.onLink = function (scope, element, attributes) {
-                scope.$watch(function (s) { return s.feature.state.on; }, function (newValue, oldValue) {
-                    if (oldValue != newValue)
-                        scope.notifyStateChanged();
-                });
-            };
             FeatureSwitchDirective.$name = "featureSwitch";
-            FeatureSwitchDirective.$inject = [App.Repository.DeviceService.$name];
+            FeatureSwitchDirective.$inject = [
+                App.Repository.DeviceService.$name,
+                App.EventBus.$name
+            ];
             return FeatureSwitchDirective;
-        }(App.BaseDirective));
+        }());
         Feature.FeatureSwitchDirective = FeatureSwitchDirective;
     })(Feature = App.Feature || (App.Feature = {}));
 })(App || (App = {}));

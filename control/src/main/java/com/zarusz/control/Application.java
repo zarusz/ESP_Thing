@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
-import com.google.common.base.Joiner;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -94,7 +93,7 @@ public class Application {
      * Set the liquibases.scan.packages to avoid an exception from ServiceLocator.
      */
     private static void addLiquibaseScanPackages() {
-        System.setProperty("liquibase.scan.packages", Joiner.on(",").join(
+        System.setProperty("liquibase.scan.packages", String.join(",",
             "liquibase.change", "liquibase.database", "liquibase.parser",
             "liquibase.precondition", "liquibase.datatype",
             "liquibase.serializer", "liquibase.sqlgenerator", "liquibase.executor",

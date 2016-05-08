@@ -3,24 +3,23 @@
 ///<reference path="feature.directive.ts"/>
 module App.Feature {
 
-    interface ISensorTemperatureFeatureScope extends IFeatureScope<Repository.ISensorTemperatureFeatureStateModel> {
-
-    }
-
-    export class FeatureSensorTemperatureDirective extends BaseDirective<ISensorTemperatureFeatureScope> {
+    import ISensorTemperatureFeatureStateModel = App.Repository.ISensorTemperatureFeatureStateModel;
+    export class FeatureSensorTemperatureDirective implements ng.IDirective {
         static $name = "featureSensorTemperature";
-        static $inject = [Repository.DeviceService.$name];
+        static $inject = [
+            Repository.DeviceService.$name,
+            EventBus.$name
+        ];
 
         restrict = "EA";
         templateUrl = "scripts/app/feature/feature.sensor.temperature.html";
+        replace = true;
 
-        constructor(private deviceService: Repository.DeviceService) {
-            super();
+        constructor(private deviceService: Repository.DeviceService,
+                    private eventBus: IEventBus) {
         }
 
-        onLink(scope: ISensorTemperatureFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
-            //scope.$watch((s: ISensorTemperatureFeatureScope) => s.feature.state.on, () => scope.notifyStateChanged());
-        }
-
+        link = (scope: IFeatureScope<Repository.ISensorTemperatureFeatureStateModel>, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) => {
+        };
     }
 }

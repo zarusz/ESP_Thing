@@ -1,7 +1,8 @@
-/// <reference path="../components/common.ng.ts" />
+/// <reference path="../components/common.module.ts" />
 var App;
 (function (App) {
     App.$module = angular.module("controlApp", [
+        App.Common.$module.name,
         "LocalStorageModule",
         "tmh.dynamicLocale",
         "pascalprecht.translate",

@@ -1,5 +1,6 @@
 package com.zarusz.control.app.comm;
 
+import com.zarusz.control.app.comm.messages.MessageReceivedEvent;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
 import net.engio.mbassy.bus.MBassador;
 import net.engio.mbassy.listener.Handler;
@@ -17,17 +18,18 @@ public class DeviceHeartbeatHandler  extends AbstractHandler {
     @Handler
     public void onDeviceEvents(MessageReceivedEvent<DeviceMessageProtos.DeviceEvents> event) {
         if (event.getTopic() != Topics.DeviceEvents) {
+            return;
         }
 
         DeviceMessageProtos.DeviceEvents msg = event.getMessage();
         if (msg.hasDeviceHearbeatEvent()) {
-            log.info("Received DeviceHearbeatEvent for device {} with sequence {}.", msg.getDeviceHearbeatEvent().getDeviceId(), msg.getDeviceHearbeatEvent().getSequenceId());
+            log.debug("Received DeviceHearbeatEvent for device {} with sequence {}.", msg.getDeviceHearbeatEvent().getDeviceId(), msg.getDeviceHearbeatEvent().getSequenceId());
         }
         if (msg.hasDeviceConnectedEvent()) {
-            log.info("Received DeviceConnectedEvent for device {}.", msg.getDeviceConnectedEvent().getDeviceId());
+            log.debug("Received DeviceConnectedEvent for device {}.", msg.getDeviceConnectedEvent().getDeviceId());
         }
         if (msg.hasDeviceDisconnectedEvent()) {
-            log.info("Received DeviceDisconnectedEvent for device {}.", msg.getDeviceConnectedEvent().getDeviceId());
+            log.debug("Received DeviceDisconnectedEvent for device {}.", msg.getDeviceConnectedEvent().getDeviceId());
         }
     }
 }

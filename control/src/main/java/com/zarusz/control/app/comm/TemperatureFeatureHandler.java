@@ -1,7 +1,7 @@
 package com.zarusz.control.app.comm;
 
+import com.zarusz.control.app.comm.messages.MessageReceivedEvent;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
-import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.domain.feature.HumiditySensorFeature;
 import com.zarusz.control.domain.feature.TemperatureSensorFeature;
@@ -33,7 +33,7 @@ public class TemperatureFeatureHandler extends AbstractHandler {
 
         if (e.getMessage().hasTemperatureMeasureEvent()) {
             DeviceMessageProtos.DeviceTemperatureMeasuredEvent t = e.getMessage().getTemperatureMeasureEvent();
-            log.info("The temperature is {} C.", t.getValue());
+            log.debug("The temperature is {} C.", t.getValue());
 
             HubDevice device = deviceRepo.findHubByGuid(t.getDeviceId());
             if (device != null) {
@@ -43,9 +43,10 @@ public class TemperatureFeatureHandler extends AbstractHandler {
                 }
             }
         }
+
         if (e.getMessage().hasHumidityMeasureEvent()) {
             DeviceMessageProtos.DeviceHumidityMeasuredEvent h = e.getMessage().getHumidityMeasureEvent();
-            log.info("The humidity is {} %.", h.getValue());
+            log.debug("The humidity is {} %.", h.getValue());
             HubDevice device = deviceRepo.findHubByGuid(h.getDeviceId());
             if (device != null) {
                 HumiditySensorFeature f = (HumiditySensorFeature) device.getFeatureByPort(h.getPort());

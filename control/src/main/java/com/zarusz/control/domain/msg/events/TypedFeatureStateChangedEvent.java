@@ -10,14 +10,15 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SensorChangedEvent<T extends DeviceFeature> extends Event {
+public class TypedFeatureStateChangedEvent<T extends DeviceFeature> extends Event implements FeatureStateChangedEvent {
 
     private T feature;
 
-    public SensorChangedEvent() {
+    public TypedFeatureStateChangedEvent() {
     }
 
-    public SensorChangedEvent(T feature) {
+    public TypedFeatureStateChangedEvent(T feature) {
         this.feature = feature;
     }
+
 }

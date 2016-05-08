@@ -10,6 +10,7 @@ module App {
         static rootScope = "$rootScope";
         static scope = "$scope";
         static http = "$http";
+        static cookies = "$cookies";
         static q = "$q";
         static timeout = "$timeout";
 
@@ -17,6 +18,10 @@ module App {
 
         static state = "$state";
         static stateParams = "$stateParams";
+
+        //
+
+        static localStorageService = "localStorageService";
     }
 
     export class NgEvent {

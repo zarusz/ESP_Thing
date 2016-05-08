@@ -1,19 +1,45 @@
-/// <reference path="../../components/common.ng.ts" />
+/// <reference path="../../components/common.module.ts" />
 ///<reference path="feature.directive.ts"/>
 ///<reference path="feature.switch.directive.ts"/>
 ///<reference path="feature.dim.directive.ts"/>
 ///<reference path="feature.remote.directive.ts"/>
 ///<reference path="feature.sensor.temperature.directive.ts"/>
 ///<reference path="feature.sensor.humidity.directive.ts"/>
+///<reference path="feature.service.ts"/>
 
 module App.Feature {
 
-    export var $module = angular.module("Feature", []);
-    $module.directive(FeatureDirective.$name, [Repository.DeviceService.$name, NgSvc.timeout, (deviceService, timeout) => new FeatureDirective(deviceService, timeout)]);
-    $module.directive(FeatureSwitchDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureSwitchDirective(deviceService)]);
-    $module.directive(FeatureDimDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureDimDirective(deviceService)]);
-    $module.directive(FeatureRemoteDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureRemoteDirective(deviceService)]);
-    $module.directive(FeatureSensorTemperatureDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureSensorTemperatureDirective(deviceService)]);
-    $module.directive(FeatureSensorHumidityDirective.$name, [Repository.DeviceService.$name, (deviceService) => new FeatureSensorHumidityDirective(deviceService)]);
+    export var $module = angular.module("Feature", [
+        Common.$module.name
+    ]);
 
+    $module.directive(FeatureDirective.$name, [
+        Repository.DeviceService.$name, NgSvc.timeout, EventBus.$name,
+        (deviceService, timeout, eventBus) => new FeatureDirective(deviceService, timeout, eventBus)
+    ]);
+
+    $module.directive(FeatureSwitchDirective.$name, [
+        Repository.DeviceService.$name, EventBus.$name,
+        (deviceService, eventBus) => new FeatureSwitchDirective(deviceService, eventBus)
+    ]);
+
+    $module.directive(FeatureDimDirective.$name, [
+        Repository.DeviceService.$name,
+        (deviceService) => new FeatureDimDirective(deviceService)
+    ]);
+
+    $module.directive(FeatureRemoteDirective.$name, [
+        Repository.DeviceService.$name,
+        (deviceService) => new FeatureRemoteDirective(deviceService)
+    ]);
+
+    $module.directive(FeatureSensorTemperatureDirective.$name, [
+        Repository.DeviceService.$name, EventBus.$name,
+        (deviceService, eventBus) => new FeatureSensorTemperatureDirective(deviceService, eventBus)
+    ]);
+
+    $module.directive(FeatureSensorHumidityDirective.$name, [
+        Repository.DeviceService.$name,
+        (deviceService) => new FeatureSensorHumidityDirective(deviceService)
+    ]);
 }

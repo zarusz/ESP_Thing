@@ -1,10 +1,9 @@
 package com.zarusz.control.app.comm;
 
+import com.zarusz.control.app.comm.messages.MessageReceivedEvent;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
 import com.zarusz.control.domain.device.HubDevice;
-import com.zarusz.control.domain.feature.HumiditySensorFeature;
 import com.zarusz.control.domain.feature.IRInFeature;
-import com.zarusz.control.domain.feature.TemperatureSensorFeature;
 import com.zarusz.control.repository.DeviceRepository;
 import net.engio.mbassy.bus.MBassador;
 import net.engio.mbassy.listener.Handler;
@@ -35,7 +34,7 @@ public class IRReceiverFeatureHandler extends AbstractHandler {
             return;
         }
         DeviceMessageProtos.DeviceIRReceivedEvent ir = e.getMessage().getIrReceivedEvent();
-        log.info("Received IR signal on port {} with data {}, bits {}, format {}.", ir.getPort(), ir.getValue().getData(), ir.getValue().getBits(), ir.getValue().getFormat());
+        log.debug("Received IR signal on port {} with data {}, bits {}, format {}.", ir.getPort(), ir.getValue().getData(), ir.getValue().getBits(), ir.getValue().getFormat());
 
         HubDevice device = deviceRepo.findHubByGuid(ir.getDeviceId());
         if (device != null) {
