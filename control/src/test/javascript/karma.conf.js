@@ -39,6 +39,7 @@ module.exports = function (config) {
             // endbower
             'main/webapp/scripts/components/common.ng.js',
             'main/webapp/scripts/components/common.eventbus.js',
+            'main/webapp/scripts/components/common.module.js',
 
             'main/webapp/scripts/app/app.module.js',
             'main/webapp/scripts/app/app.constants.js',
