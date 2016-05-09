@@ -1,6 +1,5 @@
 #include "SwitchFeatureController.h"
 
-
 #define MUX_EN 16
 #define MUX_SIG 12
 #define MUX_A0 13

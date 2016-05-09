@@ -6,7 +6,7 @@ TempFeatureController::TempFeatureController(int port, int portForHumidity, Devi
   this->portForHumidity = portForHumidity;
   this->pin = pin;
   lastMsgMs = 0;
-  updateIntervalMs = 10000;
+  updateIntervalMs = 30000;
   dht.begin();
 }
 
