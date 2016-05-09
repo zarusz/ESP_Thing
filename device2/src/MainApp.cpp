@@ -74,6 +74,7 @@ void MainApp::SetupWifi()
 	Serial.print("Connecting to ");
 	Serial.println(deviceConfig.networkName);
 
+	WiFi.mode(WIFI_STA);
 	WiFi.begin(deviceConfig.networkName, deviceConfig.networkPassword);
 	while (WiFi.status() != WL_CONNECTED) {
 		delay(500);
