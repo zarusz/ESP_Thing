@@ -6,40 +6,60 @@
             </md-button>
             <h1>Control</h1>
             <span flex></span>
-            <md-button class="md-icon-button" aria-label="More">
-                <md-icon class="fa fa-ellipsis-v fa-lg"></md-icon>
-            </md-button>
+            <md-menu>
+                <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="More">
+                    <md-icon md-menu-origin class="fa fa-fw fa-ellipsis-v fa-lg"></md-icon>
+                </md-button>
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button ng-click="actionBar.reload()">
+                            <md-icon md-menu-align-target class="fa fa-fw fa-refresh fa-lg"></md-icon>
+                            Reload App
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
         </div>
     </md-toolbar>
     <div flex layout="row">
-        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-                <md-toolbar class="md-theme-indigo">
-                    <div class="md-toolbar-tools">
-                        <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="Menu">
-                            <md-icon class="fa fa-bars fa-lg"></md-icon>
-                        </md-button>
-                        <h1>Menu</h1>
-                        <span flex></span>
-                        <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="More">
-                            <md-icon class="fa fa-times-circle-o fa-lg"></md-icon>
-                        </md-button>
-                    </div>
-                </md-toolbar>
-                <md-content flex layout="column">
+        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
+                    md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar class="md-theme-indigo">
+                <div class="md-toolbar-tools">
+                    <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="Menu">
+                        <md-icon class="fa fa-bars fa-lg"></md-icon>
+                    </md-button>
+                    <h1>Menu</h1>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="More">
+                        <md-icon class="fa fa-times-circle-o fa-lg"></md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content flex layout="column">
+                <div ng-if="actionBar.isAuthenticated()" flex layout="column">
+                    <!--
                     <md-subheader class="md-no-sticky">Explore</md-subheader>
                     <md-list-item ng-click="actionBar.navigateTo('site.place')">
                         <md-icon class="fa fa-building fa-lg"></md-icon>
                         <p>Rooms</p>
                     </md-list-item>
                     <md-divider></md-divider>
+                    -->
                     <md-subheader class="md-no-sticky">{{actionBar.rootPartition.displayName}}</md-subheader>
-                    <md-list-item ng-click="actionBar.navigateToPartition(p)" ng-repeat="p in actionBar.rootPartition.children | orderBy : 'displayPriority'">
+                    <md-list-item ng-click="actionBar.navigateToPartition(p)"
+                                  ng-repeat="p in actionBar.rootPartition.children | orderBy : 'displayPriority'">
                         <md-icon class="fa fa-tags fa-lg"></md-icon>
                         <p>{{p.displayName}}</p>
                     </md-list-item>
                     <md-divider></md-divider>
-                </md-content>
-            </md-sidenav>
+                    <md-list-item ng-click="actionBar.logout()">
+                        <md-icon class="fa fa-fw fa-sign-out fa-lg"></md-icon>
+                        <p>Sign out</p>
+                    </md-list-item>
+                </div>
+            </md-content>
+        </md-sidenav>
         <div flex ui-view layout="column">
         </div>
     </div>

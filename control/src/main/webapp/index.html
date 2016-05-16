@@ -3,9 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>control</title>
-    <meta name="description" content="">
+
+    <title>Home Control</title>
+
+    <meta name="description" content="Control your intelligent home">
     <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" type="image/png" href="assets/images/ic_lightbulb_outline_black_48dp.png"/>
+
+    <!-- W3C and Chrome -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- iOS specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-startup-image" href="assets/images/ic_lightbulb_outline_black_48dp.png">
+    <link rel="apple-touch-icon" href="assets/images/ic_lightbulb_outline_black_48dp.png">
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css assets/styles/vendor.css -->
     <!-- bower:css -->
@@ -84,8 +99,8 @@
 <script src="scripts/components/repository/device.service.js"></script>
 <script src="scripts/components/repository/repository.module.js"></script>
 
-<script src="scripts/components/auth/auth.service.js"></script>
 <script src="scripts/components/auth/principal.service.js"></script>
+<script src="scripts/components/auth/auth.service.js"></script>
 <script src="scripts/components/auth/authority.directive.js"></script>
 <script src="scripts/components/auth/services/account.service.js"></script>
 <script src="scripts/components/auth/services/activate.service.js"></script>

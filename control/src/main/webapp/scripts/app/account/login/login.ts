@@ -16,14 +16,8 @@ module App {
                     templateUrl: "scripts/app/account/login/login.html",
                     controller: LoginCtrl,
                     controllerAs: "lg",
-                    //views: {
-                    //    "content@": {
-                    //        templateUrl: "scripts/app/account/login/login.html",
-                    //        controller: "LoginController"
-                    //    }
-                    //},
                     resolve: {
-                        translatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
+                        translatePartialLoader: [NgSvc.translate, NgSvc.translatePartialLoader, ($translate, $translatePartialLoader) => {
                             $translatePartialLoader.addPart("login");
                             return $translate.refresh();
                         }]

@@ -1,5 +1,6 @@
 ///<reference path="..\components\common.ng.ts" />
 ///<reference path="..\components\common.eventbus.ts"/>
+///<reference path="..\components\auth\auth.service.ts"/>
 ///<reference path="app.module.ts"/>
 ///<reference path="..\components\sidenav\sidenav.ctrl.ts"/>
 ///<reference path="place\place.controller.ts"/>
@@ -109,12 +110,11 @@ module App.Main {
             controller: ActionBarCtrl,
             controllerAs: "actionBar",
             resolve: {
-                authorize: ["Auth", (Auth) => {
-                    return Auth.authorize();
-                }
-                ],
-                translatePartialLoader: ["$translate", "$translatePartialLoader", ($translate, $translatePartialLoader) => {
-                    $translatePartialLoader.addPart("global");
+                authorize: [Auth.Authenticator.$name, (auth: Auth.Authenticator) => {
+                    return auth.authorize(false);
+                }],
+                translatePartialLoader: [NgSvc.translate, NgSvc.translatePartialLoader, (translate, translatePartialLoader) => {
+                    translatePartialLoader.addPart("global");
                 }]
             }
         };

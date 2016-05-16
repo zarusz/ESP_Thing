@@ -1,0 +1,33 @@
+{
+    "name": "Home Control",
+    "start_url": "index.html",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "description": "Control your intelligent home",
+    "icons": [
+        {
+            "src": "/assets/images/ic_lightbulb_outline_black_18dp.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "density": 1.5
+        },
+        {
+            "src": "/assets/images/ic_lightbulb_outline_black_24dp.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "density": 2.0
+        },
+        {
+            "src": "/assets/images/ic_lightbulb_outline_black_36dp.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "density": 3.0
+        },
+        {
+            "src": "/assets/images/ic_lightbulb_outline_black_48dp.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "density": 4.0
+        }
+    ]
+}

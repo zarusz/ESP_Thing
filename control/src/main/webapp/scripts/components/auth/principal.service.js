@@ -11,11 +11,26 @@ var App;
             return Identity;
         }());
         Auth.Identity = Identity;
+        var PrincipalChangedEvent = (function () {
+            function PrincipalChangedEvent(principal) {
+                this.principal = principal;
+            }
+            PrincipalChangedEvent.prototype.getId = function () {
+                return "PrincipalChangedEvent";
+            };
+            PrincipalChangedEvent.prototype.handle = function (handler) {
+                handler.onPrincipalChanged(this);
+            };
+            PrincipalChangedEvent.event = new PrincipalChangedEvent(null);
+            return PrincipalChangedEvent;
+        }());
+        Auth.PrincipalChangedEvent = PrincipalChangedEvent;
         var Principal = (function () {
-            function Principal($q, account, tracker) {
+            function Principal($q, account, tracker, eventBus) {
                 this.$q = $q;
                 this.account = account;
                 this.tracker = tracker;
+                this.eventBus = eventBus;
                 this._authenticated = false;
             }
             Principal.prototype.isIdentityResolved = function () {
@@ -44,6 +59,7 @@ var App;
             Principal.prototype.authenticate = function (identity) {
                 this._identity = identity;
                 this._authenticated = identity !== null;
+                this.eventBus.publish(new PrincipalChangedEvent(this));
             };
             Principal.prototype.identity = function (force) {
                 var _this = this;
@@ -60,20 +76,18 @@ var App;
                 // retrieve the identity data from the server, update the identity object, and then resolve.
                 this.account.get().$promise
                     .then(function (account1) {
-                    _this._identity = account1.data;
-                    _this._authenticated = true;
+                    _this.authenticate(account1.data);
                     deferred.resolve(_this._identity);
                     _this.tracker.connect();
                 })
                     .catch(function () {
-                    _this._identity = null;
-                    _this._authenticated = false;
+                    _this.authenticate(null);
                     deferred.resolve(_this._identity);
                 });
                 return deferred.promise;
             };
             Principal.$name = "Principal";
-            Principal.$inject = [App.NgSvc.q, "Account", "Tracker"];
+            Principal.$inject = [App.NgSvc.q, "Account", "Tracker", App.EventBus.$name];
             return Principal;
         }());
         Auth.Principal = Principal;

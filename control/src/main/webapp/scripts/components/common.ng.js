@@ -14,11 +14,14 @@ var App;
         NgSvc.cookies = "$cookies";
         NgSvc.q = "$q";
         NgSvc.timeout = "$timeout";
+        NgSvc.window = "$window";
         // Angular UI Router
         NgSvc.state = "$state";
         NgSvc.stateParams = "$stateParams";
         //
         NgSvc.localStorageService = "localStorageService";
+        NgSvc.translate = "$translate";
+        NgSvc.translatePartialLoader = "$translatePartialLoader";
         return NgSvc;
     }());
     App.NgSvc = NgSvc;

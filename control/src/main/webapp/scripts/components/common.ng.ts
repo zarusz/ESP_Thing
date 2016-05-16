@@ -13,6 +13,7 @@ module App {
         static cookies = "$cookies";
         static q = "$q";
         static timeout = "$timeout";
+        static window = "$window";
 
         // Angular UI Router
 
@@ -22,6 +23,8 @@ module App {
         //
 
         static localStorageService = "localStorageService";
+        static translate = "$translate";
+        static translatePartialLoader = "$translatePartialLoader";
     }
 
     export class NgEvent {

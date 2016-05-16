@@ -9,7 +9,7 @@ var App;
             parent: "site",
             url: "/place",
             data: {
-                roles: []
+                roles: ["ROLE_USER"]
             },
             templateUrl: "scripts/app/main/main.html",
             controller: App.PlaceCtrl,

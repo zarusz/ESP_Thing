@@ -6,14 +6,13 @@ var App;
     var Home;
     (function (Home) {
         Home.$module = angular.module("Home", []);
-        Home.$module
-            .config(function ($stateProvider) {
+        Home.$module.config(function ($stateProvider) {
             $stateProvider
                 .state("home", {
                 parent: "site",
                 url: "/",
                 data: {
-                    roles: []
+                    roles: ["ROLE_USER"]
                 },
                 templateUrl: "scripts/app/home/home.html",
                 controller: Home.HomeCtrl,

@@ -23,5 +23,8 @@
             </md-list-item>
             <md-divider></md-divider>
         </div>
+        <div ng-if="p.devices.length === 0" class="text-center">
+            <i class="fa fa-fw fa-battery-empty fw-lg" aria-hidden="true"></i> No devices here.
+        </div>
     </md-list>
 </md-content>
