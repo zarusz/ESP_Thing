@@ -48,8 +48,8 @@ module.exports = function (config) {
             'main/webapp/scripts/components/repository/device.service.js',
             'main/webapp/scripts/components/repository/repository.module.js',
 
-            'main/webapp/scripts/components/auth/auth.service.js',
             'main/webapp/scripts/components/auth/principal.service.js',
+            'main/webapp/scripts/components/auth/auth.service.js',
             'main/webapp/scripts/components/auth/authority.directive.js',
             'main/webapp/scripts/components/auth/services/account.service.js',
             'main/webapp/scripts/components/auth/services/activate.service.js',

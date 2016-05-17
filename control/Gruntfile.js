@@ -152,11 +152,15 @@ module.exports = function (grunt) {
             html: ['<%= yeoman.dist %>/**/*.html'],
             css: ['<%= yeoman.dist %>/assets/styles/**/*.css'],
             js: ['<%= yeoman.dist %>/scripts/**/*.js'],
+            manifest: ['<%= yeoman.dist %>/manifest.json'],
             options: {
                 assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/assets/styles', '<%= yeoman.dist %>/assets/images', '<%= yeoman.dist %>/assets/fonts'],
                 patterns: {
                     js: [
                         [/(assets\/images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
+                    ],
+                    manifest: [
+                        [/(assets\/images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JSON to reference our revved images']
                     ]
                 },
                 dirs: ['<%= yeoman.dist %>']
@@ -251,6 +255,7 @@ module.exports = function (grunt) {
                     cwd: 'src/main/webapp',
                     dest: '<%= yeoman.dist %>',
                     src: [
+                        'manifest.json',
                         '*.html',
                         'scripts/**/*.html',
                         'assets/images/**/*.{png,gif,webp,jpg,jpeg,svg}',
