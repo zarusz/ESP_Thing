@@ -5,6 +5,7 @@
 ///<reference path="..\components\sidenav\sidenav.ctrl.ts"/>
 ///<reference path="place\place.controller.ts"/>
 ///<reference path="..\app\feature\feature.ts"/>
+///<reference path="..\app\status\status.ts"/>
 ///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\app\home\home.ts"/>
 module App.Main {
@@ -13,6 +14,7 @@ module App.Main {
         App.$module.name,
         Repository.$module.name,
         Partition.$module.name,
+        Status.$module.name,
         Feature.$module.name,
         Home.$module.name
     ]);

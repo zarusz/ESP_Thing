@@ -24,6 +24,17 @@ public class DeviceRepositoryImpl extends SimpleJpaRepository<Device, Integer> i
     }
 
     @Override
+    public List<HubDevice> findHubAll() {
+        final String q = "select h from HubDevice h";
+
+        List<HubDevice> devices = em
+            .createQuery(q, HubDevice.class)
+            .getResultList();
+
+        return devices;
+    }
+
+    @Override
     public List<Device> findAllInPartition(int partitionId) {
         final String q = "select distinct d from Device d left join fetch d.features df left join fetch df.feature f where d.partition.id = :partitionId";
 

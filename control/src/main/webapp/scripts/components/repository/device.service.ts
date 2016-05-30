@@ -39,6 +39,7 @@ module App.Repository {
         id: number;
         displayName: string;
         features: Array<IFeatureModel<IFeatureStateModel>>;
+        lastOnline?: string;
     }
 
     export interface IFeatureStateChangedEventHandler {
@@ -78,6 +79,10 @@ module App.Repository {
             this.topicService.connect().then(() => {
                 this.topicService.subscribe("/topic/feature-state");
             });
+        }
+
+        getHubAll() {
+            return this.http.get<Array<IDeviceModel>>("/api/device/status");
         }
 
         getAllByPartitionId(partitionId: number) {

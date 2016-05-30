@@ -57,6 +57,9 @@ var App;
         ActionBarCtrl.prototype.reload = function () {
             this.window.location.reload(true);
         };
+        ActionBarCtrl.prototype.goStatus = function () {
+            this.state.go("status");
+        };
         ActionBarCtrl.prototype.logout = function () {
             this.closeSideNav();
             this.auth.logout();

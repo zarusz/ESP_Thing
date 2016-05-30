@@ -53,6 +53,11 @@
                         <p>{{p.displayName}}</p>
                     </md-list-item>
                     <md-divider></md-divider>
+                    <md-list-item ng-click="actionBar.goStatus()">
+                        <md-icon class="fa fa-fw fa-cogs fa-lg"></md-icon>
+                        <p>Status</p>
+                    </md-list-item>
+                    <md-divider></md-divider>
                     <md-list-item ng-click="actionBar.logout()">
                         <md-icon class="fa fa-fw fa-sign-out fa-lg"></md-icon>
                         <p>Sign out</p>

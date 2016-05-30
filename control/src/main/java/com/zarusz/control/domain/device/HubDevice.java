@@ -2,8 +2,11 @@ package com.zarusz.control.domain.device;
 
 import lombok.*;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +20,10 @@ import java.util.Set;
 public class HubDevice extends Device {
 
     private String address;
+
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @Column(name = "last_online", nullable = true)
+    private DateTime lastOnline;
 
     @BatchSize(size = 20)
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "hub", orphanRemoval = true, fetch = FetchType.EAGER)
@@ -57,5 +64,7 @@ public class HubDevice extends Device {
         return null;
     }
 
-
+    public void onReportActivity() {
+        lastOnline = DateTime.now();
+    }
 }

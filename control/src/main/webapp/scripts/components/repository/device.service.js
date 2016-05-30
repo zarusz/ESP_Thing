@@ -33,6 +33,9 @@ var App;
                     _this.topicService.subscribe("/topic/feature-state");
                 });
             }
+            DeviceService.prototype.getHubAll = function () {
+                return this.http.get("/api/device/status");
+            };
             DeviceService.prototype.getAllByPartitionId = function (partitionId) {
                 return this.http.get("/api/device", { params: { partitionId: partitionId } });
             };

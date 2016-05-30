@@ -38,6 +38,7 @@ public class IRReceiverFeatureHandler extends AbstractHandler {
 
         HubDevice device = deviceRepo.findHubByGuid(ir.getDeviceId());
         if (device != null) {
+            device.onReportActivity();
             IRInFeature irIn = (IRInFeature) device.getFeatureByPort(ir.getPort());
             if (irIn != null) {
                 //irIn.updateValue(t.getValue());

@@ -69,6 +69,10 @@ module App {
             this.window.location.reload(true);
         }
 
+        goStatus() {
+            this.state.go("status");
+        }
+
         logout() {
             this.closeSideNav();
             this.auth.logout();

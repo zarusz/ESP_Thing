@@ -37,6 +37,7 @@ public class TemperatureFeatureHandler extends AbstractHandler {
 
             HubDevice device = deviceRepo.findHubByGuid(t.getDeviceId());
             if (device != null) {
+                device.onReportActivity();
                 TemperatureSensorFeature f = (TemperatureSensorFeature) device.getFeatureByPort(t.getPort());
                 if (f != null) {
                     f.updateValue(t.getValue());
@@ -49,6 +50,7 @@ public class TemperatureFeatureHandler extends AbstractHandler {
             log.debug("The humidity is {} %.", h.getValue());
             HubDevice device = deviceRepo.findHubByGuid(h.getDeviceId());
             if (device != null) {
+                device.onReportActivity();
                 HumiditySensorFeature f = (HumiditySensorFeature) device.getFeatureByPort(h.getPort());
                 if (f != null) {
                     f.updateValue(h.getValue());

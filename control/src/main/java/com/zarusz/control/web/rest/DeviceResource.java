@@ -2,9 +2,11 @@ package com.zarusz.control.web.rest;
 
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.DeviceFeature;
+import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.domain.feature.Feature;
 import com.zarusz.control.repository.DeviceRepository;
 import com.zarusz.control.web.rest.dto.DeviceDTO;
+import com.zarusz.control.web.rest.dto.DeviceDescDTO;
 import com.zarusz.control.web.rest.dto.feature.FeatureStateDTO;
 import com.zarusz.control.web.rest.util.ResourceNotFoundException;
 import org.slf4j.Logger;
@@ -29,6 +31,17 @@ public class DeviceResource {
 
     @Inject
     private DeviceRepository deviceRepo;
+
+    @RequestMapping(value = "/device/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<DeviceDescDTO> getByPartition() {
+
+        List<HubDevice> devices = deviceRepo.findHubAll();
+
+        return devices
+            .stream()
+            .map(DeviceDescDTO::new)
+            .collect(Collectors.toList());
+    }
 
     @RequestMapping(value = "/device", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DeviceDTO> getByPartition(@RequestParam("partitionId") int partitionId) {

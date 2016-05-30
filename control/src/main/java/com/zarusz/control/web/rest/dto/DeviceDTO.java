@@ -12,12 +12,7 @@ import java.util.stream.Collectors;
  * Created by Tomasz on 9/14/2015.
  */
 @Data
-public class DeviceDTO {
-    private Integer id;
-    private String type;
-    private String displayName;
-    private Integer displayPriority;
-    private String displayIcon;
+public class DeviceDTO extends DeviceDescDTO {
     private List<FeatureDTO> features;
     private List<DeviceDTO> children;
 
@@ -25,11 +20,7 @@ public class DeviceDTO {
     }
 
     public DeviceDTO(Device e) {
-        id = e.getId();
-        type = e instanceof HubDevice ? "hub" : "device";
-        displayName = e.getDisplayName();
-        displayPriority = e.getDisplayPriority();
-        displayIcon = e.getDisplayIcon();
+        super(e);
         features = e.getFeatures().stream().map(FeatureDTO::new).collect(Collectors.toList());
         if (e instanceof HubDevice) {
             HubDevice hubDevice = (HubDevice) e;
