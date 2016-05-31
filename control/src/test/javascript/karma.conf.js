@@ -125,6 +125,8 @@ module.exports = function (config) {
 
             'main/webapp/scripts/app/partition/partition.controller.js',
             'main/webapp/scripts/app/partition/partition.js',
+            'main/webapp/scripts/app/status/status.controller.js',
+            'main/webapp/scripts/app/status/status.js',
 
             'main/webapp/scripts/app/actionbar/actionbar.ctrl.js',
 
