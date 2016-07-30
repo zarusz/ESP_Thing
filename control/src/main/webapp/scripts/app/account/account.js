@@ -2,8 +2,10 @@
 'use strict';
 var App;
 (function (App) {
-    App.$module.config(function ($stateProvider) {
-        $stateProvider.state("account", {
+    App.$module
+        .config(function ($stateProvider) {
+        $stateProvider
+            .state("account", {
             abstract: true,
             parent: "site"
         });

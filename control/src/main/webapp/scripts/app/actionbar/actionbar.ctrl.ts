@@ -6,6 +6,7 @@ module App {
 
     export class ActionBarCtrl implements Auth.IPrincipalChangedEventHandler {
         static $inject = ["$mdSidenav", NgSvc.state, NgSvc.scope, Repository.PartitionService.$name, Auth.Principal.$name, Auth.Authenticator.$name, NgSvc.window, EventBus.$name];
+        static $as = "actionBar";
 
         rootPartition: Repository.PartitionModel;
 
@@ -19,23 +20,21 @@ module App {
                     private eventBus: IEventBus) {
 
             this.loadData();
-            //var _this = this;
-            //this.toggleSideNav = this.$mdUtil.debounce(() => {
-            //    _this.getSideNav().toggle();
-            //}, 200);
 
             eventBus.subscribe(Auth.PrincipalChangedEvent.event, this);
             scope.$on(NgEvent.destroy, () => eventBus.unsubscribe(Auth.PrincipalChangedEvent.event, this));
         }
 
         private loadData() {
+            this.partitionService.loadRoot().then(r => {
+                this.rootPartition = r;
+            });
+/*
             if (this.principal.isAuthenticated()) {
                 this.principal.identity(false).then(() => {
-                    this.partitionService.loadRoot().then(r => {
-                        this.rootPartition = r.data;
-                    });
                 });
             }
+ */
         }
 
         onPrincipalChanged(e: Auth.PrincipalChangedEvent) {

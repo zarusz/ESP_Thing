@@ -85,24 +85,41 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
         super.close();
     }
 
-    protected void publishMessage(PublishMessageCommand cmd) {
+    protected boolean publishMessageToMQTT(PublishMessageCommand cmd) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(256);
         try {
             cmd.getMessage().writeTo(outputStream);
         } catch (IOException e) {
             log.error("Could not serialize message.", e);
-            return;
+            return false;
         }
 
         try {
             mqttConnection.publish(cmd.getTopic(), outputStream.toByteArray(), QoS.AT_LEAST_ONCE, false);
         } catch (Exception e) {
             log.error("Could not publish message to topic {}.", cmd.getTopic(), e);
-            return;
+            return false;
         }
+        return true;
     }
 
-    protected <T extends MessageLite> T readMessage(String topic, byte[] payload) throws InvalidProtocolBufferException {
+    protected boolean readMessageFromMQTT() {
+        try {
+            org.fusesource.mqtt.client.Message msg = mqttConnection.receive(10, TimeUnit.MILLISECONDS);
+            if (msg != null) {
+                MessageLite typedMsg = deserializeMessage(msg.getTopic(), msg.getPayload());
+                if (typedMsg != null) {
+                    dispatchQueue.add(new MessageReceivedEvent(msg.getTopic(), typedMsg));
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Could not receive a message.", e);
+        }
+        return false;
+    }
+
+    protected <T extends MessageLite> T deserializeMessage(String topic, byte[] payload) throws InvalidProtocolBufferException {
         T typedMsg = null;
         switch (topic) {
             case Topics.DeviceDescription:
@@ -111,8 +128,9 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
             case Topics.DeviceEvents:
                 typedMsg = (T) DeviceMessageProtos.DeviceEvents.parseFrom(payload);
                 break;
+            default:
+                log.warn("Unsupported topic {}", topic);
         }
-
         return typedMsg;
     }
 
@@ -140,45 +158,37 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
         }
 
         if (!mqttConnection.isConnected()) {
-            try {
-                mqttConnection.connect();
-            } catch (Exception e) {
-                log.error("Could not reconnect the mqtt connection.", e);
-                return false;
-            }
+            log.warn("Not connected to MQTT.");
+            return false;
         }
 
         boolean activityPerformed = false;
 
+        // Publish all local commands into MQTT.
         PublishMessageCommand publishCmd;
-        while ((publishCmd = publishQueue.poll()) != null) {
-            publishMessage(publishCmd);
+        while ((publishCmd = publishQueue.peek()) != null) {
+            if (publishMessageToMQTT(publishCmd)) {
+                activityPerformed = true;
+                publishQueue.poll();
+            }
+        }
+
+        // Retrieve messages from MQTT into local queue
+        if (readMessageFromMQTT()) {
             activityPerformed = true;
         }
 
-        try {
-            org.fusesource.mqtt.client.Message msg = mqttConnection.receive(10, TimeUnit.MILLISECONDS);
-            if (msg != null) {
-                MessageLite typedMsg = readMessage(msg.getTopic(), msg.getPayload());
-                if (typedMsg != null) {
-                    dispatchQueue.add(new MessageReceivedEvent(msg.getTopic(), typedMsg));
-                    activityPerformed = true;
-                }
-            }
-        } catch (Exception e) {
-            log.error("Could not receive a message.", e);
-        }
-
+        // Dispatch messaged locally
         MessageReceivedEvent receivedEvent;
-        while((receivedEvent = dispatchQueue.poll()) != null) {
-            dispatchMessage(receivedEvent);
+        while ((receivedEvent = dispatchQueue.poll()) != null) {
+            dispatchMessageLocally(receivedEvent);
             activityPerformed = true;
         }
 
         return activityPerformed;
     }
 
-    private void dispatchMessage(MessageReceivedEvent receivedEvent) {
+    private boolean dispatchMessageLocally(MessageReceivedEvent receivedEvent) {
 
         DefaultTransactionDefinition def = new DefaultTransactionDefinition();
         def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
@@ -187,11 +197,13 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
         try {
             // execute your business logic here
             bus.publish(receivedEvent);
-        }
-        catch (Exception e) {
+            txManager.commit(status);
+            return true;
+
+        } catch (Exception e) {
             txManager.rollback(status);
             log.error("Could not dispatch message.", e);
+            return false;
         }
-        txManager.commit(status);
     }
 }

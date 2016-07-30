@@ -72,7 +72,7 @@ module App.Auth {
             this.eventBus.publish(new PrincipalChangedEvent(this));
         }
 
-        identity(force) {
+        identity(force = false) {
             var deferred = this.$q.defer();
 
             if (force === true) {

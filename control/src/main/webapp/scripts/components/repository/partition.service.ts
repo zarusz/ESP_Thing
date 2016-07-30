@@ -15,7 +15,7 @@ module App.Repository {
         static $inject = [NgSvc.http, NgSvc.q];
 
         private root: PartitionModel;
-        private rootLoading: ng.IPromise<any>;
+        private rootLoading: ng.IPromise<PartitionModel>;
         private partitionById: { [id: number]: PartitionModel } = {};
 
         constructor(private http: ng.IHttpService,
@@ -24,8 +24,9 @@ module App.Repository {
             this.loadRoot();
         }
 
-        loadRoot() {
-            this.rootLoading = this.http.get<PartitionModel>("/api/partition").success(p => {
+        loadRoot(): ng.IPromise<PartitionModel> {
+            this.rootLoading = this.http.get<PartitionModel>("/api/partition").then(p => p.data);
+            this.rootLoading.then(p => {
                 this.setRoot(p);
                 this.rootLoading = null;
             });

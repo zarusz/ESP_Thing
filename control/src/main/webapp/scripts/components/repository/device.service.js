@@ -1,7 +1,5 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\common.eventbus.ts"/>
-///<reference path="..\..\..\typings\sockjs\sockjs.d.ts"/>
-///<reference path="..\..\..\typings\angular-local-storage\angular-local-storage.d.ts"/>
 var App;
 (function (App) {
     var Repository;
@@ -75,7 +73,9 @@ var App;
                 var headers = {};
                 //headers['X-CSRF-TOKEN'] = this.cookies[this.http.defaults.xsrfCookieName];
                 var token = this.localStorageService.get("token");
-                headers["X-CSRF-TOKEN"] = token.access_token;
+                if (token) {
+                    headers["X-CSRF-TOKEN"] = token.access_token;
+                }
                 //headers["Authorization"] = "Bearer " + token.access_token;
                 this.stompClient.connect(headers, function (frame) {
                     _this.connected.resolve("success");

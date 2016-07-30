@@ -12,18 +12,13 @@ var App;
                 parent: "site",
                 url: "/",
                 data: {
-                    roles: ["ROLE_USER"]
+                    roles: []
                 },
                 templateUrl: "scripts/app/home/home.html",
                 controller: Home.HomeCtrl,
-                //views: {
-                //    "content@": {
-                //        templateUrl: "scripts/app/main/main.html",
-                //        controller: "MainController"
-                //    }
-                //},
+                controllerAs: Home.HomeCtrl.$as,
                 resolve: {
-                    mainTranslatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
+                    mainTranslatePartialLoader: [App.NgSvc.translate, App.NgSvc.translatePartialLoader, function ($translate, $translatePartialLoader) {
                             $translatePartialLoader.addPart("main");
                             return $translate.refresh();
                         }]

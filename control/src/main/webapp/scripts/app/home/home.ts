@@ -4,24 +4,20 @@
 module App.Home {
 
     export var $module = angular.module("Home", []);
-    $module.config(($stateProvider) => {
+
+    $module.config($stateProvider => {
         $stateProvider
             .state("home", {
                 parent: "site",
                 url: "/",
                 data: {
-                    roles: ["ROLE_USER"]
+                    roles: []
                 },
                 templateUrl: "scripts/app/home/home.html",
                 controller: HomeCtrl,
-                //views: {
-                //    "content@": {
-                //        templateUrl: "scripts/app/main/main.html",
-                //        controller: "MainController"
-                //    }
-                //},
+                controllerAs: HomeCtrl.$as,
                 resolve: {
-                    mainTranslatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
+                    mainTranslatePartialLoader: [NgSvc.translate, NgSvc.translatePartialLoader, ($translate, $translatePartialLoader) => {
                         $translatePartialLoader.addPart("main");
                         return $translate.refresh();
                     }]

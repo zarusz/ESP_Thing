@@ -1,7 +1,5 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\common.eventbus.ts"/>
-///<reference path="..\..\..\typings\sockjs\sockjs.d.ts"/>
-///<reference path="..\..\..\typings\angular-local-storage\angular-local-storage.d.ts"/>
 module App.Repository {
 
     export interface IFeatureStateModel {
@@ -132,7 +130,9 @@ module App.Repository {
             var headers = {};
             //headers['X-CSRF-TOKEN'] = this.cookies[this.http.defaults.xsrfCookieName];
             var token = <any> this.localStorageService.get("token");
-            headers["X-CSRF-TOKEN"] = token.access_token;
+            if (token) {
+                headers["X-CSRF-TOKEN"] = token.access_token;
+            }
             //headers["Authorization"] = "Bearer " + token.access_token;
             this.stompClient.connect(headers, (frame) => {
                 this.connected.resolve("success");

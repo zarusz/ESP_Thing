@@ -49,6 +49,9 @@ public class ApplicationConfiguration {
         MQTT mqttClient = new MQTT();
         mqttClient.setClientId(mqttClientId);
         mqttClient.setHost(mqttHost, mqttPort);
+        // indefinite
+        mqttClient.setConnectAttemptsMax(-1);
+        mqttClient.setReconnectAttemptsMax(-1);
         return mqttClient;
     }
 

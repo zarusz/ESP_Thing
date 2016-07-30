@@ -3,24 +3,25 @@
 
 module App.Status {
 
+    export class States {
+        static Status = "status";
+    }
+
     export var $module = angular.module("Status", []);
     $module
-        .config(($stateProvider) => {
+        .config($stateProvider => {
             $stateProvider
-                .state("status", {
+                .state(States.Status, {
                     parent: "site",
                     url: "/status",
                     data: {
-                        roles: ["ROLE_USER"]
-                    },
-                    params: {
-                        partitionId: null
+                        roles: []
                     },
                     templateUrl: "scripts/app/status/status.html",
                     controller: StatusCtrl,
                     controllerAs: StatusCtrl.$nameAs,
                     resolve: {
-                        mainTranslatePartialLoader: ["$translate", "$translatePartialLoader", ($translate, $translatePartialLoader) => {
+                        mainTranslatePartialLoader: [NgSvc.translate, NgSvc.translatePartialLoader, ($translate, $translatePartialLoader) => {
                             $translatePartialLoader.addPart("main");
                             return $translate.refresh();
                         }]

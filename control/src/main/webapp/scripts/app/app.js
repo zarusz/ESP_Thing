@@ -94,11 +94,11 @@ var App;
                 name: "site",
                 abstract: true,
                 data: {
-                    roles: ["ROLE_USER"]
+                    roles: []
                 },
                 templateUrl: "scripts/app/actionbar/actionbar.html",
                 controller: App.ActionBarCtrl,
-                controllerAs: "actionBar",
+                controllerAs: App.ActionBarCtrl.$as,
                 resolve: {
                     authorize: [App.Auth.Authenticator.$name, function (auth) {
                             return auth.authorize(false);

@@ -5,13 +5,10 @@
 module App.Home {
 
     export class HomeCtrl {
-        static $inject = [NgSvc.scope, App.Auth.Principal.$name];
+        static $inject = [];
+        static $as = "h";
 
-        constructor(scope: any, principal: App.Auth.Principal) {
-            principal.identity().then((account) => {
-                scope.account = account;
-                scope.isAuthenticated = principal.isAuthenticated;
-            });
+        constructor() {
         }
     }
 

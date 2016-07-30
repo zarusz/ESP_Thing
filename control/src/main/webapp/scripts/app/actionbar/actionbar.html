@@ -37,7 +37,7 @@
                 </div>
             </md-toolbar>
             <md-content flex layout="column">
-                <div ng-if="actionBar.isAuthenticated()" flex layout="column">
+                <div flex layout="column">
                     <!--
                     <md-subheader class="md-no-sticky">Explore</md-subheader>
                     <md-list-item ng-click="actionBar.navigateTo('site.place')">
@@ -58,7 +58,7 @@
                         <p>Status</p>
                     </md-list-item>
                     <md-divider></md-divider>
-                    <md-list-item ng-click="actionBar.logout()">
+                    <md-list-item ng-if="actionBar.isAuthenticated()"  ng-click="actionBar.logout()">
                         <md-icon class="fa fa-fw fa-sign-out fa-lg"></md-icon>
                         <p>Sign out</p>
                     </md-list-item>

@@ -12,7 +12,7 @@ var App;
                 parent: "site",
                 url: "/partition/{partitionId}",
                 data: {
-                    roles: ["ROLE_USER"]
+                    roles: []
                 },
                 params: {
                     partitionId: null
@@ -21,7 +21,7 @@ var App;
                 controller: Partition.PartitionCtrl,
                 controllerAs: Partition.PartitionCtrl.$nameAs,
                 resolve: {
-                    mainTranslatePartialLoader: ["$translate", "$translatePartialLoader", function ($translate, $translatePartialLoader) {
+                    mainTranslatePartialLoader: [App.NgSvc.translate, App.NgSvc.translatePartialLoader, function ($translate, $translatePartialLoader) {
                             $translatePartialLoader.addPart("main");
                             return $translate.refresh();
                         }]

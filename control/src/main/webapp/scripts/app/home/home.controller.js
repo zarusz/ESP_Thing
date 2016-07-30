@@ -6,13 +6,10 @@ var App;
     var Home;
     (function (Home) {
         var HomeCtrl = (function () {
-            function HomeCtrl(scope, principal) {
-                principal.identity().then(function (account) {
-                    scope.account = account;
-                    scope.isAuthenticated = principal.isAuthenticated;
-                });
+            function HomeCtrl() {
             }
-            HomeCtrl.$inject = [App.NgSvc.scope, App.Auth.Principal.$name];
+            HomeCtrl.$inject = [];
+            HomeCtrl.$as = "h";
             return HomeCtrl;
         }());
         Home.HomeCtrl = HomeCtrl;

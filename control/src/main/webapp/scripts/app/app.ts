@@ -106,11 +106,11 @@ module App.Main {
             name: "site",
             abstract: true,
             data: {
-              roles: ["ROLE_USER"]
+              roles: []
             },
             templateUrl: "scripts/app/actionbar/actionbar.html",
             controller: ActionBarCtrl,
-            controllerAs: "actionBar",
+            controllerAs: ActionBarCtrl.$as,
             resolve: {
                 authorize: [Auth.Authenticator.$name, (auth: Auth.Authenticator) => {
                     return auth.authorize(false);

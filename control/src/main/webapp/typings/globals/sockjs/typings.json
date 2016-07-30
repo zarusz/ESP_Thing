@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/d28b09618e2249cbefdd4744b178542ecb0cbccd/sockjs/sockjs.d.ts",
+    "raw": "registry:dt/sockjs#0.3.0+20160626235243",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/d28b09618e2249cbefdd4744b178542ecb0cbccd/sockjs/sockjs.d.ts"
+  }
+}

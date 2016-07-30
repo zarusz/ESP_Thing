@@ -1,14 +1,22 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\..\app\app.module.ts"/>
+///<reference path="principal.service.ts"/>
 "use strict";
 
 module App.Auth {
+
+    export interface IAuthRootScope extends ng.IRootScopeService {
+        toState:any;
+        toStateParams:any;
+        returnToState:any;
+        returnToStateParams:any;
+    }
 
     export class Authenticator {
         static $name = "Auth";
         static $inject = [NgSvc.rootScope, NgSvc.state, NgSvc.q, NgSvc.translate, Principal.$name, "AuthServerProvider", "Account", "Register", "Activate", "Password", "PasswordResetInit", "PasswordResetFinish", "Tracker"];
 
-        constructor(private rootScope:ng.IRootScopeService,
+        constructor(private rootScope:IAuthRootScope,
                     private state:ng.ui.IStateService,
                     private q:ng.IQService,
                     private $translate:any,
@@ -24,13 +32,13 @@ module App.Auth {
 
         }
 
-        login(credentials, callback) {
+        login(credentials, callback?) {
             var cb = callback || angular.noop;
             var deferred = this.q.defer();
 
             this.AuthServerProvider.login(credentials).then((data) => {
                 // retrieve the logged account information
-                this.principal.identity(true).then((account) => {
+                this.principal.identity(true).then((account:any) => {
 
                     // After the login the language will be changed to
                     // the language selected by the user during his registration
@@ -54,7 +62,7 @@ module App.Auth {
             this.principal.authenticate(null);
         }
 
-        authorize(force) {
+        authorize(force = false) {
             return this.principal.identity(force)
                 .then(() => {
                     var isAuthenticated = this.principal.isAuthenticated();
@@ -63,8 +71,7 @@ module App.Auth {
                         if (isAuthenticated) {
                             // user is signed in but not authorized for desired state
                             this.state.go("accessdenied");
-                        }
-                        else {
+                        } else {
                             // user is not authenticated. stow the state they wanted before you
                             // send them to the signin state, so you can return them when you're done
                             this.rootScope.returnToState = this.rootScope.toState;
@@ -81,11 +88,11 @@ module App.Auth {
             var cb = callback || angular.noop;
 
             return this.Register.save(account, () => {
-                    return cb(account);
-                }, (err) => {
-                    this.logout();
-                    return cb(err);
-                }).$promise;
+                return cb(account);
+            }, (err) => {
+                this.logout();
+                return cb(err);
+            }).$promise;
         }
 
         updateAccount(account, callback) {
@@ -104,10 +111,10 @@ module App.Auth {
             var cb = callback || angular.noop;
 
             return this.Activate.get(key, (response) => {
-                    return cb(response);
-                }, (err) => {
-                    return cb(err);
-                }).$promise;
+                return cb(response);
+            }, (err) => {
+                return cb(err);
+            }).$promise;
         }
 
         changePassword(newPassword, callback) {

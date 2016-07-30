@@ -58,6 +58,8 @@ public class OAuth2ServerConfiguration {
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/register").permitAll()
                 .antMatchers("/api/logs/**").hasAnyAuthority(AuthoritiesConstants.ADMIN)
+                .antMatchers("/api/partition/**").permitAll()
+                .antMatchers("/api/device/**").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/websocket/tracker").hasAuthority(AuthoritiesConstants.ADMIN)
                 .antMatchers("/websocket/**").permitAll()

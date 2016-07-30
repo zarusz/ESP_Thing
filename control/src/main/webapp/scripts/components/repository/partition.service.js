@@ -18,7 +18,8 @@ var App;
             }
             PartitionService.prototype.loadRoot = function () {
                 var _this = this;
-                this.rootLoading = this.http.get("/api/partition").success(function (p) {
+                this.rootLoading = this.http.get("/api/partition").then(function (p) { return p.data; });
+                this.rootLoading.then(function (p) {
                     _this.setRoot(p);
                     _this.rootLoading = null;
                 });

@@ -1,5 +1,6 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\..\app\app.module.ts"/>
+///<reference path="principal.service.ts"/>
 "use strict";
 var App;
 (function (App) {
@@ -49,6 +50,7 @@ var App;
             };
             Authenticator.prototype.authorize = function (force) {
                 var _this = this;
+                if (force === void 0) { force = false; }
                 return this.principal.identity(force)
                     .then(function () {
                     var isAuthenticated = _this.principal.isAuthenticated();

@@ -63,6 +63,7 @@ var App;
             };
             Principal.prototype.identity = function (force) {
                 var _this = this;
+                if (force === void 0) { force = false; }
                 var deferred = this.$q.defer();
                 if (force === true) {
                     this._identity = undefined;

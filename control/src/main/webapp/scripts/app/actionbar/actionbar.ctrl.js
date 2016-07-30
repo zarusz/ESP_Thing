@@ -16,22 +16,20 @@ var App;
             this.window = window;
             this.eventBus = eventBus;
             this.loadData();
-            //var _this = this;
-            //this.toggleSideNav = this.$mdUtil.debounce(() => {
-            //    _this.getSideNav().toggle();
-            //}, 200);
             eventBus.subscribe(App.Auth.PrincipalChangedEvent.event, this);
             scope.$on(App.NgEvent.destroy, function () { return eventBus.unsubscribe(App.Auth.PrincipalChangedEvent.event, _this); });
         }
         ActionBarCtrl.prototype.loadData = function () {
             var _this = this;
-            if (this.principal.isAuthenticated()) {
-                this.principal.identity(false).then(function () {
-                    _this.partitionService.loadRoot().then(function (r) {
-                        _this.rootPartition = r.data;
-                    });
-                });
-            }
+            this.partitionService.loadRoot().then(function (r) {
+                _this.rootPartition = r;
+            });
+            /*
+                        if (this.principal.isAuthenticated()) {
+                            this.principal.identity(false).then(() => {
+                            });
+                        }
+             */
         };
         ActionBarCtrl.prototype.onPrincipalChanged = function (e) {
             this.loadData();
@@ -70,6 +68,7 @@ var App;
             return this.principal.isAuthenticated();
         };
         ActionBarCtrl.$inject = ["$mdSidenav", App.NgSvc.state, App.NgSvc.scope, App.Repository.PartitionService.$name, App.Auth.Principal.$name, App.Auth.Authenticator.$name, App.NgSvc.window, App.EventBus.$name];
+        ActionBarCtrl.$as = "actionBar";
         return ActionBarCtrl;
     }());
     App.ActionBarCtrl = ActionBarCtrl;
