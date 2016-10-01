@@ -1,0 +1,26 @@
+<md-content flex layout="column" ng-cloak class="md-inline-form">
+    <md-content layout-padding>
+        <div>
+            <form name="userForm">
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Display Name</label>
+                        <input ng-model="vm.device.displayName">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Partition</label>
+                        <md-select ng-model="vm.device.partition.id">
+                            <md-option ng-repeat="partition in vm.partitions" value="{{partition.id}}">
+                                {{partition.displayName}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+            </form>
+        </div>
+    </md-content>
+
+</md-content>

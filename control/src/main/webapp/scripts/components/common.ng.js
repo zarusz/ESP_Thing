@@ -4,6 +4,7 @@
 /// <reference path="../../typings/globals/angular-material/index.d.ts" />
 /// <reference path="../../typings/globals/underscore/index.d.ts" />
 /// <reference path="../../typings/globals/jquery/index.d.ts" />
+/// <reference path="../../typings/index.d.ts" />
 "use strict";
 var App;
 (function (App) {

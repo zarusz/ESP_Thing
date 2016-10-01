@@ -37,7 +37,7 @@ module App.Repository {
     export interface IDeviceModel extends IDeviceDescModel {
         partition: IPartitionDescModel;
         features: Array<IFeatureModel<IFeatureStateModel>>;
-        lastOnline?: Date;
+        lastOnline?: number;
     }
 
     export interface IFeatureStateChangedEventHandler {
@@ -90,6 +90,11 @@ module App.Repository {
         updateFeatureState(device: IDeviceModel, feature: IFeatureModel<IFeatureStateModel>) {
             var url = `api/device/${device.id}/feature/${feature.id}/state`;
             return this.http.post(url, feature.state);
+        }
+
+        getById(deviceId: number) {
+            var url = `api/device/${deviceId}`;
+            return this.http.get<IDeviceModel>(url).then(x => x.data);
         }
     }
 

@@ -7,6 +7,7 @@
     "angular-material": "registry:dt/angular-material#1.1.0-rc5.0+20160721000848",
     "angular-ui-router": "registry:dt/angular-ui-router#1.1.5+20160707113237",
     "jquery": "registry:dt/jquery#1.10.0+20160704162008",
+    "moment": "registry:dt/moment#2.11.1+20160829143156",
     "sockjs": "registry:dt/sockjs#0.3.0+20160626235243",
     "underscore": "registry:dt/underscore#1.7.0+20160720002543"
   }

@@ -1,7 +1,8 @@
 ///<reference path="..\..\..\components\repository\repository.module.ts"/>
+///<reference path="device.states.ts"/>
 module App.Admin.Devices {
 
-    export class DevicesCtrl {
+    export class DeviceListCtrl {
         static $inject = [
             Repository.DeviceService.$name,
             NgSvc.state,
@@ -22,6 +23,14 @@ module App.Admin.Devices {
 
         private setDevices(d: Array<Repository.IDeviceModel>) {
             this.devices = d;
+        }
+
+        humanTime(d: number) {
+            return moment(d).fromNow();
+        }
+
+        editDevice(device: Repository.IDeviceModel) {
+            this.state.go(States.Edit, { deviceId:  device.id });
         }
     }
 }

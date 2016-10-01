@@ -75,7 +75,7 @@ module App {
         }
 
         goAllDevices() {
-            this.state.go(App.Admin.Devices.States.Devices);
+            this.state.go(App.Admin.Devices.States.List);
         }
 
         logout() {

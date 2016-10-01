@@ -51,12 +51,23 @@ public class DeviceRepositoryImpl extends SimpleJpaRepository<Device, Integer> i
     }
 
     @Override
-    public HubDevice findByGuid(String deviceId) {
-        final String q = "select distinct h from HubDevice h left join fetch h.features left join fetch h.endpoints e left join fetch e.features where h.guid = :guid";
+    public HubDevice findByGuid(String guid) {
+        final String q = "select distinct h from HubDevice h left join fetch h.partition p left join fetch h.features left join fetch h.endpoints e left join fetch e.features where h.guid = :guid";
 
         HubDevice device = Utils.getSingleResultOrNull(em
             .createQuery(q, HubDevice.class)
-            .setParameter("guid", deviceId));
+            .setParameter("guid", guid));
+
+        return device;
+    }
+
+    @Override
+    public HubDevice findById(int deviceId) {
+        final String q = "select distinct h from HubDevice h left join fetch h.partition p left join fetch h.features left join fetch h.endpoints e left join fetch e.features where h.id = :id";
+
+        HubDevice device = Utils.getSingleResultOrNull(em
+            .createQuery(q, HubDevice.class)
+            .setParameter("id", deviceId));
 
         return device;
     }

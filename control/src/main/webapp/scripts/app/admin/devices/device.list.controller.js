@@ -1,12 +1,13 @@
 ///<reference path="..\..\..\components\repository\repository.module.ts"/>
+///<reference path="device.states.ts"/>
 var App;
 (function (App) {
     var Admin;
     (function (Admin) {
         var Devices;
         (function (Devices) {
-            var DevicesCtrl = (function () {
-                function DevicesCtrl(deviceService, state, stateParams) {
+            var DeviceListCtrl = (function () {
+                function DeviceListCtrl(deviceService, state, stateParams) {
                     var _this = this;
                     this.deviceService = deviceService;
                     this.state = state;
@@ -15,19 +16,25 @@ var App;
                         _this.setDevices(devices);
                     });
                 }
-                DevicesCtrl.prototype.setDevices = function (d) {
+                DeviceListCtrl.prototype.setDevices = function (d) {
                     this.devices = d;
                 };
-                DevicesCtrl.$inject = [
+                DeviceListCtrl.prototype.humanTime = function (d) {
+                    return moment(d).fromNow();
+                };
+                DeviceListCtrl.prototype.editDevice = function (device) {
+                    this.state.go(Devices.States.Edit, { deviceId: device.id });
+                };
+                DeviceListCtrl.$inject = [
                     App.Repository.DeviceService.$name,
                     App.NgSvc.state,
                     App.NgSvc.stateParams
                 ];
-                DevicesCtrl.$nameAs = "vm";
-                return DevicesCtrl;
+                DeviceListCtrl.$nameAs = "vm";
+                return DeviceListCtrl;
             }());
-            Devices.DevicesCtrl = DevicesCtrl;
+            Devices.DeviceListCtrl = DeviceListCtrl;
         })(Devices = Admin.Devices || (Admin.Devices = {}));
     })(Admin = App.Admin || (App.Admin = {}));
 })(App || (App = {}));
-//# sourceMappingURL=devices.controller.js.map
+//# sourceMappingURL=device.list.controller.js.map

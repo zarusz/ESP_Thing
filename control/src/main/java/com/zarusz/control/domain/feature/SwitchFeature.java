@@ -17,14 +17,15 @@ public class SwitchFeature extends DeviceFeature {
 
     @Getter
     @Column(name="`on`")
-	private Boolean on;
+	private boolean on;
 
 	protected SwitchFeature() {
 	}
 
 	public SwitchFeature(Device device, Feature feature, int port) {
         super(device, feature, port);
-	}
+        on = false;
+    }
 
 	public void setOn(boolean on) {
         boolean oldValue = this.on;

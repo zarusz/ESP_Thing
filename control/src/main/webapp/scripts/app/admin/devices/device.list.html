@@ -1,7 +1,7 @@
 <md-content flex layout="column">
     <md-list>
         <div ng-repeat="device in vm.devices | orderBy : 'displayPriority'">
-            <md-list-item class="md-3-line">
+            <md-list-item class="md-3-line noright" ng-click="vm.editDevice(device)">
                 <span ng-if="::device.displayIcon" class="fa fa-fw fa-3x {{::device.displayIcon}} md-avatar"></span>
                 <div class="md-list-item-text" layout="column">
                     <h3>{{device.displayName}} <span>({{device.guid}})</span></h3>
@@ -9,7 +9,7 @@
                         <a ng-if="device.partition !== null" ui-sref="partition({partitionId: device.partition.id})">{{::device.partition.displayName}}</a>
                         <span ng-if="device.partition === null">(not assigned)</span>
                     </p>
-                    <p>Last online {{::device.lastOnline}}</p>
+                    <p>Last online {{::vm.humanTime(device.lastOnline)}}</p>
                 </div>
             </md-list-item>
         </div>

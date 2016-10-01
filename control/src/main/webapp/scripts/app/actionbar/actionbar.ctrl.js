@@ -61,7 +61,7 @@ var App;
             this.state.go(App.Status.States.Status);
         };
         ActionBarCtrl.prototype.goAllDevices = function () {
-            this.state.go(App.Admin.Devices.States.Devices);
+            this.state.go(App.Admin.Devices.States.List);
         };
         ActionBarCtrl.prototype.logout = function () {
             this.closeSideNav();

@@ -54,6 +54,17 @@ public class DeviceResource {
                 .collect(Collectors.toList());
     }
 
+    @RequestMapping(value = "/device/{deviceId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DeviceDTO getById(@PathVariable("deviceId") int deviceId) {
+
+        Device device = deviceRepo.findById(deviceId);
+        if (device != null) {
+            return new DeviceDTO(device);
+        }
+
+        throw new ResourceNotFoundException();
+    }
+
     @RequestMapping(value = "/device/{deviceId}/feature/{featureId}/state", method = RequestMethod.POST)
     @Transactional
     public void changeFeatureState(@PathVariable("deviceId") int deviceId,
