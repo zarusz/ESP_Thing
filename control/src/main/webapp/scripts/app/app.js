@@ -8,6 +8,7 @@
 ///<reference path="..\app\status\status.ts"/>
 ///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\app\home\home.ts"/>
+///<reference path="..\app\admin\devices\devices.ts"/>
 var App;
 (function (App) {
     var Main;
@@ -18,7 +19,8 @@ var App;
             App.Partition.$module.name,
             App.Status.$module.name,
             App.Feature.$module.name,
-            App.Home.$module.name
+            App.Home.$module.name,
+            App.Admin.Devices.$module.name
         ]);
         $module
             .factory("authInterceptor", function ($rootScope, $q, $location, localStorageService) {

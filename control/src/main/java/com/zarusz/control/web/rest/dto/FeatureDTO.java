@@ -1,7 +1,7 @@
 package com.zarusz.control.web.rest.dto;
 
 import com.zarusz.control.domain.device.DeviceFeature;
-import com.zarusz.control.domain.feature.Feature;
+import com.zarusz.control.domain.feature.FeatureType;
 import com.zarusz.control.web.rest.dto.feature.FeatureStateDTO;
 import lombok.Data;
 
@@ -12,7 +12,7 @@ import lombok.Data;
 public class FeatureDTO {
 
     private Integer id;
-    private String type;
+    private FeatureType type;
     private String displayName;
     private String displayIcon;
     private Integer displayPriority;

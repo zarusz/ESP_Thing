@@ -1,5 +1,6 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\common.eventbus.ts"/>
+///<reference path="model.ts"/>
 module App.Repository {
 
     export interface IFeatureStateModel {
@@ -33,11 +34,10 @@ module App.Repository {
         state: T;
     }
 
-    export interface IDeviceModel {
-        id: number;
-        displayName: string;
+    export interface IDeviceModel extends IDeviceDescModel {
+        partition: IPartitionDescModel;
         features: Array<IFeatureModel<IFeatureStateModel>>;
-        lastOnline?: string;
+        lastOnline?: Date;
     }
 
     export interface IFeatureStateChangedEventHandler {

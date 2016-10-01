@@ -1,7 +1,8 @@
 ///<reference path="..\common.ng.ts"/>
+///<reference path="model.ts"/>
 module App.Repository {
 
-    export class PartitionModel {
+    export class PartitionModel implements IPartitionDescModel {
         id: number;
         displayName: string;
         displayPriority: number;

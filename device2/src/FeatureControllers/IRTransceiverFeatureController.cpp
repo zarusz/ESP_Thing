@@ -2,44 +2,40 @@
 #include "../DeviceCommands.ext.h"
 
 IRTransceiverFeatureController::IRTransceiverFeatureController(int port, DeviceContext* context, int pin)
-  : FeatureController(port, context), irsend(pin)
+  : FeatureController(port, FeatureType::FeatureType_IR, context),
+    _irsend(pin)
 {
-  irsend.begin();
+  _irsend.begin();
 }
 
 IRTransceiverFeatureController::~IRTransceiverFeatureController()
 {
 }
 
-void IRTransceiverFeatureController::Handle(DeviceMessage& deviceMessage)
+void IRTransceiverFeatureController::Handle(const DeviceMessage& deviceMessage)
 {
   //irsend.se
-  if (!deviceMessage.has_irSendCommand || deviceMessage.irSendCommand.port != port)
+  if (!deviceMessage.has_irSendCommand || deviceMessage.irSendCommand.port != _port)
   {
     return;
   }
   Serial.println("IRTransceiverFeatureController:Handle");
 
-  DeviceIRSendCommand* cmd = &deviceMessage.irSendCommand;
+  const DeviceIRSendCommand* cmd = &deviceMessage.irSendCommand;
   const char* formatLabel = EnumLabel(cmd->value.format);
 
   switch (cmd->value.format) {
     case IRFormat::IRFormat_NEC:
       //irsend.sendNEC(0xffffffff, 32);
-      irsend.sendNEC(cmd->value.data, cmd->value.bits);
+      _irsend.sendNEC(cmd->value.data, cmd->value.bits);
       //irsend.sendNEC(0xffffffff, 32);
       break;
 
     case IRFormat::IRFormat_SONY:
-      irsend.sendSony(cmd->value.data, cmd->value.bits);
+      _irsend.sendSony(cmd->value.data, cmd->value.bits);
       break;
   }
 
   String msg = String("IRSendCommand for port ") + cmd->port + ", value: " + String(cmd->value.data, HEX) + ", bits: " + cmd->value.bits + ", format: " + formatLabel;
   Serial.println(msg);
-}
-
-void IRTransceiverFeatureController::Loop()
-{
-
 }

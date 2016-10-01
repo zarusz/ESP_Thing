@@ -35,6 +35,7 @@ module.exports = function (config) {
             'main/webapp/bower_components/sockjs-client/dist/sockjs.js',
             'main/webapp/bower_components/stomp-websocket/lib/stomp.min.js',
             'main/webapp/bower_components/underscore/underscore.js',
+            'main/webapp/bower_components/moment/moment.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/scripts/components/common.ng.js',

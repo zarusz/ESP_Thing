@@ -1,5 +1,6 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\common.eventbus.ts"/>
+///<reference path="model.ts"/>
 var App;
 (function (App) {
     var Repository;

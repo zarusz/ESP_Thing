@@ -14,12 +14,12 @@ public class JacksonConfiguration {
 
     @Bean
     public JodaModule jacksonJodaModule() {
+        DateTimeFormatterFactory dateTimeFormatterFactory = new DateTimeFormatterFactory();
+        dateTimeFormatterFactory.setIso(DateTimeFormat.ISO.DATE);
+        DateTimeSerializer dateTimeFormatter = new DateTimeSerializer(new JacksonJodaFormat(dateTimeFormatterFactory.createDateTimeFormatter().withZoneUTC()));
+
         JodaModule module = new JodaModule();
-        DateTimeFormatterFactory formatterFactory = new DateTimeFormatterFactory();
-        formatterFactory.setIso(DateTimeFormat.ISO.DATE);
-        module.addSerializer(DateTime.class, new DateTimeSerializer(
-                new JacksonJodaFormat(formatterFactory.createDateTimeFormatter()
-                        .withZoneUTC())));
+        module.addSerializer(DateTime.class, dateTimeFormatter);
         return module;
     }
 }

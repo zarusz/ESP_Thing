@@ -1,4 +1,5 @@
 ///<reference path="..\common.ng.ts"/>
+///<reference path="model.ts"/>
 var App;
 (function (App) {
     var Repository;

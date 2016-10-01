@@ -13,8 +13,8 @@ public class HubDeviceTest {
     @Test
     public void hubDevicesWithSameIdAreEqual() {
         // arrange
-        HubDevice d1 = new HubDevice("guid1", "1.1.1.1");
-        HubDevice d2 = new HubDevice("guid2", "1.1.2.2");
+        HubDevice d1 = new HubDevice("guid1");
+        HubDevice d2 = new HubDevice("guid2");
 
         d1.setId(10);
         d2.setId(10);
@@ -32,8 +32,8 @@ public class HubDeviceTest {
     @Test
     public void hubDevicesWithDifferentIdAreNotEqual() {
         // arrange
-        HubDevice d1 = new HubDevice("guid1", "1.1.1.1");
-        HubDevice d2 = new HubDevice("guid2", "1.1.2.2");
+        HubDevice d1 = new HubDevice("guid1");
+        HubDevice d2 = new HubDevice("guid2");
 
         d1.setId(11);
         d2.setId(10);

@@ -8,6 +8,7 @@
 ///<reference path="..\app\status\status.ts"/>
 ///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\app\home\home.ts"/>
+///<reference path="..\app\admin\devices\devices.ts"/>
 module App.Main {
 
     var $module = angular.module("controlAppMain", [
@@ -16,7 +17,8 @@ module App.Main {
         Partition.$module.name,
         Status.$module.name,
         Feature.$module.name,
-        Home.$module.name
+        Home.$module.name,
+        Admin.Devices.$module.name
     ]);
 
     $module

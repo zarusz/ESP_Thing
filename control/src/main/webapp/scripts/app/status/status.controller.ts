@@ -7,7 +7,7 @@ module App.Status {
             NgSvc.state,
             NgSvc.stateParams
         ];
-        static $nameAs = "s";
+        static $nameAs = "vm";
 
         devices: Array<Repository.IDeviceModel>;
 
@@ -22,6 +22,10 @@ module App.Status {
 
         private setDevices(d: Array<Repository.IDeviceModel>) {
             this.devices = d;
+        }
+
+        friendlyDate(date: string) {
+            return date;
         }
     }
 }

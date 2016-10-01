@@ -15,10 +15,9 @@ import java.util.Date;
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
     @JsonSubTypes.Type(SwitchFeatureStateDTO.class),
-    @JsonSubTypes.Type(IROutFeatureStateDTO.class),
+    @JsonSubTypes.Type(IRFeatureStateDTO.class),
     @JsonSubTypes.Type(TemperatureSensorFeatureStateDTO.class),
-    @JsonSubTypes.Type(HumiditySensorFeatureStateDTO.class),
-    @JsonSubTypes.Type(DimFeatureStateDTO.class)
+    @JsonSubTypes.Type(HumiditySensorFeatureStateDTO.class)
 })
 public abstract class FeatureStateDTO {
 
@@ -36,11 +35,8 @@ public abstract class FeatureStateDTO {
         if (feature instanceof SwitchFeature) {
             return new SwitchFeatureStateDTO((SwitchFeature) feature);
         }
-        if (feature instanceof DimFeature) {
-            return new DimFeatureStateDTO((DimFeature) feature);
-        }
-        if (feature instanceof IROutFeature) {
-            return new IROutFeatureStateDTO((IROutFeature) feature);
+        if (feature instanceof IRFeature) {
+            return new IRFeatureStateDTO((IRFeature) feature);
         }
         if (feature instanceof TemperatureSensorFeature) {
             return new TemperatureSensorFeatureStateDTO((TemperatureSensorFeature) feature);

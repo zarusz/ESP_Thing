@@ -16,12 +16,15 @@ var App;
             StatusCtrl.prototype.setDevices = function (d) {
                 this.devices = d;
             };
+            StatusCtrl.prototype.friendlyDate = function (date) {
+                return date;
+            };
             StatusCtrl.$inject = [
                 App.Repository.DeviceService.$name,
                 App.NgSvc.state,
                 App.NgSvc.stateParams
             ];
-            StatusCtrl.$nameAs = "s";
+            StatusCtrl.$nameAs = "vm";
             return StatusCtrl;
         }());
         Status.StatusCtrl = StatusCtrl;

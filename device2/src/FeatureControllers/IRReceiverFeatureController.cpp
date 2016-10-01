@@ -1,54 +1,57 @@
 #include "IRReceiverFeatureController.h"
 #include "../DeviceCommands.ext.h"
 
-IRReceiverFeatureController::IRReceiverFeatureController(int port, DeviceContext* context, int pin)
-  : FeatureController(port, context), irrecv(pin)
+IRReceiverFeatureController::IRReceiverFeatureController(int port, DeviceContext* context, int pin, const char* topic)
+  : FeatureController(port, FeatureType::FeatureType_SENSOR_IR, context),
+    _irrecv(pin)
 {
-  irrecv.enableIRIn(); // Start the receiver
+  _topic = topic;
+  _irrecv.enableIRIn(); // Start the receiver
 }
 
 IRReceiverFeatureController::~IRReceiverFeatureController()
 {
 }
 
-void IRReceiverFeatureController::Handle(DeviceMessage& deviceMessage)
-{
-  //irsend.se
-}
-
 void IRReceiverFeatureController::Loop()
 {
-  if (irrecv.decode(&results))
+  if (_irrecv.decode(&_results))
   {
     IRFormat format = GetFormat();
     String formatLabel = EnumLabel(format);
-    String msg = String("Recived IR, value: ") + String(results.value, HEX) + ", bits: " + results.bits + ", format: " + formatLabel;
+    String msg = String("Recived IR, value: ") + String(_results.value, HEX) + ", bits: " + _results.bits + ", format: " + formatLabel;
     Serial.println(msg);
-    if (results.decode_type == UNKNOWN)
+    if (_results.decode_type == UNKNOWN)
     {
-      msg = String("Recived IR - Unknown. Rawlen: ") + results.rawlen;
+      msg = String("Recived IR - Unknown. Rawlen: ") + _results.rawlen;
       Serial.println(msg);
     }
     else
     {
-      DeviceEvents events = DeviceEvents_init_zero;
-      events.has_irReceivedEvent = true;
-      strcpy(events.irReceivedEvent.device_id, context->GetConfig().uniqueId);
-      events.irReceivedEvent.port = port;
-      events.irReceivedEvent.value.bits = results.bits;
-      events.irReceivedEvent.value.data = results.value;
-      events.irReceivedEvent.value.format = format;
-
-      context->GetCommHub().PublishMessage(EVENTS_TOPIC, DeviceEvents_fields, &events);
+      Publish(_results, format);
     }
 
-    irrecv.resume(); // Receive the next value
+    _irrecv.resume(); // Receive the next value
   }
+}
+
+void IRReceiverFeatureController::Publish(decode_results& results, IRFormat format)
+{
+  DeviceEvents events = DeviceEvents_init_zero;
+  events.has_irReceivedEvent = true;
+  strcpy(events.irReceivedEvent.device_id, _context->GetConfig().uniqueId);
+  events.irReceivedEvent.port = _port;
+  events.irReceivedEvent.value.bits = _results.bits;
+  events.irReceivedEvent.value.data = _results.value;
+  events.irReceivedEvent.value.format = format;
+
+  PbMessage message(DeviceEvents_fields, &events);
+  _context->GetMessageBus()->Publish(_topic, &message);
 }
 
 IRFormat IRReceiverFeatureController::GetFormat() const
 {
-  switch (results.decode_type)
+  switch (_results.decode_type)
   {
     case NEC:
       return IRFormat::IRFormat_NEC;

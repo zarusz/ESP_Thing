@@ -12,7 +12,7 @@
 
         <div ng-repeat="device in p.devices | orderBy : 'displayPriority'">
             <md-subheader class="md-no-sticky">
-                <span ng-if="device.displayIcon" class="{{device.displayIcon}}"></span>
+                <span ng-if="device.displayIcon" class="fa fa-fw" ng-class="device.displayIcon"></span>
                 {{device.displayName}}
             </md-subheader>
             <md-list-item>

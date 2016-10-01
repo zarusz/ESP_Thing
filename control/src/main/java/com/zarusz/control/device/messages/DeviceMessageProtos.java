@@ -9,13 +9,13 @@ public final class DeviceMessageProtos {
       com.google.protobuf.ExtensionRegistry registry) {
   }
   /**
-   * Protobuf enum {@code DevicePortFeature}
+   * Protobuf enum {@code FeatureType}
    *
    * <pre>
    * Description (begin) 
    * </pre>
    */
-  public enum DevicePortFeature
+  public enum FeatureType
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>SWITCH = 0;</code>
@@ -25,6 +25,22 @@ public final class DeviceMessageProtos {
      * <code>IR = 1;</code>
      */
     IR(1, 1),
+    /**
+     * <code>SENSOR_IR = 2;</code>
+     */
+    SENSOR_IR(2, 2),
+    /**
+     * <code>SENSOR_TEMPERATURE = 3;</code>
+     */
+    SENSOR_TEMPERATURE(3, 3),
+    /**
+     * <code>SENSOR_HUMIDITY = 4;</code>
+     */
+    SENSOR_HUMIDITY(4, 4),
+    /**
+     * <code>SENSOR_MOTION = 5;</code>
+     */
+    SENSOR_MOTION(5, 5),
     ;
 
     /**
@@ -35,27 +51,47 @@ public final class DeviceMessageProtos {
      * <code>IR = 1;</code>
      */
     public static final int IR_VALUE = 1;
+    /**
+     * <code>SENSOR_IR = 2;</code>
+     */
+    public static final int SENSOR_IR_VALUE = 2;
+    /**
+     * <code>SENSOR_TEMPERATURE = 3;</code>
+     */
+    public static final int SENSOR_TEMPERATURE_VALUE = 3;
+    /**
+     * <code>SENSOR_HUMIDITY = 4;</code>
+     */
+    public static final int SENSOR_HUMIDITY_VALUE = 4;
+    /**
+     * <code>SENSOR_MOTION = 5;</code>
+     */
+    public static final int SENSOR_MOTION_VALUE = 5;
 
 
     public final int getNumber() { return value; }
 
-    public static DevicePortFeature valueOf(int value) {
+    public static FeatureType valueOf(int value) {
       switch (value) {
         case 0: return SWITCH;
         case 1: return IR;
+        case 2: return SENSOR_IR;
+        case 3: return SENSOR_TEMPERATURE;
+        case 4: return SENSOR_HUMIDITY;
+        case 5: return SENSOR_MOTION;
         default: return null;
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<DevicePortFeature>
+    public static com.google.protobuf.Internal.EnumLiteMap<FeatureType>
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<DevicePortFeature>
+    private static com.google.protobuf.Internal.EnumLiteMap<FeatureType>
         internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<DevicePortFeature>() {
-            public DevicePortFeature findValueByNumber(int number) {
-              return DevicePortFeature.valueOf(number);
+          new com.google.protobuf.Internal.EnumLiteMap<FeatureType>() {
+            public FeatureType findValueByNumber(int number) {
+              return FeatureType.valueOf(number);
             }
           };
 
@@ -72,9 +108,9 @@ public final class DeviceMessageProtos {
       return com.zarusz.control.device.messages.DeviceMessageProtos.getDescriptor().getEnumTypes().get(0);
     }
 
-    private static final DevicePortFeature[] VALUES = values();
+    private static final FeatureType[] VALUES = values();
 
-    public static DevicePortFeature valueOf(
+    public static FeatureType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -86,12 +122,12 @@ public final class DeviceMessageProtos {
     private final int index;
     private final int value;
 
-    private DevicePortFeature(int index, int value) {
+    private FeatureType(int index, int value) {
       this.index = index;
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:DevicePortFeature)
+    // @@protoc_insertion_point(enum_scope:FeatureType)
   }
 
   /**
@@ -199,27 +235,27 @@ public final class DeviceMessageProtos {
     int getPort();
 
     /**
-     * <code>optional string description = 2;</code>
-     */
-    boolean hasDescription();
-    /**
-     * <code>optional string description = 2;</code>
-     */
-    java.lang.String getDescription();
-    /**
-     * <code>optional string description = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getDescriptionBytes();
-
-    /**
-     * <code>required .DevicePortFeature feature = 3;</code>
+     * <code>required .FeatureType feature = 2;</code>
      */
     boolean hasFeature();
     /**
-     * <code>required .DevicePortFeature feature = 3;</code>
+     * <code>required .FeatureType feature = 2;</code>
      */
-    com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature getFeature();
+    com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType getFeature();
+
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    boolean hasDescription();
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    java.lang.String getDescription();
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getDescriptionBytes();
   }
   /**
    * Protobuf type {@code DevicePort}
@@ -278,21 +314,21 @@ public final class DeviceMessageProtos {
               port_ = input.readInt32();
               break;
             }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              description_ = bs;
-              break;
-            }
-            case 24: {
+            case 16: {
               int rawValue = input.readEnum();
-              com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature value = com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature.valueOf(rawValue);
+              com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType value = com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType.valueOf(rawValue);
               if (value == null) {
-                unknownFields.mergeVarintField(3, rawValue);
+                unknownFields.mergeVarintField(2, rawValue);
               } else {
-                bitField0_ |= 0x00000004;
+                bitField0_ |= 0x00000002;
                 feature_ = value;
               }
+              break;
+            }
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000004;
+              description_ = bs;
               break;
             }
           }
@@ -350,16 +386,31 @@ public final class DeviceMessageProtos {
       return port_;
     }
 
-    public static final int DESCRIPTION_FIELD_NUMBER = 2;
-    private java.lang.Object description_;
+    public static final int FEATURE_FIELD_NUMBER = 2;
+    private com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType feature_;
     /**
-     * <code>optional string description = 2;</code>
+     * <code>required .FeatureType feature = 2;</code>
      */
-    public boolean hasDescription() {
+    public boolean hasFeature() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional string description = 2;</code>
+     * <code>required .FeatureType feature = 2;</code>
+     */
+    public com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType getFeature() {
+      return feature_;
+    }
+
+    public static final int DESCRIPTION_FIELD_NUMBER = 3;
+    private java.lang.Object description_;
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    public boolean hasDescription() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string description = 3;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -376,7 +427,7 @@ public final class DeviceMessageProtos {
       }
     }
     /**
-     * <code>optional string description = 2;</code>
+     * <code>optional string description = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -392,25 +443,10 @@ public final class DeviceMessageProtos {
       }
     }
 
-    public static final int FEATURE_FIELD_NUMBER = 3;
-    private com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature feature_;
-    /**
-     * <code>required .DevicePortFeature feature = 3;</code>
-     */
-    public boolean hasFeature() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>required .DevicePortFeature feature = 3;</code>
-     */
-    public com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature getFeature() {
-      return feature_;
-    }
-
     private void initFields() {
       port_ = 0;
+      feature_ = com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType.SWITCH;
       description_ = "";
-      feature_ = com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature.SWITCH;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -437,10 +473,10 @@ public final class DeviceMessageProtos {
         output.writeInt32(1, port_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getDescriptionBytes());
+        output.writeEnum(2, feature_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeEnum(3, feature_.getNumber());
+        output.writeBytes(3, getDescriptionBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -457,11 +493,11 @@ public final class DeviceMessageProtos {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getDescriptionBytes());
+          .computeEnumSize(2, feature_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, feature_.getNumber());
+          .computeBytesSize(3, getDescriptionBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -582,9 +618,9 @@ public final class DeviceMessageProtos {
         super.clear();
         port_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        description_ = "";
+        feature_ = com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType.SWITCH;
         bitField0_ = (bitField0_ & ~0x00000002);
-        feature_ = com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature.SWITCH;
+        description_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -621,11 +657,11 @@ public final class DeviceMessageProtos {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.description_ = description_;
+        result.feature_ = feature_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.feature_ = feature_;
+        result.description_ = description_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -645,13 +681,13 @@ public final class DeviceMessageProtos {
         if (other.hasPort()) {
           setPort(other.getPort());
         }
-        if (other.hasDescription()) {
-          bitField0_ |= 0x00000002;
-          description_ = other.description_;
-          onChanged();
-        }
         if (other.hasFeature()) {
           setFeature(other.getFeature());
+        }
+        if (other.hasDescription()) {
+          bitField0_ |= 0x00000004;
+          description_ = other.description_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -720,15 +756,50 @@ public final class DeviceMessageProtos {
         return this;
       }
 
-      private java.lang.Object description_ = "";
+      private com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType feature_ = com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType.SWITCH;
       /**
-       * <code>optional string description = 2;</code>
+       * <code>required .FeatureType feature = 2;</code>
        */
-      public boolean hasDescription() {
+      public boolean hasFeature() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional string description = 2;</code>
+       * <code>required .FeatureType feature = 2;</code>
+       */
+      public com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType getFeature() {
+        return feature_;
+      }
+      /**
+       * <code>required .FeatureType feature = 2;</code>
+       */
+      public Builder setFeature(com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000002;
+        feature_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required .FeatureType feature = 2;</code>
+       */
+      public Builder clearFeature() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        feature_ = com.zarusz.control.device.messages.DeviceMessageProtos.FeatureType.SWITCH;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object description_ = "";
+      /**
+       * <code>optional string description = 3;</code>
+       */
+      public boolean hasDescription() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string description = 3;</code>
        */
       public java.lang.String getDescription() {
         java.lang.Object ref = description_;
@@ -745,7 +816,7 @@ public final class DeviceMessageProtos {
         }
       }
       /**
-       * <code>optional string description = 2;</code>
+       * <code>optional string description = 3;</code>
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
@@ -761,72 +832,37 @@ public final class DeviceMessageProtos {
         }
       }
       /**
-       * <code>optional string description = 2;</code>
+       * <code>optional string description = 3;</code>
        */
       public Builder setDescription(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         description_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string description = 2;</code>
+       * <code>optional string description = 3;</code>
        */
       public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         description_ = getDefaultInstance().getDescription();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string description = 2;</code>
+       * <code>optional string description = 3;</code>
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         description_ = value;
-        onChanged();
-        return this;
-      }
-
-      private com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature feature_ = com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature.SWITCH;
-      /**
-       * <code>required .DevicePortFeature feature = 3;</code>
-       */
-      public boolean hasFeature() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>required .DevicePortFeature feature = 3;</code>
-       */
-      public com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature getFeature() {
-        return feature_;
-      }
-      /**
-       * <code>required .DevicePortFeature feature = 3;</code>
-       */
-      public Builder setFeature(com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000004;
-        feature_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required .DevicePortFeature feature = 3;</code>
-       */
-      public Builder clearFeature() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        feature_ = com.zarusz.control.device.messages.DeviceMessageProtos.DevicePortFeature.SWITCH;
         onChanged();
         return this;
       }
@@ -10688,48 +10724,49 @@ public final class DeviceMessageProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024DeviceCommands.proto\032\014nanopb.proto\"[\n\n" +
-      "DevicePort\022\014\n\004port\030\001 \002(\005\022\032\n\013description\030" +
-      "\002 \001(\tB\005\222?\002\010@\022#\n\007feature\030\003 \002(\0162\022.DevicePo" +
-      "rtFeature\"P\n\021DeviceDescription\022\030\n\tdevice" +
-      "_id\030\001 \002(\tB\005\222?\002\010 \022!\n\005ports\030\002 \003(\0132\013.Device" +
-      "PortB\005\222?\002\020\020\"C\n\023DeviceSwitchCommand\022\022\n\nme" +
-      "ssage_id\030\001 \002(\005\022\014\n\004port\030\002 \002(\005\022\n\n\002on\030\003 \002(\010" +
-      "\"@\n\007IRValue\022\031\n\006format\030\001 \002(\0162\t.IRFormat\022\014" +
-      "\n\004bits\030\002 \002(\r\022\014\n\004data\030\003 \002(\r\"P\n\023DeviceIRSe" +
-      "ndCommand\022\022\n\nmessage_id\030\001 \002(\005\022\014\n\004port\030\002 ",
-      "\002(\005\022\027\n\005value\030\003 \002(\0132\010.IRValue\"i\n\rDeviceMe" +
-      "ssage\022+\n\rswitchCommand\030\001 \001(\0132\024.DeviceSwi" +
-      "tchCommand\022+\n\rirSendCommand\030\002 \001(\0132\024.Devi" +
-      "ceIRSendCommand\"(\n\022CommandAckResponse\022\022\n" +
-      "\nmessage_id\030\001 \002(\005\"0\n\024DeviceConnectedEven" +
-      "t\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010 \"3\n\027DeviceDis" +
-      "connectedEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010 " +
-      "\"D\n\023DeviceHearbeatEvent\022\030\n\tdevice_id\030\001 \002" +
-      "(\tB\005\222?\002\010 \022\023\n\013sequence_id\030\002 \002(\005\"W\n\036Device" +
-      "TemperatureMeasuredEvent\022\030\n\tdevice_id\030\001 ",
+      "\n\024DeviceCommands.proto\032\014nanopb.proto\"U\n\n" +
+      "DevicePort\022\014\n\004port\030\001 \002(\005\022\035\n\007feature\030\002 \002(" +
+      "\0162\014.FeatureType\022\032\n\013description\030\003 \001(\tB\005\222?" +
+      "\002\010@\"P\n\021DeviceDescription\022\030\n\tdevice_id\030\001 " +
+      "\002(\tB\005\222?\002\010 \022!\n\005ports\030\002 \003(\0132\013.DevicePortB\005" +
+      "\222?\002\020\020\"C\n\023DeviceSwitchCommand\022\022\n\nmessage_" +
+      "id\030\001 \002(\005\022\014\n\004port\030\002 \002(\005\022\n\n\002on\030\003 \002(\010\"@\n\007IR" +
+      "Value\022\031\n\006format\030\001 \002(\0162\t.IRFormat\022\014\n\004bits" +
+      "\030\002 \002(\r\022\014\n\004data\030\003 \002(\r\"P\n\023DeviceIRSendComm" +
+      "and\022\022\n\nmessage_id\030\001 \002(\005\022\014\n\004port\030\002 \002(\005\022\027\n",
+      "\005value\030\003 \002(\0132\010.IRValue\"i\n\rDeviceMessage\022" +
+      "+\n\rswitchCommand\030\001 \001(\0132\024.DeviceSwitchCom" +
+      "mand\022+\n\rirSendCommand\030\002 \001(\0132\024.DeviceIRSe" +
+      "ndCommand\"(\n\022CommandAckResponse\022\022\n\nmessa" +
+      "ge_id\030\001 \002(\005\"0\n\024DeviceConnectedEvent\022\030\n\td" +
+      "evice_id\030\001 \002(\tB\005\222?\002\010 \"3\n\027DeviceDisconnec" +
+      "tedEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010 \"D\n\023De" +
+      "viceHearbeatEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222?" +
+      "\002\010 \022\023\n\013sequence_id\030\002 \002(\005\"W\n\036DeviceTemper" +
+      "atureMeasuredEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222",
+      "?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\002\"T\n\033Dev" +
+      "iceHumidityMeasuredEvent\022\030\n\tdevice_id\030\001 " +
       "\002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030\003 \002(\002\"" +
-      "T\n\033DeviceHumidityMeasuredEvent\022\030\n\tdevice" +
-      "_id\030\001 \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\r\n\005value\030" +
-      "\003 \002(\002\"E\n\033DeviceMovementDetectedEvent\022\030\n\t" +
-      "device_id\030\001 \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\"X\n\025" +
-      "DeviceIRReceivedEvent\022\030\n\tdevice_id\030\001 \002(\t" +
-      "B\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\022\027\n\005value\030\003 \002(\0132\010.I" +
-      "RValue\"\236\003\n\014DeviceEvents\0223\n\024deviceConnect" +
-      "edEvent\030\001 \001(\0132\025.DeviceConnectedEvent\0221\n\023" +
-      "deviceHearbeatEvent\030\002 \001(\0132\024.DeviceHearbe",
-      "atEvent\0229\n\027deviceDisconnectedEvent\030\003 \001(\013" +
-      "2\030.DeviceDisconnectedEvent\022@\n\027temperatur" +
-      "eMeasureEvent\030\004 \001(\0132\037.DeviceTemperatureM" +
-      "easuredEvent\022:\n\024humidityMeasureEvent\030\005 \001" +
-      "(\0132\034.DeviceHumidityMeasuredEvent\022<\n\026move" +
-      "mentDetectionEvent\030\006 \001(\0132\034.DeviceMovemen" +
-      "tDetectedEvent\022/\n\017irReceivedEvent\030\007 \001(\0132" +
-      "\026.DeviceIRReceivedEvent*+\n\021DevicePortFea" +
-      "ture\022\n\n\006SWITCH\020\000\022\006\n\002IR\020\001\032\002\020\001**\n\010IRFormat" +
-      "\022\013\n\007Unknown\020\000\022\007\n\003NEC\020\001\022\010\n\004SONY\020\002B9\n\"com.",
-      "zarusz.control.device.messagesB\023DeviceMe" +
-      "ssageProtos"
+      "E\n\033DeviceMovementDetectedEvent\022\030\n\tdevice" +
+      "_id\030\001 \002(\tB\005\222?\002\010 \022\014\n\004port\030\002 \002(\005\"X\n\025Device" +
+      "IRReceivedEvent\022\030\n\tdevice_id\030\001 \002(\tB\005\222?\002\010" +
+      " \022\014\n\004port\030\002 \002(\005\022\027\n\005value\030\003 \002(\0132\010.IRValue" +
+      "\"\236\003\n\014DeviceEvents\0223\n\024deviceConnectedEven" +
+      "t\030\001 \001(\0132\025.DeviceConnectedEvent\0221\n\023device" +
+      "HearbeatEvent\030\002 \001(\0132\024.DeviceHearbeatEven",
+      "t\0229\n\027deviceDisconnectedEvent\030\003 \001(\0132\030.Dev" +
+      "iceDisconnectedEvent\022@\n\027temperatureMeasu" +
+      "reEvent\030\004 \001(\0132\037.DeviceTemperatureMeasure" +
+      "dEvent\022:\n\024humidityMeasureEvent\030\005 \001(\0132\034.D" +
+      "eviceHumidityMeasuredEvent\022<\n\026movementDe" +
+      "tectionEvent\030\006 \001(\0132\034.DeviceMovementDetec" +
+      "tedEvent\022/\n\017irReceivedEvent\030\007 \001(\0132\026.Devi" +
+      "ceIRReceivedEvent*t\n\013FeatureType\022\n\n\006SWIT" +
+      "CH\020\000\022\006\n\002IR\020\001\022\r\n\tSENSOR_IR\020\002\022\026\n\022SENSOR_TE" +
+      "MPERATURE\020\003\022\023\n\017SENSOR_HUMIDITY\020\004\022\021\n\rSENS",
+      "OR_MOTION\020\005\032\002\020\001**\n\010IRFormat\022\013\n\007Unknown\020\000" +
+      "\022\007\n\003NEC\020\001\022\010\n\004SONY\020\002B9\n\"com.zarusz.contro" +
+      "l.device.messagesB\023DeviceMessageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -10749,7 +10786,7 @@ public final class DeviceMessageProtos {
     internal_static_DevicePort_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_DevicePort_descriptor,
-        new java.lang.String[] { "Port", "Description", "Feature", });
+        new java.lang.String[] { "Port", "Feature", "Description", });
     internal_static_DeviceDescription_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_DeviceDescription_fieldAccessorTable = new

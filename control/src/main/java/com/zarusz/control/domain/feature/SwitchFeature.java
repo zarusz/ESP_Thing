@@ -12,7 +12,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("switch")
+@DiscriminatorValue("Switch")
 public class SwitchFeature extends DeviceFeature {
 
     @Getter
@@ -22,8 +22,8 @@ public class SwitchFeature extends DeviceFeature {
 	protected SwitchFeature() {
 	}
 
-	public SwitchFeature(Device device, Feature feature) {
-        super(device, feature);
+	public SwitchFeature(Device device, Feature feature, int port) {
+        super(device, feature, port);
 	}
 
 	public void setOn(boolean on) {

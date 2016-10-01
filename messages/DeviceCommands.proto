@@ -4,16 +4,20 @@ option java_package = "com.zarusz.control.device.messages";
 option java_outer_classname = "DeviceMessageProtos";
 
 /* Description (begin) */
-enum DevicePortFeature {
+enum FeatureType {
   option allow_alias = true;
   SWITCH = 0;
   IR = 1;
+  SENSOR_IR = 2;
+  SENSOR_TEMPERATURE = 3;
+  SENSOR_HUMIDITY = 4;
+  SENSOR_MOTION = 5;
 }
 
 message DevicePort {
   required int32 port = 1;
-  optional string description = 2 [(nanopb).max_size = 64];
-  required DevicePortFeature feature = 3;
+  required FeatureType feature = 2;
+  optional string description = 3 [(nanopb).max_size = 64];
 }
 
 message DeviceDescription {

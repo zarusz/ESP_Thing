@@ -11,10 +11,8 @@ import java.util.stream.Collectors;
  * Created by Tomasz on 9/14/2015.
  */
 @Data
-public class PartitionDTO {
+public class PartitionDTO extends PartitionDescDTO {
 
-    private Integer id;
-    private String displayName;
     private Integer displayPriority;
     private List<PartitionDTO> children = new ArrayList<>();
 
@@ -22,8 +20,7 @@ public class PartitionDTO {
     }
 
     public PartitionDTO(Partition e) {
-        id = e.getId();
-        displayName = e.getDisplayName();
+        super(e);
         displayPriority = e.getDisplayPriority();
         children = e.getChildren().stream().map(PartitionDTO::new).collect(Collectors.toList());
     }

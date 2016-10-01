@@ -7,16 +7,17 @@
 class IRReceiverFeatureController : public FeatureController
 {
 protected:
-  IRrecv irrecv;
-  decode_results results;
+  const char* _topic;
+  IRrecv _irrecv;
+  decode_results _results;
 
   IRFormat GetFormat() const;
+  void Publish(decode_results& results, IRFormat format);
 
 public:
-  IRReceiverFeatureController(int port, DeviceContext* context, int pin);
+  IRReceiverFeatureController(int port, DeviceContext* context, int pin, const char* topic);
   virtual ~IRReceiverFeatureController();
 
-  virtual void Handle(DeviceMessage& deviceMessage);
   virtual void Loop();
 };
 

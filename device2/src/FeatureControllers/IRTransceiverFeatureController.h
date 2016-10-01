@@ -7,14 +7,13 @@
 class IRTransceiverFeatureController : public FeatureController
 {
 protected:
-  IRsend irsend;
+  IRsend _irsend;
 
 public:
   IRTransceiverFeatureController(int port, DeviceContext* context, int pin);
   virtual ~IRTransceiverFeatureController();
 
-  virtual void Handle(DeviceMessage& deviceMessage);
-  virtual void Loop();
+  virtual void Handle(const DeviceMessage& deviceMessage);
 };
 
 
