@@ -42,9 +42,14 @@ var App;
                 var url = "api/device/" + device.id + "/feature/" + feature.id + "/state";
                 return this.http.post(url, feature.state);
             };
+            DeviceService.prototype.urlById = function (deviceId) {
+                return "api/device/" + deviceId;
+            };
             DeviceService.prototype.getById = function (deviceId) {
-                var url = "api/device/" + deviceId;
-                return this.http.get(url).then(function (x) { return x.data; });
+                return this.http.get(this.urlById(deviceId)).then(function (x) { return x.data; });
+            };
+            DeviceService.prototype.update = function (device) {
+                return this.http.post(this.urlById(device.id), device).then(function (x) { return x.data; });
             };
             DeviceService.$name = "DeviceService";
             DeviceService.$inject = [App.NgSvc.http, App.NgSvc.cookies, App.NgSvc.q, App.NgSvc.localStorageService, App.EventBus.$name];

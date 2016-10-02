@@ -8,7 +8,8 @@
 #include <pb.h>
 
 #include "MessageBus.h"
-#include "PbSerializer.h"
+#include "Serializer.h"
+#include "Buffer.h"
 
 class MqttMessageBus : public MessageBus
 {
@@ -18,7 +19,7 @@ protected:
 	const char* _deviceId;
 	std::set<const char*> _topics;
 	Serializer& _serializer;
-	std::vector<byte> _buffer;
+	StaticBuffer<256> _buffer;
 
 	WiFiClient _espClient;
 	PubSubClient _mqttClient;
@@ -32,7 +33,7 @@ public:
 	virtual ~MqttMessageBus();
 
 public:
-	virtual bool Publish(const char* topic, const std::vector<byte>& payload);
+	virtual bool Publish(const char* topic, const Buffer& payload);
 	virtual bool Publish(const char* topic, const void* message);
 	virtual void Subscribe(const char* topic);
 	virtual void Unsubscribe(const char* topic);

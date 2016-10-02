@@ -26,6 +26,8 @@ var App;
         NgSvc.localStorageService = "localStorageService";
         NgSvc.translate = "$translate";
         NgSvc.translatePartialLoader = "$translatePartialLoader";
+        // Angular Material
+        NgSvc.mdToast = "$mdToast";
         return NgSvc;
     }());
     App.NgSvc = NgSvc;

@@ -8,7 +8,7 @@ import lombok.Data;
  * Created by Tomasz on 4/21/2016.
  */
 @Data
-public class HumiditySensorFeatureStateDTO extends FeatureStateDTO {
+public class HumiditySensorFeatureStateDTO extends FeatureStateDto {
 
     private float humidity;
 

@@ -37,7 +37,7 @@ void TempFeatureController::Loop()
 
     if (!isnan(h))
     {
-      Serial.printf("The humidity is %d\n", (int) h);
+      Serial.printf("[DHT22] The humidity is %d\n", (int) h);
 
       events.has_humidityMeasureEvent = true;
       strcpy(events.humidityMeasureEvent.device_id, _context->GetConfig().uniqueId);
@@ -52,7 +52,7 @@ void TempFeatureController::Loop()
 
     if (!isnan(t))
     {
-      Serial.printf("The temperature is %d\n", (int) t);
+      Serial.printf("[DHT22] The temperature is %d\n", (int) t);
 
       events.has_temperatureMeasureEvent = true;
       strcpy(events.temperatureMeasureEvent.device_id, _context->GetConfig().uniqueId);
@@ -69,7 +69,7 @@ void TempFeatureController::Loop()
   else
   {
     // TODO: log error
-    Serial.println("Error: Cannot read the temperature/humidity sensor.");
+    Serial.println("[DHT22] Error: Cannot read the temperature/humidity sensor.");
   }
 
   _lastTemp = !_lastTemp;

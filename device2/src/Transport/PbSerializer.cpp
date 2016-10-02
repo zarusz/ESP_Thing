@@ -10,16 +10,15 @@ PbMessage::PbMessage(const pb_field_t* fields, void* message)
 }
 
 PbSerializer::PbSerializer()
-  : _buffer(255)
 {
 }
 
-bool PbSerializer::Decode(const std::vector<byte>& payload, void* msg) const
+bool PbSerializer::Decode(const Buffer& payload, void* msg) const
 {
   auto message = static_cast<PbMessage*>(msg);
 
    /* Create a stream that reads from the buffer. */
-  pb_istream_t stream = pb_istream_from_buffer(payload.data(), payload.size());
+  pb_istream_t stream = pb_istream_from_buffer(payload.Data(), payload.Size());
   /* Now we are ready to decode the message. */
   bool status = pb_decode(&stream, message->Fields, message->Message);
 
@@ -33,17 +32,17 @@ bool PbSerializer::Decode(const std::vector<byte>& payload, void* msg) const
   return true;
 }
 
-bool PbSerializer::Encode(const void* msg, std::vector<byte>*& payload)
+bool PbSerializer::Encode(const void* msg, Buffer*& payload)
 {
   auto message = static_cast<const PbMessage*>(msg);
 
-  _buffer.resize(_buffer.capacity());
+  _buffer.Reset();
 
   /* Create a stream that will write to our buffer. */
-  pb_ostream_t stream = pb_ostream_from_buffer(_buffer.data(), _buffer.capacity());
+  pb_ostream_t stream = pb_ostream_from_buffer(_buffer.Data(), _buffer.MaxSize());
   /* Now we are ready to encode the message! */
   bool status = pb_encode(&stream, message->Fields, message->Message);
-  _buffer.resize(stream.bytes_written);
+  _buffer.Resize(stream.bytes_written);
 
   /* Then just check for any errors.. */
   if (!status)

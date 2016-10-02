@@ -8,7 +8,7 @@ import lombok.Data;
  * Created by Tomasz on 4/21/2016.
  */
 @Data
-public class TemperatureSensorFeatureStateDTO extends FeatureStateDTO {
+public class TemperatureSensorFeatureStateDTO extends FeatureStateDto {
 
     private float temperature;
 

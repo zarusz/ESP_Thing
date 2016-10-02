@@ -1,27 +1,21 @@
 #ifndef _PbSerializer_h
 #define _PbSerializer_h
 
-#include <Arduino.h>
 #include <pb.h>
-#include <vector>
 
-class Serializer
-{
-public:
-  virtual bool Decode(const std::vector<byte>& payload, void* msg) const = 0;
-  virtual bool Encode(const void* msg, std::vector<byte>*& payload) = 0;
-};
+#include "Buffer.h"
+#include "Serializer.h"
 
 class PbSerializer : public Serializer
 {
 protected:
-  std::vector<byte> _buffer;
+  StaticBuffer<256> _buffer;
 
 public:
   PbSerializer();
 
-  virtual bool Decode(const std::vector<byte>& payload, void* msg) const;
-  virtual bool Encode(const void* msg, std::vector<byte>*& payload);
+  virtual bool Decode(const Buffer& payload, void* msg) const;
+  virtual bool Encode(const void* msg, Buffer*& payload);
 };
 
 class PbMessage

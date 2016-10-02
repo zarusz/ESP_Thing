@@ -6,7 +6,7 @@ import com.zarusz.control.domain.feature.IRSensorFeature;
 /**
  * Created by Tomasz on 10/1/2016.
  */
-public class IRSensorFeatureStateDTO extends FeatureStateDTO {
+public class IRSensorFeatureStateDTO extends FeatureStateDto {
 
     public IRSensorFeatureStateDTO() {
     }

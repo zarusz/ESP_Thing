@@ -2,7 +2,7 @@ package com.zarusz.control.web.rest;
 
 import com.zarusz.control.domain.partition.Partition;
 import com.zarusz.control.repository.PartitionRepository;
-import com.zarusz.control.web.rest.dto.PartitionDTO;
+import com.zarusz.control.web.rest.dto.PartitionDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -28,11 +28,11 @@ public class PartitionResource {
     @RequestMapping(value = "/partition",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public PartitionDTO getRoot() {
+    public PartitionDto getRoot() {
 
         Optional<Partition> root = partitionRepo.findRootFetchChildren();
         return root
-                .map(PartitionDTO::new)
+                .map(PartitionDto::new)
                 .orElse(null);
     }
 }

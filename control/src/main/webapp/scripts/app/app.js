@@ -52,6 +52,16 @@ var App;
                 }
             };
         });
+        /*
+        .factory("errorInterceptor", ($q, $mdToast) => {
+            return {
+                responseError: (response) => {
+                    $mdToast.show($mdToast.simple().textContent("The operation failed.").hideDelay(3000));
+                    return $q.reject(response);
+                }
+            };
+        });
+        */
         function Run($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
             $rootScope.ENV = ENV;
             $rootScope.VERSION = VERSION;
@@ -115,6 +125,7 @@ var App;
                 .state(defaultState);
             $httpProvider.interceptors.push("authExpiredInterceptor");
             $httpProvider.interceptors.push("authInterceptor");
+            //$httpProvider.interceptors.push("errorInterceptor");
             //enable CSRF
             $httpProvider.defaults.xsrfCookieName = 'CSRF-TOKEN';
             $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';

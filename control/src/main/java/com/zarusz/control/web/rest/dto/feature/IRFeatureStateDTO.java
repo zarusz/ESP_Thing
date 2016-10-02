@@ -8,7 +8,7 @@ import lombok.Data;
  * Created by Tomasz on 10/3/2015.
  */
 @Data
-public class IRFeatureStateDTO extends FeatureStateDTO {
+public class IRFeatureStateDTO extends FeatureStateDto {
 
     private int value;
 

@@ -8,6 +8,7 @@ module App {
         "pascalprecht.translate",
         "ngAnimate",
         "ngMaterial",
+        "ngMessages",
         "ngResource",
         "ngCookies",
         "ngCacheBuster",

@@ -29,6 +29,9 @@ module App {
         static localStorageService = "localStorageService";
         static translate = "$translate";
         static translatePartialLoader = "$translatePartialLoader";
+
+        // Angular Material
+        static mdToast = "$mdToast";
     }
 
     export class NgEvent {

@@ -10,17 +10,30 @@ module App.Admin.Devices {
             Repository.DeviceService.$name,
             Repository.PartitionService.$name,
             NgSvc.state,
-            NgSvc.stateParams
+            NgSvc.stateParams,
+            NgSvc.mdToast
         ];
         static $nameAs = "vm";
 
-        device: Repository.IDeviceModel;
+        device: Repository.IDeviceUpdateModel;
         partitions: Array<Repository.IPartitionDescModel> = [];
+        displayIcons: Array<string> = [
+            "fa-cube",
+            "fa-cubes",
+            "fa-compass",
+            "fa-envelope",
+            "fa-folder",
+            "fa-flask",
+            "fa-flag",
+            "fa-flash",
+            "fa-fire"
+        ];
 
         constructor(private deviceService: Repository.DeviceService,
                     private partitionService: Repository.PartitionService,
                     private state: ng.ui.IStateService,
-                    private stateParams: DeviceEditStateParams) {
+                    private stateParams: DeviceEditStateParams,
+                    private mdToast: ng.material.IToastService) {
 
             this.partitionService.loadRoot().then(x => this.setPartitions(x));
 
@@ -30,7 +43,12 @@ module App.Admin.Devices {
         }
 
         private setDevice(d: Repository.IDeviceModel) {
-            this.device = d;
+            this.device = {
+                id: d.id,
+                displayName: d.displayName,
+                displayIcon: d.displayIcon,
+                partition: d.partition ? {id: d.partition.id} : null
+            };
         }
 
         private setPartitions(p: Repository.PartitionModel) {
@@ -42,6 +60,15 @@ module App.Admin.Devices {
         private flattenPartition(list: Repository.PartitionModel[], p: Repository.PartitionModel) {
             list.push(p);
             _.forEach(p.children, child => this.flattenPartition(list, child));
+        }
+
+        save(form: angular.IFormController) {
+            if (form.$invalid) {
+                return;
+            }
+            this.deviceService.update(this.device).then(() => {
+                this.mdToast.show(this.mdToast.simple().textContent("Saved").hideDelay(3000));
+            });
         }
     }
 }

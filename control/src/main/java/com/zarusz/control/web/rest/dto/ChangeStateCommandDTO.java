@@ -1,6 +1,6 @@
 package com.zarusz.control.web.rest.dto;
 
-import com.zarusz.control.web.rest.dto.feature.FeatureStateDTO;
+import com.zarusz.control.web.rest.dto.feature.FeatureStateDto;
 import lombok.Data;
 
 /**
@@ -11,6 +11,6 @@ public class ChangeStateCommandDTO {
 
     private String deviceId;
     private String featureId;
-    private FeatureStateDTO state;
+    private FeatureStateDto state;
 
 }

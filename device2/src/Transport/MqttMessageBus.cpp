@@ -6,7 +6,6 @@
 #include "../Utils/TimeUtil.h"
 
 
-#define MAX_BUFFER 256
 // We assume there will be only 1 instance crated.
 // We need this in the static
 MqttMessageBus* Singleton;
@@ -14,7 +13,6 @@ MqttMessageBus* Singleton;
 MqttMessageBus::MqttMessageBus(const char* serverHost, int serverPort,
   MessageHandler* handler, const char* deviceId, Serializer& serializer)
   : _mqttClient(_espClient),
-    _buffer(MAX_BUFFER),
     _serializer(serializer)
 {
   _serverHost = serverHost;
@@ -33,15 +31,15 @@ MqttMessageBus::~MqttMessageBus()
 {
 }
 
-bool MqttMessageBus::Publish(const char* topic, const std::vector<byte>& payload)
+bool MqttMessageBus::Publish(const char* topic, const Buffer& payload)
 {
-  Serial.printf("[MQTT] Publish to topic: '%s', payload size: %d\n", topic, payload.size());
-  return _mqttClient.publish(topic, payload.data(), payload.size());
+  Serial.printf("[MQTT] Publish to topic: '%s', payload size: %d\n", topic, payload.Size());
+  return _mqttClient.publish(topic, payload.Data(), payload.Size());
 }
 
 bool MqttMessageBus::Publish(const char* topic, const void* message)
 {
-  std::vector<byte>* payload;
+  Buffer* payload;
   if (!_serializer.Encode(message, payload))
   {
     return false;
@@ -129,8 +127,8 @@ void MqttMessageBus::MessageCallback(char* topic, byte* payload, uint length)
 {
   Serial.printf("[MQTT] Received on topic: '%s', message with length: '%d'\n", topic, length);
 
-  _buffer.resize(length);
-  memcpy(_buffer.data(), payload, length);
+  _buffer.Resize(length);
+  memcpy(_buffer.Data(), payload, length);
 
   // check if message handler is set
   if (_handler)

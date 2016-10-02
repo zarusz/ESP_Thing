@@ -40,6 +40,12 @@ module App.Repository {
         lastOnline?: number;
     }
 
+    export interface IDeviceUpdateModel extends IDeviceIdModel {
+        displayName: string;
+        displayIcon: string;
+        partition: IPartitionIdModel;
+    }
+
     export interface IFeatureStateChangedEventHandler {
         onFeatureStateChanged(e: FeatureStateChangedEvent);
     }
@@ -92,9 +98,16 @@ module App.Repository {
             return this.http.post(url, feature.state);
         }
 
+        private urlById(deviceId: number) {
+            return `api/device/${deviceId}`;
+        }
+
         getById(deviceId: number) {
-            var url = `api/device/${deviceId}`;
-            return this.http.get<IDeviceModel>(url).then(x => x.data);
+            return this.http.get<IDeviceModel>(this.urlById(deviceId)).then(x => x.data);
+        }
+
+        update(device: IDeviceUpdateModel) {
+            return this.http.post<void>(this.urlById(device.id), device).then(x => x.data);
         }
     }
 

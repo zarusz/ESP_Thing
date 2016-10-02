@@ -30,7 +30,6 @@ private:
 	ShiftRegisterPins _pins;
 
 	ulong _lastMsg = 0;
-	char _msg[256];
 	int _value = 0;
 
 	bool _started;
@@ -46,13 +45,13 @@ public:
   virtual MessageBus* GetMessageBus() { return &_messageBus; }
 	virtual Pins& GetPins() { return _pins; }
 
-	virtual void Handle(const char* topic, const std::vector<byte>& payload, Serializer& serializer);
+	virtual void Handle(const char* topic, const Buffer& payload, Serializer& serializer);
 
 protected:
 	void SetupWifi();
 	void ReconnectPubSub();
 
-	void DebugRetrievedMessage(const char* topic, const void* message);
+	//void DebugRetrievedMessage(const char* topic, const void* message);
 	void HandleDeviceMessage(const DeviceMessage& message);
 
 	void OnStart();
@@ -60,6 +59,7 @@ protected:
 	void OnLoop();
 
 	void SendDescription();
+	void SendHearbeat();
 };
 
 
