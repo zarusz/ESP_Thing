@@ -89,6 +89,11 @@ public class ApplicationConfiguration {
     }
 
     @Bean
+    public ServiceCommandHandler serviceCommandHandler(MBassador bus) throws Exception {
+        return new ServiceCommandHandler(bus);
+    }
+
+    @Bean
     public FeatureStateChangedNotifier featureStateChangedNotifier(MBassador bus) throws Exception {
         return new FeatureStateChangedNotifier(bus);
     }

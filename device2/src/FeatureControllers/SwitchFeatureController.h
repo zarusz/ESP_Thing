@@ -14,6 +14,7 @@ protected:
 public:
   SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh);
 
+  virtual void Start();
   virtual void Handle(const DeviceMessage& deviceMessage);
 };
 

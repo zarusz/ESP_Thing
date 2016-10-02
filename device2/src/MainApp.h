@@ -4,10 +4,12 @@
 #define _MAINAPP_h
 
 #include <Arduino.h>
-#include <ESP8266WiFi.h>
-#include <PubSubClient.h>
 #include <vector>
 #include <memory>
+
+#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
+#include <ESP8266httpUpdate.h>
 
 #include "DeviceConfig.h"
 #include "DeviceCommands.pb.h"
@@ -18,11 +20,20 @@
 #include "Pins/Pins.h"
 #include "Pins/ShiftRegisterPins.h"
 
+enum DeviceState
+{
+	New,
+	Started,
+	Running,
+	Stopped
+};
+
 class MainApp : public DeviceContext, public MessageHandler
 {
 private:
 	DeviceConfig _deviceConfig;
 	String _deviceInTopic;
+	String _deviceServiceTopic;
 	MqttMessageBus _messageBus;
 	PbSerializer _serializer;
 
@@ -32,7 +43,7 @@ private:
 	ulong _lastMsg = 0;
 	int _value = 0;
 
-	bool _started;
+	DeviceState _state;
 
 public:
 	MainApp();
@@ -53,6 +64,7 @@ protected:
 
 	//void DebugRetrievedMessage(const char* topic, const void* message);
 	void HandleDeviceMessage(const DeviceMessage& message);
+	void HandleServiceCommand(const DeviceServiceCommand& message);
 
 	void OnStart();
 	void OnStop();

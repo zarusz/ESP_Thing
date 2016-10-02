@@ -40,10 +40,14 @@ module App.Repository {
         lastOnline?: number;
     }
 
-    export interface IDeviceUpdateModel extends IDeviceIdModel {
+    export interface IDeviceUpdateModel {
         displayName: string;
         displayIcon: string;
         partition: IPartitionIdModel;
+    }
+
+    export interface IDeviceUpgradeModel {
+        firmwareUrl: string;
     }
 
     export interface IFeatureStateChangedEventHandler {
@@ -106,8 +110,13 @@ module App.Repository {
             return this.http.get<IDeviceModel>(this.urlById(deviceId)).then(x => x.data);
         }
 
-        update(device: IDeviceUpdateModel) {
-            return this.http.post<void>(this.urlById(device.id), device).then(x => x.data);
+        update(deviceId: number, device: IDeviceUpdateModel) {
+            return this.http.post<void>(this.urlById(deviceId), device).then(x => x.data);
+        }
+
+        upgrade(deviceId: number, device: App.Repository.IDeviceUpgradeModel) {
+            var url = `${this.urlById(deviceId)}/upgrade`;
+            return this.http.post<void>(url, device).then(x => x.data);
         }
     }
 

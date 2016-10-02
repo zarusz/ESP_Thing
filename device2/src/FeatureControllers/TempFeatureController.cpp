@@ -3,21 +3,22 @@
 
 TempFeatureController::TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin, const char* topic)
   : FeatureController(port, FeatureType::FeatureType_SENSOR_TEMPERATURE, context),
-    _dht(pin, DHT22)
+    _dht(pin, DHT22),
+    _topic(topic),
+    _portForHumidity(portForHumidity)
 {
-  _topic = topic;
-  _portForHumidity = portForHumidity;
-  _pin = pin;
-
   _lastTemp = false;
   _lastUpdateMs = 0;
   _updateIntervalMs = 10000;
-
-  _dht.begin();
 }
 
 TempFeatureController::~TempFeatureController()
 {
+}
+
+void TempFeatureController::Start()
+{
+  _dht.begin();
 }
 
 void TempFeatureController::Loop()

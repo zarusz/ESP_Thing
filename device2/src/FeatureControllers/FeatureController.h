@@ -15,6 +15,9 @@ public:
   FeatureController(int port, FeatureType type, DeviceContext* context);
   virtual ~FeatureController();
 
+  virtual void Start();
+  virtual void Stop();
+
   virtual void Describe(DevicePort &portDesc);
   virtual void Loop();
 

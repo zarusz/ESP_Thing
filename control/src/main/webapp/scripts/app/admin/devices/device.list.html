@@ -1,7 +1,7 @@
 <md-content flex layout="column">
     <md-list>
         <div ng-repeat="device in vm.devices | orderBy : 'displayPriority'">
-            <md-list-item class="md-3-line noright" ng-click="vm.editDevice(device)">
+            <md-list-item class="md-3-line noright secondary-button-padding" ng-click="vm.editDevice(device)">
                 <span ng-if="::device.displayIcon" class="fa fa-fw fa-3x {{::device.displayIcon}} md-avatar"></span>
                 <div class="md-list-item-text" layout="column">
                     <h3>{{device.displayName}} <span>({{device.guid}})</span></h3>
@@ -11,6 +11,10 @@
                     </p>
                     <p>Last online {{::vm.humanTime(device.lastOnline)}}</p>
                 </div>
+                <md-button class="md-raised md-secondary " ng-click="vm.upgradeDevice(device)">
+                    <span class="fa fa-fw fa-upload"></span>
+                    Upgrade
+                </md-button>
             </md-list-item>
         </div>
         <div ng-if="vm.devices.length === 0" class="text-center">

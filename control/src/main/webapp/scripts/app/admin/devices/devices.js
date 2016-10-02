@@ -2,6 +2,7 @@
 ///<reference path="device.states.ts"/>
 ///<reference path="device.list.controller.ts"/>
 ///<reference path="device.edit.controller.ts"/>
+///<reference path="device.upgrade.controller.ts"/>
 var App;
 (function (App) {
     var Admin;
@@ -20,7 +21,7 @@ var App;
                     },
                     templateUrl: "scripts/app/admin/devices/device.list.html",
                     controller: Devices.DeviceListCtrl,
-                    controllerAs: Devices.DeviceListCtrl.$nameAs,
+                    controllerAs: "vm",
                     resolve: {
                         mainTranslatePartialLoader: [App.NgSvc.translate, App.NgSvc.translatePartialLoader, function ($translate, $translatePartialLoader) {
                                 $translatePartialLoader.addPart("main");
@@ -36,7 +37,23 @@ var App;
                     },
                     templateUrl: "scripts/app/admin/devices/device.edit.html",
                     controller: Devices.DeviceEditCtrl,
-                    controllerAs: Devices.DeviceEditCtrl.$nameAs,
+                    controllerAs: "vm",
+                    resolve: {
+                        mainTranslatePartialLoader: [App.NgSvc.translate, App.NgSvc.translatePartialLoader, function ($translate, $translatePartialLoader) {
+                                $translatePartialLoader.addPart("main");
+                                return $translate.refresh();
+                            }]
+                    }
+                })
+                    .state(Devices.States.Upgrade, {
+                    parent: "site",
+                    url: "/admin/device/{deviceId}/upgrade",
+                    data: {
+                        roles: []
+                    },
+                    templateUrl: "scripts/app/admin/devices/device.upgrade.html",
+                    controller: Devices.DeviceUpgradeCtrl,
+                    controllerAs: "vm",
                     resolve: {
                         mainTranslatePartialLoader: [App.NgSvc.translate, App.NgSvc.translatePartialLoader, function ($translate, $translatePartialLoader) {
                                 $translatePartialLoader.addPart("main");

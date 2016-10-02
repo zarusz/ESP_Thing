@@ -1,19 +1,23 @@
-#include "IRReceiverFeatureController.h"
+#include "IRSensorFeatureController.h"
 #include "../DeviceCommands.ext.h"
 
-IRReceiverFeatureController::IRReceiverFeatureController(int port, DeviceContext* context, int pin, const char* topic)
+IRSensorFeatureController::IRSensorFeatureController(int port, DeviceContext* context, int pin, const char* topic)
   : FeatureController(port, FeatureType::FeatureType_SENSOR_IR, context),
-    _irrecv(pin)
+    _irrecv(pin),
+    _topic(topic)
 {
-  _topic = topic;
+}
+
+IRSensorFeatureController::~IRSensorFeatureController()
+{
+}
+
+void IRSensorFeatureController::Start()
+{
   _irrecv.enableIRIn(); // Start the receiver
 }
 
-IRReceiverFeatureController::~IRReceiverFeatureController()
-{
-}
-
-void IRReceiverFeatureController::Loop()
+void IRSensorFeatureController::Loop()
 {
   if (_irrecv.decode(&_results))
   {
@@ -35,7 +39,7 @@ void IRReceiverFeatureController::Loop()
   }
 }
 
-void IRReceiverFeatureController::Publish(decode_results& results, IRFormat format)
+void IRSensorFeatureController::Publish(decode_results& results, IRFormat format)
 {
   DeviceEvents events = DeviceEvents_init_zero;
   events.has_irReceivedEvent = true;
@@ -49,7 +53,7 @@ void IRReceiverFeatureController::Publish(decode_results& results, IRFormat form
   _context->GetMessageBus()->Publish(_topic, &message);
 }
 
-IRFormat IRReceiverFeatureController::GetFormat() const
+IRFormat IRSensorFeatureController::GetFormat() const
 {
   switch (_results.decode_type)
   {

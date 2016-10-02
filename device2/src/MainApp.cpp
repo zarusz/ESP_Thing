@@ -2,34 +2,34 @@
 #include <stdio.h>
 #include <algorithm>
 #include "Utils/TimeUtil.h"
+
+// features
 #include "FeatureControllers/SwitchFeatureController.h"
 #include "FeatureControllers/TempFeatureController.h"
-#include "FeatureControllers/IRTransceiverFeatureController.h"
-#include "FeatureControllers/IRReceiverFeatureController.h"
+#include "FeatureControllers/IRFeatureController.h"
+#include "FeatureControllers/IRSensorFeatureController.h"
 
 #define DEVICE_UNIQUE_ID "dev_sufit_new"
 #define TOPIC_DEVICE_EVENTS "device/events"
 #define TOPIC_DEVICE_DESCRIPTION "device/description"
 
 MainApp::MainApp()
-	: _deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi"),
+	: _deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi", 1883),
 		_pins(13, 14, 12, 20),
-		_messageBus(_deviceConfig.mqttBroker, 1883, this, _deviceConfig.uniqueId, _serializer),
-		_deviceInTopic(String("device/") + _deviceConfig.uniqueId)
+		_messageBus(_deviceConfig.mqttBroker, _deviceConfig.mqttBrokerPort, this, _deviceConfig.uniqueId, _serializer),
+		_deviceInTopic(String("device/") + _deviceConfig.uniqueId),
+		_deviceServiceTopic(String("device/") + _deviceConfig.uniqueId + "/service"),
+		_state(DeviceState::New)
 {
 	_features.push_back(new SwitchFeatureController(10, this, 4, false));
 	_features.push_back(new SwitchFeatureController(11, this, 5, false));
-	//_features.push_back(new SwitchFeatureController(12, this, 22, false));
-	//_features.push_back(new SwitchFeatureController(13, this, 23, false));
-	//_features.push_back(new SwitchFeatureController(14, this, 24, false));
-	//_features.push_back(new SwitchFeatureController(15, this, 25, false));
-	//_features.push_back(new SwitchFeatureController(16, this, 26, false));
-	//_features.push_back(new SwitchFeatureController(17, this, 27, false));
 
 	_features.push_back(new TempFeatureController(30, 31, this, 0, TOPIC_DEVICE_EVENTS));
-	_features.push_back(new IRTransceiverFeatureController(40, this, 2));
-	_features.push_back(new IRTransceiverFeatureController(50, this, 15));
-	_features.push_back(new IRReceiverFeatureController(41, this, 16, TOPIC_DEVICE_EVENTS));
+
+	_features.push_back(new IRFeatureController(40, this, 2));
+	_features.push_back(new IRFeatureController(50, this, 15));
+	_features.push_back(new IRSensorFeatureController(41, this, 16, TOPIC_DEVICE_EVENTS));
+
 	/*
 	_features.push_back(new SwitchFeatureController(10, this, 20, false));
 	_features.push_back(new SwitchFeatureController(11, this, 21, false));
@@ -46,6 +46,8 @@ MainApp::MainApp()
 	_features.push_back(new IRTransceiverFeatureController(50, this, 5));
 	*/
 
+	_messageBus.Subscribe(_deviceInTopic.c_str());
+	_messageBus.Subscribe(_deviceServiceTopic.c_str());
 }
 
 MainApp::~MainApp()
@@ -59,7 +61,7 @@ MainApp::~MainApp()
 void MainApp::Init()
 {
 	Serial.begin(115200);
-	pinMode(LED_BUILTIN, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
+	//pinMode(LED_BUILTIN, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
 
 	SetupWifi();
 }
@@ -68,20 +70,22 @@ void MainApp::Loop()
 {
 	_messageBus.Loop();
 
-	if (!_started) {
+	if (_state == DeviceState::New)
+	{
 		OnStart();
-		_started = true;
+		_state = DeviceState::Running;
 	}
 
-	OnLoop();
+	if (_state == DeviceState::Running)
+	{
+		OnLoop();
+	}
 }
 
 void MainApp::SetupWifi()
 {
 	// We start by connecting to a WiFi network
-	Serial.println();
-	Serial.print("Connecting to ");
-	Serial.println(_deviceConfig.networkName);
+	Serial.printf("\nConnecting to network %s\n", _deviceConfig.networkName);
 
 	//WiFi.mode(WIFI_STA);
 	WiFi.begin(_deviceConfig.networkName, _deviceConfig.networkPassword);
@@ -106,14 +110,26 @@ void MainApp::Handle(const char* topic, const Buffer& payload, Serializer& seria
 
 		if (!serializer.Decode(payload, &message))
 		{
-			Serial.println("Could not deserialize message.");
+			Serial.println("[MainApp] Error: Could not deserialize message.");
 			return;
 		}
 		HandleDeviceMessage(deviceMessage);
 		return;
 	}
 
-	//DebugRetrievedMessage(topic, message);
+	if (_deviceServiceTopic == topic)
+	{
+		DeviceServiceCommand cmd;
+		PbMessage message(DeviceServiceCommand_fields, &cmd);
+
+		if (!serializer.Decode(payload, &message))
+		{
+			Serial.println("[MainApp] Error: Could not deserialize message.");
+			return;
+		}
+		HandleServiceCommand(cmd);
+		return;
+	}
 }
 
 void MainApp::HandleDeviceMessage(const DeviceMessage& message)
@@ -128,11 +144,40 @@ void MainApp::HandleDeviceMessage(const DeviceMessage& message)
 	// TODO send ACK Message back to sender
 }
 
+void MainApp::HandleServiceCommand(const DeviceServiceCommand& cmd)
+{
+	Serial.println("[MainApp] HandleServiceCommand (start)");
+
+	if (cmd.has_upgradeFirmwareCommand)
+	{
+		const UpgradeFirmwareCommand* upgradeFirmwareCommand = &cmd.upgradeFirmwareCommand;
+		t_httpUpdate_return ret = ESPhttpUpdate.update(upgradeFirmwareCommand->program_url);
+		switch (ret)
+		{
+			case HTTP_UPDATE_FAILED:
+				Serial.printf("[MainApp] HTTP_UPDATE_FAILD Error (%d): %s\n", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
+				break;
+
+			case HTTP_UPDATE_NO_UPDATES:
+				Serial.println("[MainApp] HTTP_UPDATE_NO_UPDATES");
+				break;
+
+			case HTTP_UPDATE_OK:
+				Serial.println("[MainApp] HTTP_UPDATE_OK");
+				break;
+		}
+	}
+
+	Serial.println("[MainApp] HandleServiceCommand (finish)");
+}
+
 void MainApp::OnStart()
 {
-	Serial.println("Starting...");
+	Serial.println("[MainApp] Starting...");
 
-	_messageBus.Subscribe(_deviceInTopic.c_str());
+	std::for_each(_features.begin(), _features.end(), [](FeatureController* feature) {
+    feature->Start();
+	});
 
 	/*
 	Serial.println("Sending DeviceConnectedEvent");
@@ -146,12 +191,16 @@ void MainApp::OnStart()
 
 	SendDescription();
 
-	Serial.println("Started.");
+	Serial.println("[MainApp] Started.");
 }
 
 void MainApp::OnStop()
 {
-	Serial.println("Stopping...");
+	Serial.println("[MainApp] Stopping...");
+
+	std::for_each(_features.begin(), _features.end(), [](FeatureController* feature) {
+    feature->Stop();
+	});
 
 	/*
 	Serial.println("Sending DeviceDisconnectedEvent");
@@ -163,7 +212,7 @@ void MainApp::OnStop()
 	_messageBus.Publish(TOPIC_DEVICE_EVENTS, &message);
 	*/
 
-	Serial.println("Stopped.");
+	Serial.println("[MainApp] Stopped.");
 }
 
 void MainApp::OnLoop()

@@ -13,7 +13,6 @@ module App.Admin.Devices {
             NgSvc.stateParams,
             NgSvc.mdToast
         ];
-        static $nameAs = "vm";
 
         device: Repository.IDeviceUpdateModel;
         partitions: Array<Repository.IPartitionDescModel> = [];
@@ -44,7 +43,6 @@ module App.Admin.Devices {
 
         private setDevice(d: Repository.IDeviceModel) {
             this.device = {
-                id: d.id,
                 displayName: d.displayName,
                 displayIcon: d.displayIcon,
                 partition: d.partition ? {id: d.partition.id} : null
@@ -66,7 +64,7 @@ module App.Admin.Devices {
             if (form.$invalid) {
                 return;
             }
-            this.deviceService.update(this.device).then(() => {
+            this.deviceService.update(this.stateParams.deviceId, this.device).then(() => {
                 this.mdToast.show(this.mdToast.simple().textContent("Saved").hideDelay(3000));
             });
         }

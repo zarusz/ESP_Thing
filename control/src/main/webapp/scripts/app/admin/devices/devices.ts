@@ -2,6 +2,7 @@
 ///<reference path="device.states.ts"/>
 ///<reference path="device.list.controller.ts"/>
 ///<reference path="device.edit.controller.ts"/>
+///<reference path="device.upgrade.controller.ts"/>
 
 module App.Admin.Devices {
 
@@ -17,7 +18,7 @@ module App.Admin.Devices {
                     },
                     templateUrl: "scripts/app/admin/devices/device.list.html",
                     controller: DeviceListCtrl,
-                    controllerAs: DeviceListCtrl.$nameAs,
+                    controllerAs: "vm",
                     resolve: {
                         mainTranslatePartialLoader: [NgSvc.translate, NgSvc.translatePartialLoader, ($translate, $translatePartialLoader) => {
                             $translatePartialLoader.addPart("main");
@@ -33,7 +34,23 @@ module App.Admin.Devices {
                     },
                     templateUrl: "scripts/app/admin/devices/device.edit.html",
                     controller: DeviceEditCtrl,
-                    controllerAs: DeviceEditCtrl.$nameAs,
+                    controllerAs: "vm",
+                    resolve: {
+                        mainTranslatePartialLoader: [NgSvc.translate, NgSvc.translatePartialLoader, ($translate, $translatePartialLoader) => {
+                            $translatePartialLoader.addPart("main");
+                            return $translate.refresh();
+                        }]
+                    }
+                })
+                .state(States.Upgrade, {
+                    parent: "site",
+                    url: "/admin/device/{deviceId}/upgrade",
+                    data: {
+                        roles: []
+                    },
+                    templateUrl: "scripts/app/admin/devices/device.upgrade.html",
+                    controller: DeviceUpgradeCtrl,
+                    controllerAs: "vm",
                     resolve: {
                         mainTranslatePartialLoader: [NgSvc.translate, NgSvc.translatePartialLoader, ($translate, $translatePartialLoader) => {
                             $translatePartialLoader.addPart("main");

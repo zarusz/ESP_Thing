@@ -8,7 +8,6 @@ module App.Admin.Devices {
             NgSvc.state,
             NgSvc.stateParams
         ];
-        static $nameAs = "vm";
 
         devices: Array<Repository.IDeviceModel>;
 
@@ -30,7 +29,11 @@ module App.Admin.Devices {
         }
 
         editDevice(device: Repository.IDeviceModel) {
-            this.state.go(States.Edit, { deviceId:  device.id });
+            this.state.go(States.Edit, {deviceId: device.id});
+        }
+
+        upgradeDevice(device: Repository.IDeviceModel) {
+            this.state.go(States.Upgrade, {deviceId: device.id});
         }
     }
 }

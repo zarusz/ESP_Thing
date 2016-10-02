@@ -1,16 +1,15 @@
 #include "SwitchFeatureController.h"
 
-#define MUX_EN 16
-#define MUX_SIG 12
-#define MUX_A0 13
-#define MUX_A1 14
 SwitchFeatureController::SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh)
-  : FeatureController(port, FeatureType::FeatureType_SWITCH, context)
+  : FeatureController(port, FeatureType::FeatureType_SWITCH, context),
+    _pin(pin),
+    _onIsHigh(onIsHigh)
 {
-  _pin = pin;
-  _onIsHigh = onIsHigh;
+}
 
-  context->GetPins().SetMode(pin, PinMode::Output);
+void SwitchFeatureController::Start()
+{
+  _context->GetPins().SetMode(_pin, PinMode::Output);
   //pinMode(pin, OUTPUT);
   SetState(false);
 }

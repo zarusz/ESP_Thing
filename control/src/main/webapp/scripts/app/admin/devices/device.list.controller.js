@@ -25,12 +25,14 @@ var App;
                 DeviceListCtrl.prototype.editDevice = function (device) {
                     this.state.go(Devices.States.Edit, { deviceId: device.id });
                 };
+                DeviceListCtrl.prototype.upgradeDevice = function (device) {
+                    this.state.go(Devices.States.Upgrade, { deviceId: device.id });
+                };
                 DeviceListCtrl.$inject = [
                     App.Repository.DeviceService.$name,
                     App.NgSvc.state,
                     App.NgSvc.stateParams
                 ];
-                DeviceListCtrl.$nameAs = "vm";
                 return DeviceListCtrl;
             }());
             Devices.DeviceListCtrl = DeviceListCtrl;

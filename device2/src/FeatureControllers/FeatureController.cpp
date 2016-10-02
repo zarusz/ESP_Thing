@@ -11,6 +11,14 @@ FeatureController::~FeatureController()
 {
 }
 
+void FeatureController::Start()
+{
+}
+
+void FeatureController::Stop()
+{
+}
+
 void FeatureController::Describe(DevicePort &portDesc)
 {
   portDesc = (DevicePort) DevicePort_init_zero;

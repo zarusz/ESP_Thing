@@ -1,18 +1,22 @@
-#include "IRTransceiverFeatureController.h"
+#include "IRFeatureController.h"
 #include "../DeviceCommands.ext.h"
 
-IRTransceiverFeatureController::IRTransceiverFeatureController(int port, DeviceContext* context, int pin)
+IRFeatureController::IRFeatureController(int port, DeviceContext* context, int pin)
   : FeatureController(port, FeatureType::FeatureType_IR, context),
     _irsend(pin)
+{
+}
+
+IRFeatureController::~IRFeatureController()
+{
+}
+
+void IRFeatureController::Start()
 {
   _irsend.begin();
 }
 
-IRTransceiverFeatureController::~IRTransceiverFeatureController()
-{
-}
-
-void IRTransceiverFeatureController::Handle(const DeviceMessage& deviceMessage)
+void IRFeatureController::Handle(const DeviceMessage& deviceMessage)
 {
   //irsend.se
   if (!deviceMessage.has_irSendCommand || deviceMessage.irSendCommand.port != _port)

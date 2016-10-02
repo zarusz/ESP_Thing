@@ -10,10 +10,15 @@ public:
   const char* networkName;
   const char* networkPassword;
   const char* mqttBroker;
+  int mqttBrokerPort;
 
 public:
   DeviceConfig();
-  DeviceConfig(const char* uniqueId, const char* networkName, const char* networkPassword, const char* mqttBroker);
+  DeviceConfig(const char* uniqueId,
+    const char* networkName,
+    const char* networkPassword,
+    const char* mqttBroker,
+    const int mqttBrokerPort);
 };
 
 #endif

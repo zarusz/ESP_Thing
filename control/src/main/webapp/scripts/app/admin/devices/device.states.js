@@ -9,6 +9,7 @@ var App;
                 }
                 States.List = "admin_device_list";
                 States.Edit = "admin_device_edit";
+                States.Upgrade = "admin_device_upgrade";
                 return States;
             }());
             Devices.States = States;

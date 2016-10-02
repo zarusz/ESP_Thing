@@ -32,7 +32,6 @@ var App;
                 }
                 DeviceEditCtrl.prototype.setDevice = function (d) {
                     this.device = {
-                        id: d.id,
                         displayName: d.displayName,
                         displayIcon: d.displayIcon,
                         partition: d.partition ? { id: d.partition.id } : null
@@ -53,7 +52,7 @@ var App;
                     if (form.$invalid) {
                         return;
                     }
-                    this.deviceService.update(this.device).then(function () {
+                    this.deviceService.update(this.stateParams.deviceId, this.device).then(function () {
                         _this.mdToast.show(_this.mdToast.simple().textContent("Saved").hideDelay(3000));
                     });
                 };
@@ -64,7 +63,6 @@ var App;
                     App.NgSvc.stateParams,
                     App.NgSvc.mdToast
                 ];
-                DeviceEditCtrl.$nameAs = "vm";
                 return DeviceEditCtrl;
             }());
             Devices.DeviceEditCtrl = DeviceEditCtrl;
