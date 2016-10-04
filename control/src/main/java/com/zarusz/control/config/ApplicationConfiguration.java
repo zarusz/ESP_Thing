@@ -50,6 +50,7 @@ public class ApplicationConfiguration {
         // indefinite
         mqttClient.setConnectAttemptsMax(-1);
         mqttClient.setReconnectAttemptsMax(-1);
+        mqttClient.setVersion("3.1.1");
         return mqttClient;
     }
 

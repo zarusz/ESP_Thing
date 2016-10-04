@@ -15,6 +15,7 @@ import org.fusesource.mqtt.client.QoS;
 import org.fusesource.mqtt.client.Topic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -23,6 +24,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import javax.inject.Inject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
@@ -33,6 +35,8 @@ import java.util.stream.Stream;
 public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnable {
 
     private final Logger log = LoggerFactory.getLogger(MqttBrokerGatewayHandler.class);
+    @Value("${control.mqtt.client_id}")
+    private String mqttClientId;
     private final MQTT mqttClient;
     private BlockingConnection mqttConnection;
     private Thread thread;
@@ -56,20 +60,21 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
     }
 
     private void start() throws Exception {
+        this.connect();
+        this.thread = new Thread(this);
+        this.thread.start();
+    }
+
+    private void connect() throws Exception {
+        this.mqttClient.setClientId(mqttClientId + "_" + Long.toHexString(System.currentTimeMillis()));
         this.mqttConnection = mqttClient.blockingConnection();
         this.mqttConnection.connect();
 
         final Topic[] topics = Stream.of(subscribedTopics).map(x -> new Topic(x, QoS.AT_LEAST_ONCE)).toArray(Topic[]::new);
         this.mqttConnection.subscribe(topics);
-
-        this.thread = new Thread(this);
-        this.thread.start();
     }
 
-    @Override
-    public void close() throws IOException {
-        threadRun = false;
-
+    private void disconnect() {
         if (mqttConnection != null) {
             try {
                 mqttConnection.unsubscribe(subscribedTopics);
@@ -82,6 +87,13 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
             }
             mqttConnection = null;
         }
+    }
+
+    @Override
+    public void close() throws IOException {
+        threadRun = false;
+
+        disconnect();
         super.close();
     }
 
@@ -112,6 +124,7 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
                     dispatchQueue.add(new MessageReceivedEvent(msg.getTopic(), typedMsg));
                     return true;
                 }
+                msg.ack();
             }
         } catch (Exception e) {
             log.error("Could not receive a message.", e);
