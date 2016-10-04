@@ -59,16 +59,16 @@ public class DeviceResource {
             .collect(Collectors.toList());
     }
 
-    @RequestMapping(value = "/device/{deviceId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public DeviceDto getById(@PathVariable("deviceId") int deviceId) {
+    @RequestMapping(value = "/device/{hubId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DeviceDto getById(@PathVariable("hubId") int deviceId) {
 
         Device device = loadDevice(deviceId);
         return new DeviceDto(device);
     }
 
     @Transactional
-    @RequestMapping(value = "/device/{deviceId}", method = RequestMethod.POST)
-    public void updateById(@PathVariable("deviceId") int deviceId,
+    @RequestMapping(value = "/device/{hubId}", method = RequestMethod.POST)
+    public void updateById(@PathVariable("hubId") int deviceId,
                            @RequestBody DeviceUpdateDto deviceDto) {
 
         Device device = loadDevice(deviceId);
@@ -84,8 +84,8 @@ public class DeviceResource {
     }
 
 
-    @RequestMapping(value = "/device/{deviceId}/upgrade", method = RequestMethod.POST)
-    public void upgradeById(@PathVariable("deviceId") int deviceId,
+    @RequestMapping(value = "/device/{hubId}/upgrade", method = RequestMethod.POST)
+    public void upgradeById(@PathVariable("hubId") int deviceId,
                            @RequestBody DeviceUpgradeDto deviceDto) {
 
         Device device = loadDevice(deviceId);
@@ -93,7 +93,7 @@ public class DeviceResource {
         device.upgradeFrom(deviceDto.getFirmwareUrl());
     }
 
-    private Device loadDevice(@PathVariable("deviceId") int deviceId) {
+    private Device loadDevice(@PathVariable("hubId") int deviceId) {
         Device device = deviceRepo.findById(deviceId);
         if (device == null) {
             throw new ResourceNotFoundException();
@@ -101,9 +101,9 @@ public class DeviceResource {
         return device;
     }
 
-    @RequestMapping(value = "/device/{deviceId}/feature/{featureId}/state", method = RequestMethod.POST)
+    @RequestMapping(value = "/device/{hubId}/feature/{featureId}/state", method = RequestMethod.POST)
     @Transactional
-    public void changeFeatureState(@PathVariable("deviceId") int deviceId,
+    public void changeFeatureState(@PathVariable("hubId") int deviceId,
                                    @PathVariable("featureId") int featureId,
                                    @RequestBody FeatureStateDto state) {
 

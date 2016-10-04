@@ -26,7 +26,7 @@ var App;
                 this.partition = p;
                 this.enumCrumbs();
                 this.devices = [];
-                this.deviceService.getAllByPartitionId(p.id).then(function (x) { return x.data; }).then(function (devices) {
+                this.deviceService.getAllByPartitionId(p.id).then(function (devices) {
                     _this.devices = devices;
                 });
                 //this.enumDevices(p);

@@ -15,7 +15,7 @@ module App.Admin.Devices {
                     private state: ng.ui.IStateService,
                     private stateParams: any) {
 
-            this.deviceService.getHubAll().then(d => d.data).then(devices => {
+            this.deviceService.getHubAll().then(devices => {
                 this.setDevices(devices);
             });
         }

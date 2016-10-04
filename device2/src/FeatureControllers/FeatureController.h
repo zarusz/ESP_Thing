@@ -18,7 +18,7 @@ public:
   virtual void Start();
   virtual void Stop();
 
-  virtual void Describe(DevicePort &portDesc);
+  virtual uint Describe(DevicePort* ports);
   virtual void Loop();
 
   virtual bool TryHandle(const DeviceMessage& deviceMessage);

@@ -15,22 +15,27 @@ import java.util.stream.Collectors;
 public class DeviceDto extends DeviceDescDto {
     private List<FeatureDTO> features;
     private List<DeviceDto> children;
+    private int hubId;
 
     public DeviceDto() {
     }
 
     public DeviceDto(Device e) {
-        this(e, false);
+        this(e, e.getHub() == null ? e.getId() : e.getHub().getId(), false);
     }
 
-    public DeviceDto(Device e, boolean includeDisabledFeatures) {
+    public DeviceDto(Device e, int hubId, boolean includeDisabledFeatures) {
         super(e);
-        features = e.getFeatures().stream().filter(x -> includeDisabledFeatures || !x.isDisabled()).map(FeatureDTO::new).collect(Collectors.toList());
+        this.hubId = hubId;
+        this.features = e.getFeatures().stream()
+            .filter(x -> includeDisabledFeatures || !x.isDisabled()).map(FeatureDTO::new)
+            .collect(Collectors.toList());
+
+        this.children = new ArrayList<>();
         if (e instanceof HubDevice) {
-            HubDevice hubDevice = (HubDevice) e;
-            children = hubDevice.getEndpoints().stream().map(DeviceDto::new).collect(Collectors.toList());
-        } else {
-            children = new ArrayList<>();
+            children = ((HubDevice) e).getEndpoints().stream()
+                .map(x -> new DeviceDto(x, e.getId(), includeDisabledFeatures))
+                .collect(Collectors.toList());
         }
     }
 }

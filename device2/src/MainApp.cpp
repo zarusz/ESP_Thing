@@ -9,7 +9,7 @@
 #include "FeatureControllers/IRFeatureController.h"
 #include "FeatureControllers/IRSensorFeatureController.h"
 
-#define DEVICE_UNIQUE_ID "dev_sufit_new"
+#define DEVICE_UNIQUE_ID "dev_sufit"
 #define TOPIC_DEVICE_EVENTS "device/events"
 #define TOPIC_DEVICE_DESCRIPTION "device/description"
 
@@ -21,6 +21,7 @@ MainApp::MainApp()
 		_deviceServiceTopic(String("device/") + _deviceConfig.uniqueId + "/service"),
 		_state(DeviceState::New)
 {
+	/*
 	_features.push_back(new SwitchFeatureController(10, this, 4, false));
 	_features.push_back(new SwitchFeatureController(11, this, 5, false));
 
@@ -29,22 +30,22 @@ MainApp::MainApp()
 	_features.push_back(new IRFeatureController(40, this, 2));
 	_features.push_back(new IRFeatureController(50, this, 15));
 	_features.push_back(new IRSensorFeatureController(41, this, 16, TOPIC_DEVICE_EVENTS));
+	*/
 
-	/*
 	_features.push_back(new SwitchFeatureController(10, this, 20, false));
 	_features.push_back(new SwitchFeatureController(11, this, 21, false));
 	_features.push_back(new SwitchFeatureController(12, this, 22, false));
 	_features.push_back(new SwitchFeatureController(13, this, 23, false));
-	_features.push_back(new SwitchFeatureController(14, this, 24, false));
-	_features.push_back(new SwitchFeatureController(15, this, 25, false));
+	// Not used 14-15
+	//_features.push_back(new SwitchFeatureController(14, this, 24, false));
+	//_features.push_back(new SwitchFeatureController(15, this, 25, false));
 	_features.push_back(new SwitchFeatureController(16, this, 26, false));
 	_features.push_back(new SwitchFeatureController(17, this, 27, false));
 
 	_features.push_back(new TempFeatureController(30, 31, this, 2, TOPIC_DEVICE_EVENTS));
-	_features.push_back(new IRReceiverFeatureController(41, this, 4, TOPIC_DEVICE_EVENTS));
-	_features.push_back(new IRTransceiverFeatureController(40, this, 16));
-	_features.push_back(new IRTransceiverFeatureController(50, this, 5));
-	*/
+	_features.push_back(new IRSensorFeatureController(41, this, 4, TOPIC_DEVICE_EVENTS));
+	_features.push_back(new IRFeatureController(40, this, 16));
+	_features.push_back(new IRFeatureController(50, this, 5));
 
 	_messageBus.Subscribe(_deviceInTopic.c_str());
 	_messageBus.Subscribe(_deviceServiceTopic.c_str());
@@ -236,8 +237,7 @@ void MainApp::SendDescription()
 
 	int i = 0;
 	std::for_each(_features.begin(), _features.end(), [&i, &deviceDescription](FeatureController* feature) {
-		feature->Describe(deviceDescription.ports[i]);
-		i++;
+		i += feature->Describe(deviceDescription.ports + i);
 	});
 	deviceDescription.ports_count = i;
 

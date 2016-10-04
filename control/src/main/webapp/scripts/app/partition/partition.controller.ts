@@ -34,7 +34,7 @@ module App.Partition {
             this.enumCrumbs();
 
             this.devices = [];
-            this.deviceService.getAllByPartitionId(p.id).then(x => x.data).then(devices => {
+            this.deviceService.getAllByPartitionId(p.id).then(devices => {
                 this.devices = devices;
             });
 

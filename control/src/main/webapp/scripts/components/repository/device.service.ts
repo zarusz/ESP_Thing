@@ -37,6 +37,7 @@ module App.Repository {
     export interface IDeviceModel extends IDeviceDescModel {
         partition: IPartitionDescModel;
         features: Array<IFeatureModel<IFeatureStateModel>>;
+        hubId: number;
         lastOnline?: number;
     }
 
@@ -90,15 +91,15 @@ module App.Repository {
         }
 
         getHubAll() {
-            return this.http.get<Array<IDeviceModel>>("/api/device/status");
+            return this.http.get<Array<IDeviceModel>>("/api/device/status").then(d => d.data);
         }
 
         getAllByPartitionId(partitionId: number) {
-            return this.http.get<Array<IDeviceModel>>("/api/device", { params: { partitionId: partitionId } });
+            return this.http.get<Array<IDeviceModel>>("/api/device", { params: { partitionId: partitionId } }).then(x => x.data);
         }
 
-        updateFeatureState(device: IDeviceModel, feature: IFeatureModel<IFeatureStateModel>) {
-            var url = `api/device/${device.id}/feature/${feature.id}/state`;
+        updateFeatureState(deviceId: number, feature: IFeatureModel<IFeatureStateModel>) {
+            var url = `api/device/${deviceId}/feature/${feature.id}/state`;
             return this.http.post(url, feature.state);
         }
 

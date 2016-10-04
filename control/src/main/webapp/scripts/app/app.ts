@@ -15,7 +15,6 @@ module App.Main {
         App.$module.name,
         Repository.$module.name,
         Partition.$module.name,
-        Status.$module.name,
         Feature.$module.name,
         Home.$module.name,
         Admin.Devices.$module.name

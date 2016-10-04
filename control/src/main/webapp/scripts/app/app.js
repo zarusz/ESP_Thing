@@ -17,7 +17,6 @@ var App;
             App.$module.name,
             App.Repository.$module.name,
             App.Partition.$module.name,
-            App.Status.$module.name,
             App.Feature.$module.name,
             App.Home.$module.name,
             App.Admin.Devices.$module.name

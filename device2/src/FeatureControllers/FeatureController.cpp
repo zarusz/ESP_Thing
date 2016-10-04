@@ -19,11 +19,12 @@ void FeatureController::Stop()
 {
 }
 
-void FeatureController::Describe(DevicePort &portDesc)
+uint FeatureController::Describe(DevicePort* ports)
 {
-  portDesc = (DevicePort) DevicePort_init_zero;
-  portDesc.port = _port;
-  portDesc.feature = _type;
+  ports[0] = (DevicePort) DevicePort_init_zero;
+  ports[0].port = _port;
+  ports[0].feature = _type;
+  return 1;
 }
 
 bool FeatureController::TryHandle(const DeviceMessage& deviceMessage)

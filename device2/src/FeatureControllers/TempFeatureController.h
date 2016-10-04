@@ -19,6 +19,7 @@ public:
   TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin, const char* topic);
   virtual ~TempFeatureController();
 
+  virtual uint Describe(DevicePort* ports);
   virtual void Start();
   virtual void Loop();
 };

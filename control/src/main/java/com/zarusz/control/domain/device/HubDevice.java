@@ -64,6 +64,21 @@ public class HubDevice extends Device {
         return null;
     }
 
+    @Override
+    public DeviceFeature getFeatureById(int featureId) {
+        DeviceFeature f = super.getFeatureById(featureId);
+        if (f != null) {
+            return f;
+        }
+        for (Device endpoint : endpoints) {
+            f = endpoint.getFeatureById(featureId);
+            if (f != null) {
+                return f;
+            }
+        }
+        return null;
+    }
+
     public void onReportActivity() {
         lastOnline = DateTime.now();
     }

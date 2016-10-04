@@ -12,7 +12,7 @@ var App;
                     this.deviceService = deviceService;
                     this.state = state;
                     this.stateParams = stateParams;
-                    this.deviceService.getHubAll().then(function (d) { return d.data; }).then(function (devices) {
+                    this.deviceService.getHubAll().then(function (devices) {
                         _this.setDevices(devices);
                     });
                 }

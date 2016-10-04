@@ -33,13 +33,13 @@ var App;
                 });
             }
             DeviceService.prototype.getHubAll = function () {
-                return this.http.get("/api/device/status");
+                return this.http.get("/api/device/status").then(function (d) { return d.data; });
             };
             DeviceService.prototype.getAllByPartitionId = function (partitionId) {
-                return this.http.get("/api/device", { params: { partitionId: partitionId } });
+                return this.http.get("/api/device", { params: { partitionId: partitionId } }).then(function (x) { return x.data; });
             };
-            DeviceService.prototype.updateFeatureState = function (device, feature) {
-                var url = "api/device/" + device.id + "/feature/" + feature.id + "/state";
+            DeviceService.prototype.updateFeatureState = function (deviceId, feature) {
+                var url = "api/device/" + deviceId + "/feature/" + feature.id + "/state";
                 return this.http.post(url, feature.state);
             };
             DeviceService.prototype.urlById = function (deviceId) {

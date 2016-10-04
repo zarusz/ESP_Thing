@@ -2,7 +2,7 @@
 #include "Utils/TimeUtil.h"
 
 TempFeatureController::TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin, const char* topic)
-  : FeatureController(port, FeatureType::FeatureType_SENSOR_TEMPERATURE, context),
+  : FeatureController(port, FeatureType_SENSOR_TEMPERATURE, context),
     _dht(pin, DHT22),
     _topic(topic),
     _portForHumidity(portForHumidity)
@@ -14,6 +14,15 @@ TempFeatureController::TempFeatureController(int port, int portForHumidity, Devi
 
 TempFeatureController::~TempFeatureController()
 {
+}
+
+uint TempFeatureController::Describe(DevicePort* ports)
+{
+  auto n = FeatureController::Describe(ports);
+  ports[n] = (DevicePort) DevicePort_init_zero;
+  ports[n].port = _portForHumidity;
+  ports[n].feature = FeatureType_SENSOR_HUMIDITY;
+  return n + 1;
 }
 
 void TempFeatureController::Start()
