@@ -12,5 +12,5 @@ id;feature_type;device;port;disabled;display_name;display_icon;on;state;intensit
 13;Switch;02;13;false;Światło sofa 3;fa-lightbulb-o;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
 
 14;IR;06;40;false;NULL;NULL;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
-15;SensorIR;06;41;false;NULL;NULL;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+15;SensorIR;01;41;false;NULL;NULL;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
 16;IR;07;50;false;NULL;NULL;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
