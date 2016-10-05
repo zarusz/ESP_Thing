@@ -1,29 +1,28 @@
 #include "SwitchFeatureController.h"
 
-#define MUX_EN 16
-#define MUX_SIG 12
-#define MUX_A0 13
-#define MUX_A1 14
 SwitchFeatureController::SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh)
-  : FeatureController(port, context)
+  : FeatureController(port, FeatureType::FeatureType_SWITCH, context),
+    _pin(pin),
+    _onIsHigh(onIsHigh)
 {
-  this->pin = pin;
-  this->onIsHigh = onIsHigh;
+}
 
-  context->GetPins().SetMode(pin, PinMode::Output);
+void SwitchFeatureController::Start()
+{
+  _context->GetPins().SetMode(_pin, PinMode::Output);
   //pinMode(pin, OUTPUT);
   SetState(false);
 }
 
-void SwitchFeatureController::Handle(DeviceMessage& deviceMessage)
+void SwitchFeatureController::Handle(const DeviceMessage& deviceMessage)
 {
-  if (!deviceMessage.has_switchCommand || deviceMessage.switchCommand.port != port)
+  if (!deviceMessage.has_switchCommand || deviceMessage.switchCommand.port != _port)
   {
     return;
   }
   Serial.println("SwitchFeatureController:Handle");
 
-  DeviceSwitchCommand* cmd = &deviceMessage.switchCommand;
+  const DeviceSwitchCommand* cmd = &deviceMessage.switchCommand;
 
   String msg = String("SwitchCommand for port ") + cmd->port + " with " + (cmd->on ? "turn on" : "turn off");
   Serial.println(msg);
@@ -34,9 +33,5 @@ void SwitchFeatureController::SetState(bool on)
 {
   //auto onState = on ? (onIsHigh ? HIGH : LOW) : (onIsHigh ? LOW : HIGH);
   //digitalWrite(pin, onState);
-  context->GetPins().SetValue(pin, on ? (onIsHigh ? true : false) : (onIsHigh ? false : true));
-}
-
-void SwitchFeatureController::Loop()
-{
+  _context->GetPins().SetValue(_pin, on ? (_onIsHigh ? true : false) : (_onIsHigh ? false : true));
 }

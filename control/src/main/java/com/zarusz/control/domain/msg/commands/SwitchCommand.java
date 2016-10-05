@@ -1,7 +1,6 @@
 package com.zarusz.control.domain.msg.commands;
 
 import com.zarusz.control.domain.feature.SwitchFeature;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,3 +17,4 @@ public class SwitchCommand extends TargetingDeviceFeatureCommand<SwitchFeature> 
 		this.on = on;
 	}
 }
+

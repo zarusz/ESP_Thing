@@ -1,8 +1,8 @@
 package com.zarusz.control.web.rest.dto;
 
 import com.zarusz.control.domain.device.DeviceFeature;
-import com.zarusz.control.domain.feature.Feature;
-import com.zarusz.control.web.rest.dto.feature.FeatureStateDTO;
+import com.zarusz.control.domain.feature.FeatureType;
+import com.zarusz.control.web.rest.dto.feature.FeatureStateDto;
 import lombok.Data;
 
 /**
@@ -12,11 +12,11 @@ import lombok.Data;
 public class FeatureDTO {
 
     private Integer id;
-    private String type;
+    private FeatureType type;
     private String displayName;
     private String displayIcon;
-    private Integer displayPriority;
-    private FeatureStateDTO state;
+    private int displayPriority;
+    private FeatureStateDto state;
 
     public FeatureDTO() {
     }
@@ -26,7 +26,7 @@ public class FeatureDTO {
         this.type = deviceFeature.getFeature().getFeature();
         this.displayName = deviceFeature.getDisplayName() != null ? deviceFeature.getDisplayName() : deviceFeature.getFeature().getDisplayName();
         this.displayIcon = deviceFeature.getDisplayIcon() != null ? deviceFeature.getDisplayIcon() : deviceFeature.getFeature().getDisplayIcon();
-        this.displayPriority = deviceFeature.getFeature().getDisplayPriority();
-        this.state = FeatureStateDTO.create(deviceFeature);
+        this.displayPriority = deviceFeature.getDisplayPriority();
+        this.state = FeatureStateDto.create(deviceFeature);
     }
 }

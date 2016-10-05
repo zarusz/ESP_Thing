@@ -4,6 +4,7 @@
 /// <reference path="../../typings/globals/angular-material/index.d.ts" />
 /// <reference path="../../typings/globals/underscore/index.d.ts" />
 /// <reference path="../../typings/globals/jquery/index.d.ts" />
+/// <reference path="../../typings/index.d.ts" />
 "use strict";
 var App;
 (function (App) {
@@ -25,6 +26,8 @@ var App;
         NgSvc.localStorageService = "localStorageService";
         NgSvc.translate = "$translate";
         NgSvc.translatePartialLoader = "$translatePartialLoader";
+        // Angular Material
+        NgSvc.mdToast = "$mdToast";
         return NgSvc;
     }());
     App.NgSvc = NgSvc;

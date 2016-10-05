@@ -2,6 +2,8 @@
 ///<reference path="..\..\components\auth\principal.service.ts"/>
 ///<reference path="..\..\components\auth\auth.service.ts"/>
 ///<reference path="..\..\app\partition\partition.ts"/>
+///<reference path="..\..\app\status\status.ts"/>
+///<reference path="..\..\app\admin\devices\devices.ts"/>
 module App {
 
     export class ActionBarCtrl implements Auth.IPrincipalChangedEventHandler {
@@ -69,7 +71,11 @@ module App {
         }
 
         goStatus() {
-            this.state.go("status");
+            this.state.go(App.Status.States.Status);
+        }
+
+        goAllDevices() {
+            this.state.go(App.Admin.Devices.States.List);
         }
 
         logout() {

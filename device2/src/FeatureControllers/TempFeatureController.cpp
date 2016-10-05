@@ -1,67 +1,86 @@
 #include "TempFeatureController.h"
+#include "Utils/TimeUtil.h"
 
-TempFeatureController::TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin)
-  : FeatureController(port, context), dht(pin, DHT22)
+TempFeatureController::TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin, const char* topic)
+  : FeatureController(port, FeatureType_SENSOR_TEMPERATURE, context),
+    _dht(pin, DHT22),
+    _topic(topic),
+    _portForHumidity(portForHumidity)
 {
-  this->portForHumidity = portForHumidity;
-  this->pin = pin;
-  lastMsgMs = 0;
-  updateIntervalMs = 30000;
-  dht.begin();
+  _lastTemp = false;
+  _lastUpdateMs = 0;
+  _updateIntervalMs = 10000;
 }
 
 TempFeatureController::~TempFeatureController()
 {
 }
 
-void TempFeatureController::Handle(DeviceMessage& deviceMessage)
+uint TempFeatureController::Describe(DevicePort* ports)
 {
+  auto n = FeatureController::Describe(ports);
+  ports[n] = (DevicePort) DevicePort_init_zero;
+  ports[n].port = _portForHumidity;
+  ports[n].feature = FeatureType_SENSOR_HUMIDITY;
+  return n + 1;
+}
+
+void TempFeatureController::Start()
+{
+  _dht.begin();
 }
 
 void TempFeatureController::Loop()
 {
-  auto now = millis();
-  if (now - lastMsgMs > updateIntervalMs) {
-    lastMsgMs = now;
+  if (!TimeUtil::IntervalPassed(_lastUpdateMs, _updateIntervalMs))
+  {
+    return;
+  }
 
+  DeviceEvents events = DeviceEvents_init_zero;
+
+  if (_lastTemp)
+  {
     // Reading temperature or humidity takes about 250 milliseconds!
     // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
-    float h = dht.readHumidity();
-
-    // Read temperature as Celsius (the default)
-    float t = dht.readTemperature();
-
-    DeviceEvents events = DeviceEvents_init_zero;
-
-    if (!isnan(t))
-    {
-      Serial.println(String("The temperature is ") + t);
-
-      events.has_temperatureMeasureEvent = true;
-      strcpy(events.temperatureMeasureEvent.device_id, context->GetConfig().uniqueId);
-      events.temperatureMeasureEvent.port = port;
-      events.temperatureMeasureEvent.value = t;
-    }
+    auto h = _dht.readHumidity();
 
     if (!isnan(h))
     {
-      Serial.println(String("The humidity is ") + h);
+      Serial.printf("[DHT22] The humidity is %d\n", (int) h);
 
       events.has_humidityMeasureEvent = true;
-      strcpy(events.humidityMeasureEvent.device_id, context->GetConfig().uniqueId);
-      events.humidityMeasureEvent.port = portForHumidity;
+      strcpy(events.humidityMeasureEvent.device_id, _context->GetConfig().uniqueId);
+      events.humidityMeasureEvent.port = _portForHumidity;
       events.humidityMeasureEvent.value = h;
     }
+  }
+  else
+  {
+    // Read temperature as Celsius (the default)
+    auto t = _dht.readTemperature();
 
-    if (events.has_humidityMeasureEvent || events.has_temperatureMeasureEvent)
+    if (!isnan(t))
     {
-      context->GetCommHub().PublishMessage(EVENTS_TOPIC, DeviceEvents_fields, &events);
-    }
+      Serial.printf("[DHT22] The temperature is %d\n", (int) t);
 
-    if (isnan(h) || isnan(t))
-    {
-        // TODO: log error
-        Serial.println("Error: Cannot read the temp/humidity sensor. ");
+      events.has_temperatureMeasureEvent = true;
+      strcpy(events.temperatureMeasureEvent.device_id, _context->GetConfig().uniqueId);
+      events.temperatureMeasureEvent.port = _port;
+      events.temperatureMeasureEvent.value = t;
     }
   }
+
+  if (events.has_humidityMeasureEvent || events.has_temperatureMeasureEvent)
+  {
+    PbMessage message(DeviceEvents_fields, &events);
+    _context->GetMessageBus()->Publish(_topic, &message);
+  }
+  else
+  {
+    // TODO: log error
+    Serial.println("[DHT22] Error: Cannot read the temperature/humidity sensor.");
+  }
+
+  _lastTemp = !_lastTemp;
 }

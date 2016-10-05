@@ -15,5 +15,6 @@ public interface DeviceRepository extends CrudRepository<Device, Integer> {
 
     List<HubDevice> findHubAll();
     List<Device> findAllInPartition(int partitionId);
-    HubDevice findHubByGuid(String deviceId);
+    HubDevice findByGuid(String guid);
+    HubDevice findById(int deviceId);
 }

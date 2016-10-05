@@ -1,0 +1,24 @@
+<md-content flex layout="column">
+    <md-list>
+        <div ng-repeat="device in vm.devices | orderBy : 'displayPriority'">
+            <md-list-item class="md-3-line noright secondary-button-padding" ng-click="vm.editDevice(device)">
+                <span ng-if="::device.displayIcon" class="fa fa-fw fa-3x {{::device.displayIcon}} md-avatar"></span>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{device.displayName}} <span>({{device.guid}})</span></h3>
+                    <p>Partition
+                        <a ng-if="device.partition !== null" ui-sref="partition({partitionId: device.partition.id})">{{::device.partition.displayName}}</a>
+                        <span ng-if="device.partition === null">(not assigned)</span>
+                    </p>
+                    <p>Last online {{::vm.humanTime(device.lastOnline)}}</p>
+                </div>
+                <md-button class="md-raised md-secondary " ng-click="vm.upgradeDevice(device)">
+                    <span class="fa fa-fw fa-upload"></span>
+                    Upgrade
+                </md-button>
+            </md-list-item>
+        </div>
+        <div ng-if="vm.devices.length === 0" class="text-center">
+            <i class="fa fa-fw fa-battery-empty fw-lg" aria-hidden="true"></i> No devices here.
+        </div>
+    </md-list>
+</md-content>

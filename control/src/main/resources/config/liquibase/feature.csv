@@ -1,11 +1,7 @@
-feature;display_name;display_priority
-switch;Switch;01
-dim;Dimming;02
-color;Color;03
-led;LED;04
-ir_out;IR Transceiver;04
-ir_in;IR Receiver;05
-sensor_temp;Temperature sensor;05
-sensor_humidity;Humidity sensor;06
-sensor_motion;Movement sensor;07
-sensor_light;Light sensor;08
+feature;display_name;display_priority;display_icon
+Switch;Switch;01;fa-bolt
+IR;IR Transceiver;04;
+SensorIR;IR Receiver;09;
+SensorTemperature;Temperature sensor;05;
+SensorHumidity;Humidity sensor;06;
+SensorMotion;Movement sensor;07;

@@ -8,15 +8,16 @@
 ///<reference path="..\app\status\status.ts"/>
 ///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\app\home\home.ts"/>
+///<reference path="..\app\admin\devices\devices.ts"/>
 module App.Main {
 
     var $module = angular.module("controlAppMain", [
         App.$module.name,
         Repository.$module.name,
         Partition.$module.name,
-        Status.$module.name,
         Feature.$module.name,
-        Home.$module.name
+        Home.$module.name,
+        Admin.Devices.$module.name
     ]);
 
     $module
@@ -51,6 +52,16 @@ module App.Main {
                 }
             };
         });
+        /*
+        .factory("errorInterceptor", ($q, $mdToast) => {
+            return {
+                responseError: (response) => {
+                    $mdToast.show($mdToast.simple().textContent("The operation failed.").hideDelay(3000));
+                    return $q.reject(response);
+                }
+            };
+        });
+        */
 
     function Run($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
@@ -127,6 +138,7 @@ module App.Main {
 
         $httpProvider.interceptors.push("authExpiredInterceptor");
         $httpProvider.interceptors.push("authInterceptor");
+        //$httpProvider.interceptors.push("errorInterceptor");
 
         //enable CSRF
         $httpProvider.defaults.xsrfCookieName = 'CSRF-TOKEN';

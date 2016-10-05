@@ -1,15 +1,18 @@
 package com.zarusz.control.domain.device;
 
+import com.zarusz.control.domain.common.EventBus;
+import com.zarusz.control.domain.feature.*;
+import com.zarusz.control.domain.msg.commands.SwitchCommand;
+import com.zarusz.control.domain.msg.commands.UpgradeFirmwareCommand;
+import com.zarusz.control.domain.partition.Partition;
+import com.zarusz.control.repository.FeatureRepository;
+import lombok.*;
+import org.hibernate.annotations.BatchSize;
+
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import javax.persistence.*;
-
-import com.zarusz.control.domain.feature.Feature;
-import com.zarusz.control.domain.partition.Partition;
-import lombok.*;
-import org.hibernate.annotations.BatchSize;
 
 @Data
 @EqualsAndHashCode(of = { "id" })
@@ -48,11 +51,37 @@ public class Device {
 
     public Device(String guid, HubDevice hub) {
         this.guid = guid;
+        this.displayName = guid;
+        this.displayIcon = "fa-cubes";
         this.hub = hub;
     }
 
-	public DeviceFeature addFeature(Feature feature) {
-        DeviceFeature df = new DeviceFeature(this, feature);
+	public DeviceFeature addFeature(int port, FeatureType featureType, FeatureRepository featureRepository) {
+        Feature feature = featureRepository.findOne(featureType);
+        DeviceFeature df;
+        switch (featureType) {
+            case Switch:
+                df = new SwitchFeature(this, feature, port);
+                break;
+            case IR:
+                df = new IRFeature(this, feature, port);
+                break;
+            case SensorIR:
+                df = new IRSensorFeature(this, feature, port);
+                break;
+            case SensorTemperature:
+                df = new TemperatureSensorFeature(this, feature, port);
+                break;
+            case SensorHumidity:
+                df = new HumiditySensorFeature(this, feature, port);
+                break;
+            case SensorMotion:
+                df = new MotionSensorFeature(this, feature, port);
+                break;
+            default:
+                throw new RuntimeException("Feature type not supported.");
+        }
+
         features.add(df);
         return df;
 	}
@@ -63,9 +92,9 @@ public class Device {
         }
     }
 
-    public DeviceFeature getFeatureByPort(Integer port) {
+    public DeviceFeature getFeatureByPort(int port) {
         for (DeviceFeature deviceFeature : features) {
-            if (port.equals(deviceFeature.getPort())) {
+            if (port == deviceFeature.getPort()) {
                 return deviceFeature;
             }
         }
@@ -89,4 +118,7 @@ public class Device {
         return featuresOfType;
     }
 
+    public void upgradeFrom(String firmwareUrl) {
+        EventBus.current().publish(new UpgradeFirmwareCommand(this, firmwareUrl));
+    }
 }

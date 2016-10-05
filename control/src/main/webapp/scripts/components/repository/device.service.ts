@@ -1,5 +1,6 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\common.eventbus.ts"/>
+///<reference path="model.ts"/>
 module App.Repository {
 
     export interface IFeatureStateModel {
@@ -33,11 +34,21 @@ module App.Repository {
         state: T;
     }
 
-    export interface IDeviceModel {
-        id: number;
-        displayName: string;
+    export interface IDeviceModel extends IDeviceDescModel {
+        partition: IPartitionDescModel;
         features: Array<IFeatureModel<IFeatureStateModel>>;
-        lastOnline?: string;
+        hubId: number;
+        lastOnline?: number;
+    }
+
+    export interface IDeviceUpdateModel {
+        displayName: string;
+        displayIcon: string;
+        partition: IPartitionIdModel;
+    }
+
+    export interface IDeviceUpgradeModel {
+        firmwareUrl: string;
     }
 
     export interface IFeatureStateChangedEventHandler {
@@ -80,16 +91,33 @@ module App.Repository {
         }
 
         getHubAll() {
-            return this.http.get<Array<IDeviceModel>>("/api/device/status");
+            return this.http.get<Array<IDeviceModel>>("/api/device/status").then(d => d.data);
         }
 
         getAllByPartitionId(partitionId: number) {
-            return this.http.get<Array<IDeviceModel>>("/api/device", { params: { partitionId: partitionId } });
+            return this.http.get<Array<IDeviceModel>>("/api/device", { params: { partitionId: partitionId } }).then(x => x.data);
         }
 
-        updateFeatureState(device: IDeviceModel, feature: IFeatureModel<IFeatureStateModel>) {
-            var url = `api/device/${device.id}/feature/${feature.id}/state`;
+        updateFeatureState(deviceId: number, feature: IFeatureModel<IFeatureStateModel>) {
+            var url = `api/device/${deviceId}/feature/${feature.id}/state`;
             return this.http.post(url, feature.state);
+        }
+
+        private urlById(deviceId: number) {
+            return `api/device/${deviceId}`;
+        }
+
+        getById(deviceId: number) {
+            return this.http.get<IDeviceModel>(this.urlById(deviceId)).then(x => x.data);
+        }
+
+        update(deviceId: number, device: IDeviceUpdateModel) {
+            return this.http.post<void>(this.urlById(deviceId), device).then(x => x.data);
+        }
+
+        upgrade(deviceId: number, device: App.Repository.IDeviceUpgradeModel) {
+            var url = `${this.urlById(deviceId)}/upgrade`;
+            return this.http.post<void>(url, device).then(x => x.data);
         }
     }
 

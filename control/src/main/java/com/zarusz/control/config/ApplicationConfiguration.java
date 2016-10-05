@@ -1,7 +1,7 @@
 package com.zarusz.control.config;
 
 import com.zarusz.control.app.comm.*;
-import com.zarusz.control.app.comm.mqtt.MqttBrokerGatewayHandler;
+import com.zarusz.control.app.comm.base.mqtt.MqttBrokerGatewayHandler;
 import com.zarusz.control.domain.common.EventBus;
 import com.zarusz.control.web.websocket.FeatureStateChangedNotifier;
 import net.engio.mbassy.bus.MBassador;
@@ -13,9 +13,7 @@ import org.fusesource.mqtt.client.MQTT;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 
-import javax.inject.Inject;
 import java.net.URISyntaxException;
 
 /**
@@ -52,6 +50,7 @@ public class ApplicationConfiguration {
         // indefinite
         mqttClient.setConnectAttemptsMax(-1);
         mqttClient.setReconnectAttemptsMax(-1);
+        mqttClient.setVersion("3.1.1");
         return mqttClient;
     }
 
@@ -71,18 +70,28 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public IRReceiverFeatureHandler irReceiverFeatureHandler(MBassador bus) throws Exception {
-        return new IRReceiverFeatureHandler(bus);
+    public IRSensorFeatureHandler irReceiverFeatureHandler(MBassador bus) throws Exception {
+        return new IRSensorFeatureHandler(bus);
     }
 
     @Bean
-    public IRTransceiverFeatureHandler irTransceiverFeatureHandler(MBassador bus) throws Exception {
-        return new IRTransceiverFeatureHandler(bus);
+    public IRFeatureHandler irTransceiverFeatureHandler(MBassador bus) throws Exception {
+        return new IRFeatureHandler(bus);
+    }
+
+    @Bean
+    public DeviceDescriptionHandler deviceDescriptionHandler(MBassador bus) throws Exception {
+        return new DeviceDescriptionHandler(bus);
     }
 
     @Bean
     public DeviceHeartbeatHandler deviceHeartbeatHandler(MBassador bus) throws Exception {
         return new DeviceHeartbeatHandler(bus);
+    }
+
+    @Bean
+    public ServiceCommandHandler serviceCommandHandler(MBassador bus) throws Exception {
+        return new ServiceCommandHandler(bus);
     }
 
     @Bean

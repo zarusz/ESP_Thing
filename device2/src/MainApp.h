@@ -4,62 +4,74 @@
 #define _MAINAPP_h
 
 #include <Arduino.h>
-#include <ESP8266WiFi.h>
-#include <PubSubClient.h>
-#include "DeviceConfig.h"
-#include "DeviceCommands.pb.h"
-#include "CommHub.h"
-#include "DeviceContext.h"
-#include "FeatureControllers/FeatureController.h"
 #include <vector>
 #include <memory>
+
+#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
+#include <ESP8266httpUpdate.h>
+
+#include "DeviceConfig.h"
+#include "DeviceCommands.pb.h"
+#include "DeviceContext.h"
+#include "FeatureControllers/FeatureController.h"
+#include "Transport/MqttMessageBus.h"
+#include "Transport/PbSerializer.h"
 #include "Pins/Pins.h"
 #include "Pins/ShiftRegisterPins.h"
 
-class MainApp : public CommHub, public DeviceContext
+enum DeviceState
+{
+	New,
+	Started,
+	Running,
+	Stopped
+};
+
+class MainApp : public DeviceContext, public MessageHandler
 {
 private:
-	DeviceConfig deviceConfig;
-	WiFiClient espClient;
-	PubSubClient pubSubClient;
-	String deviceInTopic;
-	DeviceDescription deviceDescription;
-	std::vector<FeatureController*> features;
-	ShiftRegisterPins pins;
+	DeviceConfig _deviceConfig;
+	String _deviceInTopic;
+	String _deviceServiceTopic;
+	MqttMessageBus _messageBus;
+	PbSerializer _serializer;
 
-	long lastMsg = 0;
-	char msg[256];
-	int value = 0;
+	std::vector<FeatureController*> _features;
+	ShiftRegisterPins _pins;
+
+	ulong _lastMsg = 0;
+	int _value = 0;
+
+	DeviceState _state;
 
 public:
-	MainApp(MQTT_CALLBACK_SIGNATURE);
+	MainApp();
 	virtual ~MainApp();
 
 	void Init();
 	void Loop();
 
-	virtual void Callback(char* topic, byte* payload, unsigned int length);
+	virtual DeviceConfig& GetConfig() { return _deviceConfig; }
+  virtual MessageBus* GetMessageBus() { return &_messageBus; }
+	virtual Pins& GetPins() { return _pins; }
 
-	virtual DeviceConfig& GetConfig() { return deviceConfig; }
-  virtual CommHub& GetCommHub() { return *this; }
-	virtual Pins& GetPins() { return pins; }
+	virtual void Handle(const char* topic, const Buffer& payload, Serializer& serializer);
 
 protected:
 	void SetupWifi();
 	void ReconnectPubSub();
 
-	bool DecodeMessage(byte* payload, unsigned int length, const pb_field_t* msg_fields, void* msg) const;
-	bool EncodeMessage(byte* payload, unsigned int maxLength, unsigned int& length, const pb_field_t* msg_fields, const void* msg) const;
-
-	void DebugRetrievedMessage(const char* topic, byte* payload, unsigned int length);
-	void HandleDeviceMessage(DeviceMessage& deviceMessage);
+	//void DebugRetrievedMessage(const char* topic, const void* message);
+	void HandleDeviceMessage(const DeviceMessage& message);
+	void HandleServiceCommand(const DeviceServiceCommand& message);
 
 	void OnStart();
 	void OnStop();
 	void OnLoop();
 
-public:
-	bool PublishMessage(const char* topic, const pb_field_t* msg_fields, const void* msg);
+	void SendDescription();
+	void SendHearbeat();
 };
 
 

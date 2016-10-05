@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
-@DiscriminatorValue("sensor_motion")
+@DiscriminatorValue("SensorMotion")
 public class MotionSensorFeature extends DeviceFeature {
 
     private Boolean movement;
@@ -22,8 +22,8 @@ public class MotionSensorFeature extends DeviceFeature {
     protected MotionSensorFeature() {
     }
 
-    public MotionSensorFeature(Device device, Feature feature) {
-        super(device, feature);
+    public MotionSensorFeature(Device device, Feature feature, int port) {
+        super(device, feature, port);
     }
 
 }

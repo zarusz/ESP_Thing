@@ -339,6 +339,7 @@
 			<version>${spring-security-oauth2.version}</version>
 		</dependency>
 		<!-- Spring Cloud -->
+        <!--
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-cloudfoundry-connector</artifactId>
@@ -351,6 +352,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-localconfig-connector</artifactId>
 		</dependency>
+		-->
 		<!-- security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>

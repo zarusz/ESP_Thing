@@ -7,8 +7,8 @@
 class ShiftRegisterPins : public Pins
 {
 private:
-  ShiftRegister74HC595 shiftRegister;
-  int virtualPinStart;
+  ShiftRegister74HC595 _shiftRegister;
+  int _virtualPinStart;
 
 public:
   ShiftRegisterPins(int serialDataPin, int clockPin, int latchPin, int virtualPinStart);

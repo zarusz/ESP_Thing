@@ -1,5 +1,6 @@
 package com.zarusz.control.app.comm;
 
+import com.zarusz.control.app.comm.base.AbstractHandler;
 import com.zarusz.control.app.comm.messages.PublishMessageCommand;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
 import com.zarusz.control.domain.device.HubDevice;

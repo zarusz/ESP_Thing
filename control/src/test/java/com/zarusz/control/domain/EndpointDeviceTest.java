@@ -15,7 +15,7 @@ public class EndpointDeviceTest {
     @Test
     public void endpointDevicesWithSameIdAreEqual() {
         // arrange
-        HubDevice hub = new HubDevice("hub1", "1.1.1.1");
+        HubDevice hub = new HubDevice("hub1");
 
         EndpointDevice d1 = new EndpointDevice("guid1", hub);
         EndpointDevice d2 = new EndpointDevice("guid1", hub);
@@ -36,7 +36,7 @@ public class EndpointDeviceTest {
     @Test
     public void endpointDevicesWithDifferentIdAreNotEqual() {
         // arrange
-        HubDevice hub = new HubDevice("hub1", "1.1.1.1");
+        HubDevice hub = new HubDevice("hub1");
 
         EndpointDevice d1 = new EndpointDevice("guid1", hub);
         EndpointDevice d2 = new EndpointDevice("guid1", hub);

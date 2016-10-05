@@ -4,6 +4,7 @@
 /// <reference path="../../typings/globals/angular-material/index.d.ts" />
 /// <reference path="../../typings/globals/underscore/index.d.ts" />
 /// <reference path="../../typings/globals/jquery/index.d.ts" />
+/// <reference path="../../typings/index.d.ts" />
 "use strict";
 module App {
 
@@ -28,6 +29,9 @@ module App {
         static localStorageService = "localStorageService";
         static translate = "$translate";
         static translatePartialLoader = "$translatePartialLoader";
+
+        // Angular Material
+        static mdToast = "$mdToast";
     }
 
     export class NgEvent {

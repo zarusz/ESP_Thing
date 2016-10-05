@@ -1,5 +1,6 @@
 package com.zarusz.control.app.comm;
 
+import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.HubDevice;
 
 /**
@@ -15,4 +16,7 @@ public final class Topics {
         return DeviceDirect_Prefix + hub.getGuid();
     }
 
+    public static String getDeviceServiceTopic(Device hub) {
+        return DeviceDirect_Prefix + hub.getGuid() + "/service";
+    }
 }

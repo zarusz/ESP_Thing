@@ -4,16 +4,20 @@ option java_package = "com.zarusz.control.device.messages";
 option java_outer_classname = "DeviceMessageProtos";
 
 /* Description (begin) */
-enum DevicePortFeature {
+enum FeatureType {
   option allow_alias = true;
   SWITCH = 0;
   IR = 1;
+  SENSOR_IR = 2;
+  SENSOR_TEMPERATURE = 3;
+  SENSOR_HUMIDITY = 4;
+  SENSOR_MOTION = 5;
 }
 
 message DevicePort {
   required int32 port = 1;
-  optional string description = 2 [(nanopb).max_size = 64];
-  required DevicePortFeature feature = 3;
+  required FeatureType feature = 2;
+  optional string description = 3 [(nanopb).max_size = 64];
 }
 
 message DeviceDescription {
@@ -54,6 +58,14 @@ message DeviceMessage {
   optional DeviceIRSendCommand irSendCommand = 2;
 }
 
+message UpgradeFirmwareCommand {
+  optional string program_url = 1 [(nanopb).max_size = 64];
+}
+
+message DeviceServiceCommand {
+  optional UpgradeFirmwareCommand upgradeFirmwareCommand = 3;
+}
+
 /* Commands (end) */
 
 message CommandAckResponse {
@@ -71,6 +83,17 @@ message DeviceDisconnectedEvent {
 message DeviceHearbeatEvent {
   required string device_id = 1 [(nanopb).max_size = 32];
   required int32 sequence_id = 2;
+}
+
+message DeviceUpgradedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required bool success = 2;
+  optional string msg = 3 [(nanopb).max_size = 32];
+}
+
+message DeviceUpgradeFailedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  optional string msg = 3 [(nanopb).max_size = 32];
 }
 
 message DeviceTemperatureMeasuredEvent {
@@ -100,6 +123,8 @@ message DeviceEvents {
   optional DeviceConnectedEvent deviceConnectedEvent = 1;
   optional DeviceHearbeatEvent deviceHearbeatEvent = 2;
   optional DeviceDisconnectedEvent deviceDisconnectedEvent = 3;
+  optional DeviceUpgradedEvent deviceUpgradedEvent = 10;
+  optional DeviceUpgradeFailedEvent deviceUpgradeFailedEvent = 11;
 
   optional DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 4;
   optional DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;

@@ -8,6 +8,7 @@
 ///<reference path="..\app\status\status.ts"/>
 ///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\app\home\home.ts"/>
+///<reference path="..\app\admin\devices\devices.ts"/>
 var App;
 (function (App) {
     var Main;
@@ -16,9 +17,9 @@ var App;
             App.$module.name,
             App.Repository.$module.name,
             App.Partition.$module.name,
-            App.Status.$module.name,
             App.Feature.$module.name,
-            App.Home.$module.name
+            App.Home.$module.name,
+            App.Admin.Devices.$module.name
         ]);
         $module
             .factory("authInterceptor", function ($rootScope, $q, $location, localStorageService) {
@@ -50,6 +51,16 @@ var App;
                 }
             };
         });
+        /*
+        .factory("errorInterceptor", ($q, $mdToast) => {
+            return {
+                responseError: (response) => {
+                    $mdToast.show($mdToast.simple().textContent("The operation failed.").hideDelay(3000));
+                    return $q.reject(response);
+                }
+            };
+        });
+        */
         function Run($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
             $rootScope.ENV = ENV;
             $rootScope.VERSION = VERSION;
@@ -113,6 +124,7 @@ var App;
                 .state(defaultState);
             $httpProvider.interceptors.push("authExpiredInterceptor");
             $httpProvider.interceptors.push("authInterceptor");
+            //$httpProvider.interceptors.push("errorInterceptor");
             //enable CSRF
             $httpProvider.defaults.xsrfCookieName = 'CSRF-TOKEN';
             $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';

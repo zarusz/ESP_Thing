@@ -1,6 +1,6 @@
 package com.zarusz.control.web.websocket;
 
-import com.zarusz.control.app.comm.AbstractHandler;
+import com.zarusz.control.app.comm.base.AbstractHandler;
 import com.zarusz.control.domain.msg.events.FeatureStateChangedEvent;
 import com.zarusz.control.web.rest.dto.FeatureDTO;
 import net.engio.mbassy.bus.MBassador;

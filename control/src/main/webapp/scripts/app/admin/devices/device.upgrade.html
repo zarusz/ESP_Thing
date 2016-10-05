@@ -1,0 +1,30 @@
+<md-content flex layout="column" ng-cloak class="md-inline-form">
+    <md-content layout-padding>
+        <div>
+            <form name="form" ng-submit="vm.upgrade(form)">
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Firmware Url</label>
+                        <input required
+                               md-maxlength="64"
+                               name="firmwareUrl"
+                               ng-model="vm.device.firmwareUrl"/>
+
+                        <div ng-messages="form.firmwareUrl.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="md-maxlength">The display name must be less than 64 characters long.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <md-button class="md-raised md-primary" ng-disabled="form.$invalid" type="submit">
+                        Upgrade
+                    </md-button>
+                </div>
+            </form>
+        </div>
+    </md-content>
+
+</md-content>

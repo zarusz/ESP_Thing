@@ -1,7 +1,9 @@
 package com.zarusz.control.domain.device;
 
 import lombok.*;
+import org.hibernate.FetchMode;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
@@ -19,12 +21,11 @@ import java.util.Set;
 @DiscriminatorValue("hub")
 public class HubDevice extends Device {
 
-    private String address;
-
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @Column(name = "last_online", nullable = true)
+    @Column(name = "last_online")
     private DateTime lastOnline;
 
+    @Fetch(value = org.hibernate.annotations.FetchMode.SUBSELECT)
     @BatchSize(size = 20)
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "hub", orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Device> endpoints;
@@ -32,31 +33,45 @@ public class HubDevice extends Device {
     protected HubDevice() {
     }
 
-    public HubDevice(String guid, String address) {
+    public HubDevice(String guid) {
         super(guid, null);
-        this.address = address;
         this.endpoints = new HashSet<>();
     }
 
-    public Device addEndpoint(Device endpoint) {
+    public Device addEndpoint(EndpointDevice endpoint) {
         endpoints.add(endpoint);
         endpoint.setHub(this);
         return endpoint;
     }
 
-    public void removeEndpoint(Device endpoint) {
+    public void removeEndpoint(EndpointDevice endpoint) {
         endpoints.remove(endpoint);
         endpoint.setHub(null);
     }
 
     @Override
-    public DeviceFeature getFeatureByPort(Integer port) {
+    public DeviceFeature getFeatureByPort(int port) {
         DeviceFeature f = super.getFeatureByPort(port);
         if (f != null) {
             return f;
         }
         for (Device endpoint : endpoints) {
             f = endpoint.getFeatureByPort(port);
+            if (f != null) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public DeviceFeature getFeatureById(int featureId) {
+        DeviceFeature f = super.getFeatureById(featureId);
+        if (f != null) {
+            return f;
+        }
+        for (Device endpoint : endpoints) {
+            f = endpoint.getFeatureById(featureId);
             if (f != null) {
                 return f;
             }

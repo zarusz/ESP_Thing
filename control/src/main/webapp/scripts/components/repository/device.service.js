@@ -1,5 +1,6 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\common.eventbus.ts"/>
+///<reference path="model.ts"/>
 var App;
 (function (App) {
     var Repository;
@@ -32,14 +33,27 @@ var App;
                 });
             }
             DeviceService.prototype.getHubAll = function () {
-                return this.http.get("/api/device/status");
+                return this.http.get("/api/device/status").then(function (d) { return d.data; });
             };
             DeviceService.prototype.getAllByPartitionId = function (partitionId) {
-                return this.http.get("/api/device", { params: { partitionId: partitionId } });
+                return this.http.get("/api/device", { params: { partitionId: partitionId } }).then(function (x) { return x.data; });
             };
-            DeviceService.prototype.updateFeatureState = function (device, feature) {
-                var url = "api/device/" + device.id + "/feature/" + feature.id + "/state";
+            DeviceService.prototype.updateFeatureState = function (deviceId, feature) {
+                var url = "api/device/" + deviceId + "/feature/" + feature.id + "/state";
                 return this.http.post(url, feature.state);
+            };
+            DeviceService.prototype.urlById = function (deviceId) {
+                return "api/device/" + deviceId;
+            };
+            DeviceService.prototype.getById = function (deviceId) {
+                return this.http.get(this.urlById(deviceId)).then(function (x) { return x.data; });
+            };
+            DeviceService.prototype.update = function (deviceId, device) {
+                return this.http.post(this.urlById(deviceId), device).then(function (x) { return x.data; });
+            };
+            DeviceService.prototype.upgrade = function (deviceId, device) {
+                var url = this.urlById(deviceId) + "/upgrade";
+                return this.http.post(url, device).then(function (x) { return x.data; });
             };
             DeviceService.$name = "DeviceService";
             DeviceService.$inject = [App.NgSvc.http, App.NgSvc.cookies, App.NgSvc.q, App.NgSvc.localStorageService, App.EventBus.$name];

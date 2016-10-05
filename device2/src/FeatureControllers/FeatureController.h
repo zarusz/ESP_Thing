@@ -7,15 +7,25 @@
 class FeatureController
 {
 protected:
-  int port;
-  DeviceContext* context;
+  int _port;
+  FeatureType _type;
+  DeviceContext* _context;
 
 public:
-  FeatureController(int port, DeviceContext* context);
+  FeatureController(int port, FeatureType type, DeviceContext* context);
   virtual ~FeatureController();
 
-  virtual void Handle(DeviceMessage& deviceMessage) = 0;
-  virtual void Loop() = 0;
+  virtual void Start();
+  virtual void Stop();
+
+  virtual uint Describe(DevicePort* ports);
+  virtual void Loop();
+
+  virtual bool TryHandle(const DeviceMessage& deviceMessage);
+  virtual bool CanHandle(const DeviceMessage& deviceMessage);
+
+protected:
+  virtual void Handle(const DeviceMessage& deviceMessage);
 };
 
 

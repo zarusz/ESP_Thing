@@ -43,7 +43,7 @@ module App.Feature {
 
                 scope.timeoutHandle = this.timeout(() => {
                     scope.timeoutHandle = null;
-                    this.deviceService.updateFeatureState(scope.device, scope.feature);
+                    this.deviceService.updateFeatureState(scope.device.hubId, scope.feature);
                 }, 300);
             };
 

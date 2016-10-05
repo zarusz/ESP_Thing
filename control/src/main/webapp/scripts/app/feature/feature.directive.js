@@ -28,7 +28,7 @@ var App;
                         }
                         scope.timeoutHandle = _this.timeout(function () {
                             scope.timeoutHandle = null;
-                            _this.deviceService.updateFeatureState(scope.device, scope.feature);
+                            _this.deviceService.updateFeatureState(scope.device.hubId, scope.feature);
                         }, 300);
                     };
                     var featureStateUpdated = {

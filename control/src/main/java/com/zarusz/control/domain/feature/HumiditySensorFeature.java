@@ -17,7 +17,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
-@DiscriminatorValue("sensor_humidity")
+@DiscriminatorValue("SensorHumidity")
 public class HumiditySensorFeature extends DeviceFeature {
 
     private float humidity;
@@ -25,8 +25,8 @@ public class HumiditySensorFeature extends DeviceFeature {
     protected HumiditySensorFeature() {
     }
 
-    public HumiditySensorFeature(Device device, Feature feature) {
-        super(device, feature);
+    public HumiditySensorFeature(Device device, Feature feature, int port) {
+        super(device, feature, port);
     }
 
     public void updateValue(float value) {

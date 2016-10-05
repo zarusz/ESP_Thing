@@ -18,11 +18,12 @@
             <column name="address" type="VARCHAR(255)"/>
             <column name="partition" type="INT"/>
             <column name="hub" type="INT"/>
+            <column name="last_online" type="timestamp"/>
         </createTable>
     </changeSet>
     <changeSet author="Tomasz (generated)" id="1442283833184-3">
         <createTable tableName="device_feature">
-            <column name="feature" type="VARCHAR(31)">
+            <column name="feature_type" type="varchar(31)">
                 <constraints nullable="false"/>
             </column>
             <column autoIncrement="true" name="id" type="INT">
@@ -31,10 +32,16 @@
             <column name="device" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="port" type="int4"/>
+            <column name="port" type="int4">
+                <constraints nullable="false"/>
+            </column>
             <column name="display_name" type="VARCHAR(255)"/>
+            <column name="display_priority" type="int4"/>
             <column name="display_icon" type="VARCHAR(255)"/>
             <column name="updated" type="timestamp"/>
+            <column name="disabled" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
             <column name="on" type="BOOLEAN"/>
             <column name="red" type="int4"/>
             <column name="green" type="int4"/>
@@ -54,16 +61,6 @@
             <column name="display_name" type="VARCHAR(255)"/>
             <column name="display_icon" type="VARCHAR(255)"/>
             <column name="display_priority" type="int4"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Tomasz (generated)" id="1442283833184-5">
-        <createTable tableName="hub">
-            <column name="type" type="VARCHAR(31)">
-                <constraints nullable="false"/>
-            </column>
-            <column autoIncrement="true" name="id" type="INT">
-                <constraints primaryKey="true" primaryKeyName="hubPK"/>
-            </column>
         </createTable>
     </changeSet>
     <changeSet author="Tomasz (generated)" id="1442283833184-6">
@@ -103,7 +100,7 @@
                                  referencedTableName="device"/>
     </changeSet>
     <changeSet author="Tomasz (generated)" id="1442283833184-12">
-        <addForeignKeyConstraint baseColumnNames="feature"
+        <addForeignKeyConstraint baseColumnNames="feature_type"
                                  baseTableName="device_feature"
                                  constraintName="fk_device_feature_feature_id"
                                  deferrable="false"
