@@ -36,6 +36,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="display_name" type="VARCHAR(255)"/>
+            <column name="display_priority" type="int4"/>
             <column name="display_icon" type="VARCHAR(255)"/>
             <column name="updated" type="timestamp"/>
             <column name="disabled" type="BOOLEAN">

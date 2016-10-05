@@ -24,6 +24,7 @@ public abstract class DeviceFeature {
         this.feature = feature;
         this.port = port;
         this.displayIcon = feature.getDisplayIcon();
+        this.displayPriority = feature.getDisplayPriority();
         this.disabled = false;
     }
 
@@ -34,6 +35,7 @@ public abstract class DeviceFeature {
     private Date updated;
     private String displayName;
     private String displayIcon;
+    private int displayPriority;
     @Getter
     private boolean disabled;
 

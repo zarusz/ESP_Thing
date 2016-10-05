@@ -88,7 +88,7 @@ void MainApp::SetupWifi()
 	// We start by connecting to a WiFi network
 	Serial.printf("\nConnecting to network %s\n", _deviceConfig.networkName);
 
-	//WiFi.mode(WIFI_STA);
+	WiFi.mode(WIFI_STA);
 	WiFi.begin(_deviceConfig.networkName, _deviceConfig.networkPassword);
 	while (WiFi.status() != WL_CONNECTED)
 	{

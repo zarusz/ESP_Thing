@@ -24,7 +24,7 @@ public class Feature {
     private FeatureType feature;
     private String displayName;
     private String displayIcon;
-    private Integer displayPriority;
+    private int displayPriority;
 }
 
 
