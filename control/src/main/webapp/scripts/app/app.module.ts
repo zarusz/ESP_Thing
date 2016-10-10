@@ -13,8 +13,7 @@ module App {
         "ngCookies",
         "ngCacheBuster",
         "ui.bootstrap", // for modal dialogs
-        "ui.router",
-        "infinite-scroll",
+        "ui.router"
     ]);
 
 }

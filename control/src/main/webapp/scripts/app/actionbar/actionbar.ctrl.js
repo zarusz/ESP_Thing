@@ -2,7 +2,6 @@
 ///<reference path="..\..\components\auth\principal.service.ts"/>
 ///<reference path="..\..\components\auth\auth.service.ts"/>
 ///<reference path="..\..\app\partition\partition.ts"/>
-///<reference path="..\..\app\status\status.ts"/>
 ///<reference path="..\..\app\admin\devices\devices.ts"/>
 var App;
 (function (App) {
@@ -56,9 +55,6 @@ var App;
         };
         ActionBarCtrl.prototype.reload = function () {
             this.window.location.reload(true);
-        };
-        ActionBarCtrl.prototype.goStatus = function () {
-            this.state.go(App.Status.States.Status);
         };
         ActionBarCtrl.prototype.goAllDevices = function () {
             this.state.go(App.Admin.Devices.States.List);

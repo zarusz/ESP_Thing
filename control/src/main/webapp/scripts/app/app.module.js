@@ -13,8 +13,7 @@ var App;
         "ngCookies",
         "ngCacheBuster",
         "ui.bootstrap",
-        "ui.router",
-        "infinite-scroll",
+        "ui.router"
     ]);
 })(App || (App = {}));
 //# sourceMappingURL=app.module.js.map

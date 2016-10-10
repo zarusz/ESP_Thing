@@ -32,7 +32,6 @@ module.exports = function (config) {
             'main/webapp/bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js',
             'main/webapp/bower_components/bootstrap/dist/js/bootstrap.js',
             'main/webapp/bower_components/json3/lib/json3.js',
-            'main/webapp/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
             'main/webapp/bower_components/sockjs-client/dist/sockjs.js',
             'main/webapp/bower_components/stomp-websocket/lib/stomp.min.js',
             'main/webapp/bower_components/underscore/underscore.js',

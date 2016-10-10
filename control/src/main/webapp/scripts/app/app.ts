@@ -5,7 +5,6 @@
 ///<reference path="..\components\sidenav\sidenav.ctrl.ts"/>
 ///<reference path="place\place.controller.ts"/>
 ///<reference path="..\app\feature\feature.ts"/>
-///<reference path="..\app\status\status.ts"/>
 ///<reference path="..\app\actionbar\actionbar.ctrl.ts"/>
 ///<reference path="..\app\home\home.ts"/>
 ///<reference path="..\app\admin\devices\devices.ts"/>

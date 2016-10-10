@@ -2,7 +2,6 @@
 ///<reference path="..\..\components\auth\principal.service.ts"/>
 ///<reference path="..\..\components\auth\auth.service.ts"/>
 ///<reference path="..\..\app\partition\partition.ts"/>
-///<reference path="..\..\app\status\status.ts"/>
 ///<reference path="..\..\app\admin\devices\devices.ts"/>
 module App {
 
@@ -68,10 +67,6 @@ module App {
 
         reload() {
             this.window.location.reload(true);
-        }
-
-        goStatus() {
-            this.state.go(App.Status.States.Status);
         }
 
         goAllDevices() {
