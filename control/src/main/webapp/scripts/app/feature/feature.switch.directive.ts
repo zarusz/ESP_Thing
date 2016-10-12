@@ -4,7 +4,7 @@
 ///<reference path="feature.service.ts"/>
 module App.Feature {
 
-    interface ISwitchFeatureScope extends IFeatureScope<Repository.ISwitchFeatureStateModel> {
+    interface ISwitchFeatureScope extends IFeatureScope {
     }
 
     export class FeatureSwitchDirective implements ng.IDirective {

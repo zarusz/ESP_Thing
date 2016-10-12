@@ -1,7 +1,6 @@
 /// <reference path="../../components/common.module.ts" />
 ///<reference path="feature.directive.ts"/>
 ///<reference path="feature.switch.directive.ts"/>
-///<reference path="feature.dim.directive.ts"/>
 ///<reference path="feature.remote.directive.ts"/>
 ///<reference path="feature.sensor.temperature.directive.ts"/>
 ///<reference path="feature.sensor.humidity.directive.ts"/>
@@ -20,10 +19,6 @@ var App;
         Feature.$module.directive(Feature.FeatureSwitchDirective.$name, [
             App.Repository.DeviceService.$name, App.EventBus.$name,
             function (deviceService, eventBus) { return new Feature.FeatureSwitchDirective(deviceService, eventBus); }
-        ]);
-        Feature.$module.directive(Feature.FeatureDimDirective.$name, [
-            App.Repository.DeviceService.$name,
-            function (deviceService) { return new Feature.FeatureDimDirective(deviceService); }
         ]);
         Feature.$module.directive(Feature.FeatureRemoteDirective.$name, [
             App.Repository.DeviceService.$name,

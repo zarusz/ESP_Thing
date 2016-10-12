@@ -51,7 +51,7 @@ var App;
         ActionBarCtrl.prototype.navigateToPartition = function (partition) {
             this.closeSideNav();
             var params = new App.Partition.PartitionParams(partition.id);
-            this.state.go("partition", params);
+            this.state.go(App.Partition.States.Partition, params);
         };
         ActionBarCtrl.prototype.reload = function () {
             this.window.location.reload(true);

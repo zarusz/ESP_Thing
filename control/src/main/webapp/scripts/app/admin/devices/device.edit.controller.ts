@@ -14,8 +14,8 @@ module App.Admin.Devices {
             NgSvc.mdToast
         ];
 
-        device: Repository.IDeviceUpdateModel;
-        partitions: Array<Repository.IPartitionDescModel> = [];
+        device: Model.DeviceUpdateDto;
+        partitions: Array<Model.PartitionDescDto> = [];
         displayIcons: Array<string> = [
             "fa-cube",
             "fa-cubes",
@@ -41,7 +41,7 @@ module App.Admin.Devices {
             });
         }
 
-        private setDevice(d: Repository.IDeviceModel) {
+        private setDevice(d: Model.DeviceDto) {
             this.device = {
                 displayName: d.displayName,
                 displayIcon: d.displayIcon,
@@ -49,13 +49,13 @@ module App.Admin.Devices {
             };
         }
 
-        private setPartitions(p: Repository.PartitionModel) {
-            var list = new Array<Repository.PartitionModel>();
+        private setPartitions(p: Repository.PartitionDto) {
+            var list = new Array<Repository.PartitionDto>();
             this.flattenPartition(list, p);
             this.partitions = list;
         }
 
-        private flattenPartition(list: Repository.PartitionModel[], p: Repository.PartitionModel) {
+        private flattenPartition(list: Repository.PartitionDto[], p: Repository.PartitionDto) {
             list.push(p);
             _.forEach(p.children, child => this.flattenPartition(list, child));
         }

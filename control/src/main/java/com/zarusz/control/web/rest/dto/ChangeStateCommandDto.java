@@ -7,7 +7,7 @@ import lombok.Data;
  * Created by Tomasz on 9/27/2015.
  */
 @Data
-public class ChangeStateCommandDTO {
+public class ChangeStateCommandDto {
 
     private String deviceId;
     private String featureId;

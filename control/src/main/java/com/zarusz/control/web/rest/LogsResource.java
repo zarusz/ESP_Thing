@@ -3,7 +3,7 @@ package com.zarusz.control.web.rest;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import com.codahale.metrics.annotation.Timed;
-import com.zarusz.control.web.rest.dto.LoggerDTO;
+import com.zarusz.control.web.rest.dto.LoggerDto;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,20 +23,20 @@ public class LogsResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<LoggerDTO> getList() {
+    public List<LoggerDto> getList() {
         LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
         return context.getLoggerList()
             .stream()
-            .map(LoggerDTO::new)
+            .map(LoggerDto::new)
             .collect(Collectors.toList());
-        
+
     }
 
     @RequestMapping(value = "/logs",
             method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Timed
-    public void changeLevel(@RequestBody LoggerDTO jsonLogger) {
+    public void changeLevel(@RequestBody LoggerDto jsonLogger) {
         LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
         context.getLogger(jsonLogger.getName()).setLevel(Level.valueOf(jsonLogger.getLevel()));
     }

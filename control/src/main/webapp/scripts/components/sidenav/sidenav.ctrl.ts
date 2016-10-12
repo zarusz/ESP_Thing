@@ -3,7 +3,7 @@ module App.Component {
 
     export class SideNavCtrl {
         static $name = "SideNavCtrl";
-        static $inject = ["$scope", "$timeout", "$mdSidenav", "$log"];
+        static $inject = [NgSvc.scope, NgSvc.timeout, "$mdSidenav", "$log"];
 
         constructor($scope, $timeout: ng.ITimeoutService, $mdSidenav: ng.material.ISidenavService, $log: ng.ILogService) {
             $scope.close = function () {

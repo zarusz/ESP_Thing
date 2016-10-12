@@ -6,12 +6,12 @@ import com.zarusz.control.domain.feature.MotionSensorFeature;
 /**
  * Created by Tomasz on 10/1/2016.
  */
-public class MotionSensorFeatureStateDTO extends FeatureStateDto {
+public class MotionSensorFeatureStateDto extends FeatureStateDto {
 
-    public MotionSensorFeatureStateDTO() {
+    public MotionSensorFeatureStateDto() {
     }
 
-    public MotionSensorFeatureStateDTO(MotionSensorFeature feature) {
+    public MotionSensorFeatureStateDto(MotionSensorFeature feature) {
         super(feature);
     }
 

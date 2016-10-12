@@ -4,11 +4,18 @@ var App;
 (function (App) {
     var Partition;
     (function (Partition) {
+        var States = (function () {
+            function States() {
+            }
+            States.Partition = "partition";
+            return States;
+        }());
+        Partition.States = States;
         Partition.$module = angular.module("Partition", []);
         Partition.$module
             .config(function ($stateProvider) {
             $stateProvider
-                .state("partition", {
+                .state(States.Partition, {
                 parent: "site",
                 url: "/partition/{partitionId}",
                 data: {

@@ -3,7 +3,7 @@
 ///<reference path="feature.directive.ts"/>
 module App.Feature {
 
-    interface IRemoteFeatureScope extends IFeatureScope<Repository.IRemoteFeatureStateModel> {
+    interface IRemoteFeatureScope extends IFeatureScope {
         select(mode: string);
     }
 
@@ -21,7 +21,7 @@ module App.Feature {
         onLink(scope: IRemoteFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
             scope.select = (newValue: string) => {
                 var numValue = parseInt(newValue, 16);
-                scope.feature.state.value = numValue;
+                (<Model.IRFeatureStateDto> scope.feature.state).value = numValue;
                 scope.notifyStateChanged();
             };
 

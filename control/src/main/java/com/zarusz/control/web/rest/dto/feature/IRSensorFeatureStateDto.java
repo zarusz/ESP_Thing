@@ -6,12 +6,12 @@ import com.zarusz.control.domain.feature.IRSensorFeature;
 /**
  * Created by Tomasz on 10/1/2016.
  */
-public class IRSensorFeatureStateDTO extends FeatureStateDto {
+public class IRSensorFeatureStateDto extends FeatureStateDto {
 
-    public IRSensorFeatureStateDTO() {
+    public IRSensorFeatureStateDto() {
     }
 
-    public IRSensorFeatureStateDTO(IRSensorFeature feature) {
+    public IRSensorFeatureStateDto(IRSensorFeature feature) {
         super(feature);
     }
 

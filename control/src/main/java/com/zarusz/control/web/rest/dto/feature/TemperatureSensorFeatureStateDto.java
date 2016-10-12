@@ -8,14 +8,14 @@ import lombok.Data;
  * Created by Tomasz on 4/21/2016.
  */
 @Data
-public class TemperatureSensorFeatureStateDTO extends FeatureStateDto {
+public class TemperatureSensorFeatureStateDto extends FeatureStateDto {
 
     private float temperature;
 
-    public TemperatureSensorFeatureStateDTO() {
+    public TemperatureSensorFeatureStateDto() {
     }
 
-    public TemperatureSensorFeatureStateDTO(TemperatureSensorFeature feature) {
+    public TemperatureSensorFeatureStateDto(TemperatureSensorFeature feature) {
         super(feature);
         temperature = feature.getTemperature();
     }

@@ -3,7 +3,6 @@
 ///<reference path="feature.directive.ts"/>
 module App.Feature {
 
-    import ISensorTemperatureFeatureStateModel = App.Repository.ISensorTemperatureFeatureStateModel;
     export class FeatureSensorTemperatureDirective implements ng.IDirective {
         static $name = "featureSensorTemperature";
         static $inject = [
@@ -19,7 +18,7 @@ module App.Feature {
                     private eventBus: IEventBus) {
         }
 
-        link = (scope: IFeatureScope<Repository.ISensorTemperatureFeatureStateModel>, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) => {
+        link = (scope: IFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) => {
         };
     }
 }

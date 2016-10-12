@@ -15,7 +15,7 @@ module App.Admin.Devices {
         ];
         static $nameAs = "vm";
 
-        device: Repository.IDeviceUpgradeModel;
+        device: Model.DeviceUpgradeDto;
 
         constructor(private deviceService: Repository.DeviceService,
                     private partitionService: Repository.PartitionService,
@@ -28,7 +28,7 @@ module App.Admin.Devices {
             });
         }
 
-        private setDevice(d: Repository.IDeviceModel) {
+        private setDevice(d: Model.DeviceDto) {
             this.device = {
                 firmwareUrl: null
             };

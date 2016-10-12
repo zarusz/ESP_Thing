@@ -65,6 +65,8 @@ protected:
 	//void DebugRetrievedMessage(const char* topic, const void* message);
 	void HandleDeviceMessage(const DeviceMessage& message);
 	void HandleServiceCommand(const DeviceServiceCommand& message);
+	void HandleUpgradeCommand(const UpgradeFirmwareCommand& message);
+	void HandleStatusRequest(const DeviceStatusRequest& message);
 
 	void OnStart();
 	void OnStop();

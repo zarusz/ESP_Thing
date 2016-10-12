@@ -1,13 +1,13 @@
 ///<reference path="..\common.ng.ts"/>
-///<reference path="model.ts"/>
+///<reference path="..\models.d.ts"/>
 module App.Repository {
 
-    export class PartitionModel implements IPartitionDescModel {
+    export class PartitionDto implements Model.PartitionDescDto {
         id: number;
         displayName: string;
         displayPriority: number;
-        children: Array<PartitionModel>;
-        parent: PartitionModel;
+        children: Array<PartitionDto>;
+        parent: PartitionDto;
     }
 
     export class PartitionService {
@@ -15,9 +15,9 @@ module App.Repository {
         static $name = "PartitionService";
         static $inject = [NgSvc.http, NgSvc.q];
 
-        private root: PartitionModel;
-        private rootLoading: ng.IPromise<PartitionModel>;
-        private partitionById: { [id: number]: PartitionModel } = {};
+        private root: PartitionDto;
+        private rootLoading: ng.IPromise<PartitionDto>;
+        private partitionById: { [id: number]: PartitionDto } = {};
 
         constructor(private http: ng.IHttpService,
                     private q: ng.IQService) {
@@ -25,8 +25,8 @@ module App.Repository {
             this.loadRoot();
         }
 
-        loadRoot(): ng.IPromise<PartitionModel> {
-            this.rootLoading = this.http.get<PartitionModel>("/api/partition").then(p => p.data);
+        loadRoot(): ng.IPromise<PartitionDto> {
+            this.rootLoading = this.http.get<PartitionDto>("/api/partition").then(p => p.data);
             this.rootLoading.then(p => {
                 this.setRoot(p);
                 this.rootLoading = null;
@@ -34,20 +34,20 @@ module App.Repository {
             return this.rootLoading;
         }
 
-        private setRoot(newRoot: PartitionModel) {
+        private setRoot(newRoot: PartitionDto) {
             this.root = newRoot;
             this.partitionById = {};
             this.processNode(newRoot, null);
         }
 
-        private processNode(node: PartitionModel, parent: PartitionModel) {
+        private processNode(node: PartitionDto, parent: PartitionDto) {
             node.parent = parent;
             this.partitionById[node.id] = node;
             _.forEach(node.children, child => this.processNode(child, node));
         }
 
-        getById(partitionId: number): ng.IPromise<PartitionModel> {
-            var deferred = this.q.defer<PartitionModel>();
+        getById(partitionId: number): ng.IPromise<PartitionDto> {
+            var deferred = this.q.defer<PartitionDto>();
             if (this.rootLoading) {
                 this.rootLoading.then(p => {
                     var partition = this.partitionById[partitionId];

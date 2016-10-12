@@ -1,0 +1,22 @@
+//package device.commands;
+import "nanopb.proto";
+import "DeviceCommands.proto";
+option java_package = "com.zarusz.control.device.messages";
+option java_outer_classname = "DeviceMessageProtos";
+
+
+message WiFiConfig {
+  required string network = 1 [(nanopb).max_size = 64];
+  required string password = 2 [(nanopb).max_size = 64];
+}
+
+message PortConfig {
+  required int32 port = 1;
+  required FeatureType feature = 2;
+  required map<string, string> attribs = 3;
+}
+
+message DeviceConfig {
+  required WiFiConfig wifi = 1;
+  repeated PortConfig ports = 2;
+}

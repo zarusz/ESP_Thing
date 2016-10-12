@@ -2,9 +2,9 @@
 ///<reference path="..\..\components\repository\device.service.ts"/>
 module App.Feature {
 
-    export interface IFeatureScope<T extends Repository.IFeatureStateModel> extends ng.IScope {
-        device: Repository.IDeviceModel;
-        feature: Repository.IFeatureModel<T>;
+    export interface IFeatureScope extends ng.IScope {
+        device: Model.DeviceDto;
+        feature: Model.FeatureDto;
         timeoutHandle: ng.IPromise<void>;
         notifyStateChanged();
     }
@@ -28,11 +28,11 @@ module App.Feature {
                     private eventBus: IEventBus) {
         }
 
-        link = (scope: IFeatureScope<Repository.IFeatureStateModel>, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) => {
-            scope.$parent.$watch(attributes.feature, (newValue: Repository.IFeatureModel<Repository.IFeatureStateModel>) => {
+        link = (scope: IFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) => {
+            scope.$parent.$watch(attributes.feature, (newValue: Model.FeatureDto) => {
                 scope.feature = newValue;
             });
-            scope.$parent.$watch(attributes.device, (newValue: Repository.IDeviceModel) => {
+            scope.$parent.$watch(attributes.device, (newValue: Model.DeviceDto) => {
                 scope.device = newValue;
             });
 

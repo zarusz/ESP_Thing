@@ -14,12 +14,12 @@ import java.util.Date;
 @Data
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-    @JsonSubTypes.Type(SwitchFeatureStateDTO.class),
-    @JsonSubTypes.Type(IRFeatureStateDTO.class),
-    @JsonSubTypes.Type(IRSensorFeatureStateDTO.class),
-    @JsonSubTypes.Type(TemperatureSensorFeatureStateDTO.class),
-    @JsonSubTypes.Type(HumiditySensorFeatureStateDTO.class),
-    @JsonSubTypes.Type(MotionSensorFeatureStateDTO.class)
+    @JsonSubTypes.Type(SwitchFeatureStateDto.class),
+    @JsonSubTypes.Type(IRFeatureStateDto.class),
+    @JsonSubTypes.Type(IRSensorFeatureStateDto.class),
+    @JsonSubTypes.Type(TemperatureSensorFeatureStateDto.class),
+    @JsonSubTypes.Type(HumiditySensorFeatureStateDto.class),
+    @JsonSubTypes.Type(MotionSensorFeatureStateDto.class)
 })
 public abstract class FeatureStateDto {
 
@@ -35,22 +35,22 @@ public abstract class FeatureStateDto {
 
     public static FeatureStateDto create(DeviceFeature feature) {
         if (feature instanceof SwitchFeature) {
-            return new SwitchFeatureStateDTO((SwitchFeature) feature);
+            return new SwitchFeatureStateDto((SwitchFeature) feature);
         }
         if (feature instanceof IRFeature) {
-            return new IRFeatureStateDTO((IRFeature) feature);
+            return new IRFeatureStateDto((IRFeature) feature);
         }
         if (feature instanceof IRSensorFeature) {
-            return new IRSensorFeatureStateDTO((IRSensorFeature) feature);
+            return new IRSensorFeatureStateDto((IRSensorFeature) feature);
         }
         if (feature instanceof TemperatureSensorFeature) {
-            return new TemperatureSensorFeatureStateDTO((TemperatureSensorFeature) feature);
+            return new TemperatureSensorFeatureStateDto((TemperatureSensorFeature) feature);
         }
         if (feature instanceof HumiditySensorFeature) {
-            return new HumiditySensorFeatureStateDTO((HumiditySensorFeature) feature);
+            return new HumiditySensorFeatureStateDto((HumiditySensorFeature) feature);
         }
         if (feature instanceof MotionSensorFeature) {
-            return new MotionSensorFeatureStateDTO((MotionSensorFeature) feature);
+            return new MotionSensorFeatureStateDto((MotionSensorFeature) feature);
         }
         throw new RuntimeException("Feature type not supported.");
     }

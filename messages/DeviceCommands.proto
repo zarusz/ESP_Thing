@@ -62,8 +62,13 @@ message UpgradeFirmwareCommand {
   optional string program_url = 1 [(nanopb).max_size = 64];
 }
 
+message DeviceStatusRequest {
+  required string reply_to = 1 [(nanopb).max_size = 32];
+}
+
 message DeviceServiceCommand {
   optional UpgradeFirmwareCommand upgradeFirmwareCommand = 3;
+  optional DeviceStatusRequest statusRequest = 4;
 }
 
 /* Commands (end) */
@@ -89,6 +94,11 @@ message DeviceUpgradedEvent {
   required string device_id = 1 [(nanopb).max_size = 32];
   required bool success = 2;
   optional string msg = 3 [(nanopb).max_size = 32];
+}
+
+message DeviceStatusResponse {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required string message = 2 [(nanopb).max_size = 128];
 }
 
 message DeviceUpgradeFailedEvent {
@@ -119,6 +129,10 @@ message DeviceIRReceivedEvent {
   required IRValue value = 3;
 }
 
+message Responses {
+  optional DeviceStatusResponse deviceStatusResponse = 1;
+}
+
 message DeviceEvents {
   optional DeviceConnectedEvent deviceConnectedEvent = 1;
   optional DeviceHearbeatEvent deviceHearbeatEvent = 2;
@@ -129,6 +143,5 @@ message DeviceEvents {
   optional DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 4;
   optional DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;
   optional DeviceMovementDetectedEvent movementDetectionEvent = 6;
-
   optional DeviceIRReceivedEvent irReceivedEvent = 7;
 }

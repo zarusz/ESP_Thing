@@ -9,7 +9,7 @@ module App {
         static $inject = ["$mdSidenav", NgSvc.state, NgSvc.scope, Repository.PartitionService.$name, Auth.Principal.$name, Auth.Authenticator.$name, NgSvc.window, EventBus.$name];
         static $as = "actionBar";
 
-        rootPartition: Repository.PartitionModel;
+        rootPartition: Repository.PartitionDto;
 
         constructor(private $mdSidenav: ng.material.ISidenavService,
                     private state: ng.ui.IStateService,
@@ -59,10 +59,10 @@ module App {
             this.state.go(state);
         }
 
-        navigateToPartition(partition: Repository.PartitionModel) {
+        navigateToPartition(partition: Repository.PartitionDto) {
             this.closeSideNav();
             var params = new Partition.PartitionParams(partition.id);
-            this.state.go("partition", params);
+            this.state.go(Partition.States.Partition, params);
         }
 
         reload() {

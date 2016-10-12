@@ -3,19 +3,19 @@ package com.zarusz.control.web.rest.dto;
 import ch.qos.logback.classic.Logger;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-public class LoggerDTO {
+public class LoggerDto {
 
     private String name;
 
     private String level;
 
-    public LoggerDTO(Logger logger) {
+    public LoggerDto(Logger logger) {
         this.name = logger.getName();
         this.level = logger.getEffectiveLevel().toString();
     }
 
     @JsonCreator
-    public LoggerDTO() {
+    public LoggerDto() {
     }
 
     public String getName() {
@@ -36,7 +36,7 @@ public class LoggerDTO {
 
     @Override
     public String toString() {
-        return "LoggerDTO{" +
+        return "LoggerDto{" +
                 "name='" + name + '\'' +
                 ", level='" + level + '\'' +
                 '}';

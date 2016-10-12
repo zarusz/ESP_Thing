@@ -13,7 +13,7 @@ var App;
                 };
             }
             SideNavCtrl.$name = "SideNavCtrl";
-            SideNavCtrl.$inject = ["$scope", "$timeout", "$mdSidenav", "$log"];
+            SideNavCtrl.$inject = [App.NgSvc.scope, App.NgSvc.timeout, "$mdSidenav", "$log"];
             return SideNavCtrl;
         }());
         Component.SideNavCtrl = SideNavCtrl;

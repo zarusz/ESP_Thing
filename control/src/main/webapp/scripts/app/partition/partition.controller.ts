@@ -15,9 +15,9 @@ module App.Partition {
         ];
         static $nameAs = "p";
 
-        partition: Repository.PartitionModel;
-        crumbs: Array<Repository.PartitionModel>;
-        devices: Array<Repository.IDeviceModel>;
+        partition: Repository.PartitionDto;
+        crumbs: Array<Repository.PartitionDto>;
+        devices: Array<Model.DeviceDto>;
 
         constructor(private partitionService: Repository.PartitionService,
                     private deviceService: Repository.DeviceService,
@@ -29,7 +29,7 @@ module App.Partition {
             });
         }
 
-        private setPartition(p: Repository.PartitionModel) {
+        private setPartition(p: Repository.PartitionDto) {
             this.partition = p;
             this.enumCrumbs();
 

@@ -1,6 +1,6 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\common.eventbus.ts"/>
-///<reference path="model.ts"/>
+///<reference path="..\models.d.ts"/>
 var App;
 (function (App) {
     var Repository;
@@ -29,7 +29,11 @@ var App;
                 this.eventBus = eventBus;
                 this.topicService = new TopicService(http, cookies, q, localStorageService, eventBus, function (x) { return new FeatureStateChangedEvent(x); });
                 this.topicService.connect().then(function () {
-                    _this.topicService.subscribe("/topic/feature-state");
+                    _this.topicService.subscribe("/topic/feature-state").then(function () { }, function () {
+                        console.warn("Could not subscribe.");
+                    });
+                }, function () {
+                    console.warn("Could not connect.");
                 });
             }
             DeviceService.prototype.getHubAll = function () {
@@ -107,7 +111,7 @@ var App;
             };
             TopicService.prototype.subscribe = function (topicName) {
                 var _this = this;
-                this.connected.promise.then(function () {
+                return this.connected.promise.then(function () {
                     _this.subscriber = _this.stompClient.subscribe(topicName, function (data) {
                         var payload = JSON.parse(data.body);
                         var event = _this.eventFactory(payload);

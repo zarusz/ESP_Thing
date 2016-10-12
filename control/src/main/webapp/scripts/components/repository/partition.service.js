@@ -1,15 +1,15 @@
 ///<reference path="..\common.ng.ts"/>
-///<reference path="model.ts"/>
+///<reference path="..\models.d.ts"/>
 var App;
 (function (App) {
     var Repository;
     (function (Repository) {
-        var PartitionModel = (function () {
-            function PartitionModel() {
+        var PartitionDto = (function () {
+            function PartitionDto() {
             }
-            return PartitionModel;
+            return PartitionDto;
         }());
-        Repository.PartitionModel = PartitionModel;
+        Repository.PartitionDto = PartitionDto;
         var PartitionService = (function () {
             function PartitionService(http, q) {
                 this.http = http;

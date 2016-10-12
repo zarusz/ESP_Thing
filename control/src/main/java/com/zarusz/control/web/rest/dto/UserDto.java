@@ -7,7 +7,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-public class UserDTO {
+public class UserDto {
 
     public static final int PASSWORD_MIN_LENGTH = 5;
     public static final int PASSWORD_MAX_LENGTH = 100;
@@ -36,10 +36,10 @@ public class UserDTO {
 
     private List<String> roles;
 
-    public UserDTO() {
+    public UserDto() {
     }
 
-    public UserDTO(String login, String password, String firstName, String lastName, String email, String langKey,
+    public UserDto(String login, String password, String firstName, String lastName, String email, String langKey,
                    List<String> roles) {
         this.login = login;
         this.password = password;
@@ -80,7 +80,7 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" +
+        return "UserDto{" +
         "login='" + login + '\'' +
         ", password='" + password + '\'' +
         ", firstName='" + firstName + '\'' +

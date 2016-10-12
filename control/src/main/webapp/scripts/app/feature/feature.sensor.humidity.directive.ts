@@ -3,7 +3,7 @@
 ///<reference path="feature.directive.ts"/>
 module App.Feature {
 
-    interface ISensorHumidityFeatureScope extends IFeatureScope<Repository.ISensorHumidityFeatureStateModel> {
+    interface ISensorHumidityFeatureScope extends IFeatureScope {
 
     }
 

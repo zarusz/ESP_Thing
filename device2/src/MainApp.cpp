@@ -151,25 +151,53 @@ void MainApp::HandleServiceCommand(const DeviceServiceCommand& cmd)
 
 	if (cmd.has_upgradeFirmwareCommand)
 	{
-		const UpgradeFirmwareCommand* upgradeFirmwareCommand = &cmd.upgradeFirmwareCommand;
-		t_httpUpdate_return ret = ESPhttpUpdate.update(upgradeFirmwareCommand->program_url);
-		switch (ret)
-		{
-			case HTTP_UPDATE_FAILED:
-				Serial.printf("[MainApp] HTTP_UPDATE_FAILD Error (%d): %s\n", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
-				break;
-
-			case HTTP_UPDATE_NO_UPDATES:
-				Serial.println("[MainApp] HTTP_UPDATE_NO_UPDATES");
-				break;
-
-			case HTTP_UPDATE_OK:
-				Serial.println("[MainApp] HTTP_UPDATE_OK");
-				break;
-		}
+		HandleUpgradeCommand(cmd.upgradeFirmwareCommand);
+	}
+	if (cmd.has_statusRequest)
+	{
+		HandleStatusRequest(cmd.statusRequest);
 	}
 
 	Serial.println("[MainApp] HandleServiceCommand (finish)");
+}
+
+void MainApp::HandleUpgradeCommand(const UpgradeFirmwareCommand& message)
+{
+	t_httpUpdate_return ret = ESPhttpUpdate.update(message.program_url);
+	switch (ret)
+	{
+		case HTTP_UPDATE_FAILED:
+			Serial.printf("[MainApp] HTTP_UPDATE_FAILD Error (%d): %s\n", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
+			break;
+
+		case HTTP_UPDATE_NO_UPDATES:
+			Serial.println("[MainApp] HTTP_UPDATE_NO_UPDATES");
+			break;
+
+		case HTTP_UPDATE_OK:
+			Serial.println("[MainApp] HTTP_UPDATE_OK");
+			break;
+	}
+}
+
+void MainApp::HandleStatusRequest(const DeviceStatusRequest& request)
+{
+		Responses responses = Responses_init_zero;
+		responses.has_deviceStatusResponse = true;
+
+		DeviceStatusResponse*	statusResponse = &responses.deviceStatusResponse;
+		strcpy(statusResponse->device_id, _deviceConfig.uniqueId);
+		sprintf(statusResponse->message,
+			"ChipId: %d\nSketchSize: %d\nFreeSketchSpace: %d\nFreeHeap: %d\nSDK: %s\nCore: %s",
+			ESP.getChipId(),
+			ESP.getSketchSize(),
+			ESP.getFreeSketchSpace(),
+			ESP.getFreeHeap(),
+			ESP.getSdkVersion(),
+			ESP.getCoreVersion().c_str());
+
+		PbMessage message(Responses_fields, &responses);
+    _messageBus.Publish(request.reply_to, &message);
 }
 
 void MainApp::OnStart()

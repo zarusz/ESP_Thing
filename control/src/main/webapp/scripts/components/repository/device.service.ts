@@ -1,8 +1,9 @@
 ///<reference path="..\common.ng.ts"/>
 ///<reference path="..\common.eventbus.ts"/>
-///<reference path="model.ts"/>
+///<reference path="..\models.d.ts"/>
 module App.Repository {
 
+    /*
     export interface IFeatureStateModel {
         updated: string;
     }
@@ -30,8 +31,11 @@ module App.Repository {
     export interface IFeatureModel<T extends IFeatureStateModel> {
         id: number;
         feature: string;
-        displayName: string;
         state: T;
+    }
+
+    export interface IFeatureModelExtended<T extends IFeatureStateModel> extends IFeatureModel<T> {
+        displayName: string;
     }
 
     export interface IDeviceModel extends IDeviceDescModel {
@@ -51,13 +55,14 @@ module App.Repository {
         firmwareUrl: string;
     }
 
+    */
     export interface IFeatureStateChangedEventHandler {
         onFeatureStateChanged(e: FeatureStateChangedEvent);
     }
 
     export class FeatureStateChangedEvent implements IEvent<IFeatureStateChangedEventHandler> {
 
-        constructor(public feature: IFeatureModel<IFeatureStateModel>) {
+        constructor(public feature: Model.FeatureDto) {
         }
 
         getId() {
@@ -76,7 +81,7 @@ module App.Repository {
         static $name = "DeviceService";
         static $inject = [NgSvc.http, NgSvc.cookies, NgSvc.q, NgSvc.localStorageService, EventBus.$name];
 
-        private topicService: TopicService<IFeatureModel<IFeatureStateModel>, IFeatureStateChangedEventHandler, FeatureStateChangedEvent>;
+        private topicService: TopicService<Model.FeatureDto, IFeatureStateChangedEventHandler, FeatureStateChangedEvent>;
 
         constructor(private http: ng.IHttpService,
                     private cookies: any,
@@ -84,21 +89,25 @@ module App.Repository {
                     private localStorageService: angular.local.storage.ILocalStorageService,
                     private eventBus: IEventBus) {
 
-            this.topicService = new TopicService(http, cookies, q, localStorageService, eventBus, (x: IFeatureModel<IFeatureStateModel>) => new FeatureStateChangedEvent(x));
+            this.topicService = new TopicService(http, cookies, q, localStorageService, eventBus, (x: Model.FeatureDto) => new FeatureStateChangedEvent(x));
             this.topicService.connect().then(() => {
-                this.topicService.subscribe("/topic/feature-state");
+                this.topicService.subscribe("/topic/feature-state").then(() => {}, () => {
+                    console.warn("Could not subscribe.");
+                });
+            }, () => {
+                console.warn("Could not connect.");
             });
         }
 
         getHubAll() {
-            return this.http.get<Array<IDeviceModel>>("/api/device/status").then(d => d.data);
+            return this.http.get<Array<Model.DeviceDto>>("/api/device/status").then(d => d.data);
         }
 
         getAllByPartitionId(partitionId: number) {
-            return this.http.get<Array<IDeviceModel>>("/api/device", { params: { partitionId: partitionId } }).then(x => x.data);
+            return this.http.get<Array<Model.DeviceDto>>("/api/device", { params: { partitionId: partitionId } }).then(x => x.data);
         }
 
-        updateFeatureState(deviceId: number, feature: IFeatureModel<IFeatureStateModel>) {
+        updateFeatureState(deviceId: number, feature: Model.FeatureDto) {
             var url = `api/device/${deviceId}/feature/${feature.id}/state`;
             return this.http.post(url, feature.state);
         }
@@ -108,14 +117,14 @@ module App.Repository {
         }
 
         getById(deviceId: number) {
-            return this.http.get<IDeviceModel>(this.urlById(deviceId)).then(x => x.data);
+            return this.http.get<Model.DeviceDto>(this.urlById(deviceId)).then(x => x.data);
         }
 
-        update(deviceId: number, device: IDeviceUpdateModel) {
+        update(deviceId: number, device: Model.DeviceUpdateDto) {
             return this.http.post<void>(this.urlById(deviceId), device).then(x => x.data);
         }
 
-        upgrade(deviceId: number, device: App.Repository.IDeviceUpgradeModel) {
+        upgrade(deviceId: number, device: Model.DeviceUpgradeDto) {
             var url = `${this.urlById(deviceId)}/upgrade`;
             return this.http.post<void>(url, device).then(x => x.data);
         }
@@ -179,7 +188,7 @@ module App.Repository {
         }
 
         subscribe(topicName: string) {
-            this.connected.promise.then(() => {
+            return this.connected.promise.then(() => {
                 this.subscriber = this.stompClient.subscribe(topicName, (data) => {
                     var payload = JSON.parse(data.body);
                     var event = this.eventFactory(payload);

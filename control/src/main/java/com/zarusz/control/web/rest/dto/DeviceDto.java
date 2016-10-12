@@ -2,6 +2,7 @@ package com.zarusz.control.web.rest.dto;
 
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.HubDevice;
+import com.zarusz.control.web.rest.dto.feature.FeatureDto;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
  */
 @Data
 public class DeviceDto extends DeviceDescDto {
-    private List<FeatureDTO> features;
+    private List<FeatureDto> features;
     private List<DeviceDto> children;
     private int hubId;
 
@@ -28,7 +29,7 @@ public class DeviceDto extends DeviceDescDto {
         super(e);
         this.hubId = hubId;
         this.features = e.getFeatures().stream()
-            .filter(x -> includeDisabledFeatures || !x.isDisabled()).map(FeatureDTO::new)
+            .filter(x -> includeDisabledFeatures || !x.isDisabled()).map(FeatureDto::new)
             .collect(Collectors.toList());
 
         this.children = new ArrayList<>();

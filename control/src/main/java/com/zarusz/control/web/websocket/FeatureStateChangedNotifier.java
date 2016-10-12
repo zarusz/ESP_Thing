@@ -2,7 +2,7 @@ package com.zarusz.control.web.websocket;
 
 import com.zarusz.control.app.comm.base.AbstractHandler;
 import com.zarusz.control.domain.msg.events.FeatureStateChangedEvent;
-import com.zarusz.control.web.rest.dto.FeatureDTO;
+import com.zarusz.control.web.rest.dto.feature.FeatureWithIdStateDto;
 import net.engio.mbassy.bus.MBassador;
 import net.engio.mbassy.listener.Handler;
 import org.slf4j.LoggerFactory;
@@ -23,8 +23,8 @@ public class FeatureStateChangedNotifier extends AbstractHandler {
     }
 
     @Handler
-    public void onFeatueStateChanged(FeatureStateChangedEvent e) {
-        FeatureDTO feature = new FeatureDTO(e.getFeature());
+    public void onFeatureStateChanged(FeatureStateChangedEvent e) {
+        FeatureWithIdStateDto feature = new FeatureWithIdStateDto(e.getFeature());
         if (feature != null) {
             messagingTemplate.convertAndSend("/topic/feature-state", feature);
         }

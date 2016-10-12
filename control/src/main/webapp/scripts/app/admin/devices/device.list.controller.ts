@@ -9,7 +9,7 @@ module App.Admin.Devices {
             NgSvc.stateParams
         ];
 
-        devices: Array<Repository.IDeviceModel>;
+        devices: Array<Model.DeviceDto>;
 
         constructor(private deviceService: Repository.DeviceService,
                     private state: ng.ui.IStateService,
@@ -20,7 +20,7 @@ module App.Admin.Devices {
             });
         }
 
-        private setDevices(d: Array<Repository.IDeviceModel>) {
+        private setDevices(d: Array<Model.DeviceDto>) {
             this.devices = d;
         }
 
@@ -28,11 +28,11 @@ module App.Admin.Devices {
             return moment(d).fromNow();
         }
 
-        editDevice(device: Repository.IDeviceModel) {
+        editDevice(device: Model.DeviceDto) {
             this.state.go(States.Edit, {deviceId: device.id});
         }
 
-        upgradeDevice(device: Repository.IDeviceModel) {
+        upgradeDevice(device: Model.DeviceDto) {
             this.state.go(States.Upgrade, {deviceId: device.id});
         }
     }

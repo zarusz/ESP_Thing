@@ -8,15 +8,15 @@ import lombok.Data;
  * Created by Tomasz on 9/27/2015.
  */
 @Data
-public class SwitchFeatureStateDTO extends FeatureStateDto {
+public class SwitchFeatureStateDto extends FeatureStateDto {
 
     private boolean on;
 
-    public SwitchFeatureStateDTO() {
+    public SwitchFeatureStateDto() {
 
     }
 
-    public SwitchFeatureStateDTO(SwitchFeature feature) {
+    public SwitchFeatureStateDto(SwitchFeature feature) {
         super(feature);
         this.on = feature.isOn();
     }

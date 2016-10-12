@@ -2,11 +2,15 @@
 ///<reference path="partition.controller.ts"/>
 module App.Partition {
 
+    export class States {
+        static Partition = "partition";
+    }
+
     export var $module = angular.module("Partition", []);
     $module
         .config(($stateProvider) => {
             $stateProvider
-                .state("partition", {
+                .state(States.Partition, {
                     parent: "site",
                     url: "/partition/{partitionId}",
                     data: {
