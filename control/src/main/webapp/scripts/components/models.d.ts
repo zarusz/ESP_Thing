@@ -1,4 +1,4 @@
-// Generated using typescript-generator version 1.11.232 on 2016-10-12 22:57:26.
+// Generated using typescript-generator version 1.11.232 on 2016-10-12 23:40:55.
 
 declare module App.Model {
 
@@ -126,19 +126,19 @@ declare module App.Model {
         dayOfWeek: number;
         dayOfYear: number;
         year: number;
-        weekOfWeekyear: number;
-        secondOfMinute: number;
-        millisOfSecond: number;
-        yearOfEra: number;
-        centuryOfEra: number;
-        hourOfDay: number;
-        millisOfDay: number;
-        weekyear: number;
         yearOfCentury: number;
         minuteOfDay: number;
         secondOfDay: number;
+        weekyear: number;
+        millisOfDay: number;
         minuteOfHour: number;
+        hourOfDay: number;
         monthOfYear: number;
+        centuryOfEra: number;
+        yearOfEra: number;
+        weekOfWeekyear: number;
+        millisOfSecond: number;
+        secondOfMinute: number;
     }
 
     interface Serializable {

@@ -638,6 +638,7 @@
                 <groupId>cz.habarta.typescript-generator</groupId>
                 <artifactId>typescript-generator-maven-plugin</artifactId>
                 <version>1.11.232</version>
+                <!-- See http://www.habarta.cz/typescript-generator/maven/typescript-generator-maven-plugin/generate-mojo.html -->
                 <configuration>
                     <jsonLibrary>jackson2</jsonLibrary>
                     <classPatterns>
@@ -645,7 +646,8 @@
                     </classPatterns>
                     <outputFile>src/main/webapp/scripts/components/models.d.ts</outputFile>
                     <outputKind>ambientModule</outputKind>
-                    <module>App</module>
+                    <module>App.Model</module>
+                    <!--<removeTypeNameSuffix>Dto</removeTypeNameSuffix>-->
                 </configuration>
                 <executions>
                     <execution>
