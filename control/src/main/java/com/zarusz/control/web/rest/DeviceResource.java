@@ -1,5 +1,9 @@
 package com.zarusz.control.web.rest;
 
+import com.zarusz.control.app.comm.Topics;
+import com.zarusz.control.app.comm.messages.PublishMessageCommand;
+import com.zarusz.control.device.messages.DeviceMessageProtos;
+import com.zarusz.control.domain.common.EventBus;
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.device.HubDevice;
@@ -36,6 +40,8 @@ public class DeviceResource {
     private DeviceRepository deviceRepo;
     @Inject
     private PartitionRepository partitionRepo;
+    @Inject
+    private Topics topics;
 
     @RequestMapping(value = "/device/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DeviceDescDto> getByPartition() {
@@ -115,6 +121,26 @@ public class DeviceResource {
         }
 
         state.handle(feature);
+    }
+
+    @RequestMapping(value = "/device/{hubId}/status", method = RequestMethod.GET)
+    @Transactional
+    public void requestStatus(@PathVariable("hubId") int deviceId) {
+
+        Device device = loadDevice(deviceId);
+
+        DeviceMessageProtos.DeviceStatusRequest r = DeviceMessageProtos.DeviceStatusRequest
+            .newBuilder()
+            .setReplyTo(topics.getMe())
+            .build();
+
+        DeviceMessageProtos.DeviceServiceCommand c = DeviceMessageProtos.DeviceServiceCommand
+            .newBuilder()
+            .setStatusRequest(r)
+            .build();
+
+
+        EventBus.current().publish(new PublishMessageCommand<>(topics.getDeviceServiceTopic(device), c));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.zarusz.control.app.comm.base.mqtt;
+package com.zarusz.control.app.comm.mqtt;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.MessageLite;
@@ -38,16 +38,15 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
     private final MQTT mqttClient;
     private CallbackConnection mqttConnection;
     private boolean mqttConnected;
+
+    @Inject
+    private Topics topics;
+
     private Thread thread;
     private boolean threadRun = true;
 
     private final ConcurrentLinkedQueue<PublishMessageCommand> publishQueue = new ConcurrentLinkedQueue<>();
     private final ConcurrentLinkedQueue<MessageReceivedEvent> dispatchQueue = new ConcurrentLinkedQueue<>();
-
-    private final String[] subscribedTopics = new String[]{
-        Topics.DeviceDescription,
-        Topics.DeviceEvents
-    };
 
     @Inject
     private PlatformTransactionManager txManager;
@@ -81,6 +80,12 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
 
             public void onConnected() {
                 log.info("MQTT connected");
+
+                final String[] subscribedTopics = new String[]{
+                    topics.getMe(),
+                    Topics.DeviceDescription,
+                    Topics.DeviceEvents,
+                };
 
                 final Topic[] topics = Stream.of(subscribedTopics)
                     .map(x -> new Topic(x, QoS.AT_LEAST_ONCE))
@@ -205,15 +210,14 @@ public class MqttBrokerGatewayHandler extends AbstractHandler implements Runnabl
 
     protected <T extends MessageLite> T deserializeMessage(String topic, byte[] payload) throws InvalidProtocolBufferException {
         T typedMsg = null;
-        switch (topic) {
-            case Topics.DeviceDescription:
-                typedMsg = (T) DeviceMessageProtos.DeviceDescription.parseFrom(payload);
-                break;
-            case Topics.DeviceEvents:
-                typedMsg = (T) DeviceMessageProtos.DeviceEvents.parseFrom(payload);
-                break;
-            default:
-                log.warn("Unsupported topic {}", topic);
+        if (topic.equals(Topics.DeviceDescription)) {
+            typedMsg = (T) DeviceMessageProtos.DeviceDescription.parseFrom(payload);
+        } else if (topic.equals(Topics.DeviceEvents)) {
+            typedMsg = (T) DeviceMessageProtos.DeviceEvents.parseFrom(payload);
+        } else if (topic.equals(topics.getMe())) {
+            typedMsg = (T) DeviceMessageProtos.Responses.parseFrom(payload);
+        } else {
+            log.warn("Unsupported topic {}", topic);
         }
         return typedMsg;
     }

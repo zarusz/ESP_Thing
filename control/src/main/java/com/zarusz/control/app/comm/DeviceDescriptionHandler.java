@@ -1,5 +1,6 @@
 package com.zarusz.control.app.comm;
 
+import com.zarusz.control.app.comm.base.AbstractHandler;
 import com.zarusz.control.app.comm.base.TopicHandler;
 import com.zarusz.control.app.comm.messages.Mappings;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
@@ -10,6 +11,7 @@ import com.zarusz.control.repository.DeviceRepository;
 import com.zarusz.control.repository.FeatureRepository;
 import com.zarusz.control.repository.HubDeviceFactory;
 import net.engio.mbassy.bus.MBassador;
+import net.engio.mbassy.listener.Handler;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
@@ -19,10 +21,10 @@ import java.util.stream.Collectors;
 /**
  * Created by Tomasz on 4/10/2016.
  */
-public class DeviceDescriptionHandler extends TopicHandler<DeviceMessageProtos.DeviceDescription> {
+public class DeviceDescriptionHandler extends AbstractHandler {
 
     public DeviceDescriptionHandler(MBassador bus) {
-        super(bus, LoggerFactory.getLogger(DeviceDescriptionHandler.class), Topics.DeviceDescription);
+        super(bus, LoggerFactory.getLogger(DeviceDescriptionHandler.class));
     }
 
     @Inject
@@ -32,7 +34,8 @@ public class DeviceDescriptionHandler extends TopicHandler<DeviceMessageProtos.D
     @Inject
     private FeatureRepository featureRepository;
 
-    public void handle(String topic, DeviceMessageProtos.DeviceDescription msg) {
+    @Handler
+    public void onDeviceDescription(DeviceMessageProtos.DeviceDescription msg) {
         log.debug("Received DeviceDescription for device {}.", msg.getDeviceId());
 
         HubDevice device = deviceRepository.findByGuid(msg.getDeviceId());

@@ -34,7 +34,11 @@ MqttMessageBus::~MqttMessageBus()
 bool MqttMessageBus::Publish(const char* topic, const Buffer& payload)
 {
   Serial.printf("[MQTT] Publish to topic: '%s', payload size: %d\n", topic, payload.Size());
-  return _mqttClient.publish(topic, payload.Data(), payload.Size());
+  bool success = _mqttClient.publish(topic, payload.Data(), payload.Size());
+  if (!success) {
+    Serial.println("[MQTT] Publish failed");
+  }
+  return success;
 }
 
 bool MqttMessageBus::Publish(const char* topic, const void* message)

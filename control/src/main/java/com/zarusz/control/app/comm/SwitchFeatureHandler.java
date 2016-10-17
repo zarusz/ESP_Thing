@@ -10,7 +10,12 @@ import net.engio.mbassy.bus.MBassador;
 import net.engio.mbassy.listener.Handler;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
+
 public class SwitchFeatureHandler extends AbstractHandler {
+
+    @Inject
+    private Topics topics;
 
     public SwitchFeatureHandler(MBassador bus) throws Exception {
         super(bus, LoggerFactory.getLogger(SwitchFeatureHandler.class));
@@ -23,7 +28,7 @@ public class SwitchFeatureHandler extends AbstractHandler {
     }
 
     @Handler
-    public void onSwitchCommand(SwitchCommand cmd) {
+    public void onCommand(SwitchCommand cmd) {
         // TODO: send to device
         try {
             HubDevice hubDevice;
@@ -42,7 +47,7 @@ public class SwitchFeatureHandler extends AbstractHandler {
             DeviceMessageProtos.DeviceMessage.Builder deviceMessage = DeviceMessageProtos.DeviceMessage.newBuilder();
             deviceMessage.setSwitchCommand(switchCommand);
 
-            bus.publish(new PublishMessageCommand(Topics.getDeviceTopic(hubDevice), deviceMessage.build()));
+            bus.publish(new PublishMessageCommand(topics.getDeviceTopic(hubDevice), deviceMessage.build()));
         } catch (Exception e) {
             log.error("Cannot publish the message.", e);
         }

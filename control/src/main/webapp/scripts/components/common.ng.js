@@ -8,6 +8,13 @@
 "use strict";
 var App;
 (function (App) {
+    var NgConst = (function () {
+        function NgConst() {
+        }
+        NgConst.vm = "vm";
+        return NgConst;
+    }());
+    App.NgConst = NgConst;
     var NgSvc = (function () {
         function NgSvc() {
         }

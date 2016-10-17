@@ -1,7 +1,6 @@
 package com.zarusz.control.app.comm;
 
 import com.zarusz.control.app.comm.base.AbstractHandler;
-import com.zarusz.control.app.comm.messages.MessageReceivedEvent;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
 import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.domain.feature.IRSensorFeature;
@@ -25,22 +24,13 @@ public class IRSensorFeatureHandler extends AbstractHandler {
     }
 
     @Handler
-    public void onDeviceEvent(MessageReceivedEvent<DeviceMessageProtos.DeviceEvents> e) {
+    public void onIR(DeviceMessageProtos.DeviceIRReceivedEvent e) {
+        log.debug("Received IR signal on port {} with data {}, bits {}, format {}.", e.getPort(), e.getValue().getData(), e.getValue().getBits(), e.getValue().getFormat());
 
-        if (!(e.getMessage() instanceof DeviceMessageProtos.DeviceEvents)) {
-            return;
-        }
-
-        if (!e.getMessage().hasIrReceivedEvent()) {
-            return;
-        }
-        DeviceMessageProtos.DeviceIRReceivedEvent ir = e.getMessage().getIrReceivedEvent();
-        log.debug("Received IR signal on port {} with data {}, bits {}, format {}.", ir.getPort(), ir.getValue().getData(), ir.getValue().getBits(), ir.getValue().getFormat());
-
-        HubDevice device = deviceRepo.findByGuid(ir.getDeviceId());
+        HubDevice device = deviceRepo.findByGuid(e.getDeviceId());
         if (device != null) {
             device.onReportActivity();
-            IRSensorFeature irIn = (IRSensorFeature) device.getFeatureByPort(ir.getPort());
+            IRSensorFeature irIn = (IRSensorFeature) device.getFeatureByPort(e.getPort());
             if (irIn != null) {
                 //irIn.updateValue(t.getValue());
             }

@@ -7,7 +7,6 @@ module App {
 
     export class ActionBarCtrl implements Auth.IPrincipalChangedEventHandler {
         static $inject = ["$mdSidenav", NgSvc.state, NgSvc.scope, Repository.PartitionService.$name, Auth.Principal.$name, Auth.Authenticator.$name, NgSvc.window, EventBus.$name];
-        static $as = "actionBar";
 
         rootPartition: Repository.PartitionDto;
 
@@ -70,6 +69,7 @@ module App {
         }
 
         goAllDevices() {
+            this.closeSideNav();
             this.state.go(App.Admin.Devices.States.List);
         }
 

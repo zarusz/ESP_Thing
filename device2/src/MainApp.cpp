@@ -10,6 +10,7 @@
 #include "FeatureControllers/IRSensorFeatureController.h"
 
 #define DEVICE_UNIQUE_ID "dev_sufit"
+//#define DEVICE_UNIQUE_ID "dev_temp"
 #define TOPIC_DEVICE_EVENTS "device/events"
 #define TOPIC_DEVICE_DESCRIPTION "device/description"
 
@@ -21,6 +22,9 @@ MainApp::MainApp()
 		_deviceServiceTopic(String("device/") + _deviceConfig.uniqueId + "/service"),
 		_state(DeviceState::New)
 {
+	_messageBus.Subscribe(_deviceInTopic.c_str());
+	_messageBus.Subscribe(_deviceServiceTopic.c_str());
+
 	/*
 	_features.push_back(new SwitchFeatureController(10, this, 4, false));
 	_features.push_back(new SwitchFeatureController(11, this, 5, false));
@@ -28,7 +32,7 @@ MainApp::MainApp()
 	_features.push_back(new TempFeatureController(30, 31, this, 0, TOPIC_DEVICE_EVENTS));
 
 	_features.push_back(new IRFeatureController(40, this, 2));
-	_features.push_back(new IRFeatureController(50, this, 15));
+	_features.push_back(new IRFeatureController( 50, this, 15));
 	_features.push_back(new IRSensorFeatureController(41, this, 16, TOPIC_DEVICE_EVENTS));
 	*/
 
@@ -46,9 +50,6 @@ MainApp::MainApp()
 	_features.push_back(new IRSensorFeatureController(41, this, 4, TOPIC_DEVICE_EVENTS));
 	_features.push_back(new IRFeatureController(40, this, 16));
 	_features.push_back(new IRFeatureController(50, this, 5));
-
-	_messageBus.Subscribe(_deviceInTopic.c_str());
-	_messageBus.Subscribe(_deviceServiceTopic.c_str());
 }
 
 MainApp::~MainApp()
@@ -182,22 +183,25 @@ void MainApp::HandleUpgradeCommand(const UpgradeFirmwareCommand& message)
 
 void MainApp::HandleStatusRequest(const DeviceStatusRequest& request)
 {
-		Responses responses = Responses_init_zero;
-		responses.has_deviceStatusResponse = true;
+	Serial.println("[MainApp::HandleStatusRequest] Starting");
 
-		DeviceStatusResponse*	statusResponse = &responses.deviceStatusResponse;
-		strcpy(statusResponse->device_id, _deviceConfig.uniqueId);
-		sprintf(statusResponse->message,
-			"ChipId: %d\nSketchSize: %d\nFreeSketchSpace: %d\nFreeHeap: %d\nSDK: %s\nCore: %s",
-			ESP.getChipId(),
-			ESP.getSketchSize(),
-			ESP.getFreeSketchSpace(),
-			ESP.getFreeHeap(),
-			ESP.getSdkVersion(),
-			ESP.getCoreVersion().c_str());
+	Responses responses = Responses_init_zero;
+	responses.has_deviceStatusResponse = true;
 
-		PbMessage message(Responses_fields, &responses);
-    _messageBus.Publish(request.reply_to, &message);
+	DeviceStatusResponse*	statusResponse = &responses.deviceStatusResponse;
+	strcpy(statusResponse->device_id, _deviceConfig.uniqueId);
+	sprintf(statusResponse->message,
+		"ChipId: %d\nSketchSize: %d\nFreeSketchSpace: %d\nFreeHeap: %d\nSDK: %s\nCore: %s",
+		ESP.getChipId(),
+		ESP.getSketchSize(),
+		ESP.getFreeSketchSpace(),
+		ESP.getFreeHeap(),
+		ESP.getSdkVersion(),
+		ESP.getCoreVersion().c_str());
+
+	Serial.println("[MainApp::HandleStatusRequest] Sending");
+	PbMessage message(Responses_fields, &responses);
+  _messageBus.Publish(request.reply_to, &message);
 }
 
 void MainApp::OnStart()

@@ -108,7 +108,7 @@ var App;
                 },
                 templateUrl: "scripts/app/actionbar/actionbar.html",
                 controller: App.ActionBarCtrl,
-                controllerAs: App.ActionBarCtrl.$as,
+                controllerAs: "vm",
                 resolve: {
                     authorize: [App.Auth.Authenticator.$name, function (auth) {
                             return auth.authorize(false);

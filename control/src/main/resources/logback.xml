@@ -52,6 +52,7 @@
     <logger name="springfox" level="WARN"/>
     <logger name="liquibase" level="WARN"/>
     <logger name="sun.rmi.transport" level="WARN"/>
+    <logger name="org.hibernate.hql.internal.ast.QueryTranslatorImpl" level="ERROR"/>
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>

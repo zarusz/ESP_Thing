@@ -120,7 +120,7 @@ module App.Main {
             },
             templateUrl: "scripts/app/actionbar/actionbar.html",
             controller: ActionBarCtrl,
-            controllerAs: ActionBarCtrl.$as,
+            controllerAs: "vm",
             resolve: {
                 authorize: [Auth.Authenticator.$name, (auth: Auth.Authenticator) => {
                     return auth.authorize(false);

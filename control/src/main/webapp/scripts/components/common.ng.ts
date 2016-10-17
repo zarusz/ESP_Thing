@@ -8,6 +8,10 @@
 "use strict";
 module App {
 
+    export class NgConst {
+        static vm = "vm";
+    }
+
     export class NgSvc {
         // Angular
 

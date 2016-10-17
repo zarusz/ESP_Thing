@@ -1,7 +1,7 @@
 <div flex layout="column" style="height: 100%;">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" ng-click="actionBar.toggleSideNav()" aria-label="Menu">
+            <md-button class="md-icon-button" ng-click="vm.toggleSideNav()" aria-label="Menu">
                 <md-icon class="fa fa-bars fa-lg"></md-icon>
             </md-button>
             <h1>Control</h1>
@@ -12,7 +12,7 @@
                 </md-button>
                 <md-menu-content>
                     <md-menu-item>
-                        <md-button ng-click="actionBar.reload()">
+                        <md-button ng-click="vm.reload()">
                             <md-icon md-menu-align-target class="fa fa-fw fa-refresh fa-lg"></md-icon>
                             Reload App
                         </md-button>
@@ -26,12 +26,12 @@
                     md-is-locked-open="$mdMedia('gt-md')">
             <md-toolbar class="md-theme-indigo">
                 <div class="md-toolbar-tools">
-                    <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="Menu">
+                    <md-button class="md-icon-button" ng-click="vm.closeSideNav()" aria-label="Menu">
                         <md-icon class="fa fa-bars fa-lg"></md-icon>
                     </md-button>
                     <h1>Menu</h1>
                     <span flex></span>
-                    <md-button class="md-icon-button" ng-click="actionBar.closeSideNav()" aria-label="More">
+                    <md-button class="md-icon-button" ng-click="vm.closeSideNav()" aria-label="More">
                         <md-icon class="fa fa-times-circle-o fa-lg"></md-icon>
                     </md-button>
                 </div>
@@ -40,25 +40,25 @@
                 <div flex layout="column">
                     <!--
                     <md-subheader class="md-no-sticky">Explore</md-subheader>
-                    <md-list-item ng-click="actionBar.navigateTo('site.place')">
+                    <md-list-item ng-click="vm.navigateTo('site.place')">
                         <md-icon class="fa fa-building fa-lg"></md-icon>
                         <p>Rooms</p>
                     </md-list-item>
                     <md-divider></md-divider>
                     -->
-                    <md-subheader class="md-no-sticky">{{actionBar.rootPartition.displayName}}</md-subheader>
-                    <md-list-item ng-click="actionBar.navigateToPartition(p)"
-                                  ng-repeat="p in actionBar.rootPartition.children | orderBy : 'displayPriority'">
+                    <md-subheader class="md-no-sticky">{{vm.rootPartition.displayName}}</md-subheader>
+                    <md-list-item ng-click="vm.navigateToPartition(p)"
+                                  ng-repeat="p in vm.rootPartition.children | orderBy : 'displayPriority'">
                         <md-icon class="fa fa-tags fa-lg"></md-icon>
                         <p>{{p.displayName}}</p>
                     </md-list-item>
                     <md-divider></md-divider>
-                    <md-list-item ng-click="actionBar.goAllDevices()">
+                    <md-list-item ng-click="vm.goAllDevices()">
                         <md-icon class="fa fa-fw fa-cogs fa-lg"></md-icon>
                         <p>All Devices</p>
                     </md-list-item>
                     <md-divider></md-divider>
-                    <md-list-item ng-if="actionBar.isAuthenticated()"  ng-click="actionBar.logout()">
+                    <md-list-item ng-if="vm.isAuthenticated()"  ng-click="vm.logout()">
                         <md-icon class="fa fa-fw fa-sign-out fa-lg"></md-icon>
                         <p>Sign out</p>
                     </md-list-item>

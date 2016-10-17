@@ -57,6 +57,7 @@ var App;
             this.window.location.reload(true);
         };
         ActionBarCtrl.prototype.goAllDevices = function () {
+            this.closeSideNav();
             this.state.go(App.Admin.Devices.States.List);
         };
         ActionBarCtrl.prototype.logout = function () {
@@ -69,7 +70,6 @@ var App;
             return this.principal.isAuthenticated();
         };
         ActionBarCtrl.$inject = ["$mdSidenav", App.NgSvc.state, App.NgSvc.scope, App.Repository.PartitionService.$name, App.Auth.Principal.$name, App.Auth.Authenticator.$name, App.NgSvc.window, App.EventBus.$name];
-        ActionBarCtrl.$as = "actionBar";
         return ActionBarCtrl;
     }());
     App.ActionBarCtrl = ActionBarCtrl;

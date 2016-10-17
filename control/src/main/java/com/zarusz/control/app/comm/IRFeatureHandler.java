@@ -9,14 +9,19 @@ import net.engio.mbassy.bus.MBassador;
 import net.engio.mbassy.listener.Handler;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
+
 public class IRFeatureHandler extends AbstractHandler {
+
+    @Inject
+    private Topics topics;
 
     public IRFeatureHandler(MBassador bus) throws Exception {
         super(bus, LoggerFactory.getLogger(IRFeatureHandler.class));
     }
 
     @Handler
-    public void onIRCommand(IRCommand cmd) {
+    public void onCommand(IRCommand cmd) {
         // TODO: send to device
         try {
             HubDevice hubDevice;
@@ -40,7 +45,7 @@ public class IRFeatureHandler extends AbstractHandler {
             DeviceMessageProtos.DeviceMessage.Builder deviceMessage = DeviceMessageProtos.DeviceMessage.newBuilder();
             deviceMessage.setIrSendCommand(irSendCommand);
 
-            bus.publish(new PublishMessageCommand(Topics.getDeviceTopic(hubDevice), deviceMessage.build()));
+            bus.publish(new PublishMessageCommand(topics.getDeviceTopic(hubDevice), deviceMessage.build()));
         } catch (Exception e) {
             log.error("Cannot publish the message.", e);
         }

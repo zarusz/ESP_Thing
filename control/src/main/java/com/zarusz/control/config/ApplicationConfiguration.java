@@ -1,7 +1,9 @@
 package com.zarusz.control.config;
 
 import com.zarusz.control.app.comm.*;
-import com.zarusz.control.app.comm.base.mqtt.MqttBrokerGatewayHandler;
+import com.zarusz.control.app.comm.base.TransformingHandler;
+import com.zarusz.control.app.comm.mqtt.MqttBrokerGatewayHandler;
+import com.zarusz.control.device.messages.DeviceMessageProtos;
 import com.zarusz.control.domain.common.EventBus;
 import com.zarusz.control.web.websocket.FeatureStateChangedNotifier;
 import net.engio.mbassy.bus.MBassador;
@@ -97,6 +99,35 @@ public class ApplicationConfiguration {
     @Bean
     public FeatureStateChangedNotifier featureStateChangedNotifier(MBassador bus) throws Exception {
         return new FeatureStateChangedNotifier(bus);
+    }
+
+    @Bean
+    public Topics topics() throws Exception {
+        return new Topics();
+    }
+
+    @Bean
+    public TransformingHandler transformingHandler(MBassador bus, Topics topics) throws Exception {
+        TransformingHandler handler = new TransformingHandler(bus);
+
+        handler
+            .<DeviceMessageProtos.DeviceEvents>forTopic(Topics.DeviceEvents)
+            .transform(x -> x.hasDeviceHearbeatEvent() ? x.getDeviceHearbeatEvent() : null)
+            .transform(x -> x.hasDeviceConnectedEvent() ? x.getDeviceConnectedEvent() : null)
+            .transform(x -> x.hasDeviceDisconnectedEvent() ? x.getDeviceDisconnectedEvent() : null)
+            .transform(x -> x.hasTemperatureMeasureEvent() ? x.getTemperatureMeasureEvent() : null)
+            .transform(x -> x.hasHumidityMeasureEvent() ? x.getHumidityMeasureEvent() : null)
+            .transform(x -> x.hasIrReceivedEvent() ? x.getIrReceivedEvent() : null);
+
+        handler
+            .<DeviceMessageProtos.DeviceDescription>forTopic(Topics.DeviceDescription)
+            .transform(x -> x);
+
+        handler
+            .<DeviceMessageProtos.Responses>forTopic(topics.getMe())
+            .transform(x -> x.hasDeviceStatusResponse() ? x.getDeviceStatusResponse() : null);
+
+        return handler;
     }
 
 }

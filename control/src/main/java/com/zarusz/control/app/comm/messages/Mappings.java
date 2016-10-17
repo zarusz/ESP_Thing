@@ -9,7 +9,7 @@ import com.zarusz.control.domain.feature.FeatureType;
 public class Mappings {
 
     public static FeatureType mapFeatureType(DeviceMessageProtos.FeatureType msgFeatureType) {
-        switch (msgFeatureType){
+        switch (msgFeatureType) {
             case SWITCH:
                 return FeatureType.Switch;
             case IR:
