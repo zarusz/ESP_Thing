@@ -10,7 +10,6 @@ SwitchFeatureController::SwitchFeatureController(int port, DeviceContext* contex
 void SwitchFeatureController::Start()
 {
   _context->GetPins().SetMode(_pin, PinMode::Output);
-  //pinMode(pin, OUTPUT);
   SetState(false);
 }
 
@@ -20,12 +19,11 @@ void SwitchFeatureController::Handle(const DeviceMessage& deviceMessage)
   {
     return;
   }
-  Serial.println("SwitchFeatureController:Handle");
+  Serial.println("[SwitchFeatureController] Handle");
 
   const DeviceSwitchCommand* cmd = &deviceMessage.switchCommand;
 
-  String msg = String("SwitchCommand for port ") + cmd->port + " with " + (cmd->on ? "turn on" : "turn off");
-  Serial.println(msg);
+  Serial.printf("[SwitchFeatureController] SwitchCommand for port %d with %s\n", cmd->port, cmd->on ? "turn on" : "turn off");
   SetState(cmd->on);
 }
 

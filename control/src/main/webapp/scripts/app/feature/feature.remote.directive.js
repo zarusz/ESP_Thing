@@ -19,9 +19,15 @@ var App;
                 this.templateUrl = "scripts/app/feature/feature.remote.html";
             }
             FeatureRemoteDirective.prototype.onLink = function (scope, element, attributes) {
-                scope.select = function (newValue) {
-                    var numValue = parseInt(newValue, 16);
-                    scope.feature.state.value = numValue;
+                scope.select = function (signalData) {
+                    var irState = scope.feature.state;
+                    irState.signal = {
+                        format: "NEC",
+                        bytes: [
+                            { bits: 32, data: parseInt(signalData, 16) },
+                            { bits: 0, data: -1 }
+                        ]
+                    };
                     scope.notifyStateChanged();
                 };
             };

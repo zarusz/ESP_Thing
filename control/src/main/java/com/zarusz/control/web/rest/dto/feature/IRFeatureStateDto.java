@@ -2,6 +2,7 @@ package com.zarusz.control.web.rest.dto.feature;
 
 import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.feature.IRFeature;
+import com.zarusz.control.domain.feature.ir.IRSignal;
 import lombok.Data;
 
 /**
@@ -10,7 +11,7 @@ import lombok.Data;
 @Data
 public class IRFeatureStateDto extends FeatureStateDto {
 
-    private int value;
+    private IRSignal signal;
 
     public IRFeatureStateDto() {
     }
@@ -20,8 +21,8 @@ public class IRFeatureStateDto extends FeatureStateDto {
 
     @Override
     public void handle(DeviceFeature feature) {
-        IRFeature irOutFeature = (IRFeature) feature;
-        irOutFeature.send(value);
+        IRFeature irFeature = (IRFeature) feature;
+        irFeature.send(signal);
     }
 }
 

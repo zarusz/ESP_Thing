@@ -3,6 +3,8 @@ package com.zarusz.control.domain.feature;
 import com.zarusz.control.domain.common.EventBus;
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.DeviceFeature;
+import com.zarusz.control.domain.feature.ir.IRFormat;
+import com.zarusz.control.domain.feature.ir.IRSignal;
 import com.zarusz.control.domain.msg.commands.IRCommand;
 
 import javax.persistence.DiscriminatorValue;
@@ -22,9 +24,10 @@ public class IRFeature extends DeviceFeature {
         super(device, feature, port);
     }
 
-    public void send(int value) {
-        IRCommand cmd = new IRCommand(this, value);
+    public void send(IRSignal signal) {
+        IRCommand cmd = new IRCommand(this, signal);
         EventBus.current().publish(cmd);
     }
 
 }
+

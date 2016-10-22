@@ -24,15 +24,15 @@ public class IRSensorFeatureHandler extends AbstractHandler {
     }
 
     @Handler
-    public void onIR(DeviceMessageProtos.DeviceIRReceivedEvent e) {
-        log.debug("Received IR signal on port {} with data {}, bits {}, format {}.", e.getPort(), e.getValue().getData(), e.getValue().getBits(), e.getValue().getFormat());
+    public void onIR(DeviceMessageProtos.DeviceIRSignalEvent e) {
+        log.debug("Received IR signal on port {} with signal {}", e.getPort(), e.getSignal());
 
         HubDevice device = deviceRepo.findByGuid(e.getDeviceId());
         if (device != null) {
             device.onReportActivity();
-            IRSensorFeature irIn = (IRSensorFeature) device.getFeatureByPort(e.getPort());
-            if (irIn != null) {
-                //irIn.updateValue(t.getValue());
+            IRSensorFeature irSensor = (IRSensorFeature) device.getFeatureByPort(e.getPort());
+            if (irSensor != null) {
+                //irSensor.updateValue(t.getValue());
             }
         }
     }

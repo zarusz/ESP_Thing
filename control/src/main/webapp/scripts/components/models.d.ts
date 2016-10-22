@@ -1,4 +1,4 @@
-// Generated using typescript-generator version 1.11.232 on 2016-10-12 23:40:55.
+// Generated using typescript-generator version 1.11.232 on 2016-10-22 12:26:28.
 
 declare module App.Model {
 
@@ -26,6 +26,10 @@ declare module App.Model {
 
     interface DeviceIdDto {
         id: number;
+    }
+
+    interface DeviceStatusDto extends DeviceIdDto {
+        status: string;
     }
 
     interface DeviceUpdateDto {
@@ -93,7 +97,7 @@ declare module App.Model {
 
     interface IRFeatureStateDto extends FeatureStateDto {
         type: "IRFeatureStateDto";
-        value: number;
+        signal: IRSignal;
     }
 
     interface IRSensorFeatureStateDto extends FeatureStateDto {
@@ -117,6 +121,11 @@ declare module App.Model {
     interface DateTime extends BaseDateTime, ReadableDateTime, Serializable {
     }
 
+    interface IRSignal {
+        format: IRFormat;
+        bytes: IRSignalByte[];
+    }
+
     interface BaseDateTime extends AbstractDateTime, ReadableDateTime, Serializable {
     }
 
@@ -126,22 +135,27 @@ declare module App.Model {
         dayOfWeek: number;
         dayOfYear: number;
         year: number;
-        yearOfCentury: number;
-        minuteOfDay: number;
-        secondOfDay: number;
-        weekyear: number;
-        millisOfDay: number;
-        minuteOfHour: number;
-        hourOfDay: number;
-        monthOfYear: number;
-        centuryOfEra: number;
-        yearOfEra: number;
         weekOfWeekyear: number;
         millisOfSecond: number;
         secondOfMinute: number;
+        monthOfYear: number;
+        minuteOfDay: number;
+        secondOfDay: number;
+        weekyear: number;
+        yearOfEra: number;
+        millisOfDay: number;
+        minuteOfHour: number;
+        centuryOfEra: number;
+        yearOfCentury: number;
+        hourOfDay: number;
     }
 
     interface Serializable {
+    }
+
+    interface IRSignalByte {
+        bits: number;
+        data: number;
     }
 
     interface AbstractDateTime extends AbstractInstant, ReadableDateTime {
@@ -172,6 +186,8 @@ declare module App.Model {
     }
 
     type FeatureType = "Switch" | "IR" | "SensorIR" | "SensorTemperature" | "SensorHumidity" | "SensorMotion";
+
+    type IRFormat = "NEC" | "SONY";
 
     type FeatureStateDtoUnion = SwitchFeatureStateDto | IRFeatureStateDto | IRSensorFeatureStateDto | TemperatureSensorFeatureStateDto | HumiditySensorFeatureStateDto | MotionSensorFeatureStateDto;
 

@@ -4,7 +4,7 @@
 module App.Feature {
 
     interface IRemoteFeatureScope extends IFeatureScope {
-        select(mode: string);
+        select(signalData: string);
     }
 
     export class FeatureRemoteDirective extends BaseDirective<IRemoteFeatureScope> {
@@ -19,13 +19,17 @@ module App.Feature {
         }
 
         onLink(scope: IRemoteFeatureScope, element: ng.IAugmentedJQuery, attributes: IFeatureAttributes) {
-            scope.select = (newValue: string) => {
-                var numValue = parseInt(newValue, 16);
-                (<Model.IRFeatureStateDto> scope.feature.state).value = numValue;
+            scope.select = (signalData: string) => {
+                var irState = (<Model.IRFeatureStateDto> scope.feature.state);
+                irState.signal = {
+                    format: "NEC",
+                    bytes: [
+                        { bits: 32, data: parseInt(signalData, 16) },
+                        { bits: 0, data: -1 }
+                    ]
+                };
                 scope.notifyStateChanged();
             };
-
         }
-
     }
 }

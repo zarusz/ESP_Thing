@@ -2,7 +2,6 @@ package com.zarusz.control.app.comm;
 
 import com.zarusz.control.app.comm.base.AbstractHandler;
 import com.zarusz.control.app.comm.messages.PublishMessageCommand;
-import com.zarusz.control.device.messages.DeviceMessageProtos;
 import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.domain.msg.commands.IRCommand;
 import net.engio.mbassy.bus.MBassador;
@@ -10,6 +9,9 @@ import net.engio.mbassy.listener.Handler;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import java.util.stream.Collectors;
+
+import static com.zarusz.control.device.messages.DeviceMessageProtos.*;
 
 public class IRFeatureHandler extends AbstractHandler {
 
@@ -30,24 +32,30 @@ public class IRFeatureHandler extends AbstractHandler {
             } else {
                 hubDevice = cmd.getDevice().getHub();
             }
-            log.debug("IR to device {} port {} with value {}.", hubDevice.getGuid(), cmd.getDeviceFeature().getPort(), cmd.getValue());
+            log.debug("IR to device {} port {} with value {}.", hubDevice.getGuid(), cmd.getDeviceFeature().getPort(), cmd.getSignal());
 
-            DeviceMessageProtos.IRValue.Builder irValue = DeviceMessageProtos.IRValue.newBuilder();
-            irValue.setBits(32);
-            irValue.setFormat(DeviceMessageProtos.IRFormat.NEC);
-            irValue.setData(cmd.getValue());
+            IRSignal irSignal = IRSignal
+                .newBuilder()
+                .setFormat(Mapper.map(cmd.getSignal().getFormat()))
+                .addAllBytes(cmd.getSignal().getBytes().stream().map(x -> IRSignalByte.newBuilder().setBits(x.getBits()).setData(x.getData()).build()).collect(Collectors.toList()))
+                .build();
 
-            DeviceMessageProtos.DeviceIRSendCommand.Builder irSendCommand = DeviceMessageProtos.DeviceIRSendCommand.newBuilder();
-            irSendCommand.setMessageId(1234);
-            irSendCommand.setPort(cmd.getDeviceFeature().getPort());
-            irSendCommand.setValue(irValue);
+            DeviceIRCommand irCommand = DeviceIRCommand
+                .newBuilder()
+                .setMessageId(1234)
+                .setPort(cmd.getDeviceFeature().getPort())
+                .setSignal(irSignal)
+                .build();
 
-            DeviceMessageProtos.DeviceMessage.Builder deviceMessage = DeviceMessageProtos.DeviceMessage.newBuilder();
-            deviceMessage.setIrSendCommand(irSendCommand);
+            DeviceMessage deviceMessage = DeviceMessage
+                .newBuilder()
+                .setIrCommand(irCommand)
+                .build();
 
-            bus.publish(new PublishMessageCommand(topics.getDeviceTopic(hubDevice), deviceMessage.build()));
+            bus.publish(new PublishMessageCommand(topics.getDeviceTopic(hubDevice), deviceMessage));
         } catch (Exception e) {
             log.error("Cannot publish the message.", e);
         }
     }
 }
+

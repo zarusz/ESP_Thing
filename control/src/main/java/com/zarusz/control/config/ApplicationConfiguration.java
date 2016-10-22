@@ -117,7 +117,7 @@ public class ApplicationConfiguration {
             .transform(x -> x.hasDeviceDisconnectedEvent() ? x.getDeviceDisconnectedEvent() : null)
             .transform(x -> x.hasTemperatureMeasureEvent() ? x.getTemperatureMeasureEvent() : null)
             .transform(x -> x.hasHumidityMeasureEvent() ? x.getHumidityMeasureEvent() : null)
-            .transform(x -> x.hasIrReceivedEvent() ? x.getIrReceivedEvent() : null);
+            .transform(x -> x.hasIrSignalEvent() ? x.getIrSignalEvent() : null);
 
         handler
             .<DeviceMessageProtos.DeviceDescription>forTopic(Topics.DeviceDescription)

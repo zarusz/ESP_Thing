@@ -2,7 +2,7 @@ package com.zarusz.control.app.comm;
 
 import com.zarusz.control.app.comm.base.AbstractHandler;
 import com.zarusz.control.app.comm.messages.PublishMessageCommand;
-import com.zarusz.control.device.messages.DeviceMessageProtos;
+import static com.zarusz.control.device.messages.DeviceMessageProtos.*;
 import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.domain.msg.commands.SwitchCommand;
 import com.zarusz.control.domain.msg.commands.TargetingDeviceCommand;
@@ -37,17 +37,21 @@ public class SwitchFeatureHandler extends AbstractHandler {
             } else {
                 hubDevice = cmd.getDevice().getHub();
             }
-            log.debug("Switch to {} on device {} port {}.", cmd.isOn() ? "on" : "off", hubDevice.getGuid(), cmd.getDeviceFeature().getPort());
+            log.debug("Switch to {} on device {} port {}", cmd.isOn() ? "on" : "off", hubDevice.getGuid(), cmd.getDeviceFeature().getPort());
 
-            DeviceMessageProtos.DeviceSwitchCommand.Builder switchCommand = DeviceMessageProtos.DeviceSwitchCommand.newBuilder();
-            switchCommand.setMessageId(1234);
-            switchCommand.setPort(cmd.getDeviceFeature().getPort());
-            switchCommand.setOn(cmd.isOn());
+            DeviceSwitchCommand switchCommand = DeviceSwitchCommand
+                .newBuilder()
+                .setMessageId(1234)
+                .setPort(cmd.getDeviceFeature().getPort())
+                .setOn(cmd.isOn())
+                .build();
 
-            DeviceMessageProtos.DeviceMessage.Builder deviceMessage = DeviceMessageProtos.DeviceMessage.newBuilder();
-            deviceMessage.setSwitchCommand(switchCommand);
+            DeviceMessage deviceMessage = DeviceMessage
+                .newBuilder()
+                .setSwitchCommand(switchCommand)
+                .build();
 
-            bus.publish(new PublishMessageCommand(topics.getDeviceTopic(hubDevice), deviceMessage.build()));
+            bus.publish(new PublishMessageCommand(topics.getDeviceTopic(hubDevice), deviceMessage));
         } catch (Exception e) {
             log.error("Cannot publish the message.", e);
         }
