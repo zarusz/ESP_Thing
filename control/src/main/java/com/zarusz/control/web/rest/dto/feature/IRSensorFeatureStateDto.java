@@ -1,7 +1,7 @@
 package com.zarusz.control.web.rest.dto.feature;
 
 import com.zarusz.control.domain.device.DeviceFeature;
-import com.zarusz.control.domain.feature.IRSensorFeature;
+import com.zarusz.control.domain.feature.ir.IRSensorFeature;
 
 /**
  * Created by Tomasz on 10/1/2016.

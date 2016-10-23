@@ -1,6 +1,6 @@
 package com.zarusz.control.domain.msg.commands;
 
-import com.zarusz.control.domain.feature.IRFeature;
+import com.zarusz.control.domain.feature.ir.IRFeature;
 import com.zarusz.control.domain.feature.ir.IRSignal;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

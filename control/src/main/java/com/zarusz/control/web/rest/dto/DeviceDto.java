@@ -4,6 +4,7 @@ import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.web.rest.dto.feature.FeatureDto;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
  * Created by Tomasz on 9/14/2015.
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class DeviceDto extends DeviceDescDto {
     private List<FeatureDto> features;
     private List<DeviceDto> children;

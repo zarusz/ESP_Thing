@@ -3,7 +3,7 @@ package com.zarusz.control.app.comm;
 import com.zarusz.control.app.comm.base.AbstractHandler;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
 import com.zarusz.control.domain.device.HubDevice;
-import com.zarusz.control.domain.feature.IRSensorFeature;
+import com.zarusz.control.domain.feature.ir.IRSensorFeature;
 import com.zarusz.control.repository.DeviceRepository;
 import net.engio.mbassy.bus.MBassador;
 import net.engio.mbassy.listener.Handler;

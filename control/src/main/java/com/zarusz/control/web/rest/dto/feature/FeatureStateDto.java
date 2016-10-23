@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.feature.*;
+import com.zarusz.control.domain.feature.ir.IRFeature;
+import com.zarusz.control.domain.feature.ir.IRSensorFeature;
 import lombok.Data;
 
 import java.util.Date;

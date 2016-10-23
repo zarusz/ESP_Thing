@@ -2,7 +2,8 @@ package com.zarusz.control.domain.device;
 
 import com.zarusz.control.domain.common.EventBus;
 import com.zarusz.control.domain.feature.*;
-import com.zarusz.control.domain.msg.commands.SwitchCommand;
+import com.zarusz.control.domain.feature.ir.IRFeature;
+import com.zarusz.control.domain.feature.ir.IRSensorFeature;
 import com.zarusz.control.domain.msg.commands.UpgradeFirmwareCommand;
 import com.zarusz.control.domain.partition.Partition;
 import com.zarusz.control.repository.FeatureRepository;

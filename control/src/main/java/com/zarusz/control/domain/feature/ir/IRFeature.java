@@ -1,8 +1,9 @@
-package com.zarusz.control.domain.feature;
+package com.zarusz.control.domain.feature.ir;
 
 import com.zarusz.control.domain.common.EventBus;
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.DeviceFeature;
+import com.zarusz.control.domain.feature.Feature;
 import com.zarusz.control.domain.feature.ir.IRFormat;
 import com.zarusz.control.domain.feature.ir.IRSignal;
 import com.zarusz.control.domain.msg.commands.IRCommand;

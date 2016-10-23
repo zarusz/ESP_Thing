@@ -25,4 +25,14 @@ public class Mappings {
         }
         throw new RuntimeException("The feature type is not supported");
     }
+
+    public static DeviceMessageProtos.IRFormat map(com.zarusz.control.domain.feature.ir.IRFormat format) {
+        switch (format) {
+            case NEC:
+                return DeviceMessageProtos.IRFormat.NEC;
+            case SONY:
+                return DeviceMessageProtos.IRFormat.SONY;
+        }
+        throw new RuntimeException("Could not map value");
+    }
 }

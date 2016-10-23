@@ -3,12 +3,14 @@ package com.zarusz.control.web.rest.dto;
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.HubDevice;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.joda.time.DateTime;
 
 /**
  * Created by Tomasz on 5/30/2016.
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class DeviceDescDto extends DeviceIdDto {
 
     private String guid;

@@ -4,11 +4,13 @@ import com.zarusz.control.domain.device.DeviceFeature;
 import com.zarusz.control.domain.feature.FeatureType;
 import com.zarusz.control.web.rest.dto.feature.FeatureStateDto;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Created by Tomasz on 9/21/2015.
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class FeatureDto extends FeatureWithIdStateDto {
 
     private String displayName;

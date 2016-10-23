@@ -1,6 +1,7 @@
 package com.zarusz.control.app.comm;
 
 import com.zarusz.control.app.comm.base.AbstractHandler;
+import com.zarusz.control.app.comm.messages.Mappings;
 import com.zarusz.control.app.comm.messages.PublishMessageCommand;
 import com.zarusz.control.domain.device.HubDevice;
 import com.zarusz.control.domain.msg.commands.IRCommand;
@@ -36,7 +37,7 @@ public class IRFeatureHandler extends AbstractHandler {
 
             IRSignal irSignal = IRSignal
                 .newBuilder()
-                .setFormat(Mapper.map(cmd.getSignal().getFormat()))
+                .setFormat(Mappings.map(cmd.getSignal().getFormat()))
                 .addAllBytes(cmd.getSignal().getBytes().stream().map(x -> IRSignalByte.newBuilder().setBits(x.getBits()).setData(x.getData()).build()).collect(Collectors.toList()))
                 .build();
 

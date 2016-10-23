@@ -1,7 +1,8 @@
-package com.zarusz.control.domain.feature;
+package com.zarusz.control.domain.feature.ir;
 
 import com.zarusz.control.domain.device.Device;
 import com.zarusz.control.domain.device.DeviceFeature;
+import com.zarusz.control.domain.feature.Feature;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
