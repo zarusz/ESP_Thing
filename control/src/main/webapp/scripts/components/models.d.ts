@@ -1,4 +1,4 @@
-// Generated using typescript-generator version 1.11.232 on 2016-10-22 12:26:28.
+// Generated using typescript-generator version 1.11.232 on 2016-10-31 23:01:36.
 
 declare module App.Model {
 
@@ -130,24 +130,24 @@ declare module App.Model {
     }
 
     interface ReadableDateTime extends ReadableInstant {
+        year: number;
         era: number;
         dayOfMonth: number;
         dayOfWeek: number;
         dayOfYear: number;
-        year: number;
-        weekOfWeekyear: number;
+        millisOfDay: number;
+        hourOfDay: number;
+        yearOfCentury: number;
+        yearOfEra: number;
+        minuteOfDay: number;
+        weekyear: number;
+        centuryOfEra: number;
+        monthOfYear: number;
+        secondOfDay: number;
+        minuteOfHour: number;
         millisOfSecond: number;
         secondOfMinute: number;
-        monthOfYear: number;
-        minuteOfDay: number;
-        secondOfDay: number;
-        weekyear: number;
-        yearOfEra: number;
-        millisOfDay: number;
-        minuteOfHour: number;
-        centuryOfEra: number;
-        yearOfCentury: number;
-        hourOfDay: number;
+        weekOfWeekyear: number;
     }
 
     interface Serializable {

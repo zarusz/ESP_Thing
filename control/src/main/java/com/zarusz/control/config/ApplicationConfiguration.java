@@ -6,6 +6,7 @@ import com.zarusz.control.app.comm.mqtt.MqttBrokerGatewayHandler;
 import com.zarusz.control.device.messages.DeviceMessageProtos;
 import com.zarusz.control.domain.common.EventBus;
 import com.zarusz.control.web.websocket.FeatureStateChangedNotifier;
+import groovy.util.GroovyScriptEngine;
 import net.engio.mbassy.bus.MBassador;
 import net.engio.mbassy.bus.config.BusConfiguration;
 import net.engio.mbassy.bus.config.Feature;
@@ -30,6 +31,8 @@ public class ApplicationConfiguration {
     private String mqttHost;
     @Value("${control.mqtt.port}")
     private Integer mqttPort;
+    @Value("${control.scripts}")
+    private String scripts;
 
     @Bean
     public MBassador bus() {
@@ -130,4 +133,9 @@ public class ApplicationConfiguration {
         return handler;
     }
 
+    @Bean
+    public GroovyScriptEngine groovyScriptEngine() throws Exception {
+        GroovyScriptEngine engine = new GroovyScriptEngine(scripts);
+        return engine;
+    }
 }

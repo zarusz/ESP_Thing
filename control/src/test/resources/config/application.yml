@@ -65,3 +65,4 @@ control:
         client_id: hub-test
         host: raspberrypi
         port: 1883
+    scripts: E:\dev\home\control\config\scripts
