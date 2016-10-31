@@ -42,4 +42,12 @@ public class SwitchFeature extends DeviceFeature {
 		return on;
 	}
 
+	public void on() {
+        setOn(true);
+    }
+
+    public void off() {
+        setOn(false);
+    }
+
 }

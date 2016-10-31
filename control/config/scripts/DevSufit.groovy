@@ -18,15 +18,15 @@ def switchLight4 = device.getFeatureByPort(13)
 def switchLights = [switchLight1, switchLight2, switchLight3, switchLight4]
 
 if (switchLights.contains(feature) && feature.isOn()) {
-    switchPower.setOn(true)
+    switchPower.on()
     return 1
 }
 if (switchLights.contains(feature) && !feature.isOn() && switchLights.grep({ it.isOn() }).isEmpty()) {
-    switchPower.setOn(false)
+    switchPower.on()
     return 1
 }
 if (feature == switchPower && !feature.isOn()) {
-    switchLights.each({ it.setOn(false) })
+    switchLights.each({ it.off() })
     return 1
 }
 return 0
