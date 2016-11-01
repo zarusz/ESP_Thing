@@ -30,6 +30,11 @@ public class HubDevice extends Device {
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "hub", orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Device> endpoints;
 
+    @Override
+    public HubDevice getHub() {
+        return this;
+    }
+
     protected HubDevice() {
     }
 

@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by Tomasz on 31.10.2016.
@@ -27,6 +28,8 @@ public class ScriptEventAdapter extends AbstractHandler {
     private GroovyScriptEngine engine;
     @Inject
     private DeviceRepository deviceRepository;
+    @Inject
+    private ScriptRepository scriptRepository;
 
     @Inject
     public ScriptEventAdapter(MBassador bus) {
@@ -37,18 +40,22 @@ public class ScriptEventAdapter extends AbstractHandler {
     public void onEvent(SwitchChangedEvent event) {
 
         Binding binding = new Binding();
-
         binding.setVariable("feature", event.getFeature());
         binding.setVariable("deviceRepository", deviceRepository);
-        Object r = null;
-        try {
-            r = engine.run("DevSufit.groovy", binding);
-        } catch (ResourceException e) {
-            LOG.error("Resource error", e);
-        } catch (ScriptException e) {
-            LOG.error("Script error", e);
-        } catch (RuntimeException e) {
-            LOG.error("Runtime error", e);
+
+        List<String> scripts = scriptRepository.findAll(ScriptFlag.EVENT_DRIVEN);
+        for (String script : scripts) {
+            Object affected = null;
+            try {
+                affected = engine.run(script, binding);
+            } catch (ResourceException e) {
+                LOG.error("Resource error", e);
+            } catch (ScriptException e) {
+                LOG.error("Script error", e);
+            } catch (RuntimeException e) {
+                LOG.error("Runtime error", e);
+            }
+            LOG.debug("Script {} affected state: {}", script, affected);
         }
 
     }

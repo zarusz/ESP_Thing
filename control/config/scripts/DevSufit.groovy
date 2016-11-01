@@ -2,12 +2,8 @@
  * Created by Tomasz on 31.10.2016.
  */
 def device = feature.getDevice().getHub()
-if (device == null) {
-    device = feature.getDevice()
-}
-
 if (device.getGuid() != "dev_sufit") {
-    return 0
+    return false
 }
 
 def switchPower = device.getFeatureByPort(16)
@@ -17,17 +13,23 @@ def switchLight3 = device.getFeatureByPort(12)
 def switchLight4 = device.getFeatureByPort(13)
 def switchLights = [switchLight1, switchLight2, switchLight3, switchLight4]
 
-if (switchLights.contains(feature) && feature.isOn()) {
-    switchPower.on()
-    return 1
+def affected = false;
+
+if (switchLights.contains(feature)) {
+    if (feature.isOn()) {
+        switchPower.on()
+        affected = true
+    }
+    if (!feature.isOn() && switchLights.grep({ it.isOn() }).isEmpty()) {
+        switchPower.off()
+        affected = true
+    }
 }
-if (switchLights.contains(feature) && !feature.isOn() && switchLights.grep({ it.isOn() }).isEmpty()) {
-    switchPower.on()
-    return 1
+if (feature == switchPower) {
+    if (!feature.isOn()) {
+        switchLights.each { it.off() }
+        affected = true
+    }
 }
-if (feature == switchPower && !feature.isOn()) {
-    switchLights.each({ it.off() })
-    return 1
-}
-return 0
+return affected
 
