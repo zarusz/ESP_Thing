@@ -1,0 +1,28 @@
+Group		All
+Group		Slawka (All)
+Group 		Rooms (All)
+
+Group 		Livingroom			"Salon"				<video>		(Slawka, Rooms)
+Group 		Bedroom				"Sypialnia"			<video>		(Slawka, Rooms)
+Group		LivingCeiling		"Sufit"				<video>		(Livingroom)
+Group		Yamaha				"Yamaha"			<video>		(Livingroom)
+
+Group:Switch:OR(ON, OFF)	Lights	   "All Lights [(%d)]"	<light>
+
+Switch		Yamaha_Power		"Power [%s]"				<switch>				(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:power" }
+Dimmer 		Yamaha_Volume   	"Volume [%.1f %%]"     	 	<soundvolume>   		(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:volume" }
+Switch		Yamaha_Mute			"Mute [%s]"					<soundvolume_mute>		(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:mute" }
+String		Yamaha_Input		"Input [%s]"				<video>					(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:input" } 
+String		Yamaha_Surround		"Surround [%s]"				<video>					(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:surroundProgram" } 
+Number		Yamaha_NetRadio		"Net Radio"					<video>					(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:netradiotune" }
+Switch		Yamaha_ExBass		"Extra Bass [%s]"			<switch>				(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:exbass" }
+
+Switch		CLightPower			"Halogen Zasilanie"			<switch>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
+Switch		CLight1				"Halogen stół"				<light>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
+Switch		CLight2    			"Halogen sofa (lewy)"		<light>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
+Switch		CLight3    			"Halogen sofa (środek)"		<light>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
+Switch		CLight4    			"Halogen sofa (prawy)"		<light>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
+
+Switch		CLedPower			"LED Zasilanie"				<switch>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
+Color		CLed1				"LED stół"					<light>		(LivingCeiling, Lights)						
+Color		CLed2				"LED sofa"					<light>		(LivingCeiling, Lights)						
