@@ -8,6 +8,7 @@ class SwitchFeatureController : public FeatureController
 protected:
   int _pin;
   bool _onIsHigh;
+  bool _on;
 
   void SetState(bool on);
 
@@ -15,7 +16,7 @@ public:
   SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh);
 
   virtual void Start();
-  virtual void Handle(const DeviceMessage& deviceMessage);
+  virtual void Handle(const char* topic, const Buffer& payload);
 };
 
 #endif

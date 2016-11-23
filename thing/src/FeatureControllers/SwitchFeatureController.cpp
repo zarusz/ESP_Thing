@@ -13,23 +13,23 @@ void SwitchFeatureController::Start()
   SetState(false);
 }
 
-void SwitchFeatureController::Handle(const DeviceMessage& deviceMessage)
+void SwitchFeatureController::Handle(const char* topic, const Buffer& payload)
 {
-  if (!deviceMessage.has_switchCommand || deviceMessage.switchCommand.port != _port)
+  auto on = payload.Data()[0] == '1';
+
+  if (on != _on)
   {
-    return;
+    // if state changed
+    Serial.printf("[SwitchFeatureController] Switch on port %d to %s\n", _port, on ? "on" : "off");
+    SetState(on);
   }
-  Serial.println("[SwitchFeatureController] Handle");
-
-  const DeviceSwitchCommand* cmd = &deviceMessage.switchCommand;
-
-  Serial.printf("[SwitchFeatureController] SwitchCommand for port %d with %s\n", cmd->port, cmd->on ? "turn on" : "turn off");
-  SetState(cmd->on);
 }
 
 void SwitchFeatureController::SetState(bool on)
 {
-  //auto onState = on ? (onIsHigh ? HIGH : LOW) : (onIsHigh ? LOW : HIGH);
-  //digitalWrite(pin, onState);
+  _on = on;
   _context->GetPins().SetValue(_pin, on ? (_onIsHigh ? true : false) : (_onIsHigh ? false : true));
+
+  String payload = on ? "1" : "0";
+  PublishState(payload);
 }

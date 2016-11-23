@@ -22,12 +22,15 @@
 MainApp::MainApp()
 	: _deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi", 1883),
 		_pins(13, 14, 12, 20),
+
 		_messageBus(_deviceConfig.mqttBroker, _deviceConfig.mqttBrokerPort, this, _deviceConfig.uniqueId, _serializer),
+
 		_deviceCommandTopic(String(_deviceConfig.uniqueId) + TOPIC_COMMAND),
 		_deviceCommandTopicSub(_deviceCommandTopic + "#"),
 		_deviceStateTopic(String(_deviceConfig.uniqueId) + TOPIC_STATE),
 		_deviceServiceTopic(String(_deviceConfig.uniqueId) + TOPIC_SERVICE),
 		_deviceServiceTopicSub(_deviceServiceTopic + "#"),
+
 		_state(DeviceState::New)
 {
 	_messageBus.Subscribe(_deviceCommandTopicSub.c_str());
@@ -44,6 +47,8 @@ MainApp::MainApp()
 	_features.push_back(new IRSensorFeatureController(41, this, 16, TOPIC_DEVICE_EVENTS));
 	*/
 
+	/*
+	// sufit
 	_features.push_back(new SwitchFeatureController(10, this, 20, false));
 	_features.push_back(new SwitchFeatureController(11, this, 21, false));
 	_features.push_back(new SwitchFeatureController(12, this, 22, false));
@@ -54,10 +59,26 @@ MainApp::MainApp()
 	_features.push_back(new SwitchFeatureController(16, this, 26, false));
 	_features.push_back(new SwitchFeatureController(17, this, 27, false));
 
-	_features.push_back(new TempFeatureController(30, 31, this, 2, TOPIC_DEVICE_EVENTS));
-	_features.push_back(new IRSensorFeatureController(41, this, 4, TOPIC_DEVICE_EVENTS));
+	_features.push_back(new TempFeatureController(30, 31, this, 2));
+	_features.push_back(new IRSensorFeatureController(41, this, 4));
 	_features.push_back(new IRFeatureController(40, this, 16));
 	_features.push_back(new IRFeatureController(50, this, 5));
+	*/
+
+	_features.push_back(new SwitchFeatureController(10, this, 20, false));
+	_features.push_back(new SwitchFeatureController(11, this, 21, false));
+	_features.push_back(new SwitchFeatureController(12, this, 22, false));
+	_features.push_back(new SwitchFeatureController(13, this, 23, false));
+	// Not used 14-15
+	//_features.push_back(new SwitchFeatureController(14, this, 24, false));
+	//_features.push_back(new SwitchFeatureController(15, this, 25, false));
+	_features.push_back(new SwitchFeatureController(16, this, 4, false)); // 	_features.push_back(new SwitchFeatureController(16, this, 26, false));
+	_features.push_back(new SwitchFeatureController(17, this, 5, false)); // _features.push_back(new SwitchFeatureController(17, this, 27, false));
+
+	_features.push_back(new TempFeatureController(30, 31, this, 2));
+	//_features.push_back(new IRSensorFeatureController(41, this, 4));
+	//_features.push_back(new IRFeatureController(40, this, 16));
+	//_features.push_back(new IRFeatureController(50, this, 5));
 }
 
 MainApp::~MainApp()
@@ -115,56 +136,35 @@ void MainApp::Handle(const char* topic, const Buffer& payload, Serializer& seria
 {
 	if (strstr(topic, _deviceCommandTopic.c_str()) == topic)
 	{
-		/*
-		DeviceMessage deviceMessage;
-		PbMessage message(DeviceMessage_fields, &deviceMessage);
-
-		if (!serializer.Decode(payload, &message))
-		{
-			Serial.println("[MainApp] Error: Could not deserialize message.");
-			return;
-		}
-
-		HandleDeviceMessage(deviceMessage);
-		*/
 		Serial.printf("[MainApp] Command arrived on topic %s\n", topic);
+		HandleDeviceMessage(topic, payload);
 		return;
 	}
 
 	if (strstr(topic, _deviceServiceTopic.c_str()) == topic)
 	{
-		/*
-		DeviceServiceCommand cmd;
-		PbMessage message(DeviceServiceCommand_fields, &cmd);
-
-		if (!serializer.Decode(payload, &message))
-		{
-			Serial.println("[MainApp] Error: Could not deserialize message.");
-			return;
-		}
-		HandleServiceCommand(cmd);
-		return;
-		*/
 		Serial.printf("[MainApp] Service command arrived on topic %s\n", topic);
+		//HandleServiceCommand(cmd);
 		return;
 	}
 	Serial.printf("[MainApp] Message arrived on topic %s\n", topic);
 }
 
-void MainApp::HandleDeviceMessage(const DeviceMessage& message)
+void MainApp::HandleDeviceMessage(const char* topic, const Buffer& payload)
 {
 	Serial.println("HandleDeviceMessage (start)");
 
-	std::for_each(_features.begin(), _features.end(), [&message](FeatureController* feature) {
-		feature->TryHandle(message);
+	std::for_each(_features.begin(), _features.end(), [&payload, topic](FeatureController* feature) {
+		feature->TryHandle(topic, payload);
 	});
 
 	Serial.println("HandleDeviceMessage (finish)");
 	// TODO send ACK Message back to sender
 }
 
-void MainApp::HandleServiceCommand(const DeviceServiceCommand& cmd)
+void MainApp::HandleServiceCommand(const char* topic, const Buffer& payload)
 {
+	/*
 	Serial.println("[MainApp] HandleServiceCommand (start)");
 
 	if (cmd.has_upgradeFirmwareCommand)
@@ -177,6 +177,7 @@ void MainApp::HandleServiceCommand(const DeviceServiceCommand& cmd)
 	}
 
 	Serial.println("[MainApp] HandleServiceCommand (finish)");
+	*/
 }
 
 void MainApp::HandleUpgradeCommand(const UpgradeFirmwareCommand& message)

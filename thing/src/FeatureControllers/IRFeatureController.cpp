@@ -16,8 +16,9 @@ void IRFeatureController::Start()
   _irsend.begin();
 }
 
-void IRFeatureController::Handle(const DeviceMessage& deviceMessage)
+void IRFeatureController::Handle(const char* topic, const Buffer& payload)
 {
+/*
   if (!deviceMessage.has_irCommand || deviceMessage.irCommand.port != _port)
   {
     return;
@@ -40,4 +41,5 @@ void IRFeatureController::Handle(const DeviceMessage& deviceMessage)
     }
     Serial.printf("[IRFeatureController] Sending IR: port %d, format: %s, bits: %d, data: %s\n", cmd->port, formatLabel, s->bits, String(s->data, HEX).c_str());
   }
+*/
 }

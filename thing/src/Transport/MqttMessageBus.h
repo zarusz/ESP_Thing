@@ -34,6 +34,7 @@ public:
 
 public:
 	virtual bool Publish(const char* topic, const Buffer& payload);
+	virtual bool Publish(const char* topic, const String& payload);
 	virtual bool Publish(const char* topic, const void* message);
 	virtual void Subscribe(const char* topic);
 	virtual void Unsubscribe(const char* topic);

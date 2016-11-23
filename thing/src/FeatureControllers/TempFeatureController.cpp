@@ -1,10 +1,9 @@
 #include "TempFeatureController.h"
 #include "Utils/TimeUtil.h"
 
-TempFeatureController::TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin, const char* topic)
+TempFeatureController::TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin)
   : FeatureController(port, FeatureType_SENSOR_TEMPERATURE, context),
     _dht(pin, DHT22),
-    _topic(topic),
     _portForHumidity(portForHumidity)
 {
   _lastTemp = false;
@@ -37,7 +36,8 @@ void TempFeatureController::Loop()
     return;
   }
 
-  DeviceEvents events = DeviceEvents_init_zero;
+  int port = -1;
+  String payload;
 
   if (_lastTemp)
   {
@@ -49,10 +49,8 @@ void TempFeatureController::Loop()
     {
       Serial.printf("[DHT22] The humidity is %d\n", (int) h);
 
-      events.has_humidityMeasureEvent = true;
-      strcpy(events.humidityMeasureEvent.device_id, _context->GetConfig().uniqueId);
-      events.humidityMeasureEvent.port = _portForHumidity;
-      events.humidityMeasureEvent.value = h;
+      port = _portForHumidity;
+      payload += h;
     }
   }
   else
@@ -64,17 +62,14 @@ void TempFeatureController::Loop()
     {
       Serial.printf("[DHT22] The temperature is %d\n", (int) t);
 
-      events.has_temperatureMeasureEvent = true;
-      strcpy(events.temperatureMeasureEvent.device_id, _context->GetConfig().uniqueId);
-      events.temperatureMeasureEvent.port = _port;
-      events.temperatureMeasureEvent.value = t;
+      port = _port;
+      payload += t;
     }
   }
 
-  if (events.has_humidityMeasureEvent || events.has_temperatureMeasureEvent)
+  if (port != -1)
   {
-    PbMessage message(DeviceEvents_fields, &events);
-    _context->GetMessageBus()->Publish(_topic, &message);
+    PublishState(payload, port);
   }
   else
   {

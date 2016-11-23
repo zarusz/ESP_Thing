@@ -7,7 +7,6 @@
 class TempFeatureController : public FeatureController
 {
 protected:
-  const char* _topic;
   int _portForHumidity;
   DHT _dht;
 
@@ -16,7 +15,7 @@ protected:
   uint _updateIntervalMs;
 
 public:
-  TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin, const char* topic);
+  TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin);
   virtual ~TempFeatureController();
 
   virtual uint Describe(DevicePort* ports);

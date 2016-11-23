@@ -21,11 +21,12 @@ public:
   virtual uint Describe(DevicePort* ports);
   virtual void Loop();
 
-  virtual bool TryHandle(const DeviceMessage& deviceMessage);
-  virtual bool CanHandle(const DeviceMessage& deviceMessage);
+  virtual bool TryHandle(const char* topic, const Buffer& payload);
+  virtual bool CanHandle(const char* topic, const Buffer& payload);
 
 protected:
-  virtual void Handle(const DeviceMessage& deviceMessage);
+  virtual void Handle(const char* topic, const Buffer& payload);
+  virtual void PublishState(const String& payload, int port = 0);
 };
 
 

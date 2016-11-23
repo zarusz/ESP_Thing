@@ -68,8 +68,8 @@ protected:
 	void ReconnectPubSub();
 
 	//void DebugRetrievedMessage(const char* topic, const void* message);
-	void HandleDeviceMessage(const DeviceMessage& message);
-	void HandleServiceCommand(const DeviceServiceCommand& message);
+	void HandleDeviceMessage(const char* topic, const Buffer& payload);
+	void HandleServiceCommand(const char* topic, const Buffer& payload);
 	void HandleUpgradeCommand(const UpgradeFirmwareCommand& message);
 	void HandleStatusRequest(const DeviceStatusRequest& message);
 

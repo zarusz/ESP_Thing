@@ -14,7 +14,7 @@ public:
   virtual ~IRFeatureController();
 
   virtual void Start();
-  virtual void Handle(const DeviceMessage& deviceMessage);
+  virtual void Handle(const char* topic, const Buffer& payload);
 };
 
 

@@ -27,25 +27,40 @@ uint FeatureController::Describe(DevicePort* ports)
   return 1;
 }
 
-bool FeatureController::TryHandle(const DeviceMessage& deviceMessage)
+bool FeatureController::TryHandle(const char* topic, const Buffer& payload)
 {
-  if (CanHandle(deviceMessage))
+  if (CanHandle(topic, payload))
   {
-    Handle(deviceMessage);
+    Handle(topic, payload);
     return true;
   }
   return false;
 }
 
-bool FeatureController::CanHandle(const DeviceMessage& deviceMessage)
+bool FeatureController::CanHandle(const char* topic, const Buffer& payload)
 {
-  return true;
+  char portStr[6];
+  itoa(_port, portStr, 10);
+  const char* portStrFromTopic = topic + _context->GetCommandTopic().length();
+  //Serial.printf("portStr: '%s' portStrFromTopic: '%s' topic: '%s'\n", portStr, portStrFromTopic, topic);
+  return strcmp(portStr, portStrFromTopic) == 0;
 }
 
-void FeatureController::Handle(const DeviceMessage &deviceMessage)
+void FeatureController::Handle(const char* topic, const Buffer& payload)
 {
+
 }
 
 void FeatureController::Loop()
 {
+}
+
+void FeatureController::PublishState(const String& payload, int port)
+{
+  if (port == 0)
+    port = _port;
+
+  char topic[64];
+  snprintf(topic, sizeof(topic), "%s%d", _context->GetStateTopic().c_str(), port);
+  _context->GetMessageBus()->Publish(topic, payload);
 }

@@ -1,10 +1,9 @@
 #include "IRSensorFeatureController.h"
 #include "../DeviceCommands.ext.h"
 
-IRSensorFeatureController::IRSensorFeatureController(int port, DeviceContext* context, int pin, const char* topic)
+IRSensorFeatureController::IRSensorFeatureController(int port, DeviceContext* context, int pin)
   : FeatureController(port, FeatureType::FeatureType_SENSOR_IR, context),
-    _irrecv(pin),
-    _topic(topic)
+    _irrecv(pin)
 {
 }
 
@@ -48,8 +47,8 @@ void IRSensorFeatureController::Publish(decode_results& results, IRFormat format
   events.irSignalEvent.signal.bytes[0].bits = _results.bits;
   events.irSignalEvent.signal.bytes[0].data = _results.value;
 
-  PbMessage message(DeviceEvents_fields, &events);
-  _context->GetMessageBus()->Publish(_topic, &message);
+  //PbMessage message(DeviceEvents_fields, &events);
+  //_context->GetMessageBus()->Publish(_topic, &message);
 }
 
 IRFormat IRSensorFeatureController::GetFormat() const

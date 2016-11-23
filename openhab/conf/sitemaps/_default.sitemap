@@ -15,6 +15,10 @@ sitemap _default label="Sławka"
 				Colorpicker item=CLed1
 				Colorpicker item=CLed2
 			}
+			Frame label="Sensory" {
+				Text item=CTemp valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=CHumid valuecolor=[>25="orange",>15="green",<=15="blue"]
+			}
 		}		
 			
 		Text label="Yamaha" icon="receiver" {	

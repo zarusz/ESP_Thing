@@ -7,7 +7,6 @@
 class IRSensorFeatureController : public FeatureController
 {
 protected:
-  const char* _topic;
   IRrecv _irrecv;
   decode_results _results;
 
@@ -15,7 +14,7 @@ protected:
   void Publish(decode_results& results, IRFormat format);
 
 public:
-  IRSensorFeatureController(int port, DeviceContext* context, int pin, const char* topic);
+  IRSensorFeatureController(int port, DeviceContext* context, int pin);
   virtual ~IRSensorFeatureController();
 
   virtual void Start();

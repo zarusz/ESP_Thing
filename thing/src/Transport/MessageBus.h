@@ -17,6 +17,7 @@ protected:
 
 public:
 	virtual bool Publish(const char* topic, const Buffer& payload) = 0;
+	virtual bool Publish(const char* topic, const String& payload) = 0;
 	virtual bool Publish(const char* topic, const void* message) = 0;
 	virtual void Subscribe(const char* topic) = 0;
 	virtual void Unsubscribe(const char* topic) = 0;

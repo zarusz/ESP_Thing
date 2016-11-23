@@ -9,6 +9,9 @@ Group		Yamaha				"Yamaha"			<video>		(Livingroom)
 
 Group:Switch:OR(ON, OFF)	Lights	   "All Lights [(%d)]"	<light>
 
+Group		TemperatureSensors	"Temperatura [(%.1f C)]"	<temperature>
+Group		HumiditySensors		"Wilgotność [(%.1f %%)]"	<humidity>
+
 Switch		Yamaha_Power		"Power [%s]"				<switch>				(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:power" }
 Dimmer 		Yamaha_Volume   	"Volume [%.1f %%]"     	 	<soundvolume>   		(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:volume" }
 Switch		Yamaha_Mute			"Mute [%s]"					<soundvolume_mute>		(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:mute" }
@@ -17,12 +20,15 @@ String		Yamaha_Surround		"Surround [%s]"				<video>					(Yamaha)						{ channel=
 Number		Yamaha_NetRadio		"Net Radio"					<video>					(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:netradiotune" }
 Switch		Yamaha_ExBass		"Extra Bass [%s]"			<switch>				(Yamaha)						{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:exbass" }
 
-Switch		CLightPower			"Halogen Zasilanie"			<switch>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
-Switch		CLight1				"Halogen stół"				<light>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
-Switch		CLight2    			"Halogen sofa (lewy)"		<light>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
-Switch		CLight3    			"Halogen sofa (środek)"		<light>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
-Switch		CLight4    			"Halogen sofa (prawy)"		<light>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
+Switch		CLightPower			"Halogen Zasilanie"			<switch>   				(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/command/16:command:ON:1],>[local:dev_sufit/command/16:command:OFF:0]" }
+Switch		CLight1				"Halogen stół"				<light>   				(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/command/10:command:ON:1],>[local:dev_sufit/command/10:command:OFF:0]" }
+Switch		CLight2    			"Halogen sofa (lewy)"		<light>   				(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/command/11:command:ON:1],>[local:dev_sufit/command/11:command:OFF:0]" }
+Switch		CLight3    			"Halogen sofa (środek)"		<light>   				(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/command/12:command:ON:1],>[local:dev_sufit/command/12:command:OFF:0]" }
+Switch		CLight4    			"Halogen sofa (prawy)"		<light>   				(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/command/13:command:ON:1],>[local:dev_sufit/command/13:command:OFF:0]" }
 
-Switch		CLedPower			"LED Zasilanie"				<switch>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/0:command:ON:1],>[local:dev_sufit/0:command:OFF:0]" }
+Switch		CLedPower			"LED Zasilanie"				<switch>   	(LivingCeiling, Lights)						{ mqtt=">[local:dev_sufit/command/17:command:ON:1],>[local:dev_sufit/command/17:command:OFF:0]" }
 Color		CLed1				"LED stół"					<light>		(LivingCeiling, Lights)						
 Color		CLed2				"LED sofa"					<light>		(LivingCeiling, Lights)						
+
+Number		CTemp				"Temperatura [%.1f °C]"		<temperature>			(LivingCeiling, TemperatureSensors])	{ mqtt="<[local:dev_sufit/state/30:state:default]" }
+Number		CHumid				"Wilgotność [%.1f %%]"		<humidity>				(LivingCeiling, TemperatureSensors])	{ mqtt="<[local:dev_sufit/state/31:state:default]" }
