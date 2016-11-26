@@ -42,7 +42,6 @@ bool FeatureController::CanHandle(const char* topic, const Buffer& payload)
   char portStr[6];
   itoa(_port, portStr, 10);
   const char* portStrFromTopic = topic + _context->GetCommandTopic().length();
-  //Serial.printf("portStr: '%s' portStrFromTopic: '%s' topic: '%s'\n", portStr, portStrFromTopic, topic);
   return strcmp(portStr, portStrFromTopic) == 0;
 }
 
