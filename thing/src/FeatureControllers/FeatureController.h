@@ -10,6 +10,7 @@ protected:
   int _port;
   FeatureType _type;
   DeviceContext* _context;
+  Logger* _logger;
 
 public:
   FeatureController(int port, FeatureType type, DeviceContext* context);
@@ -21,11 +22,11 @@ public:
   virtual uint Describe(DevicePort* ports);
   virtual void Loop();
 
-  virtual bool TryHandle(const char* topic, const Buffer& payload);
-  virtual bool CanHandle(const char* topic, const Buffer& payload);
+  virtual bool TryHandle(const char* path, const Buffer& payload);
+  virtual bool CanHandle(const char* path, const Buffer& payload);
 
 protected:
-  virtual void Handle(const char* topic, const Buffer& payload);
+  virtual void Handle(const char* path, const Buffer& payload);
   virtual void PublishState(const String& payload, int port = 0);
 };
 

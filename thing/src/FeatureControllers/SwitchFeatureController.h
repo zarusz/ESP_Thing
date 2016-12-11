@@ -3,6 +3,9 @@
 
 #include "FeatureController.h"
 
+#define STATE_ON  "ON"
+#define STATE_OFF "OFF"
+
 class SwitchFeatureController : public FeatureController
 {
 protected:

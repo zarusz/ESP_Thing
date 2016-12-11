@@ -31,6 +31,27 @@ public:
     _size = newSize;
     return true;
   }
+
+  bool ToString(String &s) const
+  {
+      char buf[64];
+      if (!ToString(buf, 64))
+        return false;
+
+      s = buf;
+      return true;
+  }
+
+  bool ToString(char* s, int maxSize) const
+  {
+      auto size = Size();
+      if (size + 1 > maxSize)
+        return false;
+
+      memcpy(s, Data(), size);
+      s[size] = 0;
+      return true;
+  }
 };
 
 template <uint Capacity>
@@ -44,5 +65,17 @@ public:
   virtual byte* Data() { return (byte*) &_data; }
   virtual const byte* Data() const { return (const byte*) &_data; }
 };
+
+class StringBuffer : public Buffer
+{
+protected:
+  const char* _string;
+
+public:
+  StringBuffer(const char* string) : Buffer(strlen(string)), _string(string) { Resize(_capacity); }
+  virtual byte* Data() { return NULL; }
+  virtual const byte* Data() const { return (const byte*) _string; }
+};
+
 
 #endif

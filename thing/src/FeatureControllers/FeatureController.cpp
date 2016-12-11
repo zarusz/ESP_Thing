@@ -5,6 +5,7 @@ FeatureController::FeatureController(int port, FeatureType type, DeviceContext* 
   _port = port;
   _type = type;
   _context = context;
+  _logger = &context->GetLogger();
 }
 
 FeatureController::~FeatureController()
@@ -27,22 +28,21 @@ uint FeatureController::Describe(DevicePort* ports)
   return 1;
 }
 
-bool FeatureController::TryHandle(const char* topic, const Buffer& payload)
+bool FeatureController::TryHandle(const char* path, const Buffer& payload)
 {
-  if (CanHandle(topic, payload))
+  if (CanHandle(path, payload))
   {
-    Handle(topic, payload);
+    Handle(path, payload);
     return true;
   }
   return false;
 }
 
-bool FeatureController::CanHandle(const char* topic, const Buffer& payload)
+bool FeatureController::CanHandle(const char* path, const Buffer& payload)
 {
   char portStr[6];
   itoa(_port, portStr, 10);
-  const char* portStrFromTopic = topic + _context->GetCommandTopic().length();
-  return strcmp(portStr, portStrFromTopic) == 0;
+  return strcmp(portStr, path) == 0;
 }
 
 void FeatureController::Handle(const char* topic, const Buffer& payload)

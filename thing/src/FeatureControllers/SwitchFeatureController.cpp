@@ -15,21 +15,32 @@ void SwitchFeatureController::Start()
 
 void SwitchFeatureController::Handle(const char* topic, const Buffer& payload)
 {
-  auto on = payload.Data()[0] == '1';
+  String str;
+  payload.ToString(str);
+
+  auto on = str == STATE_ON;
+  auto off = str == STATE_OFF;
+  if (!on && !off)
+  {
+    sprintf(_logger->Msg(), "[SwitchFeatureController] Bad value '%s' (espected %s or %s)", str.c_str(), STATE_ON, STATE_OFF);
+    _logger->Log(LogLevel::Warn);
+    return;
+  }
 
   if (on != _on)
   {
-    // if state changed
-    Serial.printf("[SwitchFeatureController] Switch on port %d to %s\n", _port, on ? "on" : "off");
     SetState(on);
   }
 }
 
 void SwitchFeatureController::SetState(bool on)
 {
+  sprintf(_logger->Msg(), "[SwitchFeatureController] Switch on port %d to %s", _port, on ? "on" : "off");
+  _logger->Log(LogLevel::Debug);
+
   _on = on;
   _context->GetPins().SetValue(_pin, on ? (_onIsHigh ? true : false) : (_onIsHigh ? false : true));
 
-  String payload = on ? "1" : "0";
+  String payload = on ? STATE_ON : STATE_OFF;
   PublishState(payload);
 }
