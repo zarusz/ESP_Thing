@@ -20,6 +20,8 @@ String		Yamaha_Surround		"Surround [%s]"				<video>					(Yamaha)								{ channe
 Number		Yamaha_NetRadio		"Net Radio"					<video>					(Yamaha)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:netradiotune" }
 Switch		Yamaha_ExBass		"Extra Bass [%s]"			<switch>				(Yamaha)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:exbass" }
 
+String		CLog				"Log [%s]"					<error>   				(LivingCeiling)							{ mqtt="<[local:dev_sufit/state/log:state:default]" }
+Switch		COnline				"Online [%s]"				<network>  				(LivingCeiling)							{ mqtt="<[local:dev_sufit/state/online:state:default]" }
 Switch		CLightPower			"Halogen Zasilanie"			<switch>   				(LivingCeiling, Lights)					{ mqtt=">[local:dev_sufit/command/16:command:*:default],<[local:dev_sufit/state/16:state:*:default]" }
 Switch		CLight1				"Halogen stół"				<light>   				(LivingCeiling, Lights)					{ mqtt=">[local:dev_sufit/command/10:command:*:default],<[local:dev_sufit/state/10:state:*:default]" }
 Switch		CLight2    			"Halogen sofa (lewy)"		<light>   				(LivingCeiling, Lights)					{ mqtt=">[local:dev_sufit/command/11:command:*:default],<[local:dev_sufit/state/11:state:*:default]" }

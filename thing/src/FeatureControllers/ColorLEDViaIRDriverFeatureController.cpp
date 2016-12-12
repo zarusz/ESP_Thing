@@ -36,13 +36,13 @@ void ColorLEDViaIRDriverFeatureController::Handle(const char* topic, const Buffe
 
 
   sprintf(_logger->Msg(), "[SwitchFeatureController] Bad value '%s' (espected %s or %s)", str.c_str(), STATE_ON, STATE_OFF);
-  _logger->Log(LogLevel::Debug);
+  _logger->Log(Debug);
 }
 
 void ColorLEDViaIRDriverFeatureController::SendSignal(int value, const char* command)
 {
   sprintf(_logger->Msg(), "[ColorLEDViaIRDriverFeatureController] Port %d: Sending command %s - IR: (format: NEC, bits: %d, data: %s)\n", _port, command, NEC_BITS, String(value, HEX).c_str());
-  _logger->Log(LogLevel::Debug);
+  _logger->Log(Debug);
 
   _irsend.sendNEC(value, NEC_BITS);
   _irsend.sendNEC(NEC_NULL, 0);

@@ -2,6 +2,7 @@
 #define _FeatureController_h
 
 #include "../DeviceContext.h"
+#include "../Transport/Buffer.h"
 #include "../DeviceCommands.pb.h"
 
 class FeatureController

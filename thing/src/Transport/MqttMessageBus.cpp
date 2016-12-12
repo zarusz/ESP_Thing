@@ -11,9 +11,8 @@
 MqttMessageBus* Singleton;
 
 MqttMessageBus::MqttMessageBus(const char* serverHost, int serverPort,
-  MessageHandler* handler, const char* deviceId, Serializer& serializer)
-  : _mqttClient(_espClient),
-    _serializer(serializer)
+  MessageHandler* handler, const char* deviceId)
+  : _mqttClient(_espClient)
 {
   _serverHost = serverHost;
   _serverPort = serverPort;
@@ -41,24 +40,19 @@ bool MqttMessageBus::Publish(const char* topic, const Buffer& payload)
   return success;
 }
 
-bool MqttMessageBus::Publish(const char* topic, const String& payload)
+bool MqttMessageBus::Publish(const char* topic, const String& payload, bool retained)
 {
-  Serial.printf("[MQTT] Publish to topic: '%s', payload size: %d, payload: %s\n", topic, payload.length(), payload.c_str());
-  bool success = _mqttClient.publish(topic, payload.c_str(), payload.length());
+  return Publish(topic, payload.c_str(), retained);
+}
+
+bool MqttMessageBus::Publish(const char* topic, const char* message, bool retained)
+{
+  Serial.printf("[MQTT] Publish to topic: '%s', payload size: %d, payload: %s\n", topic, strlen(message), message);
+  bool success = _mqttClient.publish(topic, message, retained);
   if (!success) {
     Serial.println("[MQTT] Publish failed");
   }
   return success;
-}
-
-bool MqttMessageBus::Publish(const char* topic, const void* message)
-{
-  Buffer* payload;
-  if (!_serializer.Encode(message, payload))
-  {
-    return false;
-  }
-  return Publish(topic, *payload);
 }
 
 void MqttMessageBus::Subscribe(const char* topic)
@@ -101,7 +95,14 @@ void MqttMessageBus::ReconnectMqtt()
      Serial.printf("[MQTT] Attempting MQTT connection (ClientId: %s)...\n", clientId.c_str());
 
      // Attempt to connect
-     if (_mqttClient.connect(clientId.c_str()))
+     bool connected;
+     if (_willTopic && _willMessage) {
+       connected = _mqttClient.connect(clientId.c_str(), _willTopic, MQTTQOS1, _willRetain, _willMessage);
+     } else {
+       connected = _mqttClient.connect(clientId.c_str());
+     }
+
+     if (connected)
      {
        Serial.println("[MQTT] Connected");
 
@@ -146,5 +147,12 @@ void MqttMessageBus::MessageCallback(char* topic, byte* payload, uint length)
 
   // check if message handler is set
   if (_handler)
-      _handler->Handle(topic, _buffer, _serializer);
+      _handler->Handle(topic, _buffer);
+}
+
+void MqttMessageBus::SetWill(const char* topic, const char* message, bool retain)
+{
+  _willTopic = topic;
+  _willMessage = message;
+  _willRetain = retain;
 }

@@ -18,6 +18,8 @@
 #define TOPIC_DEVICE_DESCRIPTION 	"device/description"
 #define TOPIC_COMMAND 						"/command/"
 #define TOPIC_STATE 							"/state/"
+#define TOPIC_LOG			 						"/state/log"
+#define TOPIC_ONLINE	 						"/state/online"
 #define TOPIC_SERVICE 						"/service/"
 
 
@@ -25,18 +27,21 @@ MainApp::MainApp()
 	: _deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi", 1883),
 		_pins(13, 14, 12, 20),
 
-		_messageBus(_deviceConfig.mqttBroker, _deviceConfig.mqttBrokerPort, this, _deviceConfig.uniqueId, _serializer),
-
-		_deviceCommandTopic(String(_deviceConfig.uniqueId) + TOPIC_COMMAND),
+		_messageBus(_deviceConfig.mqttBroker, _deviceConfig.mqttBrokerPort, this, _deviceConfig.uniqueId),
+		_deviceTopic(_deviceConfig.uniqueId),
+		_deviceCommandTopic(_deviceTopic + TOPIC_COMMAND),
 		_deviceCommandTopicSub(_deviceCommandTopic + "#"),
-		_deviceStateTopic(String(_deviceConfig.uniqueId) + TOPIC_STATE),
-		_deviceServiceTopic(String(_deviceConfig.uniqueId) + TOPIC_SERVICE),
+		_deviceStateTopic(_deviceTopic + TOPIC_STATE),
+		_deviceStateLogTopic(_deviceTopic + TOPIC_LOG),
+		_deviceStateOnlineTopic(_deviceTopic + TOPIC_ONLINE),
+		_deviceServiceTopic(_deviceTopic + TOPIC_SERVICE),
 		_deviceServiceTopicSub(_deviceServiceTopic + "#"),
 
 		_state(DeviceState::New)
 {
 	_messageBus.Subscribe(_deviceCommandTopicSub.c_str());
 	_messageBus.Subscribe(_deviceServiceTopicSub.c_str());
+	_messageBus.SetWill(_deviceStateOnlineTopic.c_str(), "OFF", true);
 
 	/*
 	_features.push_back(new SwitchFeatureController(10, this, 4, false));
@@ -154,24 +159,21 @@ void MainApp::Log(LogLevel level, const char * format, ...)
 void MainApp::Log(LogLevel level, const char* msg)
 {
 	if (msg == NULL)
-	{
 		msg = Msg();
-	}
+
 	Serial.println(msg);
-	if (level >= LogLevel::Info)
+	if (level >= Info)
 	{
-		String topic = _deviceStateTopic + "log";
-		StringBuffer str(msg);
-		GetMessageBus()->Publish(topic.c_str(), str);
+		GetMessageBus()->Publish(_deviceStateLogTopic.c_str(), msg);
 	}
 }
 
-void MainApp::Handle(const char* topic, const Buffer& payload, Serializer& serializer)
+void MainApp::Handle(const char* topic, const Buffer& payload)
 {
 	if (strstr(topic, _deviceCommandTopic.c_str()) == topic)
 	{
 		sprintf(Msg(), "[MainApp] Command arrived on topic %s", topic);
-		Log(LogLevel::Debug);
+		Log(Debug);
 
 		auto path = topic + _deviceCommandTopic.length();
 		HandleDeviceMessage(path, payload);
@@ -181,7 +183,7 @@ void MainApp::Handle(const char* topic, const Buffer& payload, Serializer& seria
 	if (strstr(topic, _deviceServiceTopic.c_str()) == topic)
 	{
 		sprintf(Msg(), "[MainApp] Service command arrived on topic %s", topic);
-		Log(LogLevel::Debug);
+		Log(Debug);
 
 		auto path = topic + _deviceServiceTopic.length();
 		HandleServiceCommand(path, payload);
@@ -189,24 +191,24 @@ void MainApp::Handle(const char* topic, const Buffer& payload, Serializer& seria
 	}
 
 	sprintf(Msg(), "[MainApp] Unsupported message arrived on topic %s", topic);
-	Log(LogLevel::Warn);
+	Log(Warn);
 }
 
 void MainApp::HandleDeviceMessage(const char* path, const Buffer& payload)
 {
-	Log(LogLevel::Debug, "HandleDeviceMessage (start)");
+	Log(Debug, "HandleDeviceMessage (start)");
 
 	std::for_each(_features.begin(), _features.end(), [&payload, path](FeatureController* feature) {
 		feature->TryHandle(path, payload);
 	});
 
-	Log(LogLevel::Debug, "HandleDeviceMessage (finish)");
+	Log(Debug, "HandleDeviceMessage (finish)");
 	// TODO send ACK Message back to sender
 }
 
 void MainApp::HandleServiceCommand(const char* path, const Buffer& payload)
 {
-	Log(LogLevel::Debug, "[MainApp] HandleServiceCommand (start)");
+	Log(Debug, "[MainApp] HandleServiceCommand (start)");
 
 	if (strcmp(path, "upgrade") == 0)
 	{
@@ -220,7 +222,7 @@ void MainApp::HandleServiceCommand(const char* path, const Buffer& payload)
 	}
 	*/
 
-	Log(LogLevel::Debug, "[MainApp] HandleServiceCommand (finish)");
+	Log(Debug, "[MainApp] HandleServiceCommand (finish)");
 }
 
 void MainApp::HandleUpgradeCommand(const Buffer& payload)
@@ -229,29 +231,29 @@ void MainApp::HandleUpgradeCommand(const Buffer& payload)
 	payload.ToString(url);
 
 	sprintf(Msg(), "[MainApp] Starting upgrade from: %s", url.c_str());
-	Log(LogLevel::Warn);
+	Log(Warn);
 
 	t_httpUpdate_return ret = ESPhttpUpdate.update(url);
 	switch (ret)
 	{
 		case HTTP_UPDATE_FAILED:
 			sprintf(Msg(), "[MainApp] HTTP_UPDATE_FAILD Error (%d): %s", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
-			Log(LogLevel::Error);
+			Log(Error);
 			break;
 
 		case HTTP_UPDATE_NO_UPDATES:
-			Log(LogLevel::Warn, "[MainApp] HTTP_UPDATE_NO_UPDATES");
+			Log(Warn, "[MainApp] HTTP_UPDATE_NO_UPDATES");
 			break;
 
 		case HTTP_UPDATE_OK:
-			Log(LogLevel::Warn, "[MainApp] HTTP_UPDATE_OK");
+			Log(Warn, "[MainApp] HTTP_UPDATE_OK");
 			break;
 	}
 }
 
 void MainApp::HandleStatusRequest(const char* topic, const Buffer& payload)
 {
-	Log(LogLevel::Debug, "[MainApp::HandleStatusRequest] Starting");
+	Log(Debug, "[MainApp::HandleStatusRequest] Starting");
 
 /*
 	Responses responses = Responses_init_zero;
@@ -276,11 +278,13 @@ void MainApp::HandleStatusRequest(const char* topic, const Buffer& payload)
 
 void MainApp::OnStart()
 {
-	Log(LogLevel::Info, "[MainApp] Starting...");
+	Log(Info, "[MainApp] Starting...");
 
 	std::for_each(_features.begin(), _features.end(), [](FeatureController* feature) {
     feature->Start();
 	});
+
+	_messageBus.Publish(_deviceStateOnlineTopic.c_str(), "ON", true);
 
 	/*
 	Serial.println("Sending DeviceConnectedEvent");
@@ -294,12 +298,12 @@ void MainApp::OnStart()
 
 	SendDescription();
 
-	Log(LogLevel::Info, "[MainApp] Started.");
+	Log(Info, "[MainApp] Started.");
 }
 
 void MainApp::OnStop()
 {
-	Log(LogLevel::Info, "[MainApp] Stopping...");
+	Log(Info, "[MainApp] Stopping...");
 
 	std::for_each(_features.begin(), _features.end(), [](FeatureController* feature) {
     feature->Stop();
@@ -315,15 +319,13 @@ void MainApp::OnStop()
 	_messageBus.Publish(TOPIC_DEVICE_EVENTS, &message);
 	*/
 
-	Log(LogLevel::Info, "[MainApp] Stopped.");
+	Log(Info, "[MainApp] Stopped.");
 }
 
 void MainApp::OnLoop()
 {
 	if (TimeUtil::IntervalPassed(_lastMsg, 30000))
-	{
 		SendHearbeat();
-	}
 
 	std::for_each(_features.begin(), _features.end(), [](FeatureController* feature) {
 		feature->Loop();
@@ -334,6 +336,7 @@ void MainApp::SendDescription()
 {
 	Serial.println("[MainApp] Sending DeviceDescription...");
 
+/*
 	DeviceDescription deviceDescription = DeviceDescription_init_zero;
 	strcpy(deviceDescription.device_id, _deviceConfig.uniqueId);
 
@@ -345,6 +348,7 @@ void MainApp::SendDescription()
 
 	PbMessage message(DeviceDescription_fields, &deviceDescription);
 	_messageBus.Publish(TOPIC_DEVICE_DESCRIPTION, &message);
+	*/
 }
 
 void MainApp::SendHearbeat()

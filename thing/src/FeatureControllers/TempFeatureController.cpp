@@ -32,9 +32,7 @@ void TempFeatureController::Start()
 void TempFeatureController::Loop()
 {
   if (!TimeUtil::IntervalPassed(_lastUpdateMs, _updateIntervalMs))
-  {
     return;
-  }
 
   int port = -1;
   String payload;
@@ -47,7 +45,8 @@ void TempFeatureController::Loop()
 
     if (!isnan(h))
     {
-      Serial.printf("[DHT22] The humidity is %d\n", (int) h);
+      sprintf(_logger->Msg(), "[DHT22] The humidity is %d", (int) h);
+      _logger->Log(Debug);
 
       port = _portForHumidity;
       payload += h;
@@ -60,7 +59,8 @@ void TempFeatureController::Loop()
 
     if (!isnan(t))
     {
-      Serial.printf("[DHT22] The temperature is %d\n", (int) t);
+      sprintf(_logger->Msg(), "[DHT22] The temperature is %d", (int) t);
+      _logger->Log(Debug);
 
       port = _port;
       payload += t;
@@ -73,8 +73,7 @@ void TempFeatureController::Loop()
   }
   else
   {
-    // TODO: log error
-    Serial.println("[DHT22] Error: Cannot read the temperature/humidity sensor.");
+    _logger->Log(Warn, "[DHT22] Error: Cannot read the temperature/humidity sensor");
   }
 
   _lastTemp = !_lastTemp;

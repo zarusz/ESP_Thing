@@ -16,7 +16,6 @@
 #include "DeviceContext.h"
 #include "FeatureControllers/FeatureController.h"
 #include "Transport/MqttMessageBus.h"
-#include "Transport/PbSerializer.h"
 #include "Pins/Pins.h"
 #include "Pins/ShiftRegisterPins.h"
 
@@ -32,13 +31,17 @@ class MainApp : public DeviceContext, public MessageHandler, public Logger
 {
 private:
 	DeviceConfig _deviceConfig;
+
+	String _deviceTopic;
 	String _deviceCommandTopic;
 	String _deviceCommandTopicSub;
 	String _deviceStateTopic;
+	String _deviceStateLogTopic;
+	String _deviceStateOnlineTopic;
 	String _deviceServiceTopic;
 	String _deviceServiceTopicSub;
+
 	MqttMessageBus _messageBus;
-	PbSerializer _serializer;
 
 	std::vector<FeatureController*> _features;
 	ShiftRegisterPins _pins;
@@ -66,7 +69,7 @@ public:
 	virtual void Log(LogLevel level, const char* msg = 0);
 
 	// MessageHandler
-	virtual void Handle(const char* topic, const Buffer& payload, Serializer& serializer);
+	virtual void Handle(const char* topic, const Buffer& payload);
 
 protected:
 	void SetupWifi();

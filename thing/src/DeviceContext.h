@@ -3,7 +3,6 @@
 
 #include "DeviceConfig.h"
 #include "Transport/MessageBus.h"
-#include "Transport/PbSerializer.h"
 #include "Pins/Pins.h"
 #include "Logger.h"
 
