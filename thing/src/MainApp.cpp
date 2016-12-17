@@ -12,6 +12,7 @@
 #include "FeatureControllers/ColorLEDViaIRDriverFeatureController.h"
 
 #define DEVICE_UNIQUE_ID 					"dev_sufit"
+//#define DEVICE_UNIQUE_ID 					"dev_tree"
 //#define DEVICE_UNIQUE_ID 				"dev_sufit_dev"
 //#define DEVICE_UNIQUE_ID 				"dev_temp"
 #define TOPIC_DEVICE_EVENTS 			"device/events"
@@ -43,51 +44,50 @@ MainApp::MainApp()
 	_messageBus.Subscribe(_deviceServiceTopicSub.c_str());
 	_messageBus.SetWill(_deviceStateOnlineTopic.c_str(), "OFF", true);
 
-	/*
-	_features.push_back(new SwitchFeatureController(10, this, 4, false));
-	_features.push_back(new SwitchFeatureController(11, this, 5, false));
+	if (strcmp(_deviceConfig.uniqueId, "dev_sufit") == 0)
+	{
+		// sufit
+		_features.push_back(new SwitchFeatureController(10, this, 20, false));
+		_features.push_back(new SwitchFeatureController(11, this, 21, false));
+		_features.push_back(new SwitchFeatureController(12, this, 22, false));
+		_features.push_back(new SwitchFeatureController(13, this, 23, false));
+		// Not used 14-15
+		//_features.push_back(new SwitchFeatureController(14, this, 24, false));
+		//_features.push_back(new SwitchFeatureController(15, this, 25, false));
+		_features.push_back(new SwitchFeatureController(16, this, 26, false));
+		_features.push_back(new SwitchFeatureController(17, this, 27, false));
 
-	_features.push_back(new TempFeatureController(30, 31, this, 0, TOPIC_DEVICE_EVENTS));
+		_features.push_back(new TempFeatureController(30, 31, this, 2));
+		_features.push_back(new IRSensorFeatureController(41, this, 4));
+		_features.push_back(new IRFeatureController(40, this, 16));
+		_features.push_back(new IRFeatureController(50, this, 5));
+	}
+	else if (strcmp(_deviceConfig.uniqueId, "dev_tree") == 0)
+	{
+		// choinka
+		_features.push_back(new SwitchFeatureController(10, this, 4, false));
+		_features.push_back(new SwitchFeatureController(11, this, 5, false));
+	}
+	else
+	{
+		// bradboard
+		_features.push_back(new SwitchFeatureController(10, this, 20, false));
+		_features.push_back(new SwitchFeatureController(11, this, 21, false));
+		_features.push_back(new SwitchFeatureController(12, this, 22, false));
+		_features.push_back(new SwitchFeatureController(13, this, 23, false));
+		// Not used 14-15
+		//_features.push_back(new SwitchFeatureController(14, this, 24, false));
+		//_features.push_back(new SwitchFeatureController(15, this, 25, false));
+		_features.push_back(new SwitchFeatureController(16, this, 4, false)); // 	_features.push_back(new SwitchFeatureController(16, this, 26, false));
+		_features.push_back(new SwitchFeatureController(17, this, 5, false)); // _features.push_back(new SwitchFeatureController(17, this, 27, false));
 
-	_features.push_back(new IRFeatureController(40, this, 2));
-	_features.push_back(new IRFeatureController( 50, this, 15));
-	_features.push_back(new IRSensorFeatureController(41, this, 16, TOPIC_DEVICE_EVENTS));
-	*/
-
-	/*
-	// sufit
-	_features.push_back(new SwitchFeatureController(10, this, 20, false));
-	_features.push_back(new SwitchFeatureController(11, this, 21, false));
-	_features.push_back(new SwitchFeatureController(12, this, 22, false));
-	_features.push_back(new SwitchFeatureController(13, this, 23, false));
-	// Not used 14-15
-	//_features.push_back(new SwitchFeatureController(14, this, 24, false));
-	//_features.push_back(new SwitchFeatureController(15, this, 25, false));
-	_features.push_back(new SwitchFeatureController(16, this, 26, false));
-	_features.push_back(new SwitchFeatureController(17, this, 27, false));
-
-	_features.push_back(new TempFeatureController(30, 31, this, 2));
-	_features.push_back(new IRSensorFeatureController(41, this, 4));
-	_features.push_back(new IRFeatureController(40, this, 16));
-	_features.push_back(new IRFeatureController(50, this, 5));
-	*/
-
-	_features.push_back(new SwitchFeatureController(10, this, 20, false));
-	_features.push_back(new SwitchFeatureController(11, this, 21, false));
-	_features.push_back(new SwitchFeatureController(12, this, 22, false));
-	_features.push_back(new SwitchFeatureController(13, this, 23, false));
-	// Not used 14-15
-	//_features.push_back(new SwitchFeatureController(14, this, 24, false));
-	//_features.push_back(new SwitchFeatureController(15, this, 25, false));
-	_features.push_back(new SwitchFeatureController(16, this, 4, false)); // 	_features.push_back(new SwitchFeatureController(16, this, 26, false));
-	_features.push_back(new SwitchFeatureController(17, this, 5, false)); // _features.push_back(new SwitchFeatureController(17, this, 27, false));
-
-	_features.push_back(new TempFeatureController(30, 31, this, 2));
-	//_features.push_back(new IRSensorFeatureController(41, this, 4));
-	//_features.push_back(new IRFeatureController(40, this, 16));
-	//_features.push_back(new IRFeatureController(50, this, 5));
-	_features.push_back(new ColorLEDViaIRDriverFeatureController(40, this, 16));
-	_features.push_back(new ColorLEDViaIRDriverFeatureController(50, this, 5));
+		_features.push_back(new TempFeatureController(30, 31, this, 2));
+		//_features.push_back(new IRSensorFeatureController(41, this, 4));
+		//_features.push_back(new IRFeatureController(40, this, 16));
+		//_features.push_back(new IRFeatureController(50, this, 5));
+		_features.push_back(new ColorLEDViaIRDriverFeatureController(40, this, 16));
+		_features.push_back(new ColorLEDViaIRDriverFeatureController(50, this, 5));
+	}
 }
 
 MainApp::~MainApp()

@@ -29,8 +29,13 @@ Switch		CLight3    			"Halogen sofa (środek)"		<light>   				(LivingCeiling, Li
 Switch		CLight4    			"Halogen sofa (prawy)"		<light>   				(LivingCeiling, Lights)					{ mqtt=">[local:dev_sufit/command/13:command:*:default],<[local:dev_sufit/state/13:state:*:default]" }
 
 Switch		CLedPower			"LED Zasilanie"				<switch>   				(LivingCeiling, Lights)					{ mqtt=">[local:dev_sufit/command/17:command:*:default],<[local:dev_sufit/state/17:state:*:default]" }
-Color		CLed1				"LED stół"					<light>					(LivingCeiling, Lights)					{ mqtt=">[local:dev_sufit/command/40:command:*:default]" }
-Color		CLed2				"LED sofa"					<light>					(LivingCeiling, Lights)					{ mqtt=">[local:dev_sufit/command/50:command:*:default]" }
+Color		CLed1				"LED stół"					<rgb>					(LivingCeiling, Lights)					{ mqtt=">[local:dev_sufit/command/40:command:*:default]" }
+Color		CLed2				"LED sofa"					<rgb>					(LivingCeiling, Lights)					{ mqtt=">[local:dev_sufit/command/50:command:*:default]" }
 
 Number		CTemp				"Temperatura [%.1f °C]"		<temperature>			(LivingCeiling, TemperatureSensors)		{ mqtt="<[local:dev_sufit/state/30:state:default]" }
 Number		CHumid				"Wilgotność [%.1f %%]"		<humidity>				(LivingCeiling, TemperatureSensors)		{ mqtt="<[local:dev_sufit/state/31:state:default]" }
+
+String		XMass_Log			"Log [%s]"					<error>   				(LivingCeiling)							{ mqtt="<[local:dev_tree/state/log:state:default]" }
+Switch		XMass_Online		"Online [%s]"				<network>  				(LivingCeiling)							{ mqtt="<[local:dev_tree/state/online:state:default]" }
+Switch		XMass_Tree			"Choinka"					<switch>   				(Livingroom, XMass, Lights)				{ mqtt=">[local:dev_tree/command/10:command:*:default],<[local:dev_tree/state/10:state:*:default]" }
+Switch		XMass_Balkony		"Balkon"					<switch>   				(Livingroom, XMass, Lights)				{ mqtt=">[local:dev_tree/command/11:command:*:default],<[local:dev_tree/state/11:state:*:default]" }
