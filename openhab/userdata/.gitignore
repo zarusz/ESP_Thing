@@ -1,0 +1,7 @@
+cache/**/*
+logs/**/*
+tmp/**/*
+!tmp/README
+mapdb/**/*
+lock
+port

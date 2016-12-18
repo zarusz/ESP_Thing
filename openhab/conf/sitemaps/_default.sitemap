@@ -1,0 +1,58 @@
+sitemap _default label="Sławka"
+{
+	Text label="Sufit" icon="colorwheel" {
+		Switch item=Lights mappings=[OFF="All Off"]
+		Text label="Stan" icon="settings" {
+			Text item=COnline
+			Text item=CLog
+		}
+		Frame label="Halogeny" {
+			Switch item=CLightPower label="Zasilanie"
+			Switch item=CLight1 label="Stół"
+			Switch item=CLight2 label="Sofa lewy"
+			Switch item=CLight3 label="Sofa środek"
+			Switch item=CLight4 label="Sofa prawy"
+		}
+		Frame label="LED" {
+			Switch item=CLedPower label="Zasilanie"
+			Colorpicker item=CLed1
+			Colorpicker item=CLed2
+		}
+		Frame label="Czujniki" {
+			Text item=CTemp valuecolor=[>25="orange",>15="green",<=15="blue"]
+			Text item=CHumid valuecolor=[>25="orange",>15="green",<=15="blue"]
+		}
+	}		
+
+	Text label="Yamaha" icon="receiver" {	
+		Switch		item=Yamaha_Power
+		Switch		item=Yamaha_Mute
+		Slider		item=Yamaha_Volume
+		Selection	item=Yamaha_Input		mappings=[HDMI1="Kodi",HDMI2="PC","NET RADIO"="NetRadio",TUNER="Tuner",Spotify="Spotify",AUDIO1="TV"]
+		Selection	item=Yamaha_Surround	mappings=["2ch Stereo"="2ch","5ch Stereo"="5ch","Chamber"="Chamber"]
+		Selection	item=Yamaha_NetRadio	label="Sender"			mappings=[1="N Joy", 2="Radio Sport", 3="RDU", 4="91ZM", 5="Hauraki"]
+	}
+	
+	Text label="Dekoracje świąteczne" icon="colorwheel" {
+		Switch item=Lights mappings=[OFF="All Off"]
+		Text label="Stan" icon="settings" {
+			Text item=XMass_Online
+			Text item=XMass_Log
+		}
+		Frame label="Światełka" {
+			Switch item=XMass_Tree label="Choinka"
+			Switch item=XMass_Courtain label="Karnisz"
+			Switch item=XMass_Balkony label="Balkon"
+		}
+	}				
+	
+	Frame label="Temperatura" icon="temperature" {
+		Text item=CTemp label="Salon" valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=XMass_Temp label="Balkon" valuecolor=[>25="orange",>15="green",<=15="blue"]
+	}
+	
+	Frame label="Wilgotność" icon="humidity" {
+		Text item=CHumid label="Salon" valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=XMass_Humid label="Balkon" valuecolor=[>25="orange",>15="green",<=15="blue"]
+	}
+}
