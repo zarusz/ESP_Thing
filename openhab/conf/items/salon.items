@@ -2,7 +2,9 @@ Group		All
 Group		Slawka (All)
 Group 		Rooms (All)
 
+Group 		XMass				"Dekoracje"			<video>		(Slawka)
 Group 		Livingroom			"Salon"				<video>		(Slawka, Rooms)
+Group 		Balkony				"Balkon"			<video>		(Livingroom)
 Group 		Bedroom				"Sypialnia"			<video>		(Slawka, Rooms)
 Group		LivingCeiling		"Sufit"				<video>		(Livingroom)
 Group		Yamaha				"Yamaha"			<video>		(Livingroom)
@@ -37,5 +39,8 @@ Number		CHumid				"Wilgotność [%.1f %%]"		<humidity>				(LivingCeiling, Temper
 
 String		XMass_Log			"Log [%s]"					<error>   				(LivingCeiling)							{ mqtt="<[local:dev_tree/state/log:state:default]" }
 Switch		XMass_Online		"Online [%s]"				<network>  				(LivingCeiling)							{ mqtt="<[local:dev_tree/state/online:state:default]" }
-Switch		XMass_Tree			"Choinka"					<switch>   				(Livingroom, XMass, Lights)				{ mqtt=">[local:dev_tree/command/10:command:*:default],<[local:dev_tree/state/10:state:*:default]" }
-Switch		XMass_Balkony		"Balkon"					<switch>   				(Livingroom, XMass, Lights)				{ mqtt=">[local:dev_tree/command/11:command:*:default],<[local:dev_tree/state/11:state:*:default]" }
+Switch		XMass_Tree			"Choinka"					<light>   				(Livingroom, XMass, Lights)				{ mqtt=">[local:dev_tree/command/10:command:*:default],<[local:dev_tree/state/10:state:*:default]" }
+Switch		XMass_Courtain		"Karnisz"					<light>   				(Livingroom, XMass, Lights)				{ mqtt=">[local:dev_tree/command/15:command:*:default],<[local:dev_tree/state/15:state:*:default]" }
+Switch		XMass_Balkony		"Balkon"					<light>   				(Livingroom, XMass, Lights)				{ mqtt=">[local:dev_tree/command/11:command:*:default],<[local:dev_tree/state/11:state:*:default]" }
+Number		XMass_Temp			"Temperatura [%.1f °C]"		<temperature>			(Balkony, TemperatureSensors)			{ mqtt="<[local:dev_tree/state/30:state:default]" }
+Number		XMass_Humid			"Wilgotność [%.1f %%]"		<humidity>				(Balkony, TemperatureSensors)			{ mqtt="<[local:dev_tree/state/31:state:default]" }

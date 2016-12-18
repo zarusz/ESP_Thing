@@ -11,8 +11,8 @@
 #include "FeatureControllers/IRSensorFeatureController.h"
 #include "FeatureControllers/ColorLEDViaIRDriverFeatureController.h"
 
-#define DEVICE_UNIQUE_ID 					"dev_sufit"
-//#define DEVICE_UNIQUE_ID 					"dev_tree"
+//#define DEVICE_UNIQUE_ID 					"dev_sufit"
+#define DEVICE_UNIQUE_ID 					"dev_tree"
 //#define DEVICE_UNIQUE_ID 				"dev_sufit_dev"
 //#define DEVICE_UNIQUE_ID 				"dev_temp"
 #define TOPIC_DEVICE_EVENTS 			"device/events"
@@ -26,9 +26,9 @@
 
 MainApp::MainApp()
 	: _deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi", 1883),
-		_pins(13, 14, 12, 20),
 
 		_messageBus(_deviceConfig.mqttBroker, _deviceConfig.mqttBrokerPort, this, _deviceConfig.uniqueId),
+
 		_deviceTopic(_deviceConfig.uniqueId),
 		_deviceCommandTopic(_deviceTopic + TOPIC_COMMAND),
 		_deviceCommandTopicSub(_deviceCommandTopic + "#"),
@@ -46,6 +46,8 @@ MainApp::MainApp()
 
 	if (strcmp(_deviceConfig.uniqueId, "dev_sufit") == 0)
 	{
+		_pins = new ShiftRegisterPins(13, 14, 12, 20);
+
 		// sufit
 		_features.push_back(new SwitchFeatureController(10, this, 20, false));
 		_features.push_back(new SwitchFeatureController(11, this, 21, false));
@@ -65,12 +67,19 @@ MainApp::MainApp()
 	else if (strcmp(_deviceConfig.uniqueId, "dev_tree") == 0)
 	{
 		// choinka
+		_pins = new Pins();
+
 		_features.push_back(new SwitchFeatureController(10, this, 4, false));
 		_features.push_back(new SwitchFeatureController(11, this, 5, false));
+		_features.push_back(new SwitchFeatureController(15, this, 15, true));
+
+		_features.push_back(new TempFeatureController(30, 31, this, 14));
 	}
 	else
 	{
 		// bradboard
+		_pins = new Pins();
+
 		_features.push_back(new SwitchFeatureController(10, this, 20, false));
 		_features.push_back(new SwitchFeatureController(11, this, 21, false));
 		_features.push_back(new SwitchFeatureController(12, this, 22, false));
@@ -96,6 +105,12 @@ MainApp::~MainApp()
     delete feature;
 	});
 	_features.clear();
+
+	if (_pins)
+	{
+		delete _pins;
+		_pins = NULL;
+	}
 }
 
 void MainApp::Init()

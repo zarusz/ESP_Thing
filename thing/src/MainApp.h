@@ -44,7 +44,7 @@ private:
 	MqttMessageBus _messageBus;
 
 	std::vector<FeatureController*> _features;
-	ShiftRegisterPins _pins;
+	Pins* _pins;
 
 	ulong _lastMsg = 0;
 	int _value = 0;
@@ -60,7 +60,7 @@ public:
 
 	virtual DeviceConfig& GetConfig() { return _deviceConfig; }
   virtual MessageBus* GetMessageBus() { return &_messageBus; }
-	virtual Pins& GetPins() { return _pins; }
+	virtual Pins& GetPins() { return *_pins; }
 	virtual const String& GetStateTopic() const { return _deviceStateTopic; }
 	virtual Logger& GetLogger() { return *this; }
 
