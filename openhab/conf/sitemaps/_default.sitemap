@@ -1,7 +1,10 @@
 sitemap _default label="Sławka"
 {
+	Switch item=Lights mappings=[OFF="All Off"]
+
 	Text label="Sufit" icon="colorwheel" {
-		Switch item=Lights mappings=[OFF="All Off"]
+		Switch item=CLights mappings=[OFF="All Off"]
+		
 		Text label="Stan" icon="settings" {
 			Text item=COnline
 			Text item=CLog
@@ -34,7 +37,7 @@ sitemap _default label="Sławka"
 	}
 	
 	Text label="Dekoracje świąteczne" icon="colorwheel" {
-		Switch item=Lights mappings=[OFF="All Off"]
+		Switch item=XMass_Lights mappings=[OFF="All Off"]
 		Text label="Stan" icon="settings" {
 			Text item=XMass_Online
 			Text item=XMass_Log
