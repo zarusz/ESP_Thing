@@ -11,9 +11,11 @@
 #include "FeatureControllers/IRSensorFeatureController.h"
 #include "FeatureControllers/ColorLEDViaIRDriverFeatureController.h"
 
-//#define DEVICE_UNIQUE_ID 					"dev_sufit"
-#define DEVICE_UNIQUE_ID 					"dev_tree"
-//#define DEVICE_UNIQUE_ID 				"dev_sufit_dev"
+#define DEVICE_UNIQUE_ID_SUFIT 		"dev_sufit"
+#define DEVICE_UNIQUE_ID_TREE			"dev_tree"
+#define DEVICE_UNIQUE_ID_DEV			"dev_sufit_dev"
+
+#define DEVICE_UNIQUE_ID 					"dev_sufit"
 //#define DEVICE_UNIQUE_ID 				"dev_temp"
 #define TOPIC_DEVICE_EVENTS 			"device/events"
 #define TOPIC_DEVICE_DESCRIPTION 	"device/description"
@@ -44,7 +46,7 @@ MainApp::MainApp()
 	_messageBus.Subscribe(_deviceServiceTopicSub.c_str());
 	_messageBus.SetWill(_deviceStateOnlineTopic.c_str(), "OFF", true);
 
-	if (strcmp(_deviceConfig.uniqueId, "dev_sufit") == 0)
+	if (strcmp(_deviceConfig.uniqueId, DEVICE_UNIQUE_ID_SUFIT) == 0)
 	{
 		_pins = new ShiftRegisterPins(13, 14, 12, 20);
 
@@ -64,7 +66,7 @@ MainApp::MainApp()
 		_features.push_back(new IRFeatureController(40, this, 16));
 		_features.push_back(new IRFeatureController(50, this, 5));
 	}
-	else if (strcmp(_deviceConfig.uniqueId, "dev_tree") == 0)
+	else if (strcmp(_deviceConfig.uniqueId, DEVICE_UNIQUE_ID_TREE) == 0)
 	{
 		// choinka
 		_pins = new Pins();
@@ -299,18 +301,7 @@ void MainApp::OnStart()
     feature->Start();
 	});
 
-	_messageBus.Publish(_deviceStateOnlineTopic.c_str(), "ON", true);
-
-	/*
-	Serial.println("Sending DeviceConnectedEvent");
-	// Once connected, publish an announcement...
-	DeviceEvents deviceEvents = DeviceEvents_init_zero;
-	deviceEvents.has_deviceConnectedEvent = true;
-	strcpy(deviceEvents.deviceConnectedEvent.device_id, _deviceConfig.uniqueId);
-	PbMessage message(DeviceEvents_fields, &deviceEvents);
-	_messageBus.Publish(TOPIC_DEVICE_EVENTS, &message);
-	*/
-
+	SendHearbeat();
 	SendDescription();
 
 	Log(Info, "[MainApp] Started.");
@@ -339,8 +330,9 @@ void MainApp::OnStop()
 
 void MainApp::OnLoop()
 {
-	if (TimeUtil::IntervalPassed(_lastMsg, 30000))
+	if (TimeUtil::IntervalPassed(_lastMsg, 30000)) {
 		SendHearbeat();
+	}
 
 	std::for_each(_features.begin(), _features.end(), [](FeatureController* feature) {
 		feature->Loop();
@@ -368,16 +360,5 @@ void MainApp::SendDescription()
 
 void MainApp::SendHearbeat()
 {
-/*
-	++_value;
-	Serial.printf("[MainApp] Publish DeviceHearbeatEvent %d ...\n", _value);
-
-	DeviceEvents deviceEvents = DeviceEvents_init_zero;
-	deviceEvents.has_deviceHearbeatEvent = true;
-	strcpy(deviceEvents.deviceHearbeatEvent.device_id, _deviceConfig.uniqueId);
-	deviceEvents.deviceHearbeatEvent.sequence_id = _value;
-
-	PbMessage message(DeviceEvents_fields, &deviceEvents);
-	_messageBus.Publish(TOPIC_DEVICE_EVENTS, &message);
-*/
+	_messageBus.Publish(_deviceStateOnlineTopic.c_str(), "ON", true);
 }

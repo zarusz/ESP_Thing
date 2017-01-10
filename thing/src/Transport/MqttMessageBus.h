@@ -36,6 +36,7 @@ public:
 	virtual ~MqttMessageBus();
 
 public:
+	virtual bool IsConnected();
 	virtual bool Publish(const char* topic, const Buffer& payload);
 	virtual bool Publish(const char* topic, const String& payload, bool retained = false);
 	virtual bool Publish(const char* topic, const char* message, bool retained = false);

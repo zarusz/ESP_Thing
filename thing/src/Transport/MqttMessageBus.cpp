@@ -30,6 +30,11 @@ MqttMessageBus::~MqttMessageBus()
 {
 }
 
+bool MqttMessageBus::IsConnected()
+{
+  return _mqttClient.connected();
+}
+
 bool MqttMessageBus::Publish(const char* topic, const Buffer& payload)
 {
   Serial.printf("[MQTT] Publish to topic: '%s', payload size: %d\n", topic, payload.Size());

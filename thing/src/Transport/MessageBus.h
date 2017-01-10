@@ -16,6 +16,7 @@ protected:
 	MessageHandler* _handler;
 
 public:
+	virtual bool IsConnected() = 0;
 	virtual bool Publish(const char* topic, const Buffer& payload) = 0;
 	virtual bool Publish(const char* topic, const String& payload, bool retained = false) = 0;
 	virtual bool Publish(const char* topic, const char* message, bool retained = false) = 0;

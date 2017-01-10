@@ -1,10 +1,13 @@
 #include "SwitchFeatureController.h"
+#include "Utils/TimeUtil.h"
 
 SwitchFeatureController::SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh)
   : FeatureController(port, FeatureType::FeatureType_SWITCH, context),
     _pin(pin),
     _onIsHigh(onIsHigh)
 {
+  _lastUpdateMs = 0;
+  _updateIntervalMs = 10000;
 }
 
 void SwitchFeatureController::Start()
@@ -33,6 +36,15 @@ void SwitchFeatureController::Handle(const char* topic, const Buffer& payload)
   }
 }
 
+void SwitchFeatureController::Loop()
+{
+  if (_updateIntervalMs == 0 || !_context->GetMessageBus()->IsConnected() || !TimeUtil::IntervalPassed(_lastUpdateMs, _updateIntervalMs))
+    return;
+
+  _updateIntervalMs = 0;
+  PublishState();
+}
+
 void SwitchFeatureController::SetState(bool on)
 {
   sprintf(_logger->Msg(), "[SwitchFeatureController] Switch on port %d to %s", _port, on ? "on" : "off");
@@ -40,7 +52,11 @@ void SwitchFeatureController::SetState(bool on)
 
   _on = on;
   _context->GetPins().SetValue(_pin, on ? (_onIsHigh ? true : false) : (_onIsHigh ? false : true));
+  PublishState();
+}
 
-  String payload = on ? STATE_ON : STATE_OFF;
-  PublishState(payload);
+void SwitchFeatureController::PublishState()
+{
+  String payload = _on ? STATE_ON : STATE_OFF;
+  FeatureController::PublishState(payload);
 }
