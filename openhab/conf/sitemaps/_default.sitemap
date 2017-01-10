@@ -10,7 +10,7 @@ sitemap _default label="Sławka"
 			Text item=CLog
 		}
 		Frame label="Halogeny" {
-			Switch item=CLightPower label="Zasilanie"
+			Switch item=CLightPower label="Zasilanie" mappings=[OFF="All Off"]
 			Switch item=CLight1 label="Stół"
 			Switch item=CLight2 label="Sofa lewy"
 			Switch item=CLight3 label="Sofa środek"
