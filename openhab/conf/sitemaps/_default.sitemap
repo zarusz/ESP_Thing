@@ -35,6 +35,13 @@ sitemap _default label="Sławka"
 		Selection	item=Yamaha_Surround	mappings=["2ch Stereo"="2ch","5ch Stereo"="5ch","Chamber"="Chamber"]
 		Selection	item=Yamaha_NetRadio	label="Sender"			mappings=[1="N Joy", 2="Radio Sport", 3="RDU", 4="91ZM", 5="Hauraki"]
 	}
+
+	Text label="Kodi" icon="player" {	
+		Text		item=Kodi_State
+		Text		item=Kodi_Title
+		Switch		item=Kodi_PlayPause
+		Switch		item=Kodi_Stop
+	}
 	
 	Text label="Dekoracje świąteczne" icon="colorwheel" {
 		Switch item=XMass_Lights mappings=[OFF="All Off"]
