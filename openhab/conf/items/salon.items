@@ -23,11 +23,11 @@ String		Yamaha_Input		"Input [%s]"				<video>					(Cinema)								{ channel="yam
 String		Yamaha_Surround		"Surround [%s]"				<video>					(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:surroundProgram" } 
 Number		Yamaha_NetRadio		"Net Radio"					<video>					(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:netradiotune" }
 
-String		Kodi_State			"State [%s]"				<video>					(Cinema)								{xbmc="<[#livingRoom|Player.State]"}
-String		Kodi_Title			"Title [%s]"				<video>					(Cinema)								{xbmc="<[#livingRoom|Player.Label]"}
-String		Kodi_Type			"Type [%s]"					<video>					(Cinema)								{xbmc="<[#livingRoom|Player.Type]"}
-Switch		Kodi_PlayPause		"Play"						<video>					(Cinema)								{xbmc=">[#livingRoom|Player.PlayPause]"}
-Switch		Kodi_Stop			"Stop"						<video>					(Cinema)								{xbmc=">[#livingRoom|Player.Stop]"}
+String		Kodi_State			"State [%s]"				<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.State]" }
+String		Kodi_Title			"Title [%s]"				<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.Label]" }
+String		Kodi_Type			"Type [%s]"					<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.Type]" }
+Switch		Kodi_PlayPause		"Play"						<video>					(Cinema)								{ xbmc=">[#livingRoom|Player.PlayPause]" }
+Switch		Kodi_Stop			"Stop"						<video>					(Cinema)								{ xbmc=">[#livingRoom|Player.Stop]" }
 
 Group:Switch:OR(ON, OFF)	CLights	   		"All Lights [(%d)]"		<light>
 String		CLog				"Log [%s]"					<error>   				(LivingCeiling)							{ mqtt="<[local:dev_sufit/state/log:state:default]" }
