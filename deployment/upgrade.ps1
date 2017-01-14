@@ -1,0 +1,15 @@
+param([string]$dev="dev_proto")
+
+$source_firmware = "firmware.bin"
+$target_firmware = "firmware_$dev.bin"
+
+Write-Host "Copying firmware $target_firmware"
+Copy-Item  "..\thing\.pioenvs\esp12e\$source_firmware" "C:\inetpub\wwwroot\$target_firmware"
+
+$topic = "$dev/service/upgrade"
+$url = "http://192.168.1.121/$target_firmware"
+
+Write-Host "Sending upgrade command to $dev"
+$remote_cmd = "mosquitto_pub -t $topic -m $url"
+$remote_session = "pi"
+& "plink" $remote_session $remote_cmd

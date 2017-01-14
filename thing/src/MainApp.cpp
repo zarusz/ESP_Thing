@@ -13,9 +13,9 @@
 
 #define DEVICE_UNIQUE_ID_SUFIT 		"dev_sufit"
 #define DEVICE_UNIQUE_ID_TREE			"dev_tree"
-#define DEVICE_UNIQUE_ID_DEV			"dev_sufit_dev"
+#define DEVICE_UNIQUE_ID_DEV			"dev_proto"
 
-#define DEVICE_UNIQUE_ID 					"dev_sufit"
+#define DEVICE_UNIQUE_ID 					"dev_proto"
 //#define DEVICE_UNIQUE_ID 				"dev_temp"
 #define TOPIC_DEVICE_EVENTS 			"device/events"
 #define TOPIC_DEVICE_DESCRIPTION 	"device/description"
