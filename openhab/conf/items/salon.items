@@ -11,8 +11,7 @@ Group		Cinema				"Kino"				<video>		(Livingroom)
 Group:Number:MIN	SleepLevel	"Sleep [%d]"		<battery>	(Slawka)
 Group:Switch:OR(ON, OFF)	Lights	   "All Lights [(%d)]"	<light>
 
-String		Mode				"Tryb [%s]"			<pie>		(Slawka)
-
+String		Mode				"Tryb"				<pie>		(Slawka)
 
 Group		Temp				"Temperatura [(%.1f C)]"	<temperature>
 Group		Humid				"Wilgotność [(%.1f %%)]"	<humidity>
@@ -33,7 +32,7 @@ Switch		Kodi_Stop			"Stop"						<video>					(Cinema)								{xbmc=">[#livingRoom
 Group:Switch:OR(ON, OFF)	CLights	   		"All Lights [(%d)]"		<light>
 String		CLog				"Log [%s]"					<error>   				(LivingCeiling)							{ mqtt="<[local:dev_sufit/state/log:state:default]" }
 Switch		COnline				"Online [%s]"				<network>  				(LivingCeiling)							{ mqtt="<[local:dev_sufit/state/online:state:default]" }
-Number		CSleepLevel			"Sleep [%d]"				<battery>  				(LivingCeiling, SleepLevel)				{ mqtt=">[local:dev_sufit/service/sleep:command:*:default]" }
+Number		CSleepLevel			"Sleep"						<battery>  				(LivingCeiling, SleepLevel)				{ mqtt=">[local:dev_sufit/service/sleep:command:*:default]" }
 
 Switch		CLightPower			"Halogen Zasilanie"			<switch>   				(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev_sufit/command/16:command:*:default],<[local:dev_sufit/state/16:state:default]" }
 Switch		CLight1				"Halogen stół"				<light>   				(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev_sufit/command/10:command:*:default],<[local:dev_sufit/state/10:state:default]" }
@@ -51,7 +50,7 @@ Number		CHumid				"Wilgotność [%.1f %%]"		<humidity>				(LivingCeiling, Humid)
 Group:Switch:OR(ON, OFF)	XMass_Lights	  "All Lights [(%d)]"	<light>
 String		XMass_Log			"Log [%s]"					<error>   				(Livingroom)							{ mqtt="<[local:dev_tree/state/log:state:default]" }
 Switch		XMass_Online		"Online [%s]"				<network>  				(Livingroom)							{ mqtt="<[local:dev_tree/state/online:state:default]" }
-Number		XMass_SleepLevel	"Sleep [%d]"				<battery>  				(Livingroom, SleepLevel)				{ mqtt=">[local:dev_tree/service/sleep:command:*:default]" }
+Number		XMass_SleepLevel	"Sleep"						<battery>  				(Livingroom, SleepLevel)				{ mqtt=">[local:dev_tree/service/sleep:command:*:default]" }
 Switch		XMass_Tree			"Choinka"					<light>   				(Livingroom, XMass_Lights, Lights)		{ mqtt=">[local:dev_tree/command/10:command:*:default],<[local:dev_tree/state/10:state:default]" }
 Switch		XMass_Courtain		"Karnisz"					<light>   				(Livingroom, XMass_Lights, Lights)		{ mqtt=">[local:dev_tree/command/15:command:*:default],<[local:dev_tree/state/15:state:default]" }
 Switch		XMass_Balkony		"Balkon"					<light>   				(Livingroom, XMass_Lights, Lights)		{ mqtt=">[local:dev_tree/command/11:command:*:default],<[local:dev_tree/state/11:state:default]" }

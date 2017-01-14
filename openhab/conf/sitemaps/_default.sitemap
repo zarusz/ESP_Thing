@@ -2,7 +2,7 @@ sitemap _default label="Sławka"
 {
 	Frame label="Mieszkanie" icon="group" {
 		Switch 		item=Lights		mappings=[OFF="All Off"]
-		Selection	item=Mode		mappings=[Normal="Normalny",Sleeping="Spanie",Away="Poza domem"]
+		Selection	item=Mode		label="Tryb"	mappings=[Normal="Normalny",Sleeping="Spanie",Away="Poza domem"]
 	}
 
 	Frame label="Salon" icon="group" {
@@ -12,6 +12,7 @@ sitemap _default label="Sławka"
 			Text label="Stan" icon="settings" {
 				Text 		item=COnline
 				Text 		item=CLog
+				Selection	item=CSleepLevel mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
 			}
 			Frame label="Halogeny" {
 				Switch item=CLightPower label="Zasilanie" mappings=[OFF="All Off"]
