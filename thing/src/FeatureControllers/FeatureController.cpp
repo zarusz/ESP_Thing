@@ -61,5 +61,5 @@ void FeatureController::PublishState(const String& payload, int port)
 
   char topic[64];
   snprintf(topic, sizeof(topic), "%s%d", _context->GetStateTopic().c_str(), port);
-  _context->GetMessageBus()->Publish(topic, payload);
+  _context->GetMessageBus()->Publish(topic, payload, true);
 }

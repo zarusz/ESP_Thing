@@ -14,9 +14,8 @@
 #define DEVICE_UNIQUE_ID_SUFIT 		"dev_sufit"
 #define DEVICE_UNIQUE_ID_TREE			"dev_tree"
 #define DEVICE_UNIQUE_ID_DEV			"dev_proto"
+#define DEVICE_UNIQUE_ID 					"dev_tree"
 
-#define DEVICE_UNIQUE_ID 					"dev_proto"
-//#define DEVICE_UNIQUE_ID 				"dev_temp"
 #define TOPIC_DEVICE_EVENTS 			"device/events"
 #define TOPIC_DEVICE_DESCRIPTION 	"device/description"
 #define TOPIC_COMMAND 						"/command/"
@@ -71,6 +70,14 @@ MainApp::MainApp()
 		// choinka
 		_pins = new Pins();
 
+		/*
+		16 - Connected to RST (deep sleep)
+		04 - Switch 01
+		05 - Switch 02
+		16 - Switch 03
+		14 - Temp
+		*/
+
 		_features.push_back(new SwitchFeatureController(10, this, 4, false));
 		_features.push_back(new SwitchFeatureController(11, this, 5, false));
 		_features.push_back(new SwitchFeatureController(15, this, 15, true));
@@ -96,7 +103,7 @@ MainApp::MainApp()
 		//_features.push_back(new IRSensorFeatureController(41, this, 4));
 		//_features.push_back(new IRFeatureController(40, this, 16));
 		//_features.push_back(new IRFeatureController(50, this, 5));
-		_features.push_back(new ColorLEDViaIRDriverFeatureController(40, this, 16));
+		//_features.push_back(new ColorLEDViaIRDriverFeatureController(40, this, 16));
 		_features.push_back(new ColorLEDViaIRDriverFeatureController(50, this, 5));
 	}
 }
@@ -121,41 +128,52 @@ void MainApp::Init()
 	//pinMode(LED_BUILTIN, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
 
 	SetupWifi();
+
+	//ESP.deepSleep(10 * 1000000);
 }
 
 void MainApp::Loop()
 {
-	_messageBus.Loop();
-
-	if (_state == DeviceState::New)
+	if (_state == DeviceState::Sleep)
 	{
-		OnStart();
+		delay(1000);
+		Log(Debug, "Sleeping");
+
 		_state = DeviceState::Running;
 	}
-
-	if (_state == DeviceState::Running)
+	else
 	{
-		OnLoop();
+		_messageBus.Loop();
+
+		if (_state == DeviceState::New)
+		{
+			OnStart();
+			_state = DeviceState::Running;
+		}
+		else if (_state == DeviceState::Running)
+		{
+			OnLoop();
+		}
 	}
 }
 
 void MainApp::SetupWifi()
 {
 	// We start by connecting to a WiFi network
-	Serial.printf("\nConnecting to network %s\n", _deviceConfig.networkName);
+	sprintf(Msg(), "\nConnecting to network: %s\n", _deviceConfig.networkName);
+	Log(Debug);
 
 	WiFi.mode(WIFI_STA);
 	WiFi.begin(_deviceConfig.networkName, _deviceConfig.networkPassword);
+
 	while (WiFi.status() != WL_CONNECTED)
 	{
 		delay(500);
-		Serial.print(".");
+		Log(Debug, ".");
 	}
 
-	Serial.println("");
-	Serial.println("WiFi connected");
-	Serial.print("IP address: ");
-	Serial.println(WiFi.localIP());
+	sprintf(Msg(), "\nWiFi connected. IP address: %s\n", WiFi.localIP().toString().c_str());
+	Log(Debug);
 }
 /*
 void MainApp::Log(LogLevel level, const char * format, ...)
@@ -231,6 +249,10 @@ void MainApp::HandleServiceCommand(const char* path, const Buffer& payload)
 	{
 		HandleUpgradeCommand(payload);
 	}
+	else if (strcmp(path, "sleep") == 0)
+	{
+		HandleSleepCommand(payload);
+	}
 
 	/*
 	if (cmd.has_statusRequest)
@@ -268,9 +290,54 @@ void MainApp::HandleUpgradeCommand(const Buffer& payload)
 	}
 }
 
+void MainApp::HandleSleepCommand(const Buffer& payload)
+{
+	Log(Debug, "[MainApp]::HandleSleepCommand (start)");
+
+	String url;
+	payload.ToString(url);
+	auto sleepLevel = atoi(url.c_str());
+
+	if (sleepLevel > 0)
+	{
+			_state = DeviceState::Sleep;
+
+			auto value = 10;
+			auto unit = 1;
+			auto unitName = "seconds";
+
+			if (sleepLevel == 2)
+			{
+				value = 1;
+				unit = 60;
+				unitName = "minute";
+			}
+			else if (sleepLevel == 3)
+			{
+				value = 10;
+				unit = 60;
+				unitName = "minutes";
+			}
+			else if (sleepLevel == 4)
+			{
+				value = 30;
+				unit = 60;
+				unitName = "minutes";
+			}
+
+			sprintf(Msg(), "Sleep level %d, will sleep for %d %s", sleepLevel, value, unitName);
+			Log(Info);
+
+			auto sleepSeconds = value * unit;
+			ESP.deepSleep(sleepSeconds * 1000000);
+	}
+
+	Log(Debug, "[MainApp]::HandleSleepCommand (finish)");
+}
+
 void MainApp::HandleStatusRequest(const char* topic, const Buffer& payload)
 {
-	Log(Debug, "[MainApp::HandleStatusRequest] Starting");
+	Log(Debug, "MainApp::HandleStatusRequest (start)");
 
 /*
 	Responses responses = Responses_init_zero;

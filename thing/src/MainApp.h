@@ -24,7 +24,8 @@ enum DeviceState
 	New,
 	Started,
 	Running,
-	Stopped
+	Stopped,
+	Sleep
 };
 
 class MainApp : public DeviceContext, public MessageHandler, public Logger
@@ -79,6 +80,7 @@ protected:
 	void HandleDeviceMessage(const char* path, const Buffer& payload);
 	void HandleServiceCommand(const char* path, const Buffer& payload);
 	void HandleUpgradeCommand(const Buffer& payload);
+	void HandleSleepCommand(const Buffer& payload);
 	void HandleStatusRequest(const char* topic, const Buffer& payload);
 
 	void OnStart();
