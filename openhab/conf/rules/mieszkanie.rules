@@ -17,7 +17,7 @@ end
 
 rule "Tryb - ustaw normalny po spaniu jeżeli 6 rano"
 when
-	Time cron "0 00 15 1/1 * ? *"
+	Time cron "0 00 06 1/1 * ? *"
 then		
 	if (Mode.state == "Sleeping") {
 		sendCommand(Mode, "Normal")
