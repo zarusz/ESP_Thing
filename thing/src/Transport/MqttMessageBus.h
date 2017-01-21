@@ -9,14 +9,13 @@
 
 #include "MessageBus.h"
 #include "Buffer.h"
+#include "..\DeviceConfig.h"
 
 class MqttMessageBus : public MessageBus
 {
 protected:
-	const char* _serverHost;
-	int _serverPort;
+	DeviceConfig* _deviceConfig;
 
-	const char* _deviceId;
 	std::set<const char*> _topics;
 	StaticBuffer<256> _buffer;
 
@@ -32,7 +31,7 @@ protected:
 	void MessageCallback(char* topic, byte* payload, uint length);
 
 public:
-	MqttMessageBus(const char* serverHost, int serverPort, MessageHandler* handler, const char* deviceId);
+	MqttMessageBus(DeviceConfig* deviceConfig, MessageHandler* handler);
 	virtual ~MqttMessageBus();
 
 public:

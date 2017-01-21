@@ -40,7 +40,7 @@ void IRSensorFeatureController::Publish(decode_results& results, IRFormat format
 {
   DeviceEvents events = DeviceEvents_init_zero;
   events.has_irSignalEvent = true;
-  strcpy(events.irSignalEvent.device_id, _context->GetConfig().uniqueId);
+  strcpy(events.irSignalEvent.device_id, _context->GetConfig().UniqueId);
   events.irSignalEvent.port = _port;
   events.irSignalEvent.signal.format = format;
   events.irSignalEvent.signal.bytes_count = 1;

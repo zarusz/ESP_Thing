@@ -11,10 +11,9 @@
 #include "FeatureControllers/IRSensorFeatureController.h"
 #include "FeatureControllers/ColorLEDViaIRDriverFeatureController.h"
 
-#define DEVICE_UNIQUE_ID_SUFIT 		"dev_sufit"
-#define DEVICE_UNIQUE_ID_TREE			"dev_tree"
-#define DEVICE_UNIQUE_ID_DEV			"dev_proto"
-#define DEVICE_UNIQUE_ID 					"dev_tree"
+#define DEVICE_UNIQUE_ID_SUFIT 		"dev/sufit"
+#define DEVICE_UNIQUE_ID_TREE			"dev/tree"
+#define DEVICE_UNIQUE_ID_DEV			"dev/proto"
 
 #define TOPIC_DEVICE_EVENTS 			"device/events"
 #define TOPIC_DEVICE_DESCRIPTION 	"device/description"
@@ -24,13 +23,20 @@
 #define TOPIC_ONLINE	 						"/state/online"
 #define TOPIC_SERVICE 						"/service/"
 
+#define DEVICE_UNIQUE_ID 					DEVICE_UNIQUE_ID_TREE
+#define WIFI_NAME									"WareHouse_24GHz"
+#define WIFI_PASS									"bonifacy"
+#define MQTT_HOST									"raspberrypi"
+#define MQTT_PORT									1883
+#define MQTT_USER									"device"
+#define MQTT_PASS									"HekW4zS18fvH"
 
 MainApp::MainApp()
-	: _deviceConfig(DEVICE_UNIQUE_ID, "WareHouse_24GHz", "bonifacy", "raspberrypi", 1883),
+	: _deviceConfig(DEVICE_UNIQUE_ID, WIFI_NAME, WIFI_PASS, MQTT_HOST, MQTT_PORT, MQTT_USER, MQTT_PASS),
 
-		_messageBus(_deviceConfig.mqttBroker, _deviceConfig.mqttBrokerPort, this, _deviceConfig.uniqueId),
+		_messageBus(&_deviceConfig, (MessageHandler*)this),
 
-		_deviceTopic(_deviceConfig.uniqueId),
+		_deviceTopic(_deviceConfig.UniqueId),
 		_deviceCommandTopic(_deviceTopic + TOPIC_COMMAND),
 		_deviceCommandTopicSub(_deviceCommandTopic + "#"),
 		_deviceStateTopic(_deviceTopic + TOPIC_STATE),
@@ -45,7 +51,7 @@ MainApp::MainApp()
 	_messageBus.Subscribe(_deviceServiceTopicSub.c_str());
 	_messageBus.SetWill(_deviceStateOnlineTopic.c_str(), "OFF", true);
 
-	if (strcmp(_deviceConfig.uniqueId, DEVICE_UNIQUE_ID_SUFIT) == 0)
+	if (strcmp(_deviceConfig.UniqueId, DEVICE_UNIQUE_ID_SUFIT) == 0)
 	{
 		_pins = new ShiftRegisterPins(13, 14, 12, 20);
 
@@ -65,7 +71,7 @@ MainApp::MainApp()
 		_features.push_back(new IRFeatureController(40, this, 16));
 		_features.push_back(new IRFeatureController(50, this, 5));
 	}
-	else if (strcmp(_deviceConfig.uniqueId, DEVICE_UNIQUE_ID_TREE) == 0)
+	else if (strcmp(_deviceConfig.UniqueId, DEVICE_UNIQUE_ID_TREE) == 0)
 	{
 		// choinka
 		_pins = new Pins();
@@ -160,11 +166,11 @@ void MainApp::Loop()
 void MainApp::SetupWifi()
 {
 	// We start by connecting to a WiFi network
-	sprintf(Msg(), "\nConnecting to network: %s\n", _deviceConfig.networkName);
+	sprintf(Msg(), "\nConnecting to network: %s\n", _deviceConfig.WifiName);
 	Log(Debug);
 
 	WiFi.mode(WIFI_STA);
-	WiFi.begin(_deviceConfig.networkName, _deviceConfig.networkPassword);
+	WiFi.begin(_deviceConfig.WifiName, _deviceConfig.WifiPassword);
 
 	while (WiFi.status() != WL_CONNECTED)
 	{

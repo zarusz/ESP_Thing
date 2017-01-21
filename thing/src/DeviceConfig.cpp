@@ -4,11 +4,16 @@ DeviceConfig::DeviceConfig()
 {
 }
 
-DeviceConfig::DeviceConfig(const char* uniqueId, const char* networkName, const char* networkPassword, const char* mqttBroker, const int mqttBrokerPort)
+DeviceConfig::DeviceConfig(const char* uniqueId,
+  const char* wifiName, const char* wifiPassword,
+  const char* mqttHost, const int mqttPort,
+  const char* mqttUser, const char* mqttPass)
 {
-  this->uniqueId = uniqueId;
-  this->networkName = networkName;
-  this->networkPassword = networkPassword;
-  this->mqttBroker = mqttBroker;
-  this->mqttBrokerPort = mqttBrokerPort;
+  UniqueId = uniqueId;
+  WifiName = wifiName;
+  WifiPassword = wifiPassword;
+  MqttHost = mqttHost;
+  MqttPort = mqttPort;
+  MqttUser = mqttUser;
+  MqttPass = mqttPass;
 }

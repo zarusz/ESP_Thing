@@ -1,12 +1,12 @@
-param([string]$dev="dev_proto")
+param([string]$dev="proto")
 
 $source_firmware = "firmware.bin"
 $target_firmware = "firmware_$dev.bin"
 
 Write-Host "Copying firmware $target_firmware"
-Copy-Item  "..\thing\.pioenvs\esp12e\$source_firmware" "C:\inetpub\wwwroot\$target_firmware"
+Copy-Item  "..\thing\.pioenvs\esp12e\$source_firmware" "C:\inetpub\wwwroot\$target_firmware" -ErrorAction Stop
 
-$topic = "$dev/service/upgrade"
+$topic = "dev/$dev/service/upgrade"
 $url = "http://192.168.1.121/$target_firmware"
 
 Write-Host "Sending upgrade command to $dev"

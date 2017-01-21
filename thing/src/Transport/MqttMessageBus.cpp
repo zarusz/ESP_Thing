@@ -10,16 +10,13 @@
 // We need this in the static
 MqttMessageBus* Singleton;
 
-MqttMessageBus::MqttMessageBus(const char* serverHost, int serverPort,
-  MessageHandler* handler, const char* deviceId)
+MqttMessageBus::MqttMessageBus(DeviceConfig* deviceConfig, MessageHandler* handler)
   : _mqttClient(_espClient)
 {
-  _serverHost = serverHost;
-  _serverPort = serverPort;
-  _deviceId = deviceId;
+  _deviceConfig = deviceConfig;
   SetHandler(handler);
 
-  _mqttClient.setServer(_serverHost, _serverPort);
+  _mqttClient.setServer(_deviceConfig->MqttHost, _deviceConfig->MqttPort);
   _mqttClient.setCallback(MqttMessageCallback);
 
   // We will need the reference in the static callback
@@ -96,15 +93,15 @@ void MqttMessageBus::ReconnectMqtt()
    while (!_mqttClient.connected())
    {
      // Create a random client ID
-     String clientId = String(_deviceId) + "-" + String(random(0xffff), HEX);
+     String clientId = String(_deviceConfig->UniqueId) + "-" + String(random(0xffff), HEX);
      Serial.printf("[MQTT] Attempting MQTT connection (ClientId: %s)...\n", clientId.c_str());
 
      // Attempt to connect
      bool connected;
      if (_willTopic && _willMessage) {
-       connected = _mqttClient.connect(clientId.c_str(), _willTopic, MQTTQOS1, _willRetain, _willMessage);
+       connected = _mqttClient.connect(clientId.c_str(), _deviceConfig->MqttUser, _deviceConfig->MqttPass, _willTopic, MQTTQOS1, _willRetain, _willMessage);
      } else {
-       connected = _mqttClient.connect(clientId.c_str());
+       connected = _mqttClient.connect(clientId.c_str(), _deviceConfig->MqttUser, _deviceConfig->MqttPass);
      }
 
      if (connected)
