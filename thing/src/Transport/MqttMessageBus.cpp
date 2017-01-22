@@ -16,7 +16,7 @@ MqttMessageBus::MqttMessageBus(DeviceConfig* deviceConfig, MessageHandler* handl
   _deviceConfig = deviceConfig;
   SetHandler(handler);
 
-  _mqttClient.setServer(_deviceConfig->MqttHost, _deviceConfig->MqttPort);
+  _mqttClient.setServer(_deviceConfig->MqttHost.c_str(), _deviceConfig->MqttPort);
   _mqttClient.setCallback(MqttMessageCallback);
 
   // We will need the reference in the static callback
@@ -99,9 +99,9 @@ void MqttMessageBus::ReconnectMqtt()
      // Attempt to connect
      bool connected;
      if (_willTopic && _willMessage) {
-       connected = _mqttClient.connect(clientId.c_str(), _deviceConfig->MqttUser, _deviceConfig->MqttPass, _willTopic, MQTTQOS1, _willRetain, _willMessage);
+       connected = _mqttClient.connect(clientId.c_str(), _deviceConfig->MqttUser.c_str(), _deviceConfig->MqttPass.c_str(), _willTopic, MQTTQOS1, _willRetain, _willMessage);
      } else {
-       connected = _mqttClient.connect(clientId.c_str(), _deviceConfig->MqttUser, _deviceConfig->MqttPass);
+       connected = _mqttClient.connect(clientId.c_str(), _deviceConfig->MqttUser.c_str(), _deviceConfig->MqttPass.c_str());
      }
 
      if (connected)

@@ -31,7 +31,7 @@ enum DeviceState
 class MainApp : public DeviceContext, public MessageHandler, public Logger
 {
 private:
-	DeviceConfig _deviceConfig;
+	DeviceConfig* _deviceConfig;
 
 	String _deviceTopic;
 	String _deviceCommandTopic;
@@ -53,14 +53,14 @@ private:
 	DeviceState _state;
 
 public:
-	MainApp();
+	MainApp(DeviceConfig* deviceConfig);
 	virtual ~MainApp();
 
 	void Init();
 	void Loop();
 
-	virtual DeviceConfig& GetConfig() { return _deviceConfig; }
-  virtual MessageBus* GetMessageBus() { return &_messageBus; }
+	virtual DeviceConfig& GetConfig() { return *_deviceConfig; }
+	virtual MessageBus* GetMessageBus() { return &_messageBus; }
 	virtual Pins& GetPins() { return *_pins; }
 	virtual const String& GetStateTopic() const { return _deviceStateTopic; }
 	virtual Logger& GetLogger() { return *this; }
@@ -79,7 +79,8 @@ protected:
 	//void DebugRetrievedMessage(const char* topic, const void* message);
 	void HandleDeviceMessage(const char* path, const Buffer& payload);
 	void HandleServiceCommand(const char* path, const Buffer& payload);
-	void HandleUpgradeCommand(const Buffer& payload);
+	void HandleUpdateFirmwareCommand(const Buffer& payload);
+	void HandleUpdateConfigCommand(const Buffer& payload);
 	void HandleSleepCommand(const Buffer& payload);
 	void HandleStatusRequest(const char* topic, const Buffer& payload);
 

@@ -38,6 +38,7 @@ void IRSensorFeatureController::Loop()
 
 void IRSensorFeatureController::Publish(decode_results& results, IRFormat format)
 {
+/*
   DeviceEvents events = DeviceEvents_init_zero;
   events.has_irSignalEvent = true;
   strcpy(events.irSignalEvent.device_id, _context->GetConfig().UniqueId);
@@ -46,7 +47,7 @@ void IRSensorFeatureController::Publish(decode_results& results, IRFormat format
   events.irSignalEvent.signal.bytes_count = 1;
   events.irSignalEvent.signal.bytes[0].bits = _results.bits;
   events.irSignalEvent.signal.bytes[0].data = _results.value;
-
+*/
   //PbMessage message(DeviceEvents_fields, &events);
   //_context->GetMessageBus()->Publish(_topic, &message);
 }

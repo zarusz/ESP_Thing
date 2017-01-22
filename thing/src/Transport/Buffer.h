@@ -21,24 +21,24 @@ public:
 
   uint MaxSize() const { return _capacity; }
   uint Size() const { return _size; }
-  void Reset() { _size = 0; }
+  void Reset() { Resize(0); }
 
   bool Resize(int newSize)
   {
-    if (newSize > _capacity)
+    // ensure 1 extra caracter can still be maintained
+    if (newSize + 1 > _capacity)
       return false;
 
     _size = newSize;
+    // always have zero byte as the last element past size
+    Data()[_size] = 0;
+
     return true;
   }
 
   bool ToString(String &s) const
   {
-      char buf[64];
-      if (!ToString(buf, 64))
-        return false;
-
-      s = buf;
+      s = (const char*) Data();
       return true;
   }
 
@@ -65,7 +65,7 @@ public:
   virtual byte* Data() { return (byte*) &_data; }
   virtual const byte* Data() const { return (const byte*) &_data; }
 };
-
+/*
 class StringBuffer : public Buffer
 {
 protected:
@@ -76,6 +76,6 @@ public:
   virtual byte* Data() { return NULL; }
   virtual const byte* Data() const { return (const byte*) _string; }
 };
-
+*/
 
 #endif

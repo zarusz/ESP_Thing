@@ -6,13 +6,13 @@
 class DeviceConfig
 {
 public:
-  const char* UniqueId;
-  const char* WifiName;
-  const char* WifiPassword;
-  const char* MqttHost;
+  String UniqueId;
+  String WifiName;
+  String WifiPassword;
+  String MqttHost;
   int MqttPort;
-  const char* MqttUser;
-  const char* MqttPass;
+  String MqttUser;
+  String MqttPass;
 
 public:
   DeviceConfig();
@@ -23,6 +23,9 @@ public:
     const int MqttPort,
     const char* MqttUser,
     const char* MqttPass);
+
+  bool ReadFromFileSystem();
+  bool WriteToFileSystem(String& json);
 };
 
 #endif

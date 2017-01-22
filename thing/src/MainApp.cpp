@@ -11,10 +11,11 @@
 #include "FeatureControllers/IRSensorFeatureController.h"
 #include "FeatureControllers/ColorLEDViaIRDriverFeatureController.h"
 
-#define DEVICE_UNIQUE_ID_SUFIT 		"dev/sufit"
-#define DEVICE_UNIQUE_ID_TREE			"dev/tree"
-#define DEVICE_UNIQUE_ID_DEV			"dev/proto"
+#define DEVICE_UNIQUE_ID_SUFIT 		"sufit"
+#define DEVICE_UNIQUE_ID_TREE			"tree"
+#define DEVICE_UNIQUE_ID_DEV			"proto"
 
+#define TOPIC_BASE								"dev/"
 #define TOPIC_DEVICE_EVENTS 			"device/events"
 #define TOPIC_DEVICE_DESCRIPTION 	"device/description"
 #define TOPIC_COMMAND 						"/command/"
@@ -23,20 +24,11 @@
 #define TOPIC_ONLINE	 						"/state/online"
 #define TOPIC_SERVICE 						"/service/"
 
-#define DEVICE_UNIQUE_ID 					DEVICE_UNIQUE_ID_TREE
-#define WIFI_NAME									"WareHouse_24GHz"
-#define WIFI_PASS									"bonifacy"
-#define MQTT_HOST									"raspberrypi"
-#define MQTT_PORT									1883
-#define MQTT_USER									"device"
-#define MQTT_PASS									"HekW4zS18fvH"
+MainApp::MainApp(DeviceConfig* deviceConfig)
+	: _deviceConfig(deviceConfig),
+		_messageBus(_deviceConfig, (MessageHandler*)this),
 
-MainApp::MainApp()
-	: _deviceConfig(DEVICE_UNIQUE_ID, WIFI_NAME, WIFI_PASS, MQTT_HOST, MQTT_PORT, MQTT_USER, MQTT_PASS),
-
-		_messageBus(&_deviceConfig, (MessageHandler*)this),
-
-		_deviceTopic(_deviceConfig.UniqueId),
+		_deviceTopic(String(TOPIC_BASE) + _deviceConfig->UniqueId),
 		_deviceCommandTopic(_deviceTopic + TOPIC_COMMAND),
 		_deviceCommandTopicSub(_deviceCommandTopic + "#"),
 		_deviceStateTopic(_deviceTopic + TOPIC_STATE),
@@ -51,7 +43,7 @@ MainApp::MainApp()
 	_messageBus.Subscribe(_deviceServiceTopicSub.c_str());
 	_messageBus.SetWill(_deviceStateOnlineTopic.c_str(), "OFF", true);
 
-	if (strcmp(_deviceConfig.UniqueId, DEVICE_UNIQUE_ID_SUFIT) == 0)
+	if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_SUFIT)
 	{
 		_pins = new ShiftRegisterPins(13, 14, 12, 20);
 
@@ -71,7 +63,7 @@ MainApp::MainApp()
 		_features.push_back(new IRFeatureController(40, this, 16));
 		_features.push_back(new IRFeatureController(50, this, 5));
 	}
-	else if (strcmp(_deviceConfig.UniqueId, DEVICE_UNIQUE_ID_TREE) == 0)
+	else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE)
 	{
 		// choinka
 		_pins = new Pins();
@@ -130,9 +122,6 @@ MainApp::~MainApp()
 
 void MainApp::Init()
 {
-	Serial.begin(115200);
-	//pinMode(LED_BUILTIN, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
-
 	SetupWifi();
 
 	//ESP.deepSleep(10 * 1000000);
@@ -166,11 +155,11 @@ void MainApp::Loop()
 void MainApp::SetupWifi()
 {
 	// We start by connecting to a WiFi network
-	sprintf(Msg(), "\nConnecting to network: %s\n", _deviceConfig.WifiName);
+	sprintf(Msg(), "\nConnecting to network: %s\n", _deviceConfig->WifiName.c_str());
 	Log(Debug);
 
 	WiFi.mode(WIFI_STA);
-	WiFi.begin(_deviceConfig.WifiName, _deviceConfig.WifiPassword);
+	WiFi.begin(_deviceConfig->WifiName.c_str(), _deviceConfig->WifiPassword.c_str());
 
 	while (WiFi.status() != WL_CONNECTED)
 	{
@@ -181,22 +170,7 @@ void MainApp::SetupWifi()
 	sprintf(Msg(), "\nWiFi connected. IP address: %s\n", WiFi.localIP().toString().c_str());
 	Log(Debug);
 }
-/*
-void MainApp::Log(LogLevel level, const char * format, ...)
-{
-	va_list args;
-  va_start (args, format);
 
-	char buffer[256];
-	//vsprintf(format, args);
-
-	// http://www.cplusplus.com/reference/cstdio/vsprintf/
-	//vsprintf
-	va_end(args);
-
-	//Serial.print(buffer);
-}
-*/
 void MainApp::Log(LogLevel level, const char* msg)
 {
 	if (msg == NULL)
@@ -237,13 +211,13 @@ void MainApp::Handle(const char* topic, const Buffer& payload)
 
 void MainApp::HandleDeviceMessage(const char* path, const Buffer& payload)
 {
-	Log(Debug, "HandleDeviceMessage (start)");
+	Log(Debug, "[MainApp] HandleDeviceMessage (start)");
 
 	std::for_each(_features.begin(), _features.end(), [&payload, path](FeatureController* feature) {
 		feature->TryHandle(path, payload);
 	});
 
-	Log(Debug, "HandleDeviceMessage (finish)");
+	Log(Debug, "[MainApp] HandleDeviceMessage (finish)");
 	// TODO send ACK Message back to sender
 }
 
@@ -253,7 +227,11 @@ void MainApp::HandleServiceCommand(const char* path, const Buffer& payload)
 
 	if (strcmp(path, "upgrade") == 0)
 	{
-		HandleUpgradeCommand(payload);
+		HandleUpdateFirmwareCommand(payload);
+	}
+	else if (strcmp(path, "config") == 0)
+	{
+		HandleUpdateConfigCommand(payload);
 	}
 	else if (strcmp(path, "sleep") == 0)
 	{
@@ -270,7 +248,7 @@ void MainApp::HandleServiceCommand(const char* path, const Buffer& payload)
 	Log(Debug, "[MainApp] HandleServiceCommand (finish)");
 }
 
-void MainApp::HandleUpgradeCommand(const Buffer& payload)
+void MainApp::HandleUpdateFirmwareCommand(const Buffer& payload)
 {
 	String url;
 	payload.ToString(url);
@@ -296,9 +274,27 @@ void MainApp::HandleUpgradeCommand(const Buffer& payload)
 	}
 }
 
+void MainApp::HandleUpdateConfigCommand(const Buffer& payload)
+{
+	String config;
+	payload.ToString(config);
+
+	Log(Warn, "[MainApp] Updating config...");
+	Serial.println(config.c_str());
+
+	if (_deviceConfig->WriteToFileSystem(config)) {
+		sprintf(Msg(), "[MainApp] Config updated to: %s", config.c_str());
+		Log(Warn);
+	} else {
+		sprintf(Msg(), "[MainApp] Could not update config to: %s", config.c_str());
+		Log(Error);
+	}
+}
+
+
 void MainApp::HandleSleepCommand(const Buffer& payload)
 {
-	Log(Debug, "[MainApp]::HandleSleepCommand (start)");
+	Log(Debug, "[MainApp] HandleSleepCommand (start)");
 
 	String url;
 	payload.ToString(url);
@@ -338,7 +334,7 @@ void MainApp::HandleSleepCommand(const Buffer& payload)
 			ESP.deepSleep(sleepSeconds * 1000000);
 	}
 
-	Log(Debug, "[MainApp]::HandleSleepCommand (finish)");
+	Log(Debug, "[MainApp] HandleSleepCommand (finish)");
 }
 
 void MainApp::HandleStatusRequest(const char* topic, const Buffer& payload)
