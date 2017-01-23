@@ -8,7 +8,7 @@ sitemap _default label="Sławka"
 	Frame label="Salon" icon="group" {
 		Text label="Sufit" icon="colorwheel" {
 			Switch 		item=CLights mappings=[OFF="All Off"]
-			
+
 			Text label="Stan" icon="settings" {
 				Text 		item=COnline
 				Text 		item=CLog
@@ -30,9 +30,9 @@ sitemap _default label="Sławka"
 				Text item=CTemp valuecolor=[>25="orange",>15="green",<=15="blue"]
 				Text item=CHumid valuecolor=[>25="orange",>15="green",<=15="blue"]
 			}
-		}		
+		}
 
-		Text label="Yamaha" icon="receiver" {	
+		Text label="Yamaha" icon="receiver" {
 			Switch		item=Yamaha_Power
 			Switch		item=Yamaha_Mute
 			Slider		item=Yamaha_Volume
@@ -41,14 +41,14 @@ sitemap _default label="Sławka"
 			Selection	item=Yamaha_NetRadio	label="Sender"			mappings=[1="N Joy", 2="Radio Sport", 3="RDU", 4="91ZM", 5="Hauraki"]
 		}
 
-		Text label="Kodi" icon="player" {	
+		Text label="Kodi" icon="player" {
 			Text		item=Kodi_State
 			Text		item=Kodi_Title
 			Text		item=Kodi_Type
 			Switch		item=Kodi_PlayPause
 			Switch		item=Kodi_Stop
 		}
-		
+
 		Text label="Dekoracje świąteczne" icon="colorwheel" {
 			Switch item=XMass_Lights mappings=[OFF="All Off"]
 			Text label="Stan" icon="settings" {
@@ -61,16 +61,21 @@ sitemap _default label="Sławka"
 				Switch item=XMass_Courtain label="Karnisz"
 				Switch item=XMass_Balkony label="Balkon"
 			}
-		}				
+		}
 	}
-	
+
 	Frame label="Temperatura" icon="temperature" {
 		Text item=CTemp			label="Salon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
 		Text item=XMass_Temp	label="Balkon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
 	}
-	
+
 	Frame label="Wilgotność" icon="humidity" {
 		Text item=CHumid		label="Salon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
 		Text item=XMass_Humid	label="Balkon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
+	}
+
+	Frame label="Obecność" icon="parents_2_3" {
+		Text item=Presence_Home_Tomek
+		Text item=Presence_Home_Regina
 	}
 }

@@ -19,8 +19,8 @@ Group		Humid				"Wilgotność [(%.1f %%)]"	<humidity>
 Switch		Yamaha_Power		"Power [%s]"				<switch>				(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:power" }
 Dimmer 		Yamaha_Volume   	"Volume [%.1f %%]"     	 	<soundvolume>   		(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:volume" }
 Switch		Yamaha_Mute			"Mute [%s]"					<soundvolume_mute>		(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:mute" }
-String		Yamaha_Input		"Input [%s]"				<video>					(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:input" } 
-String		Yamaha_Surround		"Surround [%s]"				<video>					(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:surroundProgram" } 
+String		Yamaha_Input		"Input [%s]"				<video>					(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:input" }
+String		Yamaha_Surround		"Surround [%s]"				<video>					(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:surroundProgram" }
 Number		Yamaha_NetRadio		"Net Radio"					<video>					(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:netradiotune" }
 
 String		Kodi_State			"State [%s]"				<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.State]" }
