@@ -1,0 +1,1 @@
+Color		Proto_Led				"LED"					<rgb>					{ mqtt=">[local:dev/proto/command/50:command:*:default]" }

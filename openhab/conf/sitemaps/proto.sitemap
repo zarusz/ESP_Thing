@@ -1,0 +1,4 @@
+sitemap proto label="Sławka"
+{
+	Colorpicker item=Proto_Led
+}

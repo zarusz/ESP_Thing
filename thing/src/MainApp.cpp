@@ -10,6 +10,7 @@
 #include "FeatureControllers/IRFeatureController.h"
 #include "FeatureControllers/IRSensorFeatureController.h"
 #include "FeatureControllers/ColorLEDViaIRDriverFeatureController.h"
+#include "FeatureControllers/ColorStripFeatureController.h"
 
 #define DEVICE_UNIQUE_ID_SUFIT 		"sufit"
 #define DEVICE_UNIQUE_ID_TREE			"tree"
@@ -87,6 +88,7 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		// bradboard
 		_pins = new Pins();
 
+		/*
 		_features.push_back(new SwitchFeatureController(10, this, 20, false));
 		_features.push_back(new SwitchFeatureController(11, this, 21, false));
 		_features.push_back(new SwitchFeatureController(12, this, 22, false));
@@ -103,6 +105,9 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		//_features.push_back(new IRFeatureController(50, this, 5));
 		//_features.push_back(new ColorLEDViaIRDriverFeatureController(40, this, 16));
 		_features.push_back(new ColorLEDViaIRDriverFeatureController(50, this, 5));
+		*/
+
+		_features.push_back(new ColorStripFeatureController(50, this, 14, 12, 13));
 	}
 }
 

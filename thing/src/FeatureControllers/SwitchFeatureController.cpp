@@ -1,5 +1,6 @@
 #include "SwitchFeatureController.h"
 #include "Utils/TimeUtil.h"
+#include "Values.h"
 
 SwitchFeatureController::SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh)
   : FeatureController(port, FeatureType::FeatureType_SWITCH, context),
