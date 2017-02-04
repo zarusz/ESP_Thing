@@ -33,3 +33,4 @@ then
 		if (CLightPower.state != OFF) sendCommand(CLightPower, OFF)
 	}
 end
+

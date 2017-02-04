@@ -59,10 +59,10 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		_features.push_back(new SwitchFeatureController(16, this, 26, false));
 		_features.push_back(new SwitchFeatureController(17, this, 27, false));
 
-		_features.push_back(new TempFeatureController(30, 31, this, 2));
-		_features.push_back(new IRSensorFeatureController(41, this, 4));
-		_features.push_back(new IRFeatureController(40, this, 16));
-		_features.push_back(new IRFeatureController(50, this, 5));
+		// Used to be PIN 02
+		//_features.push_back(new TempFeatureController(30, 31, this, 01)); // use TX pin
+		_features.push_back(new ColorStripFeatureController(40, this, 05, 04, 16));
+		_features.push_back(new ColorStripFeatureController(50, this, 15, 00, 02));
 	}
 	else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE)
 	{
@@ -79,7 +79,7 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 
 		_features.push_back(new SwitchFeatureController(10, this, 4, false));
 		_features.push_back(new SwitchFeatureController(11, this, 5, false));
-		_features.push_back(new SwitchFeatureController(15, this, 15, true));
+		_features.push_back(new SwitchFeatureController(15, this, 12, true));
 
 		_features.push_back(new TempFeatureController(30, 31, this, 14));
 	}
@@ -107,7 +107,7 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		_features.push_back(new ColorLEDViaIRDriverFeatureController(50, this, 5));
 		*/
 
-		_features.push_back(new ColorStripFeatureController(50, this, 14, 12, 13));
+		_features.push_back(new ColorStripFeatureController(50, this, 14, 12, 16));
 	}
 }
 

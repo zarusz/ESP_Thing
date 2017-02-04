@@ -4,6 +4,7 @@ $remote_host = "raspberrypi"
 
 $local_path = "..\openhab\conf"
 $remote_path = "control\openhab\conf"
+#$remote_path = "\etc\openhab2"
 
 $files = @(
 	"services\addons.cfg",

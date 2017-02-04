@@ -60,8 +60,8 @@ void ColorStripFeatureController::Handle(const char* topic, const Buffer& payloa
       auto s = atof(cstr + c1);
       auto v = atof(cstr + c2);
 
-      sprintf(_logger->Msg(), "c1=%d, c2=%d, h=%d,s=%d,v=%d", c1, c2, (int) h, (int) s, (int) v);
-      _logger->Log(Debug);
+      //sprintf(_logger->Msg(), "c1=%d, c2=%d, h=%d,s=%d,v=%d", c1, c2, (int) h, (int) s, (int) v);
+      //_logger->Log(Debug);
 
       // 0,0,100 - biały
       // 0,0,0 - czarny (off)
@@ -82,6 +82,10 @@ void ColorStripFeatureController::Handle(const char* topic, const Buffer& payloa
 
   analogWrite(_pinR, pwm_r);
   analogWrite(_pinG, pwm_g);
+
+  if (pwm_b == 0) {
+    analogWrite(_pinB, 1);
+  }
   analogWrite(_pinB, pwm_b);
 
   // handle HSB

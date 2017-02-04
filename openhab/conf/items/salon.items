@@ -8,8 +8,8 @@ Group 		Bedroom				"Sypialnia"			<video>		(Slawka, Rooms)
 Group		LivingCeiling		"Sufit"				<video>		(Livingroom)
 Group		Cinema				"Kino"				<video>		(Livingroom)
 
-Group:Number:MIN	SleepLevel	"Sleep [%d]"		<battery>	(Slawka)
-Group:Switch:OR(ON, OFF)	Lights	   "All Lights [(%d)]"	<light>
+Group:Number:MIN			SleepLevel	"Sleep [%d]"			<battery>	(Slawka)
+Group:Switch:OR(ON, OFF)	Lights	   	"All Lights [(%d)]"		<light>
 
 String		Mode				"Tryb"				<pie>		(Slawka)
 
@@ -40,9 +40,10 @@ Switch		CLight2    			"Halogen sofa (lewy)"		<light>   				(LivingCeiling, CLigh
 Switch		CLight3    			"Halogen sofa (środek)"		<light>   				(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev/sufit/command/12:command:*:default],<[local:dev/sufit/state/12:state:default]" }
 Switch		CLight4    			"Halogen sofa (prawy)"		<light>   				(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev/sufit/command/13:command:*:default],<[local:dev/sufit/state/13:state:default]" }
 
-Switch		CLedPower			"LED Zasilanie"				<switch>   				(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev/sufit/command/17:command:*:default],<[local:dev/sufit/state/17:state:default]" }
-Color		CLed1				"LED stół"					<rgb>					(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev/sufit/command/40:command:*:default]" }
-Color		CLed2				"LED sofa"					<rgb>					(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev/sufit/command/50:command:*:default]" }
+Switch		CLedPower			"Zasilanie"					<switch>   				(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev/sufit/command/17:command:*:default],<[local:dev/sufit/state/17:state:default]" }
+Color		CLed1				"Stół"						<rgb>					(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev/sufit/command/40:command:*:default]" }
+Color		CLed2				"Sofa"						<rgb>					(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev/sufit/command/50:command:*:default]" }
+Color		CLed				"Sofa+stół"					<rgb>   				(LivingCeiling, CLights, Lights)		{ mqtt=">[local:dev/sufit/command/40:command:*:default],>[local:dev/sufit/command/50:command:*:default]" }
 
 Number		CTemp				"Temperatura [%.1f °C]"		<temperature>			(LivingCeiling, Temp)					{ mqtt="<[local:dev/sufit/state/30:state:default]" }
 Number		CHumid				"Wilgotność [%.1f %%]"		<humidity>				(LivingCeiling, Humid)					{ mqtt="<[local:dev/sufit/state/31:state:default]" }

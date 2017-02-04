@@ -1,3 +1,4 @@
+/*
 rule "Włącz choinkę rano"
 when
 	Time cron "0 30 07 1/1 * ? *"
@@ -13,5 +14,15 @@ when
 then		
 	if (Mode.state == "Normal" && XMass_Balkony.state == OFF) {
 		sendCommand(XMass_Balkony, ON)
+	}
+end
+*/
+
+rule "Włącz światełka zasłonowe wieczorem"
+when
+	Time cron "0 00 17 1/1 * ? *"
+then		
+	if (Mode.state == "Normal" && XMass_Courtain.state == OFF) {
+		sendCommand(XMass_Courtain, ON)
 	}
 end

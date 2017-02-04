@@ -22,9 +22,10 @@ sitemap _default label="Sławka"
 				Switch item=CLight4 label="Sofa prawy"
 			}
 			Frame label="LED" {
-				Switch item=CLedPower label="Zasilanie"
-				Colorpicker item=CLed1
-				Colorpicker item=CLed2
+				Switch		item=CLedPower	label="Zasilanie"
+				Colorpicker	item=CLed1
+				Colorpicker	item=CLed2
+				Colorpicker	item=CLed
 			}
 			Frame label="Czujniki" {
 				Text item=CTemp valuecolor=[>25="orange",>15="green",<=15="blue"]
