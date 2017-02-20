@@ -30,6 +30,7 @@ sitemap _default label="Sławka"
 			Frame label="Czujniki" {
 				Text item=CTemp valuecolor=[>25="orange",>15="green",<=15="blue"]
 				Text item=CHumid valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=CMotion
 			}
 		}
 
@@ -73,6 +74,10 @@ sitemap _default label="Sławka"
 	Frame label="Wilgotność" icon="humidity" {
 		Text item=CHumid		label="Salon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
 		Text item=XMass_Humid	label="Balkon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
+	}
+
+	Frame label="Ruch" icon="motion" {
+		Text item=CMotion		label="Salon"
 	}
 
 	Frame label="Obecność" icon="parents_2_3" {

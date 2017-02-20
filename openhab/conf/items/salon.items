@@ -10,6 +10,7 @@ Group		Cinema				"Kino"				<video>		(Livingroom)
 
 Group:Number:MIN			SleepLevel	"Sleep [%d]"			<battery>	(Slawka)
 Group:Switch:OR(ON, OFF)	Lights	   	"All Lights [(%d)]"		<light>
+Group:Switch:OR(ON, OFF)	Motion	   	"Any motion [(%d)]"		<motion>
 
 String		Mode				"Tryb"				<pie>		(Slawka)
 
@@ -47,6 +48,7 @@ Color		CLed				"Sofa+stół"					<rgb>   				(LivingCeiling, CLights)				{ mqtt=
 
 Number		CTemp				"Temperatura [%.1f °C]"		<temperature>			(LivingCeiling, Temp)					{ mqtt="<[local:dev/sufit/state/30:state:default]" }
 Number		CHumid				"Wilgotność [%.1f %%]"		<humidity>				(LivingCeiling, Humid)					{ mqtt="<[local:dev/sufit/state/31:state:default]" }
+Switch		CMotion				"Ruch [MAP(presence_pl.map):%s]"	<motion>		(LivingCeiling, Motion)					{ mqtt="<[local:dev/sufit/state/32:state:default]" }
 
 Group:Switch:OR(ON, OFF)	XMass_Lights	  "All Lights [(%d)]"	<light>			(Lights)
 String		XMass_Log			"Log [%s]"					<error>   				(Livingroom)							{ mqtt="<[local:dev/tree/state/log:state:default]" }

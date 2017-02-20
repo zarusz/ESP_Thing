@@ -8,6 +8,7 @@
 // features
 #include "FeatureControllers/SwitchFeatureController.h"
 #include "FeatureControllers/TempFeatureController.h"
+#include "FeatureControllers/MotionSensorFeatureController.h"
 #include "FeatureControllers/IRFeatureController.h"
 #include "FeatureControllers/IRSensorFeatureController.h"
 #include "FeatureControllers/ColorLEDViaIRDriverFeatureController.h"
@@ -64,7 +65,7 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		_features.push_back(new ColorStripOverWireFeatureController(50, this, 8, 1));
 
 		_features.push_back(new TempFeatureController(30, 31, this, 14));
-		// GPIO12 - motion -2   dlugie (zielony) -
+		_features.push_back(new MotionSensorFeatureController(32, this, 12));
 		// GPIO13 - free
 	}
 	else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE)
