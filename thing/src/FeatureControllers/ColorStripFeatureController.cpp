@@ -82,10 +82,6 @@ void ColorStripFeatureController::Handle(const char* topic, const Buffer& payloa
 
   analogWrite(_pinR, pwm_r);
   analogWrite(_pinG, pwm_g);
-
-  if (pwm_b == 0) {
-    analogWrite(_pinB, 1);
-  }
   analogWrite(_pinB, pwm_b);
 
   // handle HSB

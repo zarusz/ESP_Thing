@@ -1,1 +1,9 @@
-Color		Proto_Led				"LED"					<rgb>					{ mqtt=">[local:dev/proto/command/50:command:*:default]" }
+Switch		ProtoCLight1			"Halogen stół"				<light>   				{ mqtt=">[local:dev/tree/command/10:command:*:default],<[local:dev/tree/state/10:state:default]" }
+Switch		ProtoCLight2    		"Halogen sofa (lewy)"		<light>   				{ mqtt=">[local:dev/tree/command/11:command:*:default],<[local:dev/tree/state/11:state:default]" }
+Switch		ProtoCLight3    		"Halogen sofa (środek)"		<light>   				{ mqtt=">[local:dev/tree/command/12:command:*:default],<[local:dev/tree/state/12:state:default]" }
+Switch		ProtoCLight4    		"Halogen sofa (prawy)"		<light>   				{ mqtt=">[local:dev/tree/command/13:command:*:default],<[local:dev/tree/state/13:state:default]" }
+
+Switch		ProtoCLedPower			"Zasilanie"					<switch>   				{ mqtt=">[local:dev/tree/command/17:command:*:default],<[local:dev/tree/state/17:state:default]" }
+Color		ProtoCLed1				"Stół"						<rgb>					{ mqtt=">[local:dev/tree/command/40:command:*:default]" }
+Color		ProtoCLed2				"Sofa"						<rgb>					{ mqtt=">[local:dev/tree/command/50:command:*:default]" }
+Color		ProtoCLed				"Sofa+stół"					<rgb>   				{ mqtt=">[local:dev/tree/command/40:command:*:default],>[local:dev/tree/command/50:command:*:default]" }

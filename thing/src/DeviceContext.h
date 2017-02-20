@@ -1,6 +1,7 @@
 #ifndef _DeviceContext_h
 #define _DeviceContext_h
 
+#include <Wire.h>
 #include "DeviceConfig.h"
 #include "Transport/MessageBus.h"
 #include "Pins/Pins.h"

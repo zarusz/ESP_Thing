@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <algorithm>
 #include "Utils/TimeUtil.h"
+#include <Wire.h>
 
 // features
 #include "FeatureControllers/SwitchFeatureController.h"
@@ -11,6 +12,7 @@
 #include "FeatureControllers/IRSensorFeatureController.h"
 #include "FeatureControllers/ColorLEDViaIRDriverFeatureController.h"
 #include "FeatureControllers/ColorStripFeatureController.h"
+#include "FeatureControllers/ColorStripOverWireFeatureController.h"
 
 #define DEVICE_UNIQUE_ID_SUFIT 		"sufit"
 #define DEVICE_UNIQUE_ID_TREE			"tree"
@@ -46,23 +48,24 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 
 	if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_SUFIT)
 	{
-		_pins = new ShiftRegisterPins(13, 14, 12, 20);
+		_pins = new ShiftRegisterPins(15, 2, 0, 20);
+		Wire.begin(); // join i2c bus (address optional for master)
 
 		// sufit
 		_features.push_back(new SwitchFeatureController(10, this, 20, false));
 		_features.push_back(new SwitchFeatureController(11, this, 21, false));
 		_features.push_back(new SwitchFeatureController(12, this, 22, false));
 		_features.push_back(new SwitchFeatureController(13, this, 23, false));
-		// Not used 14-15
-		//_features.push_back(new SwitchFeatureController(14, this, 24, false));
-		//_features.push_back(new SwitchFeatureController(15, this, 25, false));
-		_features.push_back(new SwitchFeatureController(16, this, 26, false));
-		_features.push_back(new SwitchFeatureController(17, this, 27, false));
+		// Not used 14-16
+		_features.push_back(new SwitchFeatureController(14, this, 24, false));
 
-		// Used to be PIN 02
-		//_features.push_back(new TempFeatureController(30, 31, this, 01)); // use TX pin
-		_features.push_back(new ColorStripFeatureController(40, this, 05, 04, 16));
-		_features.push_back(new ColorStripFeatureController(50, this, 15, 00, 02));
+		//_features.push_back(new ColorStripFeatureController(50, this, 14, 12, 16));
+		_features.push_back(new ColorStripOverWireFeatureController(40, this, 8, 0));
+		_features.push_back(new ColorStripOverWireFeatureController(50, this, 8, 1));
+
+		_features.push_back(new TempFeatureController(30, 31, this, 14));
+		// GPIO12 - motion -2   dlugie (zielony) -
+		// GPIO13 - free
 	}
 	else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE)
 	{
@@ -86,28 +89,21 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 	else
 	{
 		// bradboard
-		_pins = new Pins();
+		//_pins = new Pins();
+		_pins = new ShiftRegisterPins(13, 12, 14, 20);
+		Wire.begin(); // join i2c bus (address optional for master)
 
-		/*
+		// sufit
 		_features.push_back(new SwitchFeatureController(10, this, 20, false));
 		_features.push_back(new SwitchFeatureController(11, this, 21, false));
 		_features.push_back(new SwitchFeatureController(12, this, 22, false));
 		_features.push_back(new SwitchFeatureController(13, this, 23, false));
-		// Not used 14-15
-		//_features.push_back(new SwitchFeatureController(14, this, 24, false));
-		//_features.push_back(new SwitchFeatureController(15, this, 25, false));
-		_features.push_back(new SwitchFeatureController(16, this, 4, false)); // 	_features.push_back(new SwitchFeatureController(16, this, 26, false));
-		_features.push_back(new SwitchFeatureController(17, this, 5, false)); // _features.push_back(new SwitchFeatureController(17, this, 27, false));
+		// Not used 14-16
+		_features.push_back(new SwitchFeatureController(17, this, 27, false));
 
-		_features.push_back(new TempFeatureController(30, 31, this, 2));
-		//_features.push_back(new IRSensorFeatureController(41, this, 4));
-		//_features.push_back(new IRFeatureController(40, this, 16));
-		//_features.push_back(new IRFeatureController(50, this, 5));
-		//_features.push_back(new ColorLEDViaIRDriverFeatureController(40, this, 16));
-		_features.push_back(new ColorLEDViaIRDriverFeatureController(50, this, 5));
-		*/
-
-		_features.push_back(new ColorStripFeatureController(50, this, 14, 12, 16));
+		//_features.push_back(new ColorStripFeatureController(50, this, 14, 12, 16));
+		_features.push_back(new ColorStripOverWireFeatureController(40, this, 8, 0));
+		_features.push_back(new ColorStripOverWireFeatureController(50, this, 8, 1));
 	}
 }
 

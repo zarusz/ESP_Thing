@@ -15,7 +15,9 @@ $files = @(
 	"transform\presence_pl.map",
 	"items\salon.items",
 	"items\presence.items",
+	"items\proto.items",
 	"sitemaps\_default.sitemap",
+	"sitemaps\proto.sitemap",
 	"rules\mieszkanie.rules",
 	"rules\salon_sufit.rules",
 	"rules\swieta_bozego_narodzenia.rules"
