@@ -1,13 +1,12 @@
-
 rule "Zmiana stanu"
 when
 	Item Mode received update
-then	
+then
 	logInfo("Ceiling", "Turning all lights off")
 	if (Mode.state == "Normal") {
 		sendCommand(SleepLevel, 0)
 	}
-		
+
 	if (Mode.state == "Sleeping" || Mode.state == "Away") {
 		sendCommand(SleepLevel, 4)
 		if (Lights.state == ON) sendCommand(Lights, OFF)
@@ -18,7 +17,7 @@ end
 rule "Tryb - ustaw normalny po spaniu jeżeli 6 rano"
 when
 	Time cron "0 00 07 1/1 * ? *"
-then		
+then
 	if (Mode.state == "Sleeping") {
 		sendCommand(Mode, "Normal")
 	}

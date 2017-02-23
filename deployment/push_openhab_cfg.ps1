@@ -23,6 +23,12 @@ $files = @(
 	"rules\swieta_bozego_narodzenia.rules"
 )
 
+$files = @(
+	"items\salon.items",
+	"rules\salon_sufit.rules",
+	"sitemaps\_default.sitemap"
+)
+
 foreach ($file in $files) {
 	$remote_file = "$remote_path\$file".replace("\", "/")
 	& "pscp" -load $remote_session "$($local_path)\$file" "$($remote_host):$remote_file"
