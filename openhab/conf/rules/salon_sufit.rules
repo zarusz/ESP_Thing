@@ -25,9 +25,9 @@ end
 
 rule "whenWorkHours_noMotion_turnLightsOff"
 when
-	Time cron "0 */1 * ? * Mon-Fri *"
+	Time cron "0 */5 9-17 ? * Mon-Fri *"
 then
-	if (CMotionLastMinutes.state >= 1 && CLights.state == ON) {
+	if (CMotionLastMinutes.state >= 30 && CLights.state == ON) {
 		logInfo("Sufit", "Wyłącz światło - sufit")
 		sendCommand(CLights, OFF)
 	}	

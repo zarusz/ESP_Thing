@@ -16,9 +16,20 @@ end
 
 rule "Tryb - ustaw normalny po spaniu jeżeli 6 rano"
 when
-	Time cron "0 00 07 1/1 * ? *"
+	Time cron "0 00 07 ? * *"
 then
 	if (Mode.state == "Sleeping") {
+		logInfo("Tryb", "Tryb: normalny")
 		sendCommand(Mode, "Normal")
 	}
+end
+
+rule "Tryb - ustaw sleeping jeżeli 1 rano i brak ruchu od 30 minut"
+when
+	Time cron "0 */5 0-8 ? * *"
+then
+	if (CMotionLastMinutes.state >= 30 && Mode.state == "Normal") {
+		logInfo("Tryb", "Tryb: spanie")
+		sendCommand(Mode, "Sleeping")
+	}	
 end
