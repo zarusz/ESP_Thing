@@ -1,4 +1,12 @@
-rule "Zmiana stanu"
+rule "Tryb - start"
+when 
+	System started
+then
+	logInfo("Mode", "Tryb: normalny")
+	sendCommand(Mode, "Normal")
+end
+
+rule "Tryb - zmiana"
 when
 	Item Mode received update
 then
@@ -14,22 +22,44 @@ then
 	}
 end
 
-rule "Tryb - ustaw normalny po spaniu jeżeli 6 rano"
+rule "Tryb - ustaw spanie, jeżeli 1 rano i brak ruchu od 20 minut"
 when
-	Time cron "0 00 07 ? * *"
+	Time cron "00 */5 00-06 ? * *"
+then
+	// see http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/tutorial-lesson-06
+	if (CMotionLastMinutes.state >= 20 && Mode.state == "Normal") {
+		logInfo("Mode", "Tryb: spanie")
+		sendCommand(Mode, "Sleeping")
+	}	
+end
+
+rule "Tryb - ustaw normalny, jeżeli 7 rano i spanie"
+when
+	Time cron "00 00 07 ? * *"
 then
 	if (Mode.state == "Sleeping") {
-		logInfo("Tryb", "Tryb: normalny")
+		logInfo("Mode", "Tryb: normalny")
 		sendCommand(Mode, "Normal")
 	}
 end
 
-rule "Tryb - ustaw sleeping jeżeli 1 rano i brak ruchu od 30 minut"
+rule "Tryb - ustaw poza, jeżeli 9 rano i brak ruchu"
 when
-	Time cron "0 */5 0-8 ? * *"
+	Time cron "00 */5 09 ? * MON-FRI"
 then
 	if (CMotionLastMinutes.state >= 30 && Mode.state == "Normal") {
-		logInfo("Tryb", "Tryb: spanie")
-		sendCommand(Mode, "Sleeping")
+		logInfo("Mode", "Tryb: poza domem")
+		sendCommand(Mode, "Away")
 	}	
 end
+
+rule "Tryb - ustaw normalny, jeżeli 17 rano i było poza"
+when
+	Time cron "00 00 17 ? * *"
+then
+	if (Mode.state == "Away") {
+		logInfo("Mode", "Tryb: normalny")
+		sendCommand(Mode, "Normal")
+	}	
+end
+

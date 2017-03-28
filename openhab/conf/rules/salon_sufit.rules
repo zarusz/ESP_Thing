@@ -3,32 +3,24 @@ import java.util.Date
 
 var DateTime	lastMotion
 
-rule "captureLastMotion"
+rule "Motion_CaptureLastMotion"
 when
 	Item CMotion changed from OFF to ON
 then
+	if (CMotionLastMinutes.state > 30) 
+		logDebug("Mieszkanie", "Wykryto ruch o " + lastMotion)
+	
 	lastMotion = now
 	sendCommand(CMotionLastMinutes, 0);
-	logInfo("Sufit", "Wykryto ruch o " + lastMotion)
 end
 
-rule "calculateLastMotionMinutes"
+rule "Motion_CalculateLastMotionMinutes"
 when
 	Time cron "0 */1 * ? * * *"
 then
 	var lastMotionMinutes = 0
 	if (lastMotion != null) lastMotionMinutes = Minutes.minutesBetween(lastMotion, now).getMinutes()
 	sendCommand(CMotionLastMinutes, lastMotionMinutes);
-	logInfo("Sufit", "Od ostatniego ruchu upłyęło minut: " + lastMotionMinutes)
-end
-
-
-rule "whenWorkHours_noMotion_turnLightsOff"
-when
-	Time cron "0 */5 9-17 ? * Mon-Fri *"
-then
-	if (CMotionLastMinutes.state >= 30 && CLights.state == ON) {
-		logInfo("Sufit", "Wyłącz światło - sufit")
-		sendCommand(CLights, OFF)
-	}	
+	if ((lastMotionMinutes % 15) == 0)
+		logDebug("Mieszkanie", "Od ostatniego ruchu upłyęło minut: " + lastMotionMinutes)
 end

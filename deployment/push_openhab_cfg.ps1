@@ -24,12 +24,12 @@ $files = @(
 )
 
 
-#$files = @(
+$files = @(
 	#"items\salon.items",
-	#"rules\salon_sufit.rules",
-	#"rules\mieszkanie.rules",
+	"rules\salon_sufit.rules",
+	"rules\mieszkanie.rules"
 	#"sitemaps\_default.sitemap"
-#)
+)
 
 foreach ($file in $files) {
 	$remote_file = "$remote_path\$file".replace("\", "/")

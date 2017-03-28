@@ -1,5 +1,5 @@
 {
-  "UniqueId": "proto",
+  "UniqueId": "tree",
   "WifiName": "WareHouse_24GHz",
   "WifiPassword": "bonifacy",
   "MqttHost": "raspberrypi",

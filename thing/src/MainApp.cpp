@@ -49,6 +49,10 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 
 	if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_SUFIT)
 	{
+		/*
+		16 - Connected to RST (deep sleep)
+		*/
+
 		_pins = new ShiftRegisterPins(15, 2, 0, 20);
 		Wire.begin(); // join i2c bus (address optional for master)
 
