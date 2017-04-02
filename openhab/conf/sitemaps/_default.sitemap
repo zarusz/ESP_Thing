@@ -64,6 +64,10 @@ sitemap _default label="Sławka"
 				Switch item=XMass_Balkony label="Balkon"
 			}
 		}
+		
+		Text label="Korytarz" icon="colorwheel" {
+			Switch item=Korytarz_LED1
+		}
 	}
 
 	Frame label="Temperatura" icon="temperature" {

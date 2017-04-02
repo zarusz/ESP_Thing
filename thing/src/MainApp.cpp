@@ -18,6 +18,7 @@
 #define DEVICE_UNIQUE_ID_SUFIT 		"sufit"
 #define DEVICE_UNIQUE_ID_TREE			"tree"
 #define DEVICE_UNIQUE_ID_DEV			"proto"
+#define DEVICE_UNIQUE_ID_KORYTARZ	"korytarz"
 
 #define TOPIC_BASE								"dev/"
 #define TOPIC_DEVICE_EVENTS 			"device/events"
@@ -90,6 +91,18 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		_features.push_back(new SwitchFeatureController(15, this, 12, true));
 
 		_features.push_back(new TempFeatureController(30, 31, this, 14));
+	}
+	else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_KORYTARZ)
+	{
+		// choinka
+		_pins = new Pins();
+
+		/*
+		16 - Connected to RST (deep sleep)
+		14 - LED
+		*/
+
+		_features.push_back(new SwitchFeatureController(10, this, 14, true));
 	}
 	else
 	{

@@ -16,6 +16,7 @@ $files = @(
 	"items\salon.items",
 	"items\presence.items",
 	"items\proto.items",
+	"items\korytarz.items",
 	"sitemaps\_default.sitemap",
 	"sitemaps\proto.sitemap",
 	"rules\mieszkanie.rules",
@@ -26,8 +27,10 @@ $files = @(
 
 $files = @(
 	#"items\salon.items",
-	"rules\salon_sufit.rules",
-	"rules\mieszkanie.rules"
+	#"rules\salon_sufit.rules",
+	#"rules\mieszkanie.rules"
+	"items\korytarz.items",
+	"sitemaps\_default.sitemap"
 	#"sitemaps\_default.sitemap"
 )
 
