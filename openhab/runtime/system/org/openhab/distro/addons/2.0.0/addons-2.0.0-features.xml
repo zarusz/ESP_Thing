@@ -1,0 +1,1383 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="addons-2.0.0">
+    <feature name="esh-binding-digitalstrom" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <feature prerequisite="false" dependency="false">esh-io-transport-mdns</feature>
+        <bundle>mvn:org.eclipse.smarthome.binding/org.eclipse.smarthome.binding.digitalstrom/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-binding-hue" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <feature prerequisite="false" dependency="false">esh-io-transport-upnp</feature>
+        <bundle>mvn:org.eclipse.smarthome.binding/org.eclipse.smarthome.binding.hue/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-binding-fsinternetradio" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <feature prerequisite="false" dependency="false">esh-io-transport-upnp</feature>
+        <bundle>mvn:org.eclipse.smarthome.binding/org.eclipse.smarthome.binding.fsinternetradio/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-binding-lifx" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle>mvn:org.eclipse.smarthome.binding/org.eclipse.smarthome.binding.lifx/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-binding-ntp" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle>mvn:org.eclipse.smarthome.binding/org.eclipse.smarthome.binding.ntp/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-binding-sonos" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <feature prerequisite="false" dependency="false">esh-io-transport-upnp</feature>
+        <bundle>mvn:org.eclipse.smarthome.binding/org.eclipse.smarthome.binding.sonos/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-binding-wemo" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <feature prerequisite="false" dependency="false">esh-io-transport-upnp</feature>
+        <bundle>mvn:org.eclipse.smarthome.binding/org.eclipse.smarthome.binding.wemo/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-binding-yahooweather" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle>mvn:org.eclipse.smarthome.binding/org.eclipse.smarthome.binding.yahooweather/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-transform-exec" description="Exec Transformation" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle start-level="75">mvn:org.eclipse.smarthome.transform/org.eclipse.smarthome.transform.exec/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-transform-javascript" description="Javascript Transformation" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle start-level="75">mvn:org.eclipse.smarthome.transform/org.eclipse.smarthome.transform.javascript/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-transform-jsonpath" description="JSONPath Transformation" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle start-level="75">mvn:org.eclipse.smarthome.transform/org.eclipse.smarthome.transform.jsonpath/0.9.0.b4</bundle>
+        <bundle dependency="true">mvn:com.jayway.jsonpath/json-path/2.0.0</bundle>
+        <bundle dependency="true">mvn:net.minidev/asm/1.0.2</bundle>
+        <bundle dependency="true">mvn:net.minidev/json-smart/2.1.1</bundle>
+    </feature>
+    <feature name="esh-transform-map" description="Map Transformation" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle start-level="75">mvn:org.eclipse.smarthome.transform/org.eclipse.smarthome.transform.map/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-transform-regex" description="RegEx Transformation" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle start-level="75">mvn:org.eclipse.smarthome.transform/org.eclipse.smarthome.transform.regex/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-transform-scale" description="Scale Transformation" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle start-level="75">mvn:org.eclipse.smarthome.transform/org.eclipse.smarthome.transform.scale/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-transform-xpath" description="XPath Transformation" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle start-level="75">mvn:org.eclipse.smarthome.transform/org.eclipse.smarthome.transform.xpath/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-transform-xslt" description="XSLT Transformation" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle start-level="75">mvn:org.eclipse.smarthome.transform/org.eclipse.smarthome.transform.xslt/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-ui-basic" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <feature prerequisite="false" dependency="false">esh-ui</feature>
+        <feature prerequisite="false" dependency="true">esh-io-rest-sitemap</feature>
+        <bundle>mvn:org.eclipse.smarthome.extension.ui/org.eclipse.smarthome.ui.basic/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-ui-classic" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <feature prerequisite="false" dependency="false">esh-ui</feature>
+        <bundle>mvn:org.eclipse.smarthome.extension.ui/org.eclipse.smarthome.ui.classic/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-ui-paper" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle>mvn:org.eclipse.smarthome.extension.ui/org.eclipse.smarthome.ui.paper/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-ui-iconset-classic" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <feature prerequisite="false" dependency="false">esh-ui-icon</feature>
+        <bundle>mvn:org.eclipse.smarthome.extension.ui.iconset/org.eclipse.smarthome.ui.iconset.classic/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-io-javasound" description="JavaSound Audio Support" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.javasound/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-io-webaudio" description="Web Audio Support" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.webaudio/0.9.0.b4</bundle>
+    </feature>
+    <feature name="esh-voice-mactts" description="MacOS Text-to-Speech" version="0.9.0.b4">
+        <feature prerequisite="false" dependency="false">esh-base</feature>
+        <bundle>mvn:org.eclipse.smarthome.voice/org.eclipse.smarthome.voice.mactts/0.9.0.b4</bundle>
+    </feature>
+    <feature name="openhab-binding-digitalstrom" description="digitalSTROM Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-binding-digitalstrom</feature>
+    </feature>
+    <feature name="openhab-binding-hue" description="Hue Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-binding-hue</feature>
+    </feature>
+    <feature name="openhab-binding-fsinternetradio" description="Frontier Silicon Internet Radio Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-binding-fsinternetradio</feature>
+    </feature>
+    <feature name="openhab-binding-lifx" description="LIFX Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-binding-lifx</feature>
+    </feature>
+    <feature name="openhab-binding-ntp" description="NTP Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-binding-ntp</feature>
+    </feature>
+    <feature name="openhab-binding-sonos" description="Sonos Binding" version="2.0.0">
+        <config name="binding.sonos" append="false">
+            opmlUrl = http://opml.radiotime.com/Describe.ashx?c=nowplaying&amp;partnerId=IAeIhU42&amp;id=%id&amp;serial=%serial
+        </config>
+        <feature prerequisite="false" dependency="false">esh-binding-sonos</feature>
+    </feature>
+    <feature name="openhab-binding-wemo" description="Wemo Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-binding-wemo</feature>
+    </feature>
+    <feature name="openhab-binding-yahooweather" description="Yahoo Weather Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-binding-yahooweather</feature>
+    </feature>
+    <feature name="openhab-transformation-exec" description="Exec Transformation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-transform-exec</feature>
+    </feature>
+    <feature name="openhab-transformation-javascript" description="Javascript Transformation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-transform-javascript</feature>
+    </feature>
+    <feature name="openhab-transformation-map" description="Map Transformation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-transform-map</feature>
+    </feature>
+    <feature name="openhab-transformation-scale" description="Scale Transformation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-transform-scale</feature>
+    </feature>
+    <feature name="openhab-transformation-regex" description="RegEx Transformation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-transform-regex</feature>
+    </feature>
+    <feature name="openhab-transformation-xpath" description="XPath Transformation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-transform-xpath</feature>
+    </feature>
+    <feature name="openhab-transformation-jsonpath" description="JSONPath Transformation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-transform-jsonpath</feature>
+    </feature>
+    <feature name="openhab-transformation-xslt" description="XSLT Transformation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-transform-xslt</feature>
+    </feature>
+    <feature name="openhab-voice-mactts" description="MacOS Text-to-Speech" version="2.0.0">
+        <feature prerequisite="false" dependency="false">esh-voice-mactts</feature>
+    </feature>
+    <feature name="openhab-ui-basic" description="Basic UI" version="2.0.0">
+        <config name="org.eclipse.smarthome.basicui" append="false">
+            defaultSitemap = _default
+            iconType = svg
+        </config>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">esh-ui-basic</feature>
+        <bundle start-level="80">mvn:org.openhab.core/org.openhab.ui.basicui/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-ui-classic" description="Classic UI" version="2.0.0">
+        <config name="org.eclipse.smarthome.classicui" append="false">
+            defaultSitemap = _default
+        </config>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">esh-ui-classic</feature>
+        <bundle start-level="80">mvn:org.openhab.core/org.openhab.ui.classicui/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-ui-paper" description="Paper UI" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">esh-ui-paper</feature>
+        <bundle start-level="80">mvn:org.openhab.core/org.openhab.ui.paperui/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-misc-restdocs" description="REST Documentation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle>mvn:org.openhab.core/org.openhab.io.rest.docs/2.0.0</bundle>
+        <requirement>esh.tp;filter:="(feature=jax-rs-provider-swagger)"</requirement>
+    </feature>
+    <feature name="openhab-binding-allplay" description="AllPlay Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.allplay/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-amazondashbutton" description="Amazon Dash Button Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.amazondashbutton/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-astro" description="Astro Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.astro/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-autelis" description="Autelis Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.autelis/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-avmfritz" description="AVM Fritz!Box Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.avmfritz/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-chromecast" description="Chromecast Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-mdns</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.chromecast/2.0.0</bundle>
+        <bundle dependency="true">mvn:org.codehaus.jackson/jackson-core-asl/1.9.13</bundle>
+        <bundle dependency="true">mvn:org.codehaus.jackson/jackson-mapper-asl/1.9.13</bundle>
+    </feature>
+    <feature name="openhab-binding-coolmasternet" description="CoolMasterNet Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.coolmasternet/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-dscalarm" description="DSCAlarm Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.dscalarm/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-exec" description="Exec Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.exec/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-feed" description="Feed Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-feed</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.feed/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-freebox" description="Freebox Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-mdns</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.freebox/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-globalcache" description="GlobalCache Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">esh-transform-map</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.globalcache/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-harmonyhub" description="Harmony Hub Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.harmonyhub/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-netatmo" description="Netatmo Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.netatmo/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-homematic" description="Homematic Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.homematic/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-hdanywhere" description="HDAnywhere Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.hdanywhere/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-hdpowerview" description="HD PowerView Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.hdpowerview/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-ipp" description="IPP Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-mdns</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.ipp/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-keba" description="Keba Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.keba/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-kodi" description="Kodi Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.kodi/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-kostalinverter" description="Kostal Inverter Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.kostalinverter/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-lutron" description="Lutron Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.lutron/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-max" description="MAX! Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.max/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-meteostick" description="Meteostick Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.meteostick/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-miele" description="Miele@home Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.miele/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-milight" description="Milight Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.milight/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-minecraft" description="Minecraft Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-mdns</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.minecraft/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-network" description="Network Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">esh-model-script</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.network/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-oceanic" description="Oceanic Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.oceanic/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-onkyo" description="Onkyo Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.onkyo/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-opensprinkler" description="OpenSprinkler Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.opensprinkler/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-orvibo" description="Orvibo Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.orvibo/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-pioneeravr" description="PioneerAVR Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.pioneeravr/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-pulseaudio" description="Pulseaudio Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-mdns</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.pulseaudio/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-rme" description="RME Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.rme/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-rfxcom" description="RFXCOM Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.rfxcom/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-russound" description="Russound Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.russound/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-samsungtv" description="Samsung TV Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.samsungtv/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-silvercrestwifisocket" description="Silvercrest Wifi Plug Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.silvercrestwifisocket/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-smaenergymeter" description="SMA Energy Monitor Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.smaenergymeter/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-squeezebox" description="Squeezebox Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.squeezebox/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-systeminfo" description="System Info Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.systeminfo/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-tellstick" description="Tellstick Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.tellstick/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-tesla" description="Tesla Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.tesla/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-urtsi" description="Somfy URTSI II Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.urtsi/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-toon" description="Toon Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.toon/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-vitotronic" description="Vitotronic Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.vitotronic/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-yamahareceiver" description="Yamaha Receiver Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-upnp</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.yamahareceiver/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-zwave" description="Z-Wave Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.zwave/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-binding-zway" description="Z-Way Binding" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.zway/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-transport-feed" description="Feed Transport" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.transport.feed/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-misc-openhabcloud" description="openHAB Cloud Connector" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.openhabcloud/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-misc-hueemulation" description="Hue Emulation" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.hueemulation/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-misc-homekit" description="HomeKit Integration" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-mdns</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.homekit/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-misc-homekit" description="HomeKit Integration" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-mdns</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.homekit/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-misc-imperihome" description="ImperiHome Integration" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">esh-model-item</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.imperihome/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-voice-marytts" description="Mary Text-to-Speech" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.voice/org.openhab.voice.marytts/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-voice-voicerss" description="VoiceRSS Text-to-Speech" version="2.0.0">
+        <configfile finalname="${openhab.conf}/services/voicerss.cfg" override="false">mvn:org.openhab.addons/openhab2-addons-external/2.0.0/cfg/voicerss</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.voice/org.openhab.voice.voicerss/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-ui-cometvisu" description="CometVisu" version="2.0.0">
+        <configfile finalname="${openhab.conf}/services/cometvisu.cfg" override="false">mvn:org.openhab.addons/openhab2-addons-external/2.0.0/cfg/cometvisu</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">esh-model-item</feature>
+        <feature prerequisite="false" dependency="false">esh-model-sitemap</feature>
+        <feature prerequisite="false" dependency="false">esh-ui-icon</feature>
+        <feature prerequisite="false" dependency="false">esh-ui</feature>
+        <bundle start-level="80">mvn:org.openhab.ui/org.openhab.ui.cometvisu/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-ui-cometvisu-php" description="PHP support for CometVisu" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-ui-cometvisu</feature>
+        <bundle start-level="80">mvn:org.openhab.ui/org.openhab.ui.cometvisu.php/2.0.0</bundle>
+        <bundle start-level="80">mvn:org.openhab/com.caucho.quercus/4.0.45</bundle>
+    </feature>
+    <feature name="openhab-ui-habmin" description="HABmin" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.ui/org.openhab.ui.habmin/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-ui-habpanel" description="HABPanel" version="2.0.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <bundle start-level="80">mvn:org.openhab.ui/org.openhab.ui.habpanel/2.0.0</bundle>
+    </feature>
+    <feature name="openhab-action-ecobee" description="Ecobee Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/ecobee.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/ecobee</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-binding-ecobee1</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.ecobee/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-mail" description="Mail Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mail.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mail</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.mail/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-mios" description="MiOS Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mios.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mios</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-binding-mios1</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.mios/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-mqtt" description="MQTT Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mqtt.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mqtt</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.transport.mqtt/1.9.0</bundle>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.mqtt/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-nma" description="NotifyMyAndroid Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/nma.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/nma</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.nma/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-pebble" description="Pebble Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/pebble.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/pebble</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.pebble/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-prowl" description="Prowl Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/prowl.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/prowl</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.prowl/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-pushover" description="Pushover Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/pushover.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/pushover</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.pushover/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-pushsafer" description="Pushsafer Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/pushsafer.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/pushsafer</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.pushsafer/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-satel" description="Satel Action" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-binding-satel1</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.satel/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-telegram" description="Telegram Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/telegram.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/telegram</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.telegram/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-twitter" description="Twitter Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/twitter.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/twitter</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.twitter/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-xbmc" description="XBMC Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/xbmc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/xbmc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.xbmc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-action-xmpp" description="XMPP Action" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/xmpp.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/xmpp</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.action/org.openhab.action.xmpp/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-alarmdecoder1" description="Alarm Decoder Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/alarmdecoder.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/alarmdecoder</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.alarmdecoder/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-anel1" description="Anel Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/anel.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/anel</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.anel/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-bticino1" description="Bticino Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/bticino.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/bticino</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.bticino/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-caldav-command1" description="CalDAV Binding (command)" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/caldavCommand.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/caldavCommand</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-io-caldav1</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.caldav-command/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-caldav-personal1" description="CalDAV Binding (personal)" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/caldavPersonal.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/caldavPersonal</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-io-caldav1</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.caldav-personal/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-comfoair1" description="ComfoAir Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/comfoair.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/comfoair</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.comfoair/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-denon1" description="Denon Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/denon.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/denon</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.denon/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-dmx1" description="DMX OLA Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/dmx.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/dmx</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.dmx/1.9.0</bundle>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.dmx.ola/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-dsmr1" description="DSMR Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/dsmr.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/dsmr</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.dsmr/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-ebus1" description="eBUS Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/ebus.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/ebus</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.ebus/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-ecobee1" description="Ecobee Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/ecobee.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/ecobee</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.ecobee/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-ecotouch1" description="Waterkotte Ecotouch Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/ecotouch.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/ecotouch</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.ecotouch/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-energenie1" description="Energenie Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.energenie/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-enocean1" description="EnOcean Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/enocean.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/enocean</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.enocean/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-enphaseenergy1" description="Enphase Energy Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/enphaseenergy.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/enphaseenergy</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.enphaseenergy/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-epsonprojector1" description="Epson Projector Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/epsonprojector.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/epsonprojector</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.epsonprojector/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-expire1" description="Expire Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.expire/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-fatekplc1" description="Fatek PLC Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/fatekplc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/fatekplc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.fatekplc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-freeswitch1" description="Freeswitch Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/freeswitch.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/freeswitch</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.freeswitch/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-fritzbox1" description="Fritzbox Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/fritzbox.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/fritzbox</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.fritzbox/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-fritzboxtr0641" description="Fritzbox TR064 Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/fritzboxtr064.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/fritzboxtr064</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.fritzboxtr064/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-fs201" description="FS20 Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-cul1</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.fs20/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-garadget1" description="Garadget Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/garadget.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/garadget</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.garadget/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-gc100ir1" description="GC100IR Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.gc100ir/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-gpio" description="GPIO Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-io-gpio1</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.gpio/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-heatmiser1" description="Heatmiser Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/heatmiser.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/heatmiser</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.heatmiser/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-horizon" description="Horizon Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/horizon.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/horizon</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.horizon/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-http1" description="HTTP Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/http.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/http</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.http/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-ihc1" description="IHC Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/ihc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/ihc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.ihc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-insteonplm1" description="InsteonPLM Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/insteonplm.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/insteonplm</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.insteonplm/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-intertechno1" description="Intertechno Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/culintertechno.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/culintertechno</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-cul1</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.intertechno/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-ipx8001" description="IPX800 Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/ipx800.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/ipx800</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.ipx800/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-irtrans1" description="IRTrans Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/irtrans.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/irtrans</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-binding-tcp1</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.irtrans/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-jointspace1" description="jointSPACE Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/jointspace.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/jointspace</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.jointspace/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-km1001" description="KM200 Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/km200.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/km200</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.km200/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-knx1" description="KNX Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/knx.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/knx</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.knx/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-koubachi1" description="Koubachi Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/koubachi.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/koubachi</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.koubachi/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-lcn1" description="LCN Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.lcn/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-lgtv1" description="LGTV Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/lgtv.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/lgtv</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.lgtv/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-mochadx101" description="MochadX10 Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mochadx10.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mochadx10</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.mochadx10/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-milight1" description="Milight Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/milight.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/milight</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.milight/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-mios1" description="MiOS Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mios.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mios</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosArmedCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-armedcommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosContactIn.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-contactin</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosContactOut.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-contactout</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosDeviceStatusUI.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-devicestatusui</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosDimmerCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-dimmercommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosLockCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-lockcommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosMSwitch1.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-mswitch1</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosMSwitch2.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-mswitch2</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosMSwitch3.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-mswitch3</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosMSwitch4.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-mswitch4</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosMSwitch5.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-mswitch5</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosMSwitch6.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-mswitch6</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosMSwitch7.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-mswitch7</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosMSwitch8.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-mswitch8</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosSceneActiveIn.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-sceneactivein</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosShutterCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-shuttercommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosStatusIn.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-statusin</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosSwitchIn.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-switchin</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosSwitchOut.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-switchout</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosTStatFanOperatingModeCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-tstatfanoperatingmodecommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosTStatModeStatusCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-tstatmodestatuscommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosTStatSetpointCoolCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-tstatsetpointcoolcommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosTStatSetpointHeatCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-tstatsetpointheatcommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosTStatSetpointCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-tstatsetpointcommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosUPnPRenderingControlMuteCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-upnprenderingcontrolmutecommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosUPnPRenderingControlVolumeCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-upnprenderingcontrolvolumecommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosUPnPTransportStatePlayModeCommand.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-upnptransportstateplaymodecommand</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosUnSwitchIn.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-unswitchin</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosWeatherConditionGroupIn.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-weatherconditiongroupin</configfile>
+        <configfile finalname="${openhab.conf}/transform/miosZWaveStatusIn.map" override="true">mvn:org.openhab.addons/openhab-addons-external/1.9.0/map/mios-zwavestatusin</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transformation-regex</feature>
+        <feature prerequisite="false" dependency="false">openhab-transformation-map</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.mios/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-modbus1" description="Modbus Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/modbus.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/modbus</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.modbus/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-mqtt1" description="MQTT Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mqtt.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mqtt</configfile>
+        <configfile finalname="${openhab.conf}/services/mqtt-eventbus.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mqtt-eventbus</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.transport.mqtt/1.9.0</bundle>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.mqtt/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-mqttitude1" description="OwnTracks (formerly MQTTitude) Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mqttitude.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mqttitude</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.transport.mqtt/1.9.0</bundle>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.mqttitude/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-myq1" description="Chamberlain MyQ Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/myq.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/myq</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.myq/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-neohub1" description="Neohub Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/neohub.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/neohub</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.neohub/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-nest1" description="Nest Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/nest.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/nest</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.nest/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-networkupstools1" description="Network UPS Tools Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/networkupstools.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/networkupstools</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.networkupstools/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-nibeheatpump1" description="Nibe Heatpump Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/nibeheatpump.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/nibeheatpump</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.nibeheatpump/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-nikobus1" description="Nikobus Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/nikobus.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/nikobus</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.nikobus/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-novelanheatpump1" description="Novelan Heatpump Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/novelanheatpump.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/novelanheatpump</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.novelanheatpump/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-openenergymonitor1" description="OpenEnergyMonitor Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/openenergymonitor.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/openenergymonitor</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.openenergymonitor/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-onewire1" description="OneWire Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/onewire.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/onewire</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.onewire/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-owserver1" description="OWServer Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/owserver.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/owserver</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.owserver/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-panasonictv1" description="Panasonic TV Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/panasonictv.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/panasonictv</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.panasonictv/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-plex1" description="Plex Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/plex.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/plex</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.plex/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-plugwise1" description="Plugwise Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/plugwise.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/plugwise</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.plugwise/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-powermax1" description="Visonic PowerMax Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/powermax.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/powermax</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.powermax/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-rwesmarthome1" description="RWE SmartHome Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.rwesmarthome/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-samsungac1" description="Samsung A/C Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/samsungac.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/samsungac</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.samsungac/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-sapp1" description="Sapp Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/sapp.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/sapp</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.sapp/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-satel1" description="Satel Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/satel.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/satel</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.satel/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-serial1" description="Serial Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.serial/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-snmp1" description="SNMP Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/snmp.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/snmp</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.snmp/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-souliss1" description="Souliss Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/souliss.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/souliss</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.souliss/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-swegonventilation1" description="Swegon Ventilation Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/swegonventilation.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/swegonventilation</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.swegonventilation/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-tcp1" description="TCP/UDP Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/tcp.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/tcp</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.tcp/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-tellstick1" description="Tellstick Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.tellstick/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-tinkerforge1" description="Tinkerforge Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/tinkerforge.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/tinkerforge</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.tinkerforge/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-upb1" description="Universal Powerline Bus Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/upb.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/upb</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.upb/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-weather1" description="Weather Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/weather.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/weather</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.weather/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-wol1" description="WOL (Wake-on-LAN) Binding" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.wol/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-binding-xbmc1" description="XBMC Binding" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/xbmc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/xbmc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.binding/org.openhab.binding.xbmc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-influxdb" description="InfluxDB (v 1.0) Persistence" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/influxdb.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/influxdb</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.influxdb/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-gcal" description="Google Calendar Presence Simulator" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/gcal-persistence.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/gcal-persistence</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-misc-gcal1</feature>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.gcal/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-jdbc-derby" description="JDBC Persistence Apache Derby" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/jdbc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/jdbc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.apache.derby/derbyclient/10.12.1.1</bundle>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.jdbc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-jdbc-h2" description="JDBC Persistence H2" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/jdbc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/jdbc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:com.h2database/h2/1.4.191</bundle>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.jdbc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-jdbc-hsqldb" description="JDBC Persistence HSQLDB" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/jdbc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/jdbc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.hsqldb/hsqldb/2.3.3</bundle>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.jdbc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-jdbc-mariadb" description="JDBC Persistence MariaDB" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/jdbc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/jdbc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.mariadb.jdbc/mariadb-java-client/1.3.5</bundle>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.jdbc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-jdbc-mysql" description="JDBC Persistence MySQL" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/jdbc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/jdbc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:mysql/mysql-connector-java/5.1.38</bundle>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.jdbc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-jdbc-postgresql" description="JDBC Persistence PostgreSQL" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/jdbc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/jdbc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.postgresql/postgresql/9.4.1212</bundle>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.jdbc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-jdbc-sqlite" description="JDBC Persistence SQLite" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/jdbc.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/jdbc</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.xerial/sqlite-jdbc/3.8.11.2</bundle>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.jdbc/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-jpa" description="JPA Persistence" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/jpa.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/jpa</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.jpa/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-mapdb" description="MapDB Persistence" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mapdb.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mapdb</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.mapdb/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-mqtt" description="MQTT Persistence" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mqtt.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mqtt</configfile>
+        <configfile finalname="${openhab.conf}/services/mqtt-persistence.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mqtt-persistence</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.transport.mqtt/1.9.0</bundle>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.mqtt/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-mysql" description="MySQL Persistence" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/mysql.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/mysql</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.mysql/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-persistence-rrd4j" description="RRD4j Persistence" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/rrd4j.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/rrd4j</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.persistence/org.openhab.persistence.rrd4j/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-misc-gcal1" description="Google Calendar Scheduler" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/gcal.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/gcal</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.gcal/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-io-gpio1" description="GPIO IO" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.gpio/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-transport-cul1" description="CUL Transport" version="1.9.0">
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <feature prerequisite="false" dependency="false">openhab-transport-serial</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.transport.cul/1.9.0</bundle>
+    </feature>
+    <feature name="openhab-io-caldav1" description="CalDAV I/O" version="1.9.0">
+        <configfile finalname="${openhab.conf}/services/caldavio.cfg" override="false">mvn:org.openhab.addons/openhab-addons-external/1.9.0/cfg/caldavio</configfile>
+        <feature prerequisite="false" dependency="false">openhab-runtime-base</feature>
+        <feature prerequisite="false" dependency="false">openhab-runtime-compat1x</feature>
+        <bundle start-level="80">mvn:org.openhab.io/org.openhab.io.caldav/1.9.0</bundle>
+    </feature>
+    <feature name="addons" description="openHAB Add-ons" version="2.0.0">
+        <details>This is the openHAB distribution</details>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-binding-digitalstrom</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-binding-hue</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-binding-fsinternetradio</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-binding-lifx</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-binding-ntp</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-binding-sonos</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-binding-wemo</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-binding-yahooweather</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-transform-exec</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-transform-javascript</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-transform-jsonpath</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-transform-map</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-transform-regex</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-transform-scale</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-transform-xpath</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-transform-xslt</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-ui-basic</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-ui-classic</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-ui-paper</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-ui-iconset-classic</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-io-javasound</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-io-webaudio</feature>
+        <feature version="0.9.0.b4" prerequisite="false" dependency="false">esh-voice-mactts</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-digitalstrom</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-hue</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-fsinternetradio</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-lifx</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-ntp</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-sonos</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-wemo</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-yahooweather</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-transformation-exec</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-transformation-javascript</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-transformation-map</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-transformation-scale</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-transformation-regex</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-transformation-xpath</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-transformation-jsonpath</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-transformation-xslt</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-voice-mactts</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-ui-basic</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-ui-classic</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-ui-paper</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-misc-restdocs</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-allplay</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-amazondashbutton</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-astro</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-autelis</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-avmfritz</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-chromecast</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-coolmasternet</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-dscalarm</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-exec</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-feed</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-freebox</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-globalcache</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-harmonyhub</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-netatmo</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-homematic</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-hdanywhere</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-hdpowerview</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-ipp</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-keba</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-kodi</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-kostalinverter</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-lutron</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-max</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-meteostick</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-miele</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-milight</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-minecraft</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-network</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-oceanic</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-onkyo</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-opensprinkler</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-orvibo</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-pioneeravr</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-pulseaudio</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-rme</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-rfxcom</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-russound</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-samsungtv</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-silvercrestwifisocket</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-smaenergymeter</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-squeezebox</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-systeminfo</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-tellstick</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-tesla</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-urtsi</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-toon</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-vitotronic</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-yamahareceiver</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-zwave</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-binding-zway</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-transport-feed</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-misc-openhabcloud</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-misc-hueemulation</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-misc-homekit</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-misc-imperihome</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-voice-marytts</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-voice-voicerss</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-ui-cometvisu</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-ui-cometvisu-php</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-ui-habmin</feature>
+        <feature version="2.0.0" prerequisite="false" dependency="false">openhab-ui-habpanel</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-ecobee</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-mail</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-mios</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-mqtt</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-nma</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-pebble</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-prowl</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-pushover</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-pushsafer</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-satel</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-telegram</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-twitter</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-xbmc</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-action-xmpp</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-alarmdecoder1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-anel1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-bticino1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-caldav-command1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-caldav-personal1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-comfoair1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-denon1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-dmx1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-dsmr1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-ebus1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-ecobee1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-ecotouch1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-energenie1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-enocean1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-enphaseenergy1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-epsonprojector1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-expire1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-fatekplc1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-freeswitch1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-fritzbox1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-fritzboxtr0641</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-fs201</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-garadget1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-gc100ir1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-gpio</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-heatmiser1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-horizon</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-http1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-ihc1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-insteonplm1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-intertechno1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-ipx8001</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-irtrans1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-jointspace1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-km1001</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-knx1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-koubachi1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-lcn1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-lgtv1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-mochadx101</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-milight1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-mios1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-modbus1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-mqtt1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-mqttitude1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-myq1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-neohub1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-nest1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-networkupstools1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-nibeheatpump1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-nikobus1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-novelanheatpump1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-openenergymonitor1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-onewire1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-owserver1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-panasonictv1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-plex1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-plugwise1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-powermax1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-rwesmarthome1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-samsungac1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-sapp1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-satel1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-serial1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-snmp1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-souliss1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-swegonventilation1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-tcp1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-tellstick1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-tinkerforge1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-upb1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-weather1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-wol1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-binding-xbmc1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-influxdb</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-gcal</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-jdbc-derby</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-jdbc-h2</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-jdbc-hsqldb</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-jdbc-mariadb</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-jdbc-mysql</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-jdbc-postgresql</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-jdbc-sqlite</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-jpa</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-mapdb</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-mqtt</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-mysql</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-persistence-rrd4j</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-misc-gcal1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-io-gpio1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-transport-cul1</feature>
+        <feature version="1.9.0" prerequisite="false" dependency="false">openhab-io-caldav1</feature>
+    </feature>
+</features>
