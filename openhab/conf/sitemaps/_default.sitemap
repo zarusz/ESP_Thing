@@ -39,45 +39,49 @@ sitemap _default label="Sławka"
 			Switch		item=Yamaha_Mute
 			Slider		item=Yamaha_Volume
 			Selection	item=Yamaha_Input		mappings=[HDMI1="Kodi",HDMI2="PC","NET RADIO"="NetRadio",TUNER="Tuner",Spotify="Spotify",AUDIO1="TV"]
-			Selection	item=Yamaha_Surround	mappings=["2ch Stereo"="2ch","5ch Stereo"="5ch","Chamber"="Chamber"]
+			Selection	item=Yamaha_Surround	mappings=["2ch Stereo"="2ch Stereo","5ch Stereo"="5ch Stereo","Chamber"="Chamber","Sci-Fi"="Sci-Fi","Adventure"="Adventure"]
 			Selection	item=Yamaha_NetRadio	label="Sender"			mappings=[1="N Joy", 2="Radio Sport", 3="RDU", 4="91ZM", 5="Hauraki"]
 		}
 
-		Text label="Kodi" icon="player" {
+		Text label="Kodi" icon="television" {
 			Text		item=Kodi_State
 			Text		item=Kodi_Title
 			Text		item=Kodi_Type
 			Switch		item=Kodi_PlayPause
 			Switch		item=Kodi_Stop
 		}
+	}
 
-		Text label="Dekoracje świąteczne" icon="colorwheel" {
-			Switch item=XMass_Lights mappings=[OFF="All Off"]
-			Text label="Stan" icon="settings" {
-				Text		item=XMass_Online
-				Text		item=XMass_Log
-				Selection	item=XMass_SleepLevel mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
-			}
-			Frame label="Światełka" {
-				Switch item=XMass_Tree label="Choinka"
-				Switch item=XMass_Courtain label="Karnisz"
-				Switch item=XMass_Balkony label="Balkon"
-			}
-		}
-		
-		Text label="Korytarz" icon="colorwheel" {
+	Frame label="Pokoje" icon="group" {
+		Text label="Korytarz" icon="corridor" {
 			Switch item=Korytarz_LED1
+		}
+		Text label="Sypialnia" icon="bedroom" {
+			Switch item=Bedroom_Lights mappings=[OFF="All Off"]
+			Text label="Stan" icon="settings" {
+				Text		item=Bedroom_Online
+				Text		item=Bedroom_Log
+				Selection	item=Bedroom_SleepLevel mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
+			}
+			Frame label="Światła" {
+				Switch item=Bedroom_Light1
+				Switch item=Bedroom_Light2
+			}
+			Frame label="Czujniki" {
+				Text item=Bedroom_Temp	valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=Bedroom_Humid	valuecolor=[>25="orange",>15="green",<=15="blue"]
+			}
 		}
 	}
 
 	Frame label="Temperatura" icon="temperature" {
-		Text item=CTemp			label="Salon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
-		Text item=XMass_Temp	label="Balkon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=CTemp			label="Salon"		valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=Bedroom_Temp	label="Sypialnia"	valuecolor=[>25="orange",>15="green",<=15="blue"]
 	}
 
 	Frame label="Wilgotność" icon="humidity" {
-		Text item=CHumid		label="Salon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
-		Text item=XMass_Humid	label="Balkon"	valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=CHumid		label="Salon"		valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=Bedroom_Humid	label="Sypialnia"	valuecolor=[>25="orange",>15="green",<=15="blue"]
 	}
 
 	Frame label="Ruch" icon="motion" {

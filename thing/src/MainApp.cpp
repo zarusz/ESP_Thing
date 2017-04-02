@@ -88,7 +88,7 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 
 		_features.push_back(new SwitchFeatureController(10, this, 4, false));
 		_features.push_back(new SwitchFeatureController(11, this, 5, false));
-		_features.push_back(new SwitchFeatureController(15, this, 12, true));
+		//_features.push_back(new SwitchFeatureController(15, this, 12, true));
 
 		_features.push_back(new TempFeatureController(30, 31, this, 14));
 	}

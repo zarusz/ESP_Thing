@@ -4,7 +4,6 @@ Group 		Rooms (All)
 
 Group 		Livingroom			"Salon"				<video>		(Slawka, Rooms)
 Group 		Balkony				"Balkon"			<video>		(Livingroom)
-Group 		Bedroom				"Sypialnia"			<video>		(Slawka, Rooms)
 Group		LivingCeiling		"Sufit"				<video>		(Livingroom)
 Group		Cinema				"Kino"				<video>		(Livingroom)
 
@@ -50,13 +49,3 @@ Number		CTemp				"Temperatura [%.1f °C]"		<temperature>			(LivingCeiling, Temp)
 Number		CHumid				"Wilgotność [%.1f %%]"		<humidity>				(LivingCeiling, Humid)					{ mqtt="<[local:dev/sufit/state/31:state:default]" }
 Switch		CMotion				"Ruch [MAP(presence_pl.map):%s]"	<motion>		(LivingCeiling, Motion)					{ mqtt="<[local:dev/sufit/state/32:state:default]" }
 Number		CMotionLastMinutes
-
-Group:Switch:OR(ON, OFF)	XMass_Lights	  "All Lights [(%d)]"	<light>			(Lights)
-String		XMass_Log			"Log [%s]"					<error>   				(Livingroom)							{ mqtt="<[local:dev/tree/state/log:state:default]" }
-Switch		XMass_Online		"Online [%s]"				<network>  				(Livingroom)							{ mqtt="<[local:dev/tree/state/online:state:default]" }
-Number		XMass_SleepLevel	"Sleep"						<battery>  				(Livingroom, SleepLevel)				{ mqtt=">[local:dev/tree/service/sleep:command:*:default]" }
-Switch		XMass_Tree			"Choinka"					<light>   				(Livingroom, XMass_Lights)				{ mqtt=">[local:dev/tree/command/10:command:*:default],<[local:dev/tree/state/10:state:default]" }
-Switch		XMass_Courtain		"Karnisz"					<light>   				(Livingroom, XMass_Lights)				{ mqtt=">[local:dev/tree/command/15:command:*:default],<[local:dev/tree/state/15:state:default]" }
-Switch		XMass_Balkony		"Balkon"					<light>   				(Livingroom, XMass_Lights)				{ mqtt=">[local:dev/tree/command/11:command:*:default],<[local:dev/tree/state/11:state:default]" }
-Number		XMass_Temp			"Temperatura [%.1f °C]"		<temperature>			(Balkony, Temp)							{ mqtt="<[local:dev/tree/state/30:state:default]" }
-Number		XMass_Humid			"Wilgotność [%.1f %%]"		<humidity>				(Balkony, Humid)						{ mqtt="<[local:dev/tree/state/31:state:default]" }
