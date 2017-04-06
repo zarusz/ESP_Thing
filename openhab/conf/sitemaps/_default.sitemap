@@ -1,21 +1,15 @@
 sitemap _default label="Sławka"
 {
 	Frame label="Mieszkanie" icon="group" {
-		Switch 		item=Lights		mappings=[OFF="All Off"]
+		Switch 		item=Lights		mappings=[OFF="Off"]
 		Selection	item=Mode		label="Tryb"	mappings=[Normal="Normalny",Sleeping="Spanie",Away="Poza domem"]
 	}
 
 	Frame label="Salon" icon="group" {
 		Text label="Sufit" icon="colorwheel" {
-			Switch 		item=CLights mappings=[OFF="All Off"]
-
-			Text label="Stan" icon="settings" {
-				Text 		item=COnline
-				Text 		item=CLog
-				Selection	item=CSleepLevel mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
-			}
+			Switch 		item=CLights mappings=[OFF="Off"]
 			Frame label="Halogeny" {
-				Switch item=CLightX label="Halogeny" mappings=[OFF="All Off"]
+				Switch item=CLightX label="Halogeny"	mappings=[OFF="Off",ON="On"]
 				Switch item=CLight1 label="Stół"
 				Switch item=CLight2 label="Sofa lewy"
 				Switch item=CLight3 label="Sofa środek"
@@ -28,8 +22,8 @@ sitemap _default label="Sławka"
 				Colorpicker	item=CLed
 			}
 			Frame label="Czujniki" {
-				Text item=CTemp valuecolor=[>25="orange",>15="green",<=15="blue"]
-				Text item=CHumid valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=CTemp		valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=CHumid	valuecolor=[>25="orange",>15="green",<=15="blue"]
 				Text item=CMotion
 			}
 		}
@@ -57,19 +51,14 @@ sitemap _default label="Sławka"
 			Switch item=Korytarz_LED1
 		}
 		Text label="Sypialnia" icon="bedroom" {
-			Switch item=Bedroom_Lights mappings=[OFF="All Off"]
-			Text label="Stan" icon="settings" {
-				Text		item=Bedroom_Online
-				Text		item=Bedroom_Log
-				Selection	item=Bedroom_SleepLevel mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
-			}
+			Switch item=Bedroom_Lights		mappings=[OFF="Off",ON="On"]
 			Frame label="Światła" {
 				Switch item=Bedroom_Light1
 				Switch item=Bedroom_Light2
 			}
 			Frame label="Czujniki" {
-				Text item=Bedroom_Temp	valuecolor=[>25="orange",>15="green",<=15="blue"]
-				Text item=Bedroom_Humid	valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=Bedroom_Temp		valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=Bedroom_Humid		valuecolor=[>25="orange",>15="green",<=15="blue"]
 			}
 		}
 	}
@@ -84,6 +73,12 @@ sitemap _default label="Sławka"
 		Text item=Bedroom_Humid	label="Sypialnia"	valuecolor=[>25="orange",>15="green",<=15="blue"]
 	}
 
+	Chart item=Temp period=h refresh=300
+	Chart item=Humid period=h refresh=300
+	
+	Group item=Temp		label="Temperatura"		icon="temperature"
+	Group item=Humid	label="Wilgotność"		icon="humidity"
+
 	Frame label="Ruch" icon="motion" {
 		Text item=CMotion		label="Salon"
 	}
@@ -91,5 +86,18 @@ sitemap _default label="Sławka"
 	Frame label="Obecność" icon="parents_2_3" {
 		Text item=Presence_Home_Tomek
 		Text item=Presence_Home_Regina
+	}
+
+	Text label="Stan urządzeń" icon="settings" {
+		Frame label="Sufit" icon="settings" {
+			Text 		item=COnline
+			Text 		item=CLog
+			Selection	item=CSleepLevel			mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
+		}
+		Frame label="Sypialnia" icon="settings" {
+			Text		item=Bedroom_Online
+			Text		item=Bedroom_Log
+			Selection	item=Bedroom_SleepLevel		mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
+		}
 	}
 }
