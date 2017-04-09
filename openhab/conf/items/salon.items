@@ -1,21 +1,3 @@
-Group		All
-Group		Slawka (All)
-Group 		Rooms (All)
-
-Group 		Livingroom			"Salon"				<video>		(Slawka, Rooms)
-Group 		Balkony				"Balkon"			<video>		(Livingroom)
-Group		LivingCeiling		"Sufit"				<video>		(Livingroom)
-Group		Cinema				"Kino"				<video>		(Livingroom)
-
-Group:Number:MIN			SleepLevel	"Sleep [%d]"			<battery>	(Slawka)
-Group:Switch:OR(ON, OFF)	Lights	   	"All Lights [(%d)]"		<light>
-Group:Switch:OR(ON, OFF)	Motion	   	"Any motion [(%d)]"		<motion>
-
-String		Mode				"Tryb"				<pie>		(Slawka)
-
-Group:Number:AVG		Temp				"Temperatura [(%.1f °C)]"	<temperature>
-Group:Number:AVG		Humid				"Wilgotność [(%.1f %%)]"	<humidity>
-
 Switch		Yamaha_Power		"Power [%s]"				<switch>				(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:power" }
 Dimmer 		Yamaha_Volume   	"Volume [%.1f %%]"     	 	<soundvolume>   		(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:volume" }
 Switch		Yamaha_Mute			"Mute [%s]"					<soundvolume_mute>		(Cinema)								{ channel="yamahareceiver:yamahaAV:9ab0c000_f668_11de_9976_00a0ded41bb7:mute" }
@@ -28,6 +10,8 @@ String		Kodi_Title			"Title [%s]"				<video>					(Cinema)								{ xbmc="<[#livi
 String		Kodi_Type			"Type [%s]"					<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.Type]" }
 Switch		Kodi_PlayPause		"Play"						<video>					(Cinema)								{ xbmc=">[#livingRoom|Player.PlayPause]" }
 Switch		Kodi_Stop			"Stop"						<video>					(Cinema)								{ xbmc=">[#livingRoom|Player.Stop]" }
+String		Kodi_Time			"Time [%s]"					<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.Time]" }
+String		Kodi_TimeTotal		"Time Total [%s]"			<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.Duration]" }
 
 Group:Switch:OR(ON, OFF)	CLights	   		"Lights [(%d)]"		<light>			(Lights)
 String		CLog				"Log [%s]"					<error>   				(LivingCeiling)							{ mqtt="<[local:dev/sufit/state/log:state:default]" }
@@ -45,7 +29,7 @@ Color		CLed1				"Stół"						<rgb>					(LivingCeiling, CLights)				{ mqtt=">[lo
 Color		CLed2				"Sofa"						<rgb>					(LivingCeiling, CLights)				{ mqtt=">[local:dev/sufit/command/50:command:*:default]" }
 Color		CLed				"Sofa+stół"					<rgb>   				(LivingCeiling, CLights)				{ mqtt=">[local:dev/sufit/command/40:command:*:default],>[local:dev/sufit/command/50:command:*:default]" }
 
-Number		CTemp				"Temperatura [%.1f °C]"		<temperature>			(LivingCeiling, Temp)					{ mqtt="<[local:dev/sufit/state/30:state:default]" }
-Number		CHumid				"Wilgotność [%.1f %%]"		<humidity>				(LivingCeiling, Humid)					{ mqtt="<[local:dev/sufit/state/31:state:default]" }
+Number		CTemp				"Salon [%.1f °C]"			<temperature>			(LivingCeiling, Temp_Inside)			{ mqtt="<[local:dev/sufit/state/30:state:default]" }
+Number		CHumid				"Salon [%.1f %%]"			<humidity>				(LivingCeiling, Humid_Inside			{ mqtt="<[local:dev/sufit/state/31:state:default]" }
 Switch		CMotion				"Ruch [MAP(presence_pl.map):%s]"	<motion>		(LivingCeiling, Motion)					{ mqtt="<[local:dev/sufit/state/32:state:default]" }
 Number		CMotionLastMinutes

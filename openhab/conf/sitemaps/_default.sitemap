@@ -22,8 +22,8 @@ sitemap _default label="Sławka"
 				Colorpicker	item=CLed
 			}
 			Frame label="Czujniki" {
-				Text item=CTemp		valuecolor=[>25="orange",>15="green",<=15="blue"]
-				Text item=CHumid	valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=CTemp		label="Temperatura"		valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=CHumid	label="Wilgotność"		valuecolor=[>60="orange",>40="green",<=40="blue"]
 				Text item=CMotion
 			}
 		}
@@ -41,8 +41,10 @@ sitemap _default label="Sławka"
 			Text		item=Kodi_State
 			Text		item=Kodi_Title
 			Text		item=Kodi_Type
-			Switch		item=Kodi_PlayPause
-			Switch		item=Kodi_Stop
+			Switch		item=Kodi_PlayPause		mappings=[ON="Play",OFF="Pause"]
+			Switch		item=Kodi_Stop			mappings=[ON="Stop"]
+			Text		item=Kodi_Time
+			Text		item=Kodi_TimeTotal
 		}
 	}
 
@@ -57,28 +59,23 @@ sitemap _default label="Sławka"
 				Switch item=Bedroom_Light2
 			}
 			Frame label="Czujniki" {
-				Text item=Bedroom_Temp		valuecolor=[>25="orange",>15="green",<=15="blue"]
-				Text item=Bedroom_Humid		valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=Bedroom_Temp		label="Temperatura"		valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=Bedroom_Humid		label="Wilgotność"		valuecolor=[>60="orange",>40="green",<=40="blue"]
 			}
 		}
 	}
 
-	Frame label="Temperatura" icon="temperature" {
-		Text item=CTemp			label="Salon"		valuecolor=[>25="orange",>15="green",<=15="blue"]
-		Text item=Bedroom_Temp	label="Sypialnia"	valuecolor=[>25="orange",>15="green",<=15="blue"]
+	Frame label="Odczyty" icon="humidity" {
+		Group item=Temp_Inside		label="Temperatura"		icon="temperature"
+		Group item=Humid_Inside		label="Wilgotność"		icon="humidity"
 	}
 
-	Frame label="Wilgotność" icon="humidity" {
-		Text item=CHumid		label="Salon"		valuecolor=[>25="orange",>15="green",<=15="blue"]
-		Text item=Bedroom_Humid	label="Sypialnia"	valuecolor=[>25="orange",>15="green",<=15="blue"]
+	Frame label="Pogoda" icon="temperature" {
+		Text item=Outside_Temp		label="Temperatura"		valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=Outside_Humid		label="Wilgotność"		valuecolor=[>60="orange",>40="green",<=40="blue"]
+		Text item=Outside_Pressure	label="Ciśnienie"
 	}
-
-	Chart item=Temp period=h refresh=300
-	Chart item=Humid period=h refresh=300
-	
-	Group item=Temp		label="Temperatura"		icon="temperature"
-	Group item=Humid	label="Wilgotność"		icon="humidity"
-
+		
 	Frame label="Ruch" icon="motion" {
 		Text item=CMotion		label="Salon"
 	}
@@ -88,6 +85,61 @@ sitemap _default label="Sławka"
 		Text item=Presence_Home_Regina
 	}
 
+	Frame label="Historia" icon="temperature" {
+		//http://raspberrypi:8181/rrdchart.png?groups=Temp&period=4h&t=1491732122327
+		
+		Text label="Godzina" icon="line" {
+			Frame	label="Wewnątrz" {
+				Chart	item=Temp_Inside	period=h	refresh=60000
+				Chart	item=Temp_Outside	period=h	refresh=60000
+			}
+			Frame	label="Na zewnątrz" icon="terrace" {
+				Chart	item=Humid_Inside	period=h	refresh=60000
+				Chart	item=Humid_Outside	period=h	refresh=60000
+			}
+		}
+		Text label="4 godziny" icon="line" {
+			Frame	label="Wewnątrz" {
+				Chart	item=Temp_Inside	period=4h	refresh=60000
+				Chart	item=Temp_Outside	period=4h	refresh=60000
+			}
+			Frame	label="Na zewnątrz" icon="terrace" {
+				Chart	item=Humid_Inside	period=4h	refresh=60000
+				Chart	item=Humid_Outside	period=4h	refresh=60000
+			}
+		}
+		Text label="8 godzin" icon="line" {
+			Frame	label="Wewnątrz" {
+				Chart	item=Temp_Inside	period=8h	refresh=60000
+				Chart	item=Temp_Outside	period=8h	refresh=60000
+			}
+			Frame	label="Na zewnątrz" icon="terrace" {
+				Chart	item=Humid_Inside	period=8h	refresh=60000
+				Chart	item=Humid_Outside	period=8h	refresh=60000
+			}
+		}
+		Text label="Dzień" icon="line" {
+			Frame	label="Wewnątrz" {
+				Chart	item=Temp_Inside	period=D	refresh=60000
+				Chart	item=Temp_Outside	period=D	refresh=60000
+			}
+			Frame	label="Na zewnątrz" icon="terrace" {
+				Chart	item=Humid_Inside	period=D	refresh=60000
+				Chart	item=Humid_Outside	period=D	refresh=60000
+			}
+		}
+		Text label="Tydzień" icon="line" {
+			Frame	label="Wewnątrz" {
+				Chart	item=Temp_Inside	period=W	refresh=60000
+				Chart	item=Temp_Outside	period=W	refresh=60000
+			}
+			Frame	label="Na zewnątrz" icon="terrace" {
+				Chart	item=Humid_Inside	period=W	refresh=60000
+				Chart	item=Humid_Outside	period=W	refresh=60000
+			}
+		}
+	}
+	
 	Text label="Stan urządzeń" icon="settings" {
 		Frame label="Sufit" icon="settings" {
 			Text 		item=COnline
