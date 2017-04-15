@@ -14,5 +14,5 @@ Strategies {
  * item (excl. the group item itself).
  */
 Items {
-    Temp*, Humid* : strategy = everyMinute
+    Temp*, Humid*, Online* : strategy = everyMinute
 }

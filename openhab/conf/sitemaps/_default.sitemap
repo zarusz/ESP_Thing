@@ -71,9 +71,11 @@ sitemap _default label="Sławka"
 	}
 
 	Frame label="Pogoda" icon="temperature" {
-		Text item=Outside_Temp		label="Temperatura"		valuecolor=[>25="orange",>15="green",<=15="blue"]
-		Text item=Outside_Humid		label="Wilgotność"		valuecolor=[>60="orange",>40="green",<=40="blue"]
-		Text item=Outside_Pressure	label="Ciśnienie"
+		Text item=Outside_Temp			label="Temperatura"			valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=Outside_Temp_Feel		label="Temp. odczuwalna"	valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=Outside_Humid			label="Wilgotność"			valuecolor=[>60="orange",>40="green",<=40="blue"]
+		Text item=Outside_Pressure		label="Ciśnienie"
+		Text item=Outside_Clouds		label="Zachmurzenie"
 	}
 		
 	Frame label="Ruch" icon="motion" {
@@ -89,51 +91,52 @@ sitemap _default label="Sławka"
 		//http://raspberrypi:8181/rrdchart.png?groups=Temp&period=4h&t=1491732122327
 		
 		Text label="Godzina" icon="line" {
-			Frame	label="Wewnątrz" {
+			Frame	label="Temperatura" {
 				Chart	item=Temp_Inside	period=h	refresh=60000
 				Chart	item=Temp_Outside	period=h	refresh=60000
+				//Image 	url="http://raspberrypi:8181/rrdchart.png?groups=Temp_Inside&period=h" refresh=60000
 			}
-			Frame	label="Na zewnątrz" icon="terrace" {
+			Frame	label="Wilgotność" icon="terrace" {
 				Chart	item=Humid_Inside	period=h	refresh=60000
 				Chart	item=Humid_Outside	period=h	refresh=60000
 			}
 		}
 		Text label="4 godziny" icon="line" {
-			Frame	label="Wewnątrz" {
+			Frame	label="Temperatura" {
 				Chart	item=Temp_Inside	period=4h	refresh=60000
 				Chart	item=Temp_Outside	period=4h	refresh=60000
 			}
-			Frame	label="Na zewnątrz" icon="terrace" {
+			Frame	label="Wilgotność" {
 				Chart	item=Humid_Inside	period=4h	refresh=60000
 				Chart	item=Humid_Outside	period=4h	refresh=60000
 			}
 		}
 		Text label="8 godzin" icon="line" {
-			Frame	label="Wewnątrz" {
+			Frame	label="Temperatura" {
 				Chart	item=Temp_Inside	period=8h	refresh=60000
 				Chart	item=Temp_Outside	period=8h	refresh=60000
 			}
-			Frame	label="Na zewnątrz" icon="terrace" {
+			Frame	label="Wilgotność" {
 				Chart	item=Humid_Inside	period=8h	refresh=60000
 				Chart	item=Humid_Outside	period=8h	refresh=60000
 			}
 		}
 		Text label="Dzień" icon="line" {
-			Frame	label="Wewnątrz" {
+			Frame	label="Temperatura" {
 				Chart	item=Temp_Inside	period=D	refresh=60000
 				Chart	item=Temp_Outside	period=D	refresh=60000
 			}
-			Frame	label="Na zewnątrz" icon="terrace" {
+			Frame	label="Wilgotność" {
 				Chart	item=Humid_Inside	period=D	refresh=60000
 				Chart	item=Humid_Outside	period=D	refresh=60000
 			}
 		}
 		Text label="Tydzień" icon="line" {
-			Frame	label="Wewnątrz" {
+			Frame	label="Temperatura" {
 				Chart	item=Temp_Inside	period=W	refresh=60000
 				Chart	item=Temp_Outside	period=W	refresh=60000
 			}
-			Frame	label="Na zewnątrz" icon="terrace" {
+			Frame	label="Wilgotność" {
 				Chart	item=Humid_Inside	period=W	refresh=60000
 				Chart	item=Humid_Outside	period=W	refresh=60000
 			}
@@ -150,6 +153,24 @@ sitemap _default label="Sławka"
 			Text		item=Bedroom_Online
 			Text		item=Bedroom_Log
 			Selection	item=Bedroom_SleepLevel		mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
+		}		
+		Frame label="Historia" icon="temperature" {
+			Text label="Godzina" icon="line" {
+				Chart	item=Online	period=h	refresh=60000
+			}
+			Text label="4 godziny" icon="line" {
+				Chart	item=Online	period=4h	refresh=60000
+			}
+			Text label="8 godzin" icon="line" {
+				Chart	item=Online	period=8h	refresh=60000
+			}
+			Text label="Dzień" icon="line" {
+				Chart	item=Online	period=D	refresh=60000
+			}
+			Text label="Tydzień" icon="line" {
+				Chart	item=Online	period=W	refresh=60000
+			}
 		}
+		
 	}
 }
