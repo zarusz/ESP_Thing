@@ -12,28 +12,58 @@ ColorStripOverWireFeatureController::ColorStripOverWireFeatureController(int por
 
   _lastUpdateMs = 0;
   _updateIntervalMs = 5000;
-
-  _on = false;
-  SetHSV(0, 0, 0);
 }
 
-void ColorStripOverWireFeatureController::SetHSV(float h, float s, float v)
+void ColorStripOverWireFeatureController::SetState(bool on)
 {
+  SetState(on, _h, _s, _v);
+}
+
+void ColorStripOverWireFeatureController::SetState(bool on, float h, float s, float v)
+{
+  _on = on;
   _h = h;
   _s = s;
   _v = v;
 
-  HSV hsv = {
-      .h = h,
-      .s = s / 100.0f,
-      .v = v / 100.0f
-  };
+  if (on)
+  {
+    HSV hsv = {
+        .h = h,
+        .s = s / 100.0f,
+        .v = v / 100.0f
+    };
 
-  _rgb = Colors::hsv2rgb(hsv);
+    _rgb = Colors::hsv2rgb(hsv);
+
+    _r = round(_rgb.r * 255);
+    _g = round(_rgb.g * 255);
+    _b = round(_rgb.b * 255);
+  }
+  else
+  {
+    _r = 0;
+    _g = 0;
+    _b = 0;
+  }
+
+  sprintf(_logger->Msg(), "[ColorStripOverWireFeatureController] Color RGB = %d %d %d", _r, _g, _b);
+  _logger->Log(Debug);
+
+  if (UpdateSlave() != 0) {
+    sprintf(_logger->Msg(), "[ColorStripOverWireFeatureController] Communication problem with slave");
+    _logger->Log(Error);
+  }
 }
 
 void ColorStripOverWireFeatureController::Start()
 {
+  SetState(false);
+}
+
+void ColorStripOverWireFeatureController::Stop()
+{
+  SetState(false);
 }
 
 void ColorStripOverWireFeatureController::Handle(const char* topic, const Buffer& payload)
@@ -41,41 +71,26 @@ void ColorStripOverWireFeatureController::Handle(const char* topic, const Buffer
   String str;
   payload.ToString(str);
 
-  _r = 0;
-  _g = 0;
-  _b = 0;
-
-  if (str == STATE_OFF) {
-    _on = false;
+  if (str == STATE_OFF)
+  {
+    SetState(false);
+  }
+  else if (str == STATE_ON)
+  {
+    SetState(true);
   } else {
-    if (str == STATE_ON) {
-      _on = true;
-    } else {
-      // [0-360],[0-100],[0-100]
-      // H,S,V
-      auto cstr = str.c_str();
-      auto c1 = str.indexOf(",") + 1;
-      auto c2 = str.indexOf(",", c1) + 1;
+    // [0-360],[0-100],[0-100]
+    // H,S,V
+    auto cstr = str.c_str();
+    auto c1 = str.indexOf(",") + 1;
+    auto c2 = str.indexOf(",", c1) + 1;
 
-      auto h = atof(cstr);
-      auto s = atof(cstr + c1);
-      auto v = atof(cstr + c2);
+    auto h = atof(cstr);
+    auto s = atof(cstr + c1);
+    auto v = atof(cstr + c2);
 
-      SetHSV(h, s, v);
-    }
-    _r = round(_rgb.r * 255);
-    _g = round(_rgb.g * 255);
-    _b = round(_rgb.b * 255);
+    SetState(true, h, s, v);
   }
-
-  sprintf(_logger->Msg(), "[ColorStripOverWireFeatureController] Msg %s Color RGB = %d %d %d", str.c_str(), _r, _g, _b);
-  _logger->Log(Debug);
-
-  if (UpdateSlave() != 0) {
-    sprintf(_logger->Msg(), "[ColorStripOverWireFeatureController] Communication problem with slave");
-    _logger->Log(Error);
-  }
-
 }
 
 int ColorStripOverWireFeatureController::UpdateSlave()

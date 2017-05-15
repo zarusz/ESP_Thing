@@ -1,10 +1,10 @@
 #include "ShiftRegisterPins.h"
 
 ShiftRegisterPins::ShiftRegisterPins(int serialDataPin, int clockPin, int latchPin, int virtualPinStart)
-  : _shiftRegister(1, serialDataPin, clockPin, latchPin)
+  : _shiftRegister(1, serialDataPin, clockPin, latchPin),
+    _virtualPinStart(virtualPinStart)
 {
-  _virtualPinStart = virtualPinStart;
-  _shiftRegister.setAllHigh();
+  _shiftRegister.SetAllHigh();
 }
 
 void ShiftRegisterPins::SetMode(int pin, PinMode mode)
@@ -19,7 +19,7 @@ void ShiftRegisterPins::SetValue(int pin, bool high)
 {
   if (pin >= _virtualPinStart)
   {
-    _shiftRegister.set(pin - _virtualPinStart, high ? 1 : 0);
+    _shiftRegister.Set(pin - _virtualPinStart, high ? 1 : 0);
   }
   else
   {
@@ -27,7 +27,7 @@ void ShiftRegisterPins::SetValue(int pin, bool high)
   }
 }
 
-bool ShiftRegisterPins::isValueHigh(int pin)
+bool ShiftRegisterPins::IsValueHigh(int pin)
 {
   if (pin < _virtualPinStart)
   {

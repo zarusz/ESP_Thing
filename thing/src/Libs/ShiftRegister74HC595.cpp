@@ -7,11 +7,11 @@ ShiftRegister74HC595::ShiftRegister74HC595(int numberOfShiftRegisters, int seria
     // set attributes
     _numberOfShiftRegisters = numberOfShiftRegisters;
 
-    //Pin connected to SH_CP of 74HC595
+    // pin connected to SH_CP of 74HC595
     _clockPin = clockPin;
-    ////Pin connected to DS of 74HC595
+    // pin connected to DS of 74HC595
     _serialDataPin = serialDataPin;
-    //Pin connected to ST_CP of 74HC595
+    // pin connected to ST_CP of 74HC595
     _latchPin = latchPin;
 
     // define pins as outputs
@@ -20,16 +20,18 @@ ShiftRegister74HC595::ShiftRegister74HC595(int numberOfShiftRegisters, int seria
     pinMode(latchPin, OUTPUT);
 
     // set pins low
-    digitalWrite(clockPin, LOW);
-    digitalWrite(serialDataPin, LOW);
-    digitalWrite(latchPin, LOW);
+    //digitalWrite(clockPin, LOW);
+    //digitalWrite(serialDataPin, LOW);
+    digitalWrite(latchPin, HIGH);
 }
 
-void ShiftRegister74HC595::setAll() {
+void ShiftRegister74HC595::SetAll()
+{
     // ground latchPin and hold low for as long as you are transmitting
     digitalWrite(_latchPin, LOW);
 
-    for (auto i = _numberOfShiftRegisters - 1; i >= 0; i--) {
+    for (auto i = _numberOfShiftRegisters - 1; i >= 0; i--)
+    {
         // See https://www.arduino.cc/en/Reference/ShiftOut
         shiftOut(_serialDataPin, _clockPin, MSBFIRST, _digitalValues[i]);
     }
@@ -37,40 +39,40 @@ void ShiftRegister74HC595::setAll() {
     // return the latch pin high to signal chip that it
     // no longer needs to listen for information
     digitalWrite(_latchPin, HIGH);
-    delay(200);
-    digitalWrite(_latchPin, LOW);
-
-    //digitalWrite(_latchPin, HIGH);
-    //digitalWrite(_latchPin, LOW);
 }
 
-uint8_t* ShiftRegister74HC595::getAll() {
+uint8_t* ShiftRegister74HC595::GetAll()
+{
     return _digitalValues;
 }
 
-void ShiftRegister74HC595::set(int pin, uint8_t value) {
+void ShiftRegister74HC595::Set(int pin, uint8_t value)
+{
     if (value == 1)
         _digitalValues[pin / 8] |= 1 << (pin % 8);
     else
         _digitalValues[pin / 8] &= ~(1 << (pin % 8));
 
-    setAll();
+    SetAll();
 }
 
-uint8_t ShiftRegister74HC595::get(int pin) {
+uint8_t ShiftRegister74HC595::Get(int pin)
+{
     return (_digitalValues[pin / 8] >> (pin % 8)) & 1;
 }
 
-void ShiftRegister74HC595::setAllHigh() {
+void ShiftRegister74HC595::SetAllHigh()
+{
     for (auto i = 0; i < _numberOfShiftRegisters; i++) {
         _digitalValues[i] = 255;
     }
-    setAll();
+    SetAll();
 }
 
-void ShiftRegister74HC595::setAllLow() {
+void ShiftRegister74HC595::SetAllLow()
+{
     for (auto i = 0; i < _numberOfShiftRegisters; i++) {
         _digitalValues[i] = 0;
     }
-    setAll();
+    SetAll();
 }

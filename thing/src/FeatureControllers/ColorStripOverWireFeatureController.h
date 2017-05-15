@@ -18,12 +18,14 @@ private:
   bool _on;
   int _r, _g, _b;
 
-  void SetHSV(float h, float s, float v);
+  void SetState(bool on);
+  void SetState(bool on, float h, float s, float v);
 
 public:
   ColorStripOverWireFeatureController(int port, DeviceContext* context, int address, int index);
 
   virtual void Start();
+  virtual void Stop();
   virtual void Handle(const char* topic, const Buffer& payload);
   virtual void Loop();
 

@@ -52,6 +52,18 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 	{
 		/*
 		16 - Connected to RST (deep sleep)
+
+		15 - Serial Data
+		02 - Clock
+		00 - Latch
+
+		04 - SDA
+		05 - SCL
+
+		14 - Temp
+		12 - Motion
+
+		13 - Free
 		*/
 
 		_pins = new ShiftRegisterPins(15, 2, 0, 20);
@@ -62,16 +74,13 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		_features.push_back(new SwitchFeatureController(11, this, 21, false));
 		_features.push_back(new SwitchFeatureController(12, this, 22, false));
 		_features.push_back(new SwitchFeatureController(13, this, 23, false));
-		// Not used 14-16
 		_features.push_back(new SwitchFeatureController(14, this, 24, false));
 
-		//_features.push_back(new ColorStripFeatureController(50, this, 14, 12, 16));
 		_features.push_back(new ColorStripOverWireFeatureController(40, this, 8, 0));
 		_features.push_back(new ColorStripOverWireFeatureController(50, this, 8, 1));
 
 		_features.push_back(new TempFeatureController(30, 31, this, 14));
 		_features.push_back(new MotionSensorFeatureController(32, this, 12));
-		// GPIO13 - free
 	}
 	else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE)
 	{
@@ -142,8 +151,6 @@ MainApp::~MainApp()
 void MainApp::Init()
 {
 	SetupWifi();
-
-	//ESP.deepSleep(10 * 1000000);
 }
 
 void MainApp::Loop()
@@ -257,13 +264,6 @@ void MainApp::HandleServiceCommand(const char* path, const Buffer& payload)
 		HandleSleepCommand(payload);
 	}
 
-	/*
-	if (cmd.has_statusRequest)
-	{
-		HandleStatusRequest(cmd.statusRequest);
-	}
-	*/
-
 	Log(Debug, "[MainApp] HandleServiceCommand (finish)");
 }
 
@@ -345,6 +345,8 @@ void MainApp::HandleSleepCommand(const Buffer& payload)
 				unit = 60;
 				unitName = "minutes";
 			}
+
+			OnStop();
 
 			sprintf(Msg(), "Sleep level %d, will sleep for %d %s", sleepLevel, value, unitName);
 			Log(Info);

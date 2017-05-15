@@ -20,6 +20,7 @@ public:
   SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh);
 
   virtual void Start();
+  virtual void Stop();
   virtual void Handle(const char* topic, const Buffer& payload);
   virtual void Loop();
 };

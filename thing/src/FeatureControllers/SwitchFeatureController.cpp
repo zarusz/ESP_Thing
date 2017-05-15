@@ -17,6 +17,11 @@ void SwitchFeatureController::Start()
   SetState(false);
 }
 
+void SwitchFeatureController::Stop()
+{
+  SetState(false);
+}
+
 void SwitchFeatureController::Handle(const char* topic, const Buffer& payload)
 {
   String str;

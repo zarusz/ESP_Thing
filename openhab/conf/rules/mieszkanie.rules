@@ -16,7 +16,7 @@ then
 	}
 
 	if (Mode.state == "Sleeping" || Mode.state == "Away") {
-		sendCommand(SleepLevel, 4)
+		// sendCommand(SleepLevel, 4)
 		if (Lights.state == ON) sendCommand(Lights, OFF)
 		if (Yamaha_Power.state == ON) sendCommand(Yamaha_Power, OFF)
 	}
@@ -24,7 +24,7 @@ end
 
 rule "Tryb - ustaw spanie, jeżeli 1 rano i brak ruchu od 20 minut"
 when
-	Time cron "00 */5 00-06 ? * *"
+	Time cron "00 */5 01-06 ? * *"
 then
 	// see http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/tutorial-lesson-06
 	if (CMotionLastMinutes.state >= 20 && Mode.state == "Normal") {
