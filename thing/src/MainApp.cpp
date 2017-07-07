@@ -14,6 +14,7 @@
 #include "FeatureControllers/ColorLEDViaIRDriverFeatureController.h"
 #include "FeatureControllers/ColorStripFeatureController.h"
 #include "FeatureControllers/ColorStripOverWireFeatureController.h"
+#include "FeatureControllers/MoistureSensorFeatureController.h"
 
 #define DEVICE_UNIQUE_ID_SUFIT 		"sufit"
 #define DEVICE_UNIQUE_ID_TREE			"tree"
@@ -116,21 +117,11 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 	else
 	{
 		// bradboard
-		//_pins = new Pins();
-		_pins = new ShiftRegisterPins(13, 12, 14, 20);
+		_pins = new Pins();
+		//_pins = new ShiftRegisterPins(13, 12, 14, 20);
 		Wire.begin(); // join i2c bus (address optional for master)
 
-		// sufit
-		_features.push_back(new SwitchFeatureController(10, this, 20, false));
-		_features.push_back(new SwitchFeatureController(11, this, 21, false));
-		_features.push_back(new SwitchFeatureController(12, this, 22, false));
-		_features.push_back(new SwitchFeatureController(13, this, 23, false));
-		// Not used 14-16
-		_features.push_back(new SwitchFeatureController(17, this, 27, false));
-
-		//_features.push_back(new ColorStripFeatureController(50, this, 14, 12, 16));
-		_features.push_back(new ColorStripOverWireFeatureController(40, this, 8, 0));
-		_features.push_back(new ColorStripOverWireFeatureController(50, this, 8, 1));
+		_features.push_back(new MoistureSensorFeatureController(60, this, 1));
 	}
 }
 

@@ -28,7 +28,7 @@ void IRSensorFeatureController::Loop()
     }
     else
     {
-      Serial.printf("[IRSensorFeatureController] Received IR: port %d, format: %s, bits: %d, data: %s\n", _port, formatLabel, _results.bits, String(_results.value, HEX).c_str());
+      Serial.printf("[IRSensorFeatureController] Received IR: port %d, format: %s, bits: %d, data: %s\n", _port, formatLabel, _results.bits, String((int)_results.value, HEX).c_str());
       Publish(_results, format);
     }
 

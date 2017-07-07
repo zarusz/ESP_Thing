@@ -3,6 +3,7 @@
 
 #include "FeatureController.h"
 #include <IRremoteESP8266.h>
+#include <IRrecv.h>
 
 class IRSensorFeatureController : public FeatureController
 {

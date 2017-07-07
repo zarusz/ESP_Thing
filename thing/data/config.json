@@ -1,5 +1,5 @@
 {
-  "UniqueId": "sufit",
+  "UniqueId": "proto",
   "WifiName": "WareHouse_24GHz",
   "WifiPassword": "bonifacy",
   "MqttHost": "raspberrypi",

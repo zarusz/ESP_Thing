@@ -3,7 +3,7 @@
 #include "Values.h"
 
 #define NEC_NULL    0x000000
-#define NEC_BITS    32
+//#define NEC_BITS    32
 
 #define NEC_POWER           0xff02fd
 #define NEC_INTENSITY_UP    0xff3ac5
