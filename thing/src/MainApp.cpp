@@ -2,10 +2,11 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <algorithm>
-#include "Utils/TimeUtil.h"
 #include <Wire.h>
+#include "Utils/TimeUtil.h"
 
 // features
+#include "FeatureControllers/Values.h"
 #include "FeatureControllers/SwitchFeatureController.h"
 #include "FeatureControllers/TempFeatureController.h"
 #include "FeatureControllers/MotionSensorFeatureController.h"
@@ -47,7 +48,7 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 {
 	_messageBus.Subscribe(_deviceCommandTopicSub.c_str());
 	_messageBus.Subscribe(_deviceServiceTopicSub.c_str());
-	_messageBus.SetWill(_deviceStateOnlineTopic.c_str(), "OFF", true);
+	_messageBus.SetWill(_deviceStateOnlineTopic.c_str(), STATE_OFF, true);
 
 	if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_SUFIT)
 	{
@@ -121,7 +122,7 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		//_pins = new ShiftRegisterPins(13, 12, 14, 20);
 		Wire.begin(); // join i2c bus (address optional for master)
 
-		_features.push_back(new MoistureSensorFeatureController(60, this, 1));
+		_features.push_back(new MoistureSensorFeatureController(60, this, 14));
 	}
 }
 
