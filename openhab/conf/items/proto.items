@@ -7,3 +7,6 @@ Switch		ProtoCLedPower			"Zasilanie"					<switch>   				{ mqtt=">[local:dev/tree
 Color		ProtoCLed1				"Stół"						<rgb>					{ mqtt=">[local:dev/tree/command/40:command:*:default]" }
 Color		ProtoCLed2				"Sofa"						<rgb>					{ mqtt=">[local:dev/tree/command/50:command:*:default]" }
 Color		ProtoCLed				"Sofa+stół"					<rgb>   				{ mqtt=">[local:dev/tree/command/40:command:*:default],>[local:dev/tree/command/50:command:*:default]" }
+
+Number		Plant_Fikus_Moisture	"Fikus nawilżenie [%d]"		<grass>			(LivingCeiling)			{ mqtt="<[local:dev/proto/state/60:state:default]" }
+Switch		Plant_Fikus_Online		"Fikus online [%s]"			<network>		(LivingCeiling)			{ mqtt="<[local:dev/proto/state/online:state:default]" }

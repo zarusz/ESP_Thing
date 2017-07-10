@@ -1,15 +1,7 @@
-sitemap proto label="Sławka"
+sitemap proto label="Prototyp"
 {
-	Frame label="Halogeny" {
-		Switch		item=ProtoCLight1 label="Stół"
-		Switch		item=ProtoCLight2 label="Sofa lewy"
-		Switch		item=ProtoCLight3 label="Sofa środek"
-		Switch		item=ProtoCLight4 label="Sofa prawy"
-	}
-	Frame label="LED" {
-		Switch		item=ProtoCLedPower	label="Zasilanie"
-		Colorpicker	item=ProtoCLed1
-		Colorpicker	item=ProtoCLed2
-		Colorpicker	item=ProtoCLed
+	Frame label="Kwiatki" {
+		Text		item=Plant_Fikus_Moisture
+		Text 		item=Plant_Fikus_Online
 	}
 }

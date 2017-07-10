@@ -32,7 +32,7 @@ sitemap _default label="Sławka"
 			Switch		item=Yamaha_Power
 			Switch		item=Yamaha_Mute
 			Slider		item=Yamaha_Volume
-			Selection	item=Yamaha_Input		mappings=[HDMI1="Kodi",HDMI2="PC","NET RADIO"="NetRadio",TUNER="Tuner",Spotify="Spotify",AUDIO1="TV"]
+			Selection	item=Yamaha_Input		mappings=[HDMI1="Kodi",HDMI2="PC","NET RADIO"="NetRadio",TUNER="Tuner",Spotify="Spotify",Bluetooth="Bluetooth",AUDIO1="TV"]
 			Selection	item=Yamaha_Surround	mappings=["2ch Stereo"="2ch Stereo","5ch Stereo"="5ch Stereo","Chamber"="Chamber","Sci-Fi"="Sci-Fi","Adventure"="Adventure"]
 			Selection	item=Yamaha_NetRadio	label="Sender"			mappings=[1="N Joy", 2="Radio Sport", 3="RDU", 4="91ZM", 5="Hauraki"]
 		}
