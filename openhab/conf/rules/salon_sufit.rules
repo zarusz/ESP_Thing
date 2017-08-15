@@ -20,7 +20,7 @@ when
 then
 	var lastMotionMinutes = 0
 	if (lastMotion != null) lastMotionMinutes = Minutes.minutesBetween(lastMotion, now).getMinutes()
-	sendCommand(CMotionLastMinutes, lastMotionMinutes);
+	sendCommand(CMotionLastMinutes, lastMotionMinutes)
 	if ((lastMotionMinutes % 15) == 0)
 		logDebug("Mieszkanie", "Od ostatniego ruchu upłyęło minut: " + lastMotionMinutes)
 end

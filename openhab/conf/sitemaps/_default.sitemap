@@ -29,12 +29,25 @@ sitemap _default label="Sławka"
 		}
 
 		Text label="Yamaha" icon="receiver" {
-			Switch		item=Yamaha_Power
-			Switch		item=Yamaha_Mute
-			Slider		item=Yamaha_Volume
-			Selection	item=Yamaha_Input		mappings=[HDMI1="Kodi",HDMI2="PC","NET RADIO"="NetRadio",TUNER="Tuner",Spotify="Spotify",Bluetooth="Bluetooth",AUDIO1="TV"]
-			Selection	item=Yamaha_Surround	mappings=["2ch Stereo"="2ch Stereo","5ch Stereo"="5ch Stereo","Chamber"="Chamber","Sci-Fi"="Sci-Fi","Adventure"="Adventure"]
-			Selection	item=Yamaha_NetRadio	label="Sender"			mappings=[1="N Joy", 2="Radio Sport", 3="RDU", 4="91ZM", 5="Hauraki"]
+			Frame label="Main" {
+				Switch		item=Yamaha_Power
+				Switch		item=Yamaha_Mute
+				Slider		item=Yamaha_Volume
+				Selection	item=Yamaha_Input				mappings=[HDMI1="Kodi",HDMI2="PC",AUDIO1="TV",TUNER="Tuner",SPOTIFY="Spotify",BLUETOOTH="Bluetooth","NET RADIO"="NetRadio"]
+				Selection	item=Yamaha_Surround			mappings=["2ch Stereo"="2ch Stereo","5ch Stereo"="5ch Stereo","Chamber"="Chamber","Sci-Fi"="Sci-Fi","Adventure"="Adventure"]
+			}
+			Frame label="Playback" {
+				Selection	item=Yamaha_Tuner_Band			mappings=[FM="FM",DAB="DAB+"]						visibility=[Yamaha_Input=="TUNER"]
+				Selection	item=Yamaha_Preset				mappings=[2="Radio Kraków",3="PR Trójka",4="PR 2",5="RadioZet",6="+PLUS+",7="Radio Złote Przeboje",8="Radio Chillizet",12="RMF Classic",13="RMF MAXXX"]		visibility=[Yamaha_Input_Ex=="TUNER_FM"]
+				Selection	item=Yamaha_Preset				mappings=[1="FM-1",2="FM-2",3="FM-3"]				visibility=[Yamaha_Input_Ex=="TUNER_DAB"]
+				Switch		item=Yamaha_Playback 			mappings=[PREVIOUS="⏮", PLAY="►", PAUSE="⏸", STOP="⏹", NEXT="⏭"]	visibility=[Yamaha_Input_Ex=="SPOTIFY"]
+			}			
+			Frame label="Info" {
+				Text		item=Yamaha_Playback_Station
+				Text		item=Yamaha_Playback_Artist
+				Text		item=Yamaha_Playback_Album
+				Text		item=Yamaha_Playback_Song
+			}
 		}
 
 		Text label="Kodi" icon="television" {
