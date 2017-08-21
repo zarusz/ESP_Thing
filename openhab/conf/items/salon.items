@@ -1,18 +1,3 @@
-Switch		Yamaha_Power		"Power [%s]"				<switch>				(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:zone_channels#power" }
-Dimmer 		Yamaha_Volume   	"Volume [%.1f %%]"     	 	<soundvolume>   		(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:zone_channels#volume" }
-Switch		Yamaha_Mute			"Mute [%s]"					<soundvolume_mute>		(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:zone_channels#mute" }
-String		Yamaha_Input		"Input [%s]"				<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:zone_channels#input" }
-String		Yamaha_Surround		"Surround [%s]"				<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:zone_channels#surroundProgram" }
-Number		Yamaha_Preset		"Preset [%d]"				<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:playback_channels#preset"}
-String		Yamaha_Tuner_Band	"Band [%s]"					<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:playback_channels#tuner_band" }
-String		Yamaha_Input_Ex
-Player		Yamaha_Playback		"[]"						<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:playback_channels#playback" }
-String		Yamaha_Playback_Station		"Station [%s]"		<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:playback_channels#playback_station" }
-String		Yamaha_Playback_Artist		"Artist [%s]"		<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:playback_channels#playback_artist" }
-String		Yamaha_Playback_Album		"Album [%s]"		<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:playback_channels#playback_album" }
-String		Yamaha_Playback_Song		"Song [%s]"			<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:playback_channels#playback_song" }
-String		Yamaha_Nav_Menu		"Menu [%s]"					<video>					(Cinema)								{ channel="yamahareceiver:zone:9ab0c000_f668_11de_9976_00a0ded41bb7:Main_Zone:navigation_channels#navigation_menu" }
-	
 String		Kodi_State			"State [%s]"				<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.State]" }
 String		Kodi_Title			"Title [%s]"				<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.Label]" }
 String		Kodi_Type			"Type [%s]"					<video>					(Cinema)								{ xbmc="<[#livingRoom|Player.Type]" }
