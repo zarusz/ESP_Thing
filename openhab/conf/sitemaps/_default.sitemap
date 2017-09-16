@@ -44,7 +44,7 @@ sitemap _default label="Sławka"
 			Frame label="Playback" visibility=[Yamaha_Input=="Spotify", Yamaha_Input=="Bluetooth"] {
 				Switch		item=Yamaha_Playback 			mappings=["Previous"="⏮", "Play"="►", "Pause"="⏸", "Stop"="⏹", "Next"="⏭"]
 			}
-			Frame label="Info" {
+			Frame label="Info" visibility=[Yamaha_Input=="Spotify", Yamaha_Input=="Bluetooth", Yamaha_Input=="TUNER"] {
 				Text		item=Yamaha_Playback_Station																					visibility=[Yamaha_Input=="TUNER"]
 				Text		item=Yamaha_Playback_Artist
 				Text		item=Yamaha_Playback_Album

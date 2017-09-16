@@ -4,8 +4,8 @@ when
 	Item Yamaha_Tuner_Band changed	
 then
 	var input = Yamaha_Input.state
-	if (input != NULL) {
-		if (Yamaha_Input.state == "TUNER" && Yamaha_Tuner_Band.state != NULL) {
+	if (input !== NULL) {
+		if (Yamaha_Input.state == "TUNER" && Yamaha_Tuner_Band.state !== NULL) {
 			input = "TUNER_" + Yamaha_Tuner_Band.state
 		}
 		//Yamaha_Input_Ex.sendCommand(input)
