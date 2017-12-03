@@ -6,13 +6,13 @@
 #include <Arduino.h>
 #include <vector>
 #include <memory>
+#include <functional>
 
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <ESP8266httpUpdate.h>
 
 #include "DeviceConfig.h"
-#include "DeviceCommands.pb.h"
 #include "DeviceContext.h"
 #include "FeatureControllers/FeatureController.h"
 #include "Transport/MqttMessageBus.h"
@@ -56,7 +56,8 @@ public:
 	MainApp(DeviceConfig* deviceConfig);
 	virtual ~MainApp();
 
-	void Init();
+	bool IsConnected() const;
+	bool EnsureConnected(int timeoutMs, std::function<bool()> canRetry);
 	void Loop();
 
 	virtual DeviceConfig& GetConfig() { return *_deviceConfig; }
@@ -73,7 +74,6 @@ public:
 	virtual void Handle(const char* topic, const Buffer& payload);
 
 protected:
-	void SetupWifi();
 	void ReconnectPubSub();
 
 	//void DebugRetrievedMessage(const char* topic, const void* message);

@@ -1,5 +1,4 @@
 #include "IRFeatureController.h"
-#include "../DeviceCommands.ext.h"
 
 IRFeatureController::IRFeatureController(int port, DeviceContext* context, int pin)
   : FeatureController(port, FeatureType::FeatureType_IR, context),
@@ -42,4 +41,15 @@ void IRFeatureController::Handle(const char* topic, const Buffer& payload)
     Serial.printf("[IRFeatureController] Sending IR: port %d, format: %s, bits: %d, data: %s\n", cmd->port, formatLabel, s->bits, String(s->data, HEX).c_str());
   }
 */
+}
+
+const char* EnumLabel(IRFormat format)
+{
+  switch (format) {
+    case IRFormat_NEC:
+      return "NEC";
+    case IRFormat_SONY:
+      return "SONY";
+  }
+  return "Unknown";
 }

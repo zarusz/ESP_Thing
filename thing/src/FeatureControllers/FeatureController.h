@@ -3,7 +3,22 @@
 
 #include "../DeviceContext.h"
 #include "../Transport/Buffer.h"
-#include "../DeviceCommands.pb.h"
+
+/* Enum definitions */
+typedef enum _FeatureType {
+    FeatureType_SWITCH = 0,
+    FeatureType_IR = 1,
+    FeatureType_SENSOR_IR = 2,
+    FeatureType_SENSOR_TEMPERATURE = 3,
+    FeatureType_SENSOR_HUMIDITY = 4,
+    FeatureType_SENSOR_MOTION = 5
+} FeatureType;
+
+typedef enum _IRFormat {
+    IRFormat_Unknown = 0,
+    IRFormat_NEC = 1,
+    IRFormat_SONY = 2
+} IRFormat;
 
 class FeatureController
 {
@@ -20,7 +35,7 @@ public:
   virtual void Start();
   virtual void Stop();
 
-  virtual uint Describe(DevicePort* ports);
+  //virtual uint Describe(DevicePort* ports);
   virtual void Loop();
 
   virtual bool TryHandle(const char* path, const Buffer& payload);

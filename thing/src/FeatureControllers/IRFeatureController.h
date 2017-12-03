@@ -18,5 +18,6 @@ public:
   virtual void Handle(const char* topic, const Buffer& payload);
 };
 
+const char* EnumLabel(IRFormat format);
 
 #endif

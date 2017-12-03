@@ -1,5 +1,5 @@
 #include "IRSensorFeatureController.h"
-#include "../DeviceCommands.ext.h"
+#include "IRFeatureController.h"
 
 IRSensorFeatureController::IRSensorFeatureController(int port, DeviceContext* context, int pin)
   : FeatureController(port, FeatureType::FeatureType_SENSOR_IR, context),

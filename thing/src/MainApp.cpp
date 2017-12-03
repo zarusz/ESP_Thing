@@ -140,9 +140,34 @@ MainApp::~MainApp()
 	}
 }
 
-void MainApp::Init()
+bool MainApp::IsConnected() const
 {
-	SetupWifi();
+	return WiFi.status() == WL_CONNECTED;
+}
+
+bool MainApp::EnsureConnected(int timeoutMs, std::function<bool()> canRetry)
+{
+	WiFi.mode(WIFI_STA);
+	WiFi.begin();
+
+	Log(Info, "\nWiFi: Connecting to network...\n");
+
+  auto interval = TimeUtil::IntervalStart();
+	while (!IsConnected() && !TimeUtil::IntervalPassed(interval, timeoutMs) && canRetry())
+	{
+		delay(1000);
+		Serial.print(".");
+	}
+
+	if (!IsConnected())
+	{
+		Log(Warn, "WiFi: Connection timeout!");
+		return false;
+	}
+
+	sprintf(Msg(), "\nWiFi: Connected, IP address: %s\n", WiFi.localIP().toString().c_str());
+	Log(Info);
+	return true;
 }
 
 void MainApp::Loop()
@@ -170,32 +195,13 @@ void MainApp::Loop()
 	}
 }
 
-void MainApp::SetupWifi()
-{
-	// We start by connecting to a WiFi network
-	sprintf(Msg(), "\nConnecting to network: %s\n", _deviceConfig->WifiName.c_str());
-	Log(Debug);
-
-	WiFi.mode(WIFI_STA);
-	WiFi.begin(_deviceConfig->WifiName.c_str(), _deviceConfig->WifiPassword.c_str());
-
-	while (WiFi.status() != WL_CONNECTED)
-	{
-		delay(500);
-		Log(Debug, ".");
-	}
-
-	sprintf(Msg(), "\nWiFi connected. IP address: %s\n", WiFi.localIP().toString().c_str());
-	Log(Debug);
-}
-
 void MainApp::Log(LogLevel level, const char* msg)
 {
 	if (msg == NULL)
 		msg = Msg();
 
 	Serial.println(msg);
-	if (level >= Info)
+	if (level >= Info && IsConnected())
 	{
 		GetMessageBus()->Publish(_deviceStateLogTopic.c_str(), msg);
 	}
@@ -293,7 +299,7 @@ void MainApp::HandleUpdateConfigCommand(const Buffer& payload)
 	Log(Warn, "[MainApp] Updating config...");
 	Serial.println(config.c_str());
 
-	if (_deviceConfig->WriteToFileSystem(config)) {
+	if (_deviceConfig->Save(config)) {
 		sprintf(Msg(), "[MainApp] Config updated to: %s", config.c_str());
 		Log(Warn);
 	} else {

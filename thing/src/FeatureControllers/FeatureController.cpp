@@ -20,6 +20,7 @@ void FeatureController::Stop()
 {
 }
 
+/*
 uint FeatureController::Describe(DevicePort* ports)
 {
   ports[0] = (DevicePort) DevicePort_init_zero;
@@ -27,6 +28,7 @@ uint FeatureController::Describe(DevicePort* ports)
   ports[0].feature = _type;
   return 1;
 }
+*/
 
 bool FeatureController::TryHandle(const char* path, const Buffer& payload)
 {

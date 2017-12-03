@@ -15,6 +15,7 @@ TempFeatureController::~TempFeatureController()
 {
 }
 
+/*
 uint TempFeatureController::Describe(DevicePort* ports)
 {
   auto n = FeatureController::Describe(ports);
@@ -23,6 +24,7 @@ uint TempFeatureController::Describe(DevicePort* ports)
   ports[n].feature = FeatureType_SENSOR_HUMIDITY;
   return n + 1;
 }
+*/
 
 void TempFeatureController::Start()
 {

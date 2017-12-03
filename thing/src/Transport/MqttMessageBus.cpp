@@ -2,9 +2,7 @@
 #include <ESP8266HTTPClient.h>
 #include <algorithm>
 
-#include "../DeviceCommands.pb.h"
 #include "../Utils/TimeUtil.h"
-
 
 // We assume there will be only 1 instance crated.
 // We need this in the static

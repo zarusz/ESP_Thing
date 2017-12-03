@@ -1,28 +1,16 @@
 #include "DeviceConfig.h"
 #include <ArduinoJson.h>
+#include <functional>
 #include "FS.h"
 
-#define CONFIG_FILE   "/config.json"
+#define CONFIG_FILE             "/config.json"
+#define CONFIG_FILE_MAX_SIZE    1024
 
 DeviceConfig::DeviceConfig()
 {
 }
 
-DeviceConfig::DeviceConfig(const char* uniqueId,
-  const char* wifiName, const char* wifiPassword,
-  const char* mqttHost, const int mqttPort,
-  const char* mqttUser, const char* mqttPass)
-{
-  UniqueId = uniqueId;
-  WifiName = wifiName;
-  WifiPassword = wifiPassword;
-  MqttHost = mqttHost;
-  MqttPort = mqttPort;
-  MqttUser = mqttUser;
-  MqttPass = mqttPass;
-}
-
-bool DeviceConfig::ReadFromFileSystem()
+bool DeviceConfig::Load()
 {
    File configFile = SPIFFS.open(CONFIG_FILE, "r");
    if (!configFile) {
@@ -31,7 +19,7 @@ bool DeviceConfig::ReadFromFileSystem()
    }
 
    size_t size = configFile.size();
-   if (size > 1024) {
+   if (size > CONFIG_FILE_MAX_SIZE) {
      Serial.println("Config file size is too large");
      return false;
    }
@@ -40,7 +28,7 @@ bool DeviceConfig::ReadFromFileSystem()
    std::unique_ptr<char[]> buf(new char[size]);
    configFile.readBytes(buf.get(), size);
 
-   StaticJsonBuffer<512> jsonBuffer;
+   StaticJsonBuffer<CONFIG_FILE_MAX_SIZE> jsonBuffer;
    JsonObject& json = jsonBuffer.parseObject(buf.get());
 
    if (!json.success()) {
@@ -49,8 +37,6 @@ bool DeviceConfig::ReadFromFileSystem()
    }
 
    UniqueId = json["UniqueId"].asString();
-   WifiName = json["WifiName"].asString();
-   WifiPassword = json["WifiPassword"].asString();
    MqttHost = json["MqttHost"].asString();
    MqttPort = json["MqttPort"].as<int>();
    MqttUser = json["MqttUser"].asString();
@@ -58,9 +44,7 @@ bool DeviceConfig::ReadFromFileSystem()
 
    Serial.print("Loaded configs from file system. ");
    Serial.print("UniqueId: ");
-   Serial.print(UniqueId);
-   Serial.print(", WifiName: ");
-   Serial.print(WifiName.c_str());
+   Serial.print(UniqueId.c_str());
    Serial.print(", MqttHost: ");
    Serial.print(MqttHost.c_str());
    Serial.print(", MqttPort: ");
@@ -70,10 +54,11 @@ bool DeviceConfig::ReadFromFileSystem()
    Serial.print(", MqttPass: ");
    Serial.print(MqttPass.c_str());
    Serial.println(".");
+
    return true;
 }
 
-bool DeviceConfig::WriteToFileSystem(String& json)
+bool DeviceConfig::SaveInternal(std::function<void(File&)> operation)
 {
   File configFile = SPIFFS.open(CONFIG_FILE, "w");
   if (!configFile) {
@@ -81,8 +66,32 @@ bool DeviceConfig::WriteToFileSystem(String& json)
     return false;
   }
 
-  configFile.write((uint8_t*) json.c_str(), json.length());
+  operation(configFile);
+
   configFile.close();
 
   return true;
+}
+
+bool DeviceConfig::Save(String& json)
+{
+  return SaveInternal([&](File& configFile) {
+    configFile.write((uint8_t*) json.c_str(), json.length());
+  });
+}
+
+bool DeviceConfig::Save()
+{
+  StaticJsonBuffer<CONFIG_FILE_MAX_SIZE> jsonBuffer;
+
+  JsonObject& json = jsonBuffer.createObject();
+  json["UniqueId"] = UniqueId.c_str();
+  json["MqttHost"] = MqttHost.c_str();
+  json["MqttPort"] = MqttPort;
+  json["MqttUser"] = MqttUser.c_str();
+  json["MqttPass"] = MqttPass.c_str();
+
+  return SaveInternal([&](File& configFile) {
+    json.printTo(configFile);
+  });
 }

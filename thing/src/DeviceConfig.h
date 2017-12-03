@@ -2,30 +2,34 @@
 #define _DeviceConfig_h
 
 #include <Arduino.h>
+#include <functional>
+#include "FS.h"
 
-class DeviceConfig
+class IDeviceConfig {
+public:
+  String  UniqueId;
+  String  MqttHost;
+  int     MqttPort;
+  String  MqttUser;
+  String  MqttPass;
+
+public:
+  virtual bool Load() = 0;
+  virtual bool Save() = 0;
+  virtual bool Save(String& json) = 0;
+};
+
+class DeviceConfig : public IDeviceConfig
 {
 public:
-  String UniqueId;
-  String WifiName;
-  String WifiPassword;
-  String MqttHost;
-  int MqttPort;
-  String MqttUser;
-  String MqttPass;
-
-public:
   DeviceConfig();
-  DeviceConfig(const char* uniqueId,
-    const char* wifikName,
-    const char* wifiPassword,
-    const char* MqttHost,
-    const int MqttPort,
-    const char* MqttUser,
-    const char* MqttPass);
 
-  bool ReadFromFileSystem();
-  bool WriteToFileSystem(String& json);
+  bool Load();
+  bool Save();
+  bool Save(String& json);
+
+private:
+  bool SaveInternal(std::function<void(File&)> operation);
 };
 
 #endif

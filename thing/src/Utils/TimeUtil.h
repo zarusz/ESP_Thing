@@ -6,6 +6,11 @@
 class TimeUtil
 {
 public:
+  static ulong IntervalStart()
+  {
+      return millis();
+  }
+
   static bool IntervalPassed(ulong& lastTimeMs, uint intervalMs)
   {
       ulong now = millis();
