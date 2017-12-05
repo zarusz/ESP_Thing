@@ -1,7 +1,5 @@
 {
   "UniqueId": "proto",
-  "WifiName": "WareHouse_24GHz",
-  "WifiPassword": "bonifacy",
   "MqttHost": "raspberrypi",
   "MqttPort": 1883,
   "MqttUser": "device",

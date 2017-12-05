@@ -14,25 +14,29 @@ bool DeviceConfig::Load()
 {
    File configFile = SPIFFS.open(CONFIG_FILE, "r");
    if (!configFile) {
-     Serial.println("Failed to open config file");
+     Serial.println("Config: Failed to open config file");
      return false;
    }
 
    size_t size = configFile.size();
    if (size > CONFIG_FILE_MAX_SIZE) {
-     Serial.println("Config file size is too large");
+     Serial.println("Config: Confog file size is too large");
      return false;
    }
 
    // Allocate a buffer to store contents of the file.
-   std::unique_ptr<char[]> buf(new char[size]);
-   configFile.readBytes(buf.get(), size);
+   char configFileContent[CONFIG_FILE_MAX_SIZE];
+   configFile.readBytes(configFileContent, size);
+
+   Serial.println("Config: Loaded config from file system:");
+   Serial.write(configFileContent, size);
+   Serial.println("");
 
    StaticJsonBuffer<CONFIG_FILE_MAX_SIZE> jsonBuffer;
-   JsonObject& json = jsonBuffer.parseObject(buf.get());
+   JsonObject& json = jsonBuffer.parseObject(configFileContent);
 
    if (!json.success()) {
-     Serial.println("Failed to parse config file");
+     Serial.println("Config: Failed to parse config file");
      return false;
    }
 
@@ -41,19 +45,6 @@ bool DeviceConfig::Load()
    MqttPort = json["MqttPort"].as<int>();
    MqttUser = json["MqttUser"].asString();
    MqttPass = json["MqttPass"].asString();
-
-   Serial.print("Loaded configs from file system. ");
-   Serial.print("UniqueId: ");
-   Serial.print(UniqueId.c_str());
-   Serial.print(", MqttHost: ");
-   Serial.print(MqttHost.c_str());
-   Serial.print(", MqttPort: ");
-   Serial.print(MqttPort);
-   Serial.print(", MqttUser: ");
-   Serial.print(MqttUser.c_str());
-   Serial.print(", MqttPass: ");
-   Serial.print(MqttPass.c_str());
-   Serial.println(".");
 
    return true;
 }

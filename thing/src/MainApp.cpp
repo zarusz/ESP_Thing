@@ -21,6 +21,7 @@
 #define DEVICE_UNIQUE_ID_TREE			"tree"
 #define DEVICE_UNIQUE_ID_DEV			"proto"
 #define DEVICE_UNIQUE_ID_KORYTARZ	"korytarz"
+#define DEVICE_UNIQUE_ID_TELEWIZOR	"telewizor"
 
 #define TOPIC_BASE								"dev/"
 #define TOPIC_DEVICE_EVENTS 			"device/events"
@@ -84,7 +85,7 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		_features.push_back(new TempFeatureController(30, 31, this, 14));
 		_features.push_back(new MotionSensorFeatureController(32, this, 12));
 	}
-	else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE)
+	else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE || _deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TELEWIZOR)
 	{
 		// choinka
 		_pins = new Pins();
@@ -147,10 +148,13 @@ bool MainApp::IsConnected() const
 
 bool MainApp::EnsureConnected(int timeoutMs, std::function<bool()> canRetry)
 {
+	if (IsConnected())
+		return true;
+
 	WiFi.mode(WIFI_STA);
 	WiFi.begin();
 
-	Log(Info, "\nWiFi: Connecting to network...\n");
+	Log(Info, "WiFi: Connecting to network...");
 
   auto interval = TimeUtil::IntervalStart();
 	while (!IsConnected() && !TimeUtil::IntervalPassed(interval, timeoutMs) && canRetry())
@@ -158,6 +162,7 @@ bool MainApp::EnsureConnected(int timeoutMs, std::function<bool()> canRetry)
 		delay(1000);
 		Serial.print(".");
 	}
+	Serial.println("");
 
 	if (!IsConnected())
 	{
@@ -165,7 +170,7 @@ bool MainApp::EnsureConnected(int timeoutMs, std::function<bool()> canRetry)
 		return false;
 	}
 
-	sprintf(Msg(), "\nWiFi: Connected, IP address: %s\n", WiFi.localIP().toString().c_str());
+	sprintf(Msg(), "WiFi: Connected, IP address: %s", WiFi.localIP().toString().c_str());
 	Log(Info);
 	return true;
 }

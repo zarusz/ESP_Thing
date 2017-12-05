@@ -47,7 +47,7 @@ bool configMode()
 {
 	// See https://github.com/tzapu/WiFiManager
 
-	Serial.println("Entering config mode...");
+	Serial.println("[Main] Entering config mode...");
 
 	#define MAX_LEN 32
   char unique_id[MAX_LEN] = "";
@@ -100,7 +100,7 @@ bool configMode()
 
 	if (!wifiManager.startConfigPortal("OnDemandAP"))
 	{
-		Serial.println("Failed to connect and hit timeout");
+		Serial.println("[Main] Failed to connect and hit timeout");
 		delay(3000);
 		//reset and try again, or maybe put it to deep sleep
 		ESP.reset();
@@ -109,7 +109,7 @@ bool configMode()
 
 	if (shouldSaveConfig)
 	{
-     Serial.println("Saving config");
+     Serial.println("[Main] Saving config");
 
 		 deviceConfig.UniqueId = param_unique_id.getValue();
 		 deviceConfig.MqttHost = param_mqtt_host.getValue();
@@ -118,7 +118,7 @@ bool configMode()
 		 deviceConfig.MqttPass = param_mqtt_pass.getValue();
 
      if (!deviceConfig.Save())
-       Serial.println("Failed save config to file system");
+       Serial.println("[Main] Failed save config to file system");
 
 		 return true;
    }
@@ -134,7 +134,7 @@ void loop()
 		if (deviceConfig.Load())
 			deviceConfigLoaded = true;
 		else
-			Serial.println("Failed to load config from file system");
+			Serial.println("[Main] Failed to load config from file system");
 	}
 
 	if (isEnterConfigMode() || !deviceConfigLoaded)
