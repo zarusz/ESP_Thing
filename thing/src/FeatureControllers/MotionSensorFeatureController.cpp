@@ -3,12 +3,17 @@
 #include "Values.h"
 
 MotionSensorFeatureController::MotionSensorFeatureController(int port, DeviceContext* context, int pin)
-  : FeatureController(port, FeatureType::FeatureType_SENSOR_IR, context)
+  : FeatureController(port, FeatureType::SENSOR_MOTION, context)
 {
   _pin = pin;
-  _lastUpdateMs = 0;
-  _updateIntervalMs = 2000;
-  _lastActive = false;
+
+  _readLast = TimeUtil::IntervalStart();
+  _readInterval = 200;
+  _state = false;
+
+  _windowStart = 0;
+  _windowDuration = 1100;
+  _windowState = false;
 }
 
 MotionSensorFeatureController::~MotionSensorFeatureController()
@@ -22,14 +27,21 @@ void MotionSensorFeatureController::Start()
 
 void MotionSensorFeatureController::Loop()
 {
-  if (!TimeUtil::IntervalPassed(_lastUpdateMs, _updateIntervalMs))
+  if (!TimeUtil::IntervalPassed(_readLast, _readInterval))
     return;
 
-  auto active = digitalRead(_pin) == HIGH;
-  if (active != _lastActive) {
-      _lastActive = active;
+  bool active = digitalRead(_pin) == HIGH;
+  if (active != _windowState)
+  {
+    _windowState = active;
+    _windowStart = active ? TimeUtil::IntervalStart() : 0;
+  }
 
-      String payload = active ? STATE_ON : STATE_OFF;
-      FeatureController::PublishState(payload);
+  active = _windowStart != 0 && TimeUtil::IsIntervalPassed(_windowStart, _windowDuration);
+
+  if (active != _state)
+  {
+    _state = active;
+    FeatureController::PublishState(_state ? STATE_ON : STATE_OFF);
   }
 }

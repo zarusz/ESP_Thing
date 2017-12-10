@@ -8,9 +8,15 @@ class MotionSensorFeatureController : public FeatureController
 {
 protected:
   int _pin;
-  ulong _lastUpdateMs;
-  uint _updateIntervalMs;
-  bool _lastActive;
+
+  ulong _readLast;
+  uint _readInterval;
+
+  ulong _windowStart;
+  uint _windowDuration;
+  bool _windowState;
+
+  volatile bool _state;
 
 public:
   MotionSensorFeatureController(int port, DeviceContext* context, int pin);

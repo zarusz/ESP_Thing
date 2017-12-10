@@ -8,7 +8,7 @@ MoistureSensorFeatureController::MoistureSensorFeatureController(int port, Devic
 {
   _pinSelect = pinSelect;
   _pinAdc = pinAdc;
-  _lastUpdateMs = 0;
+  _lastUpdateMs = TimeUtil::IntervalStart();
   _updateIntervalMs = 2000;
   _value = -1;
   _valuePublished = -1;

@@ -13,14 +13,24 @@ public:
 
   static bool IntervalPassed(ulong& lastTimeMs, uint intervalMs)
   {
-      ulong now = millis();
-      if (now - lastTimeMs < intervalMs) {
-          // the time has not elapsed
-          return false;
-      }
-      lastTimeMs = now;
+    if (IsIntervalPassed(lastTimeMs, intervalMs))
+    {
+      lastTimeMs = IntervalStart();
       return true;
+    }
+    return false;
   }
+
+  static bool IsIntervalPassed(ulong& lastTimeMs, uint intervalMs)
+  {
+    auto now = IntervalStart();
+    if (now > lastTimeMs + intervalMs)
+    {
+      return true;
+    }
+    return false;
+  }
+
 };
 
 #endif

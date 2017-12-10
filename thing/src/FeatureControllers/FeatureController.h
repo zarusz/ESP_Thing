@@ -11,7 +11,7 @@ typedef enum _FeatureType {
     FeatureType_SENSOR_IR = 2,
     FeatureType_SENSOR_TEMPERATURE = 3,
     FeatureType_SENSOR_HUMIDITY = 4,
-    FeatureType_SENSOR_MOTION = 5
+    SENSOR_MOTION = 5
 } FeatureType;
 
 typedef enum _IRFormat {

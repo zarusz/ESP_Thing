@@ -94,15 +94,15 @@ MainApp::MainApp(DeviceConfig* deviceConfig)
 		16 - Connected to RST (deep sleep)
 		04 - Switch 01
 		05 - Switch 02
-		16 - Switch 03
 		14 - Temp
+		13 - Motion
 		*/
 
 		_features.push_back(new SwitchFeatureController(10, this, 4, false));
 		_features.push_back(new SwitchFeatureController(11, this, 5, false));
-		//_features.push_back(new SwitchFeatureController(15, this, 12, true));
 
 		_features.push_back(new TempFeatureController(30, 31, this, 14));
+		_features.push_back(new MotionSensorFeatureController(32, this, 12));
 	}
 	else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_KORYTARZ)
 	{
@@ -272,6 +272,11 @@ void MainApp::HandleServiceCommand(const char* path, const Buffer& payload)
 
 void MainApp::HandleUpdateFirmwareCommand(const Buffer& payload)
 {
+	if (payload.Size() == 0)
+	{
+		return;
+	}
+
 	String url;
 	payload.ToString(url);
 

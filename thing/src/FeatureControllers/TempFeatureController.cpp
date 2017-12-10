@@ -7,24 +7,13 @@ TempFeatureController::TempFeatureController(int port, int portForHumidity, Devi
     _portForHumidity(portForHumidity)
 {
   _lastTemp = false;
-  _lastUpdateMs = 0;
-  _updateIntervalMs = 10000;
+  _lastUpdateMs = TimeUtil::IntervalStart();
+  _updateIntervalMs = 20000;
 }
 
 TempFeatureController::~TempFeatureController()
 {
 }
-
-/*
-uint TempFeatureController::Describe(DevicePort* ports)
-{
-  auto n = FeatureController::Describe(ports);
-  ports[n] = (DevicePort) DevicePort_init_zero;
-  ports[n].port = _portForHumidity;
-  ports[n].feature = FeatureType_SENSOR_HUMIDITY;
-  return n + 1;
-}
-*/
 
 void TempFeatureController::Start()
 {
