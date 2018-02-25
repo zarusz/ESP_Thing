@@ -1,0 +1,7 @@
+CompactNamespaces: true
+NamespaceIndentation: Inner
+AllowShortBlocksOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterEnum: true

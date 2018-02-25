@@ -4,9 +4,9 @@
 #include "Values.h"
 #include <Wire.h>
 
-ColorStripOverWireFeatureController::ColorStripOverWireFeatureController(int port, DeviceContext* context, int address, int index)
-  : FeatureController(port, FeatureType::FeatureType_IR, context)
-{
+ColorStripOverWireFeatureController::ColorStripOverWireFeatureController(
+    int port, DeviceContext *context, int address, int index)
+    : FeatureController(port, FeatureType::IR, context) {
   _address = address;
   _index = index;
 
@@ -14,69 +14,59 @@ ColorStripOverWireFeatureController::ColorStripOverWireFeatureController(int por
   _updateIntervalMs = 5000;
 }
 
-void ColorStripOverWireFeatureController::SetState(bool on)
-{
+void ColorStripOverWireFeatureController::SetState(bool on) {
   SetState(on, _h, _s, _v);
 }
 
-void ColorStripOverWireFeatureController::SetState(bool on, float h, float s, float v)
-{
+void ColorStripOverWireFeatureController::SetState(bool on, float h, float s,
+                                                   float v) {
   _on = on;
   _h = h;
   _s = s;
   _v = v;
 
-  if (on)
-  {
-    HSV hsv = {
-        .h = h,
-        .s = s / 100.0f,
-        .v = v / 100.0f
-    };
+  if (on) {
+    HSV hsv = {.h = h, .s = s / 100.0f, .v = v / 100.0f};
 
     _rgb = Colors::hsv2rgb(hsv);
 
     _r = round(_rgb.r * 255);
     _g = round(_rgb.g * 255);
     _b = round(_rgb.b * 255);
-  }
-  else
-  {
+  } else {
     _r = 0;
     _g = 0;
     _b = 0;
   }
 
-  sprintf(_logger->Msg(), "[ColorStripOverWireFeatureController] Color RGB = %d %d %d", _r, _g, _b);
+  sprintf(_logger->Msg(),
+          "[ColorStripOverWireFeatureController] Color RGB = %d %d %d", _r, _g,
+          _b);
   _logger->Log(Debug);
 
   if (UpdateSlave() != 0) {
-    sprintf(_logger->Msg(), "[ColorStripOverWireFeatureController] Communication problem with slave");
+    sprintf(_logger->Msg(), "[ColorStripOverWireFeatureController] "
+                            "Communication problem with slave");
     _logger->Log(Error);
   }
 }
 
-void ColorStripOverWireFeatureController::Start()
-{
+void ColorStripOverWireFeatureController::Start() {
   SetState(false);
 }
 
-void ColorStripOverWireFeatureController::Stop()
-{
+void ColorStripOverWireFeatureController::Stop() {
   SetState(false);
 }
 
-void ColorStripOverWireFeatureController::Handle(const char* topic, const Buffer& payload)
-{
+void ColorStripOverWireFeatureController::Handle(const char *topic,
+                                                 const Buffer &payload) {
   String str;
   payload.ToString(str);
 
-  if (str == STATE_OFF)
-  {
+  if (str == STATE_OFF) {
     SetState(false);
-  }
-  else if (str == STATE_ON)
-  {
+  } else if (str == STATE_ON) {
     SetState(true);
   } else {
     // [0-360],[0-100],[0-100]
@@ -93,18 +83,17 @@ void ColorStripOverWireFeatureController::Handle(const char* topic, const Buffer
   }
 }
 
-int ColorStripOverWireFeatureController::UpdateSlave()
-{
+int ColorStripOverWireFeatureController::UpdateSlave() {
   int options = 1 << _index;
-  //Serial.print("Options: ");
-  //Serial.println(options);
+  // Serial.print("Options: ");
+  // Serial.println(options);
 
-  Wire.beginTransmission(8);  // transmit to device #8
-  Wire.write(_r);              // sends five bytes
-  Wire.write(_g);              // sends one byte
-  Wire.write(_b);              // sends one byte
-  Wire.write(options);              // sends one byte
-  auto err = Wire.endTransmission();    // stop transmitting
+  Wire.beginTransmission(8);         // transmit to device #8
+  Wire.write(_r);                    // sends five bytes
+  Wire.write(_g);                    // sends one byte
+  Wire.write(_b);                    // sends one byte
+  Wire.write(options);               // sends one byte
+  auto err = Wire.endTransmission(); // stop transmitting
 
   /*
   err will be one of:
@@ -116,19 +105,19 @@ int ColorStripOverWireFeatureController::UpdateSlave()
   The actual error codes that the TWI hardware can express is found here
   C:\Program Files\Arduino\hardware\tools\avr\avr\include\util\twi.h
 
-  They are not returned to the user, all are lumped into err=4.  I modified my Wire.h to
-  return them with a Wire.lastError() call
+  They are not returned to the user, all are lumped into err=4.  I modified my
+  Wire.h to return them with a Wire.lastError() call
   */
 
-  sprintf(_logger->Msg(), "[ColorStripOverWireFeatureController] Slave response: %d", err);
+  sprintf(_logger->Msg(),
+          "[ColorStripOverWireFeatureController] Slave response: %d", err);
   _logger->Log(Debug);
 
   delay(50);
   return err;
 }
 
-void ColorStripOverWireFeatureController::Loop()
-{
+void ColorStripOverWireFeatureController::Loop() {
   if (!TimeUtil::IntervalPassed(_lastUpdateMs, _updateIntervalMs))
     return;
 

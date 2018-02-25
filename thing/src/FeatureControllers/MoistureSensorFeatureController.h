@@ -1,10 +1,8 @@
-#ifndef _MoistureSensorFeatureController_h
-#define _MoistureSensorFeatureController_h
+#pragma once
 
 #include "FeatureController.h"
 
-class MoistureSensorFeatureController : public FeatureController
-{
+class MoistureSensorFeatureController : public FeatureController {
 protected:
   int _pinSelect;
   int _pinAdc;
@@ -15,11 +13,10 @@ protected:
   int _publishThreshold;
 
 public:
-  MoistureSensorFeatureController(int port, DeviceContext* context, int pinSelect = -1, int pinAdc = A0);
+  MoistureSensorFeatureController(int port, DeviceContext *context,
+                                  int pinSelect = -1, int pinAdc = A0);
   virtual ~MoistureSensorFeatureController();
 
   virtual void Start();
   virtual void Loop();
 };
-
-#endif

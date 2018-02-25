@@ -1,10 +1,8 @@
-#ifndef _SwitchFeatureController_h
-#define _SwitchFeatureController_h
+#pragma once
 
 #include "FeatureController.h"
 
-class SwitchFeatureController : public FeatureController
-{
+class SwitchFeatureController : public FeatureController {
 protected:
   int _pin;
   bool _onIsHigh;
@@ -13,16 +11,18 @@ protected:
   ulong _lastUpdateMs;
   uint _updateIntervalMs;
 
-  void SetState(bool on);
   void PublishState();
 
 public:
-  SwitchFeatureController(int port, DeviceContext* context, int pin, bool onIsHigh);
+  SwitchFeatureController(int port, DeviceContext *context, int pin,
+                          bool onIsHigh);
 
   virtual void Start();
   virtual void Stop();
-  virtual void Handle(const char* topic, const Buffer& payload);
+  virtual void Handle(const char *topic, const Buffer &payload);
   virtual void Loop();
-};
 
-#endif
+public:
+  void Toggle();
+  void SetOn(bool on);
+};

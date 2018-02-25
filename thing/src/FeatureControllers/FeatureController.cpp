@@ -1,23 +1,20 @@
 #include "FeatureController.h"
 
-FeatureController::FeatureController(int port, FeatureType type, DeviceContext* context)
-{
+FeatureController::FeatureController(int port, FeatureType type,
+                                     DeviceContext *context) {
   _port = port;
   _type = type;
   _context = context;
   _logger = &context->GetLogger();
 }
 
-FeatureController::~FeatureController()
-{
+FeatureController::~FeatureController() {
 }
 
-void FeatureController::Start()
-{
+void FeatureController::Start() {
 }
 
-void FeatureController::Stop()
-{
+void FeatureController::Stop() {
 }
 
 /*
@@ -30,38 +27,32 @@ uint FeatureController::Describe(DevicePort* ports)
 }
 */
 
-bool FeatureController::TryHandle(const char* path, const Buffer& payload)
-{
-  if (CanHandle(path, payload))
-  {
+bool FeatureController::TryHandle(const char *path, const Buffer &payload) {
+  if (CanHandle(path, payload)) {
     Handle(path, payload);
     return true;
   }
   return false;
 }
 
-bool FeatureController::CanHandle(const char* path, const Buffer& payload)
-{
+bool FeatureController::CanHandle(const char *path, const Buffer &payload) {
   char portStr[6];
   itoa(_port, portStr, 10);
   return strcmp(portStr, path) == 0;
 }
 
-void FeatureController::Handle(const char* topic, const Buffer& payload)
-{
-
+void FeatureController::Handle(const char *topic, const Buffer &payload) {
 }
 
-void FeatureController::Loop()
-{
+void FeatureController::Loop() {
 }
 
-void FeatureController::PublishState(const String& payload, int port)
-{
+void FeatureController::PublishState(const String &payload, int port) {
   if (port == 0)
     port = _port;
 
   char topic[64];
-  snprintf(topic, sizeof(topic), "%s%d", _context->GetStateTopic().c_str(), port);
+  snprintf(topic, sizeof(topic), "%s%d", _context->GetStateTopic().c_str(),
+           port);
   _context->GetMessageBus()->Publish(topic, payload, true);
 }

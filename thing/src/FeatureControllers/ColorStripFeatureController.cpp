@@ -2,9 +2,11 @@
 #include "..\Utils\Colors.h"
 #include "Values.h"
 
-ColorStripFeatureController::ColorStripFeatureController(int port, DeviceContext* context, int pinR, int pinG, int pinB)
-  : FeatureController(port, FeatureType::FeatureType_IR, context)
-{
+ColorStripFeatureController::ColorStripFeatureController(int port,
+                                                         DeviceContext *context,
+                                                         int pinR, int pinG,
+                                                         int pinB)
+    : FeatureController(port, FeatureType::IR, context) {
   _pinR = pinR;
   _pinG = pinG;
   _pinB = pinB;
@@ -13,30 +15,24 @@ ColorStripFeatureController::ColorStripFeatureController(int port, DeviceContext
   SetHSV(0, 0, 0);
 }
 
-void ColorStripFeatureController::SetHSV(float h, float s, float v)
-{
+void ColorStripFeatureController::SetHSV(float h, float s, float v) {
   _h = h;
   _s = s;
   _v = v;
 
-  HSV hsv = {
-      .h = h,
-      .s = s / 100.0f,
-      .v = v / 100.0f
-  };
+  HSV hsv = {.h = h, .s = s / 100.0f, .v = v / 100.0f};
 
   _rgb = Colors::hsv2rgb(hsv);
 }
 
-void ColorStripFeatureController::Start()
-{
+void ColorStripFeatureController::Start() {
   pinMode(_pinR, OUTPUT);
   pinMode(_pinG, OUTPUT);
   pinMode(_pinB, OUTPUT);
 }
 
-void ColorStripFeatureController::Handle(const char* topic, const Buffer& payload)
-{
+void ColorStripFeatureController::Handle(const char *topic,
+                                         const Buffer &payload) {
   String str;
   payload.ToString(str);
 
@@ -60,8 +56,8 @@ void ColorStripFeatureController::Handle(const char* topic, const Buffer& payloa
       auto s = atof(cstr + c1);
       auto v = atof(cstr + c2);
 
-      //sprintf(_logger->Msg(), "c1=%d, c2=%d, h=%d,s=%d,v=%d", c1, c2, (int) h, (int) s, (int) v);
-      //_logger->Log(Debug);
+      // sprintf(_logger->Msg(), "c1=%d, c2=%d, h=%d,s=%d,v=%d", c1, c2, (int)
+      // h, (int) s, (int) v); _logger->Log(Debug);
 
       // 0,0,100 - biały
       // 0,0,0 - czarny (off)
@@ -72,13 +68,13 @@ void ColorStripFeatureController::Handle(const char* topic, const Buffer& payloa
     pwm_b = round(_rgb.b * PWMRANGE);
   }
 
-/*
-  auto s = str.c_str();
-  auto rgb = strtol(s, NULL, 16);
-  int r = (rgb >> 16) & 255;
-  int g = (rgb >> 8) & 255;
-  int b = rgb & 255;
-*/
+  /*
+    auto s = str.c_str();
+    auto rgb = strtol(s, NULL, 16);
+    int r = (rgb >> 16) & 255;
+    int g = (rgb >> 8) & 255;
+    int b = rgb & 255;
+  */
 
   analogWrite(_pinR, pwm_r);
   analogWrite(_pinG, pwm_g);
@@ -87,6 +83,8 @@ void ColorStripFeatureController::Handle(const char* topic, const Buffer& payloa
   // handle HSB
   // see http://docs.openhab.org/concepts/items.html#hsbtype
 
-  sprintf(_logger->Msg(), "[ColorStripFeatureController] Msg %s Color RGB = %d %d %d", str.c_str(), pwm_r, pwm_g, pwm_b);
+  sprintf(_logger->Msg(),
+          "[ColorStripFeatureController] Msg %s Color RGB = %d %d %d",
+          str.c_str(), pwm_r, pwm_g, pwm_b);
   _logger->Log(Debug);
 }

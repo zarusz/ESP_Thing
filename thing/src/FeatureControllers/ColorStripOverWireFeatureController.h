@@ -1,11 +1,9 @@
-#ifndef _ColorStripOverWireFeatureController_h
-#define _ColorStripOverWireFeatureController_h
+#pragma once
 
-#include "FeatureController.h"
 #include "..\Utils\Colors.h"
+#include "FeatureController.h"
 
-class ColorStripOverWireFeatureController : public FeatureController
-{
+class ColorStripOverWireFeatureController : public FeatureController {
 private:
   int _address;
   int _index;
@@ -22,15 +20,14 @@ private:
   void SetState(bool on, float h, float s, float v);
 
 public:
-  ColorStripOverWireFeatureController(int port, DeviceContext* context, int address, int index);
+  ColorStripOverWireFeatureController(int port, DeviceContext *context,
+                                      int address, int index);
 
   virtual void Start();
   virtual void Stop();
-  virtual void Handle(const char* topic, const Buffer& payload);
+  virtual void Handle(const char *topic, const Buffer &payload);
   virtual void Loop();
 
 private:
   int UpdateSlave();
 };
-
-#endif

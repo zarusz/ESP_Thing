@@ -1,18 +1,14 @@
-#ifndef _Pins_h
-#define _Pins_h
+#pragma once
 
 enum PinMode
 {
-    Output,
-    Input
+  Output,
+  Input
 };
 
-class Pins
-{
+class Pins {
 public:
   virtual void SetMode(int pin, PinMode mode);
   virtual void SetValue(int pin, bool high);
   virtual bool isValueHigh(int pin);
 };
-
-#endif

@@ -1,11 +1,9 @@
-#ifndef _TempFeatureController_h
-#define _TempFeatureController_h
+#pragma once
 
 #include "FeatureController.h"
 #include <DHT.h>
 
-class TempFeatureController : public FeatureController
-{
+class TempFeatureController : public FeatureController {
 protected:
   int _portForHumidity;
   DHT _dht;
@@ -15,12 +13,10 @@ protected:
   uint _updateIntervalMs;
 
 public:
-  TempFeatureController(int port, int portForHumidity, DeviceContext* context, int pin);
+  TempFeatureController(int port, int portForHumidity, DeviceContext *context, int pin);
   virtual ~TempFeatureController();
 
-  //virtual uint Describe(DevicePort* ports);
+  // virtual uint Describe(DevicePort* ports);
   virtual void Start();
   virtual void Loop();
 };
-
-#endif

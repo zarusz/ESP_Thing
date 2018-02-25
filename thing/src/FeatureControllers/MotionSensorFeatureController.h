@@ -1,11 +1,9 @@
-#ifndef _MotionSensorFeatureController_h
-#define _MotionSensorFeatureController_h
+#pragma once
 
 #include "FeatureController.h"
 #include <IRremoteESP8266.h>
 
-class MotionSensorFeatureController : public FeatureController
-{
+class MotionSensorFeatureController : public FeatureController {
 protected:
   int _pin;
 
@@ -19,11 +17,9 @@ protected:
   volatile bool _state;
 
 public:
-  MotionSensorFeatureController(int port, DeviceContext* context, int pin);
+  MotionSensorFeatureController(int port, DeviceContext *context, int pin);
   virtual ~MotionSensorFeatureController();
 
   virtual void Start();
   virtual void Loop();
 };
-
-#endif
