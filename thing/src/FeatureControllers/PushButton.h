@@ -31,7 +31,9 @@ namespace Thing { namespace FeatureControllers {
 
     bool IsOn();
     bool IsPushed();
+    void ClearPushed();
     bool IsLongPushed();
+    void ClearLongPushed();
 
   public:
     static const uint TopicState;

@@ -13,8 +13,7 @@ bool DeviceConfigManager::EnsureConfigLoaded() {
     if (_deviceConfig->Load())
       _deviceConfigLoaded = true;
     else
-      Serial.println(
-          "[DeviceConfigManager] Failed to load config from file system");
+      Serial.println("[DeviceConfigManager] Failed to load config from file system");
   }
   return _deviceConfigLoaded;
 }
@@ -54,16 +53,11 @@ bool DeviceConfigManager::EnterConfigMode() {
   // The extra parameters to be configured (can be either global or just in the
   // setup) After connecting, parameter.getValue() will get you the configured
   // value id/name placeholder/prompt default length
-  WiFiManagerParameter param_unique_id("UniqueId", "Unique Id", unique_id,
-                                       MAX_LEN);
-  WiFiManagerParameter param_mqtt_host("MqttHost", "MQTT Server", mqtt_host,
-                                       MAX_LEN);
-  WiFiManagerParameter param_mqtt_port("MqttPort", "MQTT Port", mqtt_port,
-                                       MAX_LEN);
-  WiFiManagerParameter param_mqtt_user("MqttUser", "MQTT User", mqtt_user,
-                                       MAX_LEN);
-  WiFiManagerParameter param_mqtt_pass("MqttPass", "MQTT Password", mqtt_pass,
-                                       MAX_LEN);
+  WiFiManagerParameter param_unique_id("UniqueId", "Unique Id", unique_id, MAX_LEN);
+  WiFiManagerParameter param_mqtt_host("MqttHost", "MQTT Server", mqtt_host, MAX_LEN);
+  WiFiManagerParameter param_mqtt_port("MqttPort", "MQTT Port", mqtt_port, MAX_LEN);
+  WiFiManagerParameter param_mqtt_user("MqttUser", "MQTT User", mqtt_user, MAX_LEN);
+  WiFiManagerParameter param_mqtt_pass("MqttPass", "MQTT Password", mqtt_pass, MAX_LEN);
 
   wifiManager.addParameter(&param_unique_id);
   wifiManager.addParameter(&param_mqtt_host);
@@ -96,9 +90,9 @@ bool DeviceConfigManager::EnterConfigMode() {
     _deviceConfig->MqttUser = param_mqtt_user.getValue();
     _deviceConfig->MqttPass = param_mqtt_pass.getValue();
 
-    if (!_deviceConfig->Save())
+    if (!_deviceConfig->Save()) {
       Serial.println("[DeviceConfigManager] Failed save config to file system");
-
+    }
     return true;
   }
 

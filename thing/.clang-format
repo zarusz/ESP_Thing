@@ -5,3 +5,4 @@ AllowShortFunctionsOnASingleLine: false
 BreakBeforeBraces: Custom
 BraceWrapping:
     AfterEnum: true
+ColumnLimit: 0

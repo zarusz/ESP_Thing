@@ -1,5 +1,5 @@
 #include "PushButton.h"
-#include "Utils/TimeUtil.h"
+#include "../Utils/TimeUtil.h"
 #include "Values.h"
 
 using namespace Thing::FeatureControllers;
@@ -12,7 +12,7 @@ PushButton::PushButton(int pin) {
   _pin = pin;
 
   _readLast = TimeUtil::IntervalStart();
-  _readInterval = 200;
+  _readInterval = 100;
 
   _pushDuration = 200;
   _longPushDuration = 1200;
@@ -29,8 +29,9 @@ void PushButton::Start() {
 }
 
 void PushButton::Loop() {
-  if (!TimeUtil::IntervalPassed(_readLast, _readInterval))
+  if (!TimeUtil::IntervalPassed(_readLast, _readInterval)) {
     return;
+  }
 
   // off state is LOW
   bool active = digitalRead(_pin) == LOW;
@@ -38,21 +39,19 @@ void PushButton::Loop() {
   _state = active;
 
   if (changed) {
-    _pushed = _pushLast != 0 &&
-              TimeUtil::IsIntervalPassed(_pushLast, _pushDuration) && !_pushed;
-    _longPushed = _pushLast != 0 &&
-                  TimeUtil::IsIntervalPassed(_pushLast, _longPushDuration) &&
-                  !_longPushed;
+    _pushed = _pushLast != 0 && TimeUtil::IsIntervalPassed(_pushLast, _pushDuration) && !_pushed;
+    _longPushed = _pushLast != 0 && TimeUtil::IsIntervalPassed(_pushLast, _longPushDuration) && !_longPushed;
 
     _pushLast = active ? TimeUtil::IntervalStart() : 0;
 
     Notify(PushButton::TopicState);
 
-    if (_pushed)
+    if (_pushed) {
       Notify(PushButton::TopicPush);
-
-    if (_longPushed)
+    }
+    if (_longPushed) {
       Notify(PushButton::TopicLongPush);
+    }
   }
 }
 
@@ -63,14 +62,18 @@ bool PushButton::IsOn() {
 
 bool PushButton::IsPushed() {
   Loop();
-  auto p = _pushed;
+  return _pushed;
+}
+
+void PushButton::ClearPushed() {
   _pushed = false;
-  return p;
 }
 
 bool PushButton::IsLongPushed() {
   Loop();
-  auto p = _longPushed;
+  return _longPushed;
+}
+
+void PushButton::ClearLongPushed() {
   _longPushed = false;
-  return p;
 }

@@ -89,6 +89,7 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton)
 
     _features.push_back(new TempFeatureController(30, 31, this, 14));
     _features.push_back(new MotionSensorFeatureController(32, this, 12));
+
   } else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE ||
              _deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TELEWIZOR) {
     // choinka
@@ -107,6 +108,7 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton)
 
     _features.push_back(new TempFeatureController(30, 31, this, 14));
     _features.push_back(new MotionSensorFeatureController(32, this, 12));
+
   } else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_KORYTARZ) {
     // choinka
     _pins = new Pins();
@@ -118,6 +120,7 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton)
 
     _features.push_back(new SwitchFeatureController(10, this, 14, true));
   } else if (_deviceConfig->UniqueId.startsWith(DEVICE_UNIQUE_ID_SWITCH)) {
+
     // choinka
     _pins = new Pins();
 
@@ -126,7 +129,7 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton)
     00 - push button, 0 - pressed, 1 - released
     */
 
-	auto sw = new SwitchFeatureController(10, this, 12, true);
+    auto sw = new SwitchFeatureController(10, this, 12, true);
     _features.push_back(sw);
     _features.push_back(new PushButtonFeatureController(0, this, pushButton, sw));
   } else {
@@ -140,8 +143,7 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton)
 }
 
 MainApp::~MainApp() {
-  for_each(_features.begin(), _features.end(),
-           [](FeatureController *feature) { delete feature; });
+  for_each(_features.begin(), _features.end(), [](FeatureController *feature) { delete feature; });
   _features.clear();
 
   if (_pins) {
@@ -164,8 +166,7 @@ bool MainApp::EnsureConnected(int timeoutMs, std::function<bool()> canRetry) {
   Log(Info, "WiFi: Connecting to network...");
 
   auto interval = TimeUtil::IntervalStart();
-  while (!IsConnected() && !TimeUtil::IntervalPassed(interval, timeoutMs) &&
-         canRetry()) {
+  while (!IsConnected() && !TimeUtil::IntervalPassed(interval, timeoutMs) && canRetry()) {
     delay(1000);
     Serial.print(".");
   }
@@ -176,8 +177,7 @@ bool MainApp::EnsureConnected(int timeoutMs, std::function<bool()> canRetry) {
     return false;
   }
 
-  sprintf(Msg(), "WiFi: Connected, IP address: %s",
-          WiFi.localIP().toString().c_str());
+  sprintf(Msg(), "WiFi: Connected, IP address: %s", WiFi.localIP().toString().c_str());
   Log(Info);
   return true;
 }
@@ -236,10 +236,9 @@ void MainApp::Handle(const char *topic, const Buffer &payload) {
 void MainApp::HandleDeviceMessage(const char *path, const Buffer &payload) {
   Log(Debug, "[MainApp] HandleDeviceMessage (start)");
 
-  std::for_each(_features.begin(), _features.end(),
-                [&payload, path](FeatureController *feature) {
-                  feature->TryHandle(path, payload);
-                });
+  std::for_each(_features.begin(), _features.end(), [&payload, path](FeatureController *feature) {
+    feature->TryHandle(path, payload);
+  });
 
   Log(Debug, "[MainApp] HandleDeviceMessage (finish)");
   // TODO send ACK Message back to sender
@@ -273,9 +272,7 @@ void MainApp::HandleUpdateFirmwareCommand(const Buffer &payload) {
   t_httpUpdate_return ret = ESPhttpUpdate.update(url);
   switch (ret) {
   case HTTP_UPDATE_FAILED:
-    sprintf(Msg(), "[MainApp] HTTP_UPDATE_FAILD Error (%d): %s",
-            ESPhttpUpdate.getLastError(),
-            ESPhttpUpdate.getLastErrorString().c_str());
+    sprintf(Msg(), "[MainApp] HTTP_UPDATE_FAILD Error (%d): %s", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
     Log(Error);
     break;
 
@@ -335,8 +332,7 @@ void MainApp::HandleSleepCommand(const Buffer &payload) {
 
     OnStop();
 
-    sprintf(Msg(), "Sleep level %d, will sleep for %d %s", sleepLevel, value,
-            unitName);
+    sprintf(Msg(), "Sleep level %d, will sleep for %d %s", sleepLevel, value, unitName);
     Log(Info);
 
     auto sleepSeconds = value * unit;
@@ -371,8 +367,9 @@ _messageBus.Publish(request.reply_to, &message);
 void MainApp::OnStart() {
   Log(Info, "[MainApp] Starting...");
 
-  std::for_each(_features.begin(), _features.end(),
-                [](FeatureController *feature) { feature->Start(); });
+  std::for_each(_features.begin(), _features.end(), [](FeatureController *feature) {
+    feature->Start();
+  });
 
   SendHearbeat();
   SendDescription();
@@ -383,8 +380,9 @@ void MainApp::OnStart() {
 void MainApp::OnStop() {
   Log(Info, "[MainApp] Stopping...");
 
-  std::for_each(_features.begin(), _features.end(),
-                [](FeatureController *feature) { feature->Stop(); });
+  std::for_each(_features.begin(), _features.end(), [](FeatureController *feature) {
+    feature->Stop();
+  });
 
   /*
   Serial.println("Sending DeviceDisconnectedEvent");
@@ -404,8 +402,9 @@ void MainApp::OnLoop() {
     SendHearbeat();
   }
 
-  std::for_each(_features.begin(), _features.end(),
-                [](FeatureController *feature) { feature->Loop(); });
+  std::for_each(_features.begin(), _features.end(), [](FeatureController *feature) {
+    feature->Loop();
+  });
 }
 
 void MainApp::SendDescription() {
@@ -428,5 +427,5 @@ void MainApp::SendDescription() {
 }
 
 void MainApp::SendHearbeat() {
-  _messageBus.Publish(_deviceStateOnlineTopic.c_str(), "ON", true);
+  _messageBus.Publish(_deviceStateOnlineTopic.c_str(), STATE_ON, true);
 }

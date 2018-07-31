@@ -29,20 +29,8 @@ void displayInfo() {
   Serial.printf("Flash real size: %u\n\n", realSize);
   Serial.printf("Flash ide  size: %u\n", ideSize);
   Serial.printf("Flash ide speed: %u\n", ESP.getFlashChipSpeed());
-  Serial.printf("Flash ide mode:  %s\n",
-                (ideMode == FM_QIO
-                     ? "QIO"
-                     : ideMode == FM_QOUT
-                           ? "QOUT"
-                           : ideMode == FM_DIO
-                                 ? "DIO"
-                                 : ideMode == FM_DOUT ? "DOUT" : "UNKNOWN"));
-
-  if (ideSize != realSize) {
-    Serial.println("Flash Chip configuration wrong!\n");
-  } else {
-    Serial.println("Flash Chip configuration ok.\n");
-  }
+  Serial.printf("Flash ide mode:  %s\n", (ideMode == FM_QIO ? "QIO" : ideMode == FM_QOUT ? "QOUT" : ideMode == FM_DIO ? "DIO" : ideMode == FM_DOUT ? "DOUT" : "UNKNOWN"));
+  Serial.printf("Flash Chip configuration %s\n", ideSize != realSize ? "ok." : "wrong!");
 }
 
 void setup() {
@@ -65,6 +53,8 @@ void setup() {
 
 void loop() {
   if (!deviceConfigManager.EnsureConfigLoaded() || pushButton.IsLongPushed()) {
+    pushButton.ClearLongPushed();
+
     if (deviceConfigManager.EnterConfigMode()) {
       if (mainApp != NULL) {
         delete mainApp;
@@ -77,10 +67,7 @@ void loop() {
     mainApp = new MainApp(&deviceConfig, &pushButton);
   }
 
-  if (mainApp->EnsureConnected(30000,
-                               [] { return !pushButton.IsLongPushed(); })) {
+  if (mainApp->EnsureConnected(30000, [] { return !pushButton.IsLongPushed(); })) {
     mainApp->Loop();
-  } else {
-    // TODO: Sleep
   }
 }
