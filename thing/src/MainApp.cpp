@@ -23,7 +23,8 @@
 #define DEVICE_UNIQUE_ID_DEV "proto"
 #define DEVICE_UNIQUE_ID_KORYTARZ "korytarz"
 #define DEVICE_UNIQUE_ID_TELEWIZOR "telewizor"
-#define DEVICE_UNIQUE_ID_SWITCH "switch"
+#define DEVICE_UNIQUE_ID_SWITCH "switch_"
+#define DEVICE_UNIQUE_ID_SWITCHDUAL "switch-dual_"
 
 #define TOPIC_BASE "dev/"
 #define TOPIC_DEVICE_EVENTS "device/events"
@@ -82,10 +83,8 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton)
     _features.push_back(new SwitchFeatureController(13, this, 23, false));
     _features.push_back(new SwitchFeatureController(14, this, 24, false));
 
-    _features.push_back(
-        new ColorStripOverWireFeatureController(40, this, 8, 0));
-    _features.push_back(
-        new ColorStripOverWireFeatureController(50, this, 8, 1));
+    _features.push_back(new ColorStripOverWireFeatureController(40, this, 8, 0));
+    _features.push_back(new ColorStripOverWireFeatureController(50, this, 8, 1));
 
     _features.push_back(new TempFeatureController(30, 31, this, 14));
     _features.push_back(new MotionSensorFeatureController(32, this, 12));
@@ -93,8 +92,6 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton)
   } else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE ||
              _deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TELEWIZOR) {
     // choinka
-    _pins = new Pins();
-
     /*
     16 - Connected to RST (deep sleep)
     04 - Switch 01
@@ -102,6 +99,8 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton)
     14 - Temp
     13 - Motion
     */
+
+    _pins = new Pins();
 
     _features.push_back(new SwitchFeatureController(10, this, 4, false));
     _features.push_back(new SwitchFeatureController(11, this, 5, false));
@@ -111,27 +110,43 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton)
 
   } else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_KORYTARZ) {
     // choinka
-    _pins = new Pins();
-
     /*
     16 - Connected to RST (deep sleep)
     14 - LED
     */
-
+    _pins = new Pins();
     _features.push_back(new SwitchFeatureController(10, this, 14, true));
   } else if (_deviceConfig->UniqueId.startsWith(DEVICE_UNIQUE_ID_SWITCH)) {
-
-    // choinka
-    _pins = new Pins();
-
+    // Sonoff
     /*
     12 - Connected to RST (deep sleep)
     00 - push button, 0 - pressed, 1 - released
     */
 
+    _pins = new Pins();
+    pushButton->SetPin(0);
+
     auto sw = new SwitchFeatureController(10, this, 12, true);
     _features.push_back(sw);
     _features.push_back(new PushButtonFeatureController(0, this, pushButton, sw));
+
+  } else if (_deviceConfig->UniqueId.startsWith(DEVICE_UNIQUE_ID_SWITCHDUAL)) {
+    // Sonoff Dual R2
+    /*
+    00 - Switch 1
+    09 - Switch 2
+    10 - push button, 0 - pressed, 1 - released
+    04 => red LED
+    14 => orange LED
+    */
+
+    _pins = new Pins();
+    pushButton->SetPin(10);
+
+    auto sw = new SwitchFeatureController(10, this, 0, true);
+    _features.push_back(sw);
+    _features.push_back(new PushButtonFeatureController(0, this, pushButton, sw));
+    _features.push_back(new SwitchFeatureController(11, this, 9, true));
   } else {
     // bradboard
     _pins = new Pins();

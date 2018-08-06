@@ -1,7 +1,7 @@
 {
-  "UniqueId": "proto",
-  "MqttHost": "raspberrypi",
+  "UniqueId": "switch-dual_01",
+  "MqttHost": "dom",
   "MqttPort": 1883,
-  "MqttUser": "device",
-  "MqttPass": "HekW4zS18fvH"
+  "MqttUser": "",
+  "MqttPass": ""
 }

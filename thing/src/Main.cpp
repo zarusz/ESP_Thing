@@ -1,5 +1,4 @@
 ﻿#include <Arduino.h>
-
 #include <WiFiManager.h> //https://github.com/tzapu/WiFiManager
 
 #include "DeviceConfig.h"
@@ -14,10 +13,8 @@ using namespace Thing::FeatureControllers;
 DeviceConfig deviceConfig;
 DeviceConfigManager deviceConfigManager(&deviceConfig);
 
-// Pin 00 will trigger the configuration portal when set to LOW
-// ESP-01 users please note: the only pins available (0 and 2), are shared with
-// the bootloader, so always set them HIGH at power-up
-PushButton pushButton(0);
+// PushButton will trigger the configuration portal when set to LOW
+PushButton pushButton;
 MainApp *mainApp;
 
 void displayInfo() {

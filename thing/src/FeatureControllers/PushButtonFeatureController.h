@@ -15,8 +15,10 @@ namespace Thing { namespace FeatureControllers {
     SwitchFeatureController *_switch;
 
   public:
-    PushButtonFeatureController(int port, DeviceContext *context,
-                                PushButton *pushButton, SwitchFeatureController *sw = nullptr);
+    PushButtonFeatureController(int port,
+                                DeviceContext *context,
+                                PushButton *pushButton,
+                                SwitchFeatureController *sw = nullptr);
     ~PushButtonFeatureController();
 
     virtual void Start();

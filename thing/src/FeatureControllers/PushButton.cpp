@@ -9,27 +9,50 @@ const uint PushButton::TopicPush = 10;
 const uint PushButton::TopicLongPush = 20;
 
 PushButton::PushButton(int pin) {
-  _pin = pin;
-
-  _readLast = TimeUtil::IntervalStart();
   _readInterval = 100;
-
   _pushDuration = 200;
   _longPushDuration = 1200;
+  _pin = PIN_UNASSIGNED;
 
+  ResetState();
+  SetPin(pin);
+}
+
+void PushButton::InitPin() {
+  pinMode(_pin, INPUT);
+}
+
+void PushButton::ResetState() {
+  _readLast = TimeUtil::IntervalStart();
   _pushLast = 0;
-
   _state = false;
   _pushed = false;
   _longPushed = false;
 }
 
+void PushButton::SetPin(int pin) {
+  if (_pin == pin) {
+    return;
+  }
+
+  ResetState();
+  _pin = pin;
+  if (_started) {
+    InitPin();
+  }
+}
+
 void PushButton::Start() {
-  pinMode(_pin, INPUT);
+  _started = true;
+  if (_pin != PIN_UNASSIGNED) {
+    InitPin();
+  }
 }
 
 void PushButton::Loop() {
-  if (!TimeUtil::IntervalPassed(_readLast, _readInterval)) {
+  // don't read too often
+  // don't read if pin unassigned
+  if (!TimeUtil::IntervalPassed(_readLast, _readInterval) || _pin == PIN_UNASSIGNED) {
     return;
   }
 
