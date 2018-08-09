@@ -4,6 +4,7 @@
 #include "DeviceConfig.h"
 #include "DeviceConfigManager.h"
 #include "FS.h"
+#include "FeatureControllers/Led.h"
 #include "FeatureControllers/PushButton.h"
 #include "MainApp.h"
 
@@ -15,6 +16,7 @@ DeviceConfigManager deviceConfigManager(&deviceConfig);
 
 // PushButton will trigger the configuration portal when set to LOW
 PushButton pushButton;
+Led statusLed;
 MainApp *mainApp;
 
 void displayInfo() {
@@ -40,6 +42,8 @@ void setup() {
   displayInfo();
 
   pushButton.Start();
+  statusLed.Start();
+  statusLed.SetMode("110000000000");
 
   Serial.println("[Main] Mounting file system...");
   if (!SPIFFS.begin()) {
@@ -49,6 +53,8 @@ void setup() {
 }
 
 void loop() {
+  statusLed.Loop();
+
   if (!deviceConfigManager.EnsureConfigLoaded() || pushButton.IsLongPushed()) {
     pushButton.ClearLongPushed();
 
@@ -61,7 +67,7 @@ void loop() {
   }
 
   if (mainApp == NULL) {
-    mainApp = new MainApp(&deviceConfig, &pushButton);
+    mainApp = new MainApp(&deviceConfig, &pushButton, &statusLed);
   }
 
   if (mainApp->EnsureConnected(30000, [] { return !pushButton.IsLongPushed(); })) {

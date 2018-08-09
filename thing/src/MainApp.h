@@ -12,6 +12,7 @@
 #include "DeviceConfig.h"
 #include "DeviceContext.h"
 #include "FeatureControllers/FeatureController.h"
+#include "FeatureControllers/Led.h"
 #include "FeatureControllers/PushButton.h"
 #include "Pins/Pins.h"
 #include "Pins/ShiftRegisterPins.h"
@@ -22,7 +23,14 @@ using namespace Thing::Rx;
 
 namespace Thing {
 
-enum DeviceState { New, Started, Running, Stopped, Sleep };
+enum DeviceState
+{
+  New,
+  Started,
+  Running,
+  Stopped,
+  Sleep
+};
 
 class MainApp : public DeviceContext, public MessageHandler, public Logger {
 private:
@@ -48,7 +56,7 @@ private:
   DeviceState _state;
 
 public:
-  MainApp(DeviceConfig *deviceConfig, PushButton *pushButton);
+  MainApp(DeviceConfig *deviceConfig, PushButton *pushButton, Led *statusLed);
   virtual ~MainApp();
 
   bool IsConnected() const;
