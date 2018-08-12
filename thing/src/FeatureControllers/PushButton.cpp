@@ -4,9 +4,9 @@
 
 using namespace Thing::FeatureControllers;
 
-const uint PushButton::TopicState = 1;
-const uint PushButton::TopicPush = 10;
-const uint PushButton::TopicLongPush = 20;
+const int PushButton::TopicState = 1;
+const int PushButton::TopicPush = 10;
+const int PushButton::TopicLongPush = 20;
 
 PushButton::PushButton(int pin) {
   _readInterval = 100;

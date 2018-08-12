@@ -45,9 +45,9 @@ namespace Thing { namespace FeatureControllers {
     void ClearLongPushed();
 
   public:
-    static const uint TopicState;
-    static const uint TopicPush;
-    static const uint TopicLongPush;
+    static const int TopicState;
+    static const int TopicPush;
+    static const int TopicLongPush;
   };
 
 }} // namespace Thing::FeatureControllers

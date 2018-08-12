@@ -6,3 +6,5 @@ BreakBeforeBraces: Custom
 BraceWrapping:
     AfterEnum: true
 ColumnLimit: 0
+DerivePointerAlignment: false
+PointerAlignment: Left

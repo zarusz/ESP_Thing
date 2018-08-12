@@ -15,7 +15,7 @@ namespace Thing { namespace FeatureControllers {
     String _mode;
 
     ulong _lastTime;
-    uint _lastIndex;
+    int _lastIndex;
 
     bool _started;
     bool _onIsHigh = false;
@@ -31,7 +31,7 @@ namespace Thing { namespace FeatureControllers {
 
     void SetPin(int pin);
     void SetDuration(uint duration);
-    void SetMode(const char *mode);
+    void SetMode(const char* mode);
   };
 
 }} // namespace Thing::FeatureControllers

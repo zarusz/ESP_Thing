@@ -8,6 +8,9 @@ enum PinMode
 
 class Pins {
 public:
+  virtual ~Pins();
+
+public:
   virtual void SetMode(int pin, PinMode mode);
   virtual void SetValue(int pin, bool high);
   virtual bool isValueHigh(int pin);

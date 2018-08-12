@@ -19,14 +19,6 @@
 #include "FeatureControllers/TempFeatureController.h"
 #include "FeatureControllers/Values.h"
 
-#define DEVICE_UNIQUE_ID_SUFIT "sufit"
-#define DEVICE_UNIQUE_ID_TREE "tree"
-#define DEVICE_UNIQUE_ID_DEV "proto"
-#define DEVICE_UNIQUE_ID_KORYTARZ "korytarz"
-#define DEVICE_UNIQUE_ID_TELEWIZOR "telewizor"
-#define DEVICE_UNIQUE_ID_SONOFF "sonoff_"
-#define DEVICE_UNIQUE_ID_SONOFF_DUAL "sonoff-dual_"
-
 #define TOPIC_BASE "dev/"
 #define TOPIC_DEVICE_EVENTS "device/events"
 #define TOPIC_DEVICE_DESCRIPTION "device/description"
@@ -39,9 +31,8 @@
 using namespace Thing;
 using namespace Thing::FeatureControllers;
 
-MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton, Led *statusLed)
+MainApp::MainApp(DeviceConfig* deviceConfig, PushButton* pushButton, Led* statusLed)
     : _deviceConfig(deviceConfig),
-      _messageBus(_deviceConfig, (MessageHandler *)this),
 
       _deviceTopic(String(TOPIC_BASE) + _deviceConfig->UniqueId),
       _deviceCommandTopic(_deviceTopic + TOPIC_COMMAND),
@@ -52,12 +43,13 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton, Led *status
       _deviceServiceTopic(_deviceTopic + TOPIC_SERVICE),
       _deviceServiceTopicSub(_deviceServiceTopic + "#"),
 
+      _messageBus(_deviceConfig, (MessageHandler*)this),
       _state(DeviceState::New) {
   _messageBus.Subscribe(_deviceCommandTopicSub.c_str());
   _messageBus.Subscribe(_deviceServiceTopicSub.c_str());
   _messageBus.SetWill(_deviceStateOnlineTopic.c_str(), STATE_OFF, true);
 
-  if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_SUFIT) {
+  if (_deviceConfig->UniqueId == "sufit") {
     /*
     16 - Connected to RST (deep sleep)
 
@@ -94,8 +86,8 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton, Led *status
 
     _pins = new Pins();
 
-    if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TREE ||
-        _deviceConfig->UniqueId == DEVICE_UNIQUE_ID_TELEWIZOR) {
+    if (_deviceConfig->UniqueId == "tree" ||
+        _deviceConfig->UniqueId == "telewizor") {
       // choinka
       /*
       16 - Connected to RST (deep sleep)
@@ -110,14 +102,7 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton, Led *status
       _features.push_back(new TempFeatureController(30, 31, this, 14));
       _features.push_back(new MotionSensorFeatureController(32, this, 12));
 
-    } else if (_deviceConfig->UniqueId == DEVICE_UNIQUE_ID_KORYTARZ) {
-      // choinka
-      /*
-      16 - Connected to RST (deep sleep)
-      14 - LED
-      */
-      _features.push_back(new SwitchFeatureController(10, this, 14, true));
-    } else if (_deviceConfig->UniqueId.startsWith(DEVICE_UNIQUE_ID_SONOFF) || _deviceConfig->UniqueId.startsWith("switch_")) {
+    } else if (_deviceConfig->UniqueId.startsWith("sonoff_") || _deviceConfig->UniqueId.startsWith("switch_")) {
       // Sonoff
       /*
       12 - Connected to RST (deep sleep)
@@ -130,7 +115,7 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton, Led *status
       _features.push_back(sw);
       _features.push_back(new PushButtonFeatureController(0, this, pushButton, sw));
 
-    } else if (_deviceConfig->UniqueId.startsWith(DEVICE_UNIQUE_ID_SONOFF_DUAL) || _deviceConfig->UniqueId.startsWith("switch-dual_")) {
+    } else if (_deviceConfig->UniqueId.startsWith("sonoff-dual_") || _deviceConfig->UniqueId.startsWith("switch-dual_")) {
       // Sonoff Dual R2
       /*
       05 - Switch 1
@@ -141,12 +126,16 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton, Led *status
       04 => red LED
       14 => orange LED
 
+      03 (RX) - DHT22
+
       14,11,6
 
       nie
       15,13,12,10,(9),(8),(7),4,3(RX),1(TX),0
 
       */
+
+      Serial.end();
 
       pushButton->SetPin(10);
       statusLed->SetPin(13);
@@ -155,17 +144,15 @@ MainApp::MainApp(DeviceConfig *deviceConfig, PushButton *pushButton, Led *status
       _features.push_back(sw);
       _features.push_back(new PushButtonFeatureController(0, this, pushButton, sw));
       _features.push_back(new SwitchFeatureController(11, this, 12, true));
+      _features.push_back(new TempFeatureController(30, 31, this, 3));
     } else {
-      //_pins = new ShiftRegisterPins(13, 12, 14, 20);
-      Wire.begin(); // join i2c bus (address optional for master)
-
       _features.push_back(new MoistureSensorFeatureController(60, this, 14));
     }
   }
 }
 
 MainApp::~MainApp() {
-  for_each(_features.begin(), _features.end(), [](FeatureController *feature) { delete feature; });
+  for_each(_features.begin(), _features.end(), [](FeatureController* feature) { delete feature; });
   _features.clear();
 
   if (_pins) {
@@ -179,8 +166,9 @@ bool MainApp::IsConnected() const {
 }
 
 bool MainApp::EnsureConnected(int timeoutMs, std::function<bool()> canRetry) {
-  if (IsConnected())
+  if (IsConnected()) {
     return true;
+  }
 
   WiFi.mode(WIFI_STA);
   WiFi.begin();
@@ -222,7 +210,7 @@ void MainApp::Loop() {
   }
 }
 
-void MainApp::Log(LogLevel level, const char *msg) {
+void MainApp::Log(LogLevel level, const char* msg) {
   if (msg == NULL)
     msg = Msg();
 
@@ -232,7 +220,7 @@ void MainApp::Log(LogLevel level, const char *msg) {
   }
 }
 
-void MainApp::Handle(const char *topic, const Buffer &payload) {
+void MainApp::Handle(const char* topic, const Buffer& payload) {
   if (strstr(topic, _deviceCommandTopic.c_str()) == topic) {
     sprintf(Msg(), "[MainApp] Command arrived on topic %s", topic);
     Log(Debug);
@@ -255,10 +243,10 @@ void MainApp::Handle(const char *topic, const Buffer &payload) {
   Log(Warn);
 }
 
-void MainApp::HandleDeviceMessage(const char *path, const Buffer &payload) {
+void MainApp::HandleDeviceMessage(const char* path, const Buffer& payload) {
   Log(Debug, "[MainApp] HandleDeviceMessage (start)");
 
-  std::for_each(_features.begin(), _features.end(), [&payload, path](FeatureController *feature) {
+  std::for_each(_features.begin(), _features.end(), [&payload, path](FeatureController* feature) {
     feature->TryHandle(path, payload);
   });
 
@@ -266,7 +254,7 @@ void MainApp::HandleDeviceMessage(const char *path, const Buffer &payload) {
   // TODO send ACK Message back to sender
 }
 
-void MainApp::HandleServiceCommand(const char *path, const Buffer &payload) {
+void MainApp::HandleServiceCommand(const char* path, const Buffer& payload) {
   Log(Debug, "[MainApp] HandleServiceCommand (start)");
 
   if (strcmp(path, "upgrade") == 0) {
@@ -280,7 +268,7 @@ void MainApp::HandleServiceCommand(const char *path, const Buffer &payload) {
   Log(Debug, "[MainApp] HandleServiceCommand (finish)");
 }
 
-void MainApp::HandleUpdateFirmwareCommand(const Buffer &payload) {
+void MainApp::HandleUpdateFirmwareCommand(const Buffer& payload) {
   if (payload.Size() == 0) {
     return;
   }
@@ -308,7 +296,7 @@ void MainApp::HandleUpdateFirmwareCommand(const Buffer &payload) {
   }
 }
 
-void MainApp::HandleUpdateConfigCommand(const Buffer &payload) {
+void MainApp::HandleUpdateConfigCommand(const Buffer& payload) {
   String config;
   payload.ToString(config);
 
@@ -324,7 +312,7 @@ void MainApp::HandleUpdateConfigCommand(const Buffer &payload) {
   }
 }
 
-void MainApp::HandleSleepCommand(const Buffer &payload) {
+void MainApp::HandleSleepCommand(const Buffer& payload) {
   Log(Debug, "[MainApp] HandleSleepCommand (start)");
 
   String url;
@@ -365,7 +353,7 @@ void MainApp::HandleSleepCommand(const Buffer &payload) {
   Log(Debug, "[MainApp] HandleSleepCommand (finish)");
 }
 
-void MainApp::HandleStatusRequest(const char *topic, const Buffer &payload) {
+void MainApp::HandleStatusRequest(const char* topic, const Buffer& payload) {
   Log(Debug, "MainApp::HandleStatusRequest (start)");
 
   /*
@@ -390,7 +378,7 @@ _messageBus.Publish(request.reply_to, &message);
 void MainApp::OnStart() {
   Log(Info, "[MainApp] Starting...");
 
-  std::for_each(_features.begin(), _features.end(), [](FeatureController *feature) {
+  std::for_each(_features.begin(), _features.end(), [](FeatureController* feature) {
     feature->Start();
   });
 
@@ -403,7 +391,7 @@ void MainApp::OnStart() {
 void MainApp::OnStop() {
   Log(Info, "[MainApp] Stopping...");
 
-  std::for_each(_features.begin(), _features.end(), [](FeatureController *feature) {
+  std::for_each(_features.begin(), _features.end(), [](FeatureController* feature) {
     feature->Stop();
   });
 
@@ -425,7 +413,7 @@ void MainApp::OnLoop() {
     SendHearbeat();
   }
 
-  std::for_each(_features.begin(), _features.end(), [](FeatureController *feature) {
+  std::for_each(_features.begin(), _features.end(), [](FeatureController* feature) {
     feature->Loop();
   });
 }
