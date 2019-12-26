@@ -1,0 +1,155 @@
+//package device.commands;
+import "nanopb.proto";
+option java_package = "com.zarusz.control.device.messages";
+option java_outer_classname = "DeviceMessageProtos";
+
+/* Description (begin) */
+enum FeatureType {
+  option allow_alias = true;
+  SWITCH = 0;
+  IR = 1;
+  SENSOR_IR = 2;
+  SENSOR_TEMPERATURE = 3;
+  SENSOR_HUMIDITY = 4;
+  SENSOR_MOTION = 5;
+}
+
+message DevicePort {
+  required int32 port = 1;
+  required FeatureType feature = 2;
+  optional string description = 3 [(nanopb).max_size = 64];
+}
+
+message DeviceDescription {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  repeated DevicePort ports = 2 [(nanopb).max_count = 16];
+}
+
+/* Description (end) */
+
+/* Commands (begin) */
+
+message DeviceSwitchCommand {
+  required int32 message_id = 1;
+  required int32 port = 2;
+  required bool on = 3;
+}
+
+/* IR -- begin */
+
+enum IRFormat {
+  Unknown = 0;
+  NEC = 1;
+  SONY = 2;
+}
+
+message IRSignal {
+  required IRFormat format = 1;
+  repeated IRSignalByte bytes = 2 [(nanopb).max_count = 6];
+}
+
+message IRSignalByte {
+  required uint32 bits = 1;
+  required uint32 data = 2;
+}
+
+message DeviceIRCommand {
+  required int32 message_id = 1;
+  required int32 port = 2;
+  required IRSignal signal = 3;
+}
+
+/* IR -- end */
+
+message DeviceMessage {
+  optional DeviceSwitchCommand switchCommand = 1;
+  optional DeviceIRCommand irCommand = 2;
+}
+
+message UpgradeFirmwareCommand {
+  optional string program_url = 1 [(nanopb).max_size = 64];
+}
+
+message DeviceStatusRequest {
+  required string reply_to = 1 [(nanopb).max_size = 32];
+}
+
+message DeviceServiceCommand {
+  optional UpgradeFirmwareCommand upgradeFirmwareCommand = 3;
+  optional DeviceStatusRequest statusRequest = 4;
+}
+
+/* Commands (end) */
+
+message CommandAckResponse {
+  required int32 message_id = 1;
+}
+
+message DeviceConnectedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+}
+
+message DeviceDisconnectedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+}
+
+message DeviceHearbeatEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required int32 sequence_id = 2;
+}
+
+message DeviceUpgradedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required bool success = 2;
+  optional string msg = 3 [(nanopb).max_size = 32];
+}
+
+message DeviceStatusResponse {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required string message = 2 [(nanopb).max_size = 128];
+}
+
+message DeviceUpgradeFailedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  optional string msg = 3 [(nanopb).max_size = 32];
+}
+
+message DeviceTemperatureMeasuredEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required int32 port = 2;
+  required float value = 3;
+}
+
+message DeviceHumidityMeasuredEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required int32 port = 2;
+  required float value = 3;
+}
+
+message DeviceMovementDetectedEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required int32 port = 2;
+}
+
+message DeviceIRSignalEvent {
+  required string device_id = 1 [(nanopb).max_size = 32];
+  required int32 port = 2;
+  required IRSignal signal = 3;
+}
+
+message Responses {
+  optional DeviceStatusResponse deviceStatusResponse = 1;
+}
+
+message DeviceEvents {
+  optional DeviceConnectedEvent deviceConnectedEvent = 1;
+  optional DeviceHearbeatEvent deviceHearbeatEvent = 2;
+  optional DeviceDisconnectedEvent deviceDisconnectedEvent = 3;
+  optional DeviceUpgradedEvent deviceUpgradedEvent = 10;
+  optional DeviceUpgradeFailedEvent deviceUpgradeFailedEvent = 11;
+
+  optional DeviceTemperatureMeasuredEvent temperatureMeasureEvent = 4;
+  optional DeviceHumidityMeasuredEvent humidityMeasureEvent = 5;
+  optional DeviceMovementDetectedEvent movementDetectionEvent = 6;
+  optional DeviceIRSignalEvent irSignalEvent = 7;
+}

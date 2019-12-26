@@ -1,0 +1,34 @@
+Group		All
+Group		Slawka (All)
+Group 		Rooms (All)
+
+Group 		Livingroom			"Salon"				<video>		(Slawka, Rooms)
+Group 		Balkony				"Balkon"			<video>		(Livingroom)
+Group		LivingCeiling		"Sufit"				<video>		(Livingroom)
+Group		Cinema				"Kino"				<video>		(Livingroom)
+
+Group:Number:MIN			SleepLevel			"Sleep [%d]"			<battery>		(Slawka)
+Group:Switch:OR(ON, OFF)	Lights	   			"All Lights [(%s)]"		<light>			(Slawka)
+Group:Switch:OR(ON, OFF)	Motion	   			"Any motion [(%s)]"		<motion>		(Slawka)
+Group:Switch:OR(OFF, ON)	Online	   			"Online [(%s)]"			<network>		(Slawka)
+
+Group:Number:AVG			Temp				"Temperatura [%.1f °C]"	<temperature>	(Slawka)
+Group:Number:AVG			Humid				"Wilgotność [%.1f %%]"	<humidity>		(Slawka)
+
+Group:Number:AVG			Temp_Inside			"Temperatura [%.1f °C]"	<temperature>	(Temp)
+Group:Number:AVG			Humid_Inside		"Wilgotność [%.1f %%]"	<humidity>		(Humid)
+Group:Number:AVG			Temp_Outside		"Temperatura [%.1f °C]"	<temperature>	(Temp)
+Group:Number:AVG			Humid_Outside		"Wilgotność [%.1f %%]"	<humidity>		(Humid)
+
+
+String		Mode				"Tryb"				<pie>		(Slawka)
+
+Group		Outside				"Na zewnątrz"		<video>		(Slawka)
+//Number		Outside_Temp		"Pole [%.1f °C]"			<temperature>			(Outside, Temp_Outside)			{ channel="yahooweather:weather:c4c21868:temperature" }
+Number		Outside_Temp		"Pole [%.1f °C]"				<temperature>			(Outside, Temp_Outside)			{ weather="locationId=krakow, type=temperature, property=current" }
+Number		Outside_Temp_Feel   "Temp odczuwalna [%.1f °C]"  	<temperature>			(Outside, Temp_Outside)			{ weather="locationId=krakow, type=temperature, property=feel" }
+//Number		Outside_Humid		"Pole [%.1f %%]"			<humidity>				(Outside, Humid_Outside)		{ channel="yahooweather:weather:c4c21868:humidity" }
+Number		Outside_Humid		"Pole [%.1f %%]"				<humidity>				(Outside, Humid_Outside)		{ weather="locationId=krakow, type=atmosphere, property=humidity" }
+//Number		Outside_Pressure	"Pole [%.1f hPa]"			<pressure>				(Outside)						{ channel="yahooweather:weather:c4c21868:pressure" }
+Number		Outside_Pressure	"Pole [%.1f hPa]"				<pressure>				(Outside)						{ weather="locationId=krakow, type=atmosphere, property=pressure" }
+Number		Outside_Clouds		"Zachmurzenie [%.0f %%]"   		<sun_clouds>			(Outside)						{ weather="locationId=krakow, type=clouds, property=percent" }

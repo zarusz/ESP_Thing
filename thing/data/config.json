@@ -1,0 +1,7 @@
+{
+  "UniqueId": "switch-dual_01",
+  "MqttHost": "dom",
+  "MqttPort": 1883,
+  "MqttUser": "",
+  "MqttPass": ""
+}

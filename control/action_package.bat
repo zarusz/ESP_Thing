@@ -1,0 +1,2 @@
+./mvnw -Pprod package
+

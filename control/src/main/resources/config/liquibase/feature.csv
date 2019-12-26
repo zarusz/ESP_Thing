@@ -1,0 +1,7 @@
+feature;display_name;display_priority;display_icon
+Switch;Switch;01;fa-bolt
+IR;IR Transceiver;04;
+SensorIR;IR Receiver;09;
+SensorTemperature;Temperature sensor;05;
+SensorHumidity;Humidity sensor;06;
+SensorMotion;Movement sensor;07;

@@ -1,0 +1,7 @@
+sitemap proto label="Prototyp"
+{
+	Frame label="Kwiatki" {
+		Text		item=Plant_Fikus_Moisture
+		Text 		item=Plant_Fikus_Online
+	}
+}

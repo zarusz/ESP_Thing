@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/e41aa98022f6d1d2edab13dd580976555986d4d2/angular-local-storage/angular-local-storage.d.ts",
+    "raw": "registry:dt/angular-local-storage#0.1.5+20160602154142",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/e41aa98022f6d1d2edab13dd580976555986d4d2/angular-local-storage/angular-local-storage.d.ts"
+  }
+}

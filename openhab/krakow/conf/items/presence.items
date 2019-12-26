@@ -1,0 +1,3 @@
+Switch                    	Presence_Home_Tomek    "Tomek @ Home [MAP(presence_pl.map):%s]"    <man_3>       { mqttitude="local:owntracks/owntracks/user01/event:Home" }
+Switch                    	Presence_Home_Regina   "Regina @ Home [MAP(presence_pl.map):%s]"   <woman_2>     { mqttitude="local:owntracks/owntracks/user02/event:Home" }
+Group:Switch:OR(ON, OFF)	Presence_Home	       "W domu [MAP(presence_pl.map):%s]" 	       <present>

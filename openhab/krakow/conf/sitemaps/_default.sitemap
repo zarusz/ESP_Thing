@@ -1,0 +1,192 @@
+sitemap _default label="Sławka"
+{
+	Frame label="Mieszkanie" icon="group" {
+		Switch 		item=Lights		mappings=[OFF="Off"]
+		Selection	item=Mode		label="Tryb"	mappings=[Normal="Normalny",Sleeping="Spanie",Away="Poza domem"]
+	}
+
+	Frame label="Salon" icon="group" {
+		Text label="Sufit" icon="colorwheel" {
+			Switch 		item=CLights mappings=[OFF="Off"]
+			Frame label="Halogeny" {
+				Switch item=CLightX label="Halogeny"	mappings=[OFF="Off",ON="On"]
+				Switch item=CLight1 label="Stół"
+				Switch item=CLight2 label="Sofa lewy"
+				Switch item=CLight3 label="Sofa środek"
+				Switch item=CLight4 label="Sofa prawy"
+			}
+			Frame label="LED" {
+				Switch		item=CLedPower	label="Zasilanie"
+				Colorpicker	item=CLed1
+				Colorpicker	item=CLed2
+				Colorpicker	item=CLed
+			}
+			Frame label="Czujniki" {
+				Text item=CTemp		label="Temperatura"		valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=CHumid	label="Wilgotność"		valuecolor=[>60="orange",>40="green",<=40="blue"]
+				Text item=CMotion
+			}
+		}
+
+		Text label="Yamaha" icon="receiver" {
+			Frame label="Main" {
+				Switch		item=Yamaha_Power
+				Switch		item=Yamaha_Mute
+				Slider		item=Yamaha_Volume
+				Selection	item=Yamaha_Input				mappings=[HDMI1="Kodi",HDMI2="PC",AUDIO1="TV",TUNER="Tuner",Spotify="Spotify",Bluetooth="Bluetooth","NET RADIO"="NetRadio"]
+				Selection	item=Yamaha_Surround			mappings=["2ch Stereo"="2ch Stereo","5ch Stereo"="5ch Stereo","Chamber"="Chamber","Sci-Fi"="Sci-Fi","Adventure"="Adventure"]
+			}
+			Frame label="Tuner" visibility=[Yamaha_Input=="TUNER"] {
+				Selection	item=Yamaha_Tuner_Band			mappings=[FM="FM",DAB="DAB+"]													visibility=[Yamaha_Input=="TUNER"]
+				Selection	item=Yamaha_Preset				mappings=[2="Radio Kraków",3="PR Trójka",4="PR 2",5="RadioZet",6="+PLUS+",7="Radio Złote Przeboje",8="Radio Chillizet",12="RMF Classic",13="RMF MAXXX"]		visibility=[Yamaha_Input_Ex=="TUNER_FM"]
+				Selection	item=Yamaha_Preset				mappings=[1="FM-1",2="FM-2",3="FM-3"]											visibility=[Yamaha_Input_Ex=="TUNER_DAB"]
+			}			
+			Frame label="Playback" visibility=[Yamaha_Input=="Spotify", Yamaha_Input=="Bluetooth"] {
+				Switch		item=Yamaha_Playback 			mappings=["Previous"="⏮", "Play"="►", "Pause"="⏸", "Stop"="⏹", "Next"="⏭"]
+			}
+			Frame label="Info" visibility=[Yamaha_Input=="Spotify", Yamaha_Input=="Bluetooth", Yamaha_Input=="TUNER"] {
+				Text		item=Yamaha_Playback_Station																					visibility=[Yamaha_Input=="TUNER"]
+				Text		item=Yamaha_Playback_Artist
+				Text		item=Yamaha_Playback_Album
+				Text		item=Yamaha_Playback_Song
+				Image 		item=Yamaha_Playback_Song_Image																					visibility=[Yamaha_Input=="Spotify"]
+			}
+		}
+
+		Text label="Kodi" icon="television" {
+			Text		item=Kodi_State
+			Text		item=Kodi_Title
+			Text		item=Kodi_Type
+			Switch		item=Kodi_PlayPause		mappings=[ON="Play",OFF="Pause"]
+			Switch		item=Kodi_Stop			mappings=[ON="Stop"]
+			Text		item=Kodi_Time
+			Text		item=Kodi_TimeTotal
+		}
+	}
+
+	Frame label="Pokoje" icon="group" {
+		Text label="Korytarz" icon="corridor" {
+			Switch item=Korytarz_LED1
+		}
+		Text label="Sypialnia" icon="bedroom" {
+			Switch item=Bedroom_Lights		mappings=[OFF="Off",ON="On"]
+			Frame label="Światła" {
+				Switch item=Bedroom_Light1
+				Switch item=Bedroom_Light2
+			}
+			Frame label="Czujniki" {
+				Text item=Bedroom_Temp		label="Temperatura"		valuecolor=[>25="orange",>15="green",<=15="blue"]
+				Text item=Bedroom_Humid		label="Wilgotność"		valuecolor=[>60="orange",>40="green",<=40="blue"]
+			}
+		}
+	}
+
+	Frame label="Odczyty" icon="humidity" {
+		Group item=Temp_Inside		label="Temperatura"		icon="temperature"
+		Group item=Humid_Inside		label="Wilgotność"		icon="humidity"
+	}
+
+	Frame label="Pogoda" icon="temperature" {
+		Text item=Outside_Temp			label="Temperatura"			valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=Outside_Temp_Feel		label="Temp. odczuwalna"	valuecolor=[>25="orange",>15="green",<=15="blue"]
+		Text item=Outside_Humid			label="Wilgotność"			valuecolor=[>60="orange",>40="green",<=40="blue"]
+		Text item=Outside_Pressure		label="Ciśnienie"
+		Text item=Outside_Clouds		label="Zachmurzenie"
+	}
+		
+	Frame label="Ruch" icon="motion" {
+		Text item=CMotion		label="Salon"
+	}
+
+	Frame label="Obecność" icon="parents_2_3" {
+		Text item=Presence_Home_Tomek
+		Text item=Presence_Home_Regina
+	}
+
+	Frame label="Historia" icon="temperature" {
+		//http://raspberrypi:8181/rrdchart.png?groups=Temp&period=4h&t=1491732122327
+		
+		Text label="Godzina" icon="line" {
+			Frame	label="Temperatura" {
+				Chart	item=Temp_Inside	period=h	refresh=60000
+				Chart	item=Temp_Outside	period=h	refresh=60000
+				//Image 	url="http://raspberrypi:8181/rrdchart.png?groups=Temp_Inside&period=h" refresh=60000
+			}
+			Frame	label="Wilgotność" icon="terrace" {
+				Chart	item=Humid_Inside	period=h	refresh=60000
+				Chart	item=Humid_Outside	period=h	refresh=60000
+			}
+		}
+		Text label="4 godziny" icon="line" {
+			Frame	label="Temperatura" {
+				Chart	item=Temp_Inside	period=4h	refresh=60000
+				Chart	item=Temp_Outside	period=4h	refresh=60000
+			}
+			Frame	label="Wilgotność" {
+				Chart	item=Humid_Inside	period=4h	refresh=60000
+				Chart	item=Humid_Outside	period=4h	refresh=60000
+			}
+		}
+		Text label="8 godzin" icon="line" {
+			Frame	label="Temperatura" {
+				Chart	item=Temp_Inside	period=8h	refresh=60000
+				Chart	item=Temp_Outside	period=8h	refresh=60000
+			}
+			Frame	label="Wilgotność" {
+				Chart	item=Humid_Inside	period=8h	refresh=60000
+				Chart	item=Humid_Outside	period=8h	refresh=60000
+			}
+		}
+		Text label="Dzień" icon="line" {
+			Frame	label="Temperatura" {
+				Chart	item=Temp_Inside	period=D	refresh=60000
+				Chart	item=Temp_Outside	period=D	refresh=60000
+			}
+			Frame	label="Wilgotność" {
+				Chart	item=Humid_Inside	period=D	refresh=60000
+				Chart	item=Humid_Outside	period=D	refresh=60000
+			}
+		}
+		Text label="Tydzień" icon="line" {
+			Frame	label="Temperatura" {
+				Chart	item=Temp_Inside	period=W	refresh=60000
+				Chart	item=Temp_Outside	period=W	refresh=60000
+			}
+			Frame	label="Wilgotność" {
+				Chart	item=Humid_Inside	period=W	refresh=60000
+				Chart	item=Humid_Outside	period=W	refresh=60000
+			}
+		}
+	}
+	
+	Text label="Stan urządzeń" icon="settings" {
+		Frame label="Sufit" icon="settings" {
+			Text 		item=COnline
+			Text 		item=CLog
+			Selection	item=CSleepLevel			mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
+		}
+		Frame label="Sypialnia" icon="settings" {
+			Text		item=Bedroom_Online
+			Text		item=Bedroom_Log
+			Selection	item=Bedroom_SleepLevel		mappings=[0="Aktywne",1="10 sekund",2="1 minuta",3="10 minut",4="30 minut"]
+		}		
+		Frame label="Historia" icon="temperature" {
+			Text label="Godzina" icon="line" {
+				Chart	item=Online	period=h	refresh=60000
+			}
+			Text label="4 godziny" icon="line" {
+				Chart	item=Online	period=4h	refresh=60000
+			}
+			Text label="8 godzin" icon="line" {
+				Chart	item=Online	period=8h	refresh=60000
+			}
+			Text label="Dzień" icon="line" {
+				Chart	item=Online	period=D	refresh=60000
+			}
+			Text label="Tydzień" icon="line" {
+				Chart	item=Online	period=W	refresh=60000
+			}
+		}
+		
+	}
+}

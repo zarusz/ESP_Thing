@@ -1,0 +1,16 @@
+id;feature_type;device;port;display_priority;disabled;display_name;display_icon;on;state;intensity;red;green;blue;temperature;movement;humidity
+01;Switch;01;16;0;false;Zasilanie Halogen;fa-bolt;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+02;Switch;01;17;1;false;Zasilanie LED;fa-bolt;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+
+05;SensorTemperature;01;30;3;false;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;24;NULL;NULL
+06;SensorHumidity;01;31;4;false;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;31
+07;SensorMotion;01;33;5;false;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;0;NULL
+08;SensorIR;01;41;6;false;NULL;NULL;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+
+10;Switch;02;10;1;false;Światło stół;fa-lightbulb-o;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+11;Switch;02;11;2;false;Światło sofa 1;fa-lightbulb-o;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+12;Switch;02;12;3;false;Światło sofa 2;fa-lightbulb-o;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+13;Switch;02;13;4;false;Światło sofa 3;fa-lightbulb-o;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+
+14;IR;06;40;1;false;NULL;NULL;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+15;IR;07;50;2;false;NULL;NULL;0;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL

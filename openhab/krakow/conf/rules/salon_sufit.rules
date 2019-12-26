@@ -1,0 +1,33 @@
+import org.joda.time.DateTime
+import org.joda.time.Minutes
+
+var DateTime	lastMotion
+
+rule "Motion_Started"
+when
+	System started
+then
+	lastMotion = now
+	CMotionLastMinutes.sendCommand(0)
+end 
+
+rule "Motion_CalculateLastMotionMinutes"
+when
+	Time cron "0 */1 * ? * * *"
+then
+	var lastMotionMinutes = 0
+	if (lastMotion != null) {
+		lastMotionMinutes = Minutes.minutesBetween(lastMotion, now).getMinutes()
+	}
+	CMotionLastMinutes.sendCommand(lastMotionMinutes)
+    logDebug("Mieszkanie", "Od ostatniego ruchu upłyęło minut: " + lastMotionMinutes)
+end
+
+rule "Motion_CaptureLastMotion"
+when
+	Item CMotion changed from OFF to ON
+then
+	lastMotion = now
+	logDebug("Mieszkanie", "Wykryto ruch o " + lastMotion)
+	CMotionLastMinutes.sendCommand(0)
+end

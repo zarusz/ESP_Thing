@@ -1,0 +1,1 @@
+generator-bin\protoc --nanopb_out=..\device2\src DeviceCommands.proto
