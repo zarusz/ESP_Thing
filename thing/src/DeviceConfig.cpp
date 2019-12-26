@@ -38,11 +38,11 @@ bool DeviceConfig::Load() {
     return false;
   }
 
-  UniqueId = json["UniqueId"].asString();
-  MqttHost = json["MqttHost"].asString();
+  UniqueId = json["UniqueId"].as<char*>();
+  MqttHost = json["MqttHost"].as<char*>();
   MqttPort = json["MqttPort"].as<int>();
-  MqttUser = json["MqttUser"].asString();
-  MqttPass = json["MqttPass"].asString();
+  MqttUser = json["MqttUser"].as<char*>();
+  MqttPass = json["MqttPass"].as<char*>();
 
   return true;
 }

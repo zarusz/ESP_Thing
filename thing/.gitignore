@@ -1,4 +1,6 @@
+# Platform IO
 .pioenvs
+.pio
 .clang_complete
 .gcc-flags.json
 .piolibdeps

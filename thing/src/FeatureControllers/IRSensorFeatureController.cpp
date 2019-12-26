@@ -56,6 +56,7 @@ IRFormat IRSensorFeatureController::GetFormat() const {
     return IRFormat::IRFormat_NEC;
   case SONY:
     return IRFormat::IRFormat_SONY;
+  default:
+    return IRFormat::IRFormat_Unknown;
   }
-  return IRFormat::IRFormat_Unknown;
 }

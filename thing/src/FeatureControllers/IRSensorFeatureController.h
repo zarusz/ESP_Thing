@@ -1,8 +1,8 @@
 #pragma once
 
 #include "FeatureController.h"
-#include <IRrecv.h>
 #include <IRremoteESP8266.h>
+#include <IRrecv.h>
 
 class IRSensorFeatureController : public FeatureController {
 protected:

@@ -47,6 +47,7 @@ const char *EnumLabel(IRFormat format) {
     return "NEC";
   case IRFormat_SONY:
     return "SONY";
+  default:
+    return "Unknown";
   }
-  return "Unknown";
 }

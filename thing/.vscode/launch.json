@@ -2,8 +2,8 @@
 
 // PIO Unified Debugger
 //
-// Documentation: http://docs.platformio.org/page/plus/debugging.html
-// Configuration: http://docs.platformio.org/page/projectconf/section_env_debug.html
+// Documentation: https://docs.platformio.org/page/plus/debugging.html
+// Configuration: https://docs.platformio.org/page/projectconf/section_env_debug.html
 
 {
     "version": "0.2.0",
@@ -12,17 +12,20 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "e:/dev/home/thing/.pioenvs/esp12e/firmware.elf",
-            "toolchainBinDir": "",
-            "preLaunchTask": "PlatformIO: Pre-Debug",
+            "executable": "c:/Users/tomasz/dev/mygithub/ESP_Thing/thing/.pio/build/esp12e/firmware.elf",
+            "toolchainBinDir": "C:/Users/tomasz/.platformio/packages/toolchain-xtensa/bin",
+            "preLaunchTask": {
+                "type": "PlatformIO",
+                "task": "Pre-Debug"
+            },
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "type": "platformio-debug",
             "request": "launch",
-            "name": "PIO Debug (Skip Pre-Debug)",
-            "executable": "e:/dev/home/thing/.pioenvs/esp12e/firmware.elf",
-            "toolchainBinDir": "",
+            "name": "PIO Debug (skip Pre-Debug)",
+            "executable": "c:/Users/tomasz/dev/mygithub/ESP_Thing/thing/.pio/build/esp12e/firmware.elf",
+            "toolchainBinDir": "C:/Users/tomasz/.platformio/packages/toolchain-xtensa/bin",
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]
