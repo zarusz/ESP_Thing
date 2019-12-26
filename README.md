@@ -8,10 +8,12 @@ It can be easily connected with Smart Home platform [openHAB](https://www.openha
 
 # History
 
+For my home I needed to build multiple custom hardware things running on ESP8266 and integrate that into the openHAB platform.
+I have few devices that are running for several years now. 
 
 # Compiling
 
-Visual Studio Code
+It is recommended to use [Visual Studio Code](https://code.visualstudio.com/) with the [Platform IO IDE extension](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide).
 
 # Using
 
