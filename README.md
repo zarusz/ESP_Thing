@@ -1,5 +1,5 @@
 # What is ESP_Thing?
-It is meant for makers of IoT things. It is a basline implementation (C++) targeting the ESP8266 chip (Arduino Espressif8266 Framework)/
+It is meant for makers of IoT things. It is a basline implementation (C++) targeting the ESP8266 chip (Arduino Espressif8266 Framework).
 
 The implementation out of the box supports basic sensors and actuators (DHT-22 Himidity & Temperature sensors, LEDs, RGB LED strips, relays/switches) and more can be added when needed.
 
