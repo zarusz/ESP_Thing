@@ -1,8 +1,0 @@
-{
-  "resolution": "main",
-  "tree": {
-    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/b5a93a9e750ef6244bc0327f6109f7da21840cd9/angular-material/angular-material.d.ts",
-    "raw": "registry:dt/angular-material#1.1.0-rc5.0+20160721000848",
-    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/b5a93a9e750ef6244bc0327f6109f7da21840cd9/angular-material/angular-material.d.ts"
-  }
-}

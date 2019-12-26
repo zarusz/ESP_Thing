@@ -1,1 +1,0 @@
-Switch		Korytarz_LED1			"LED"				<light>		(Lights) 				{ mqtt=">[local:dev/korytarz/command/10:command:*:default],<[local:dev/korytarz/state/10:state:default]" }

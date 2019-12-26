@@ -1,13 +1,8 @@
-param([string]$dev="proto")
+param([string]$dev="proto", [string]user, [string]$pass)
 
 $topic = "dev/$dev/service/config"
-$user = "openhab"
-$pass = "y1AqqFx5ZNz3"
 $config = Get-Content "../thing/data/config.json" -Raw
 $config = $config.Replace("`r`n","")
-#$config = "{ `"UniqueId`": `"proto`" }"
-#$config = "{ `"UniqueId`": `"proto`", `"WifiName`": `"WareHouse_24GHz`" }"
-
 
 Write-Host $config
 
