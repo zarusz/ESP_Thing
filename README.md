@@ -1,4 +1,4 @@
-![Build Status](https://api.travis-ci.com/zarusz/ESP_Thing.svg?branch=master "Build Status")
+[![Build Status](https://travis-ci.com/zarusz/ESP_Thing.svg?branch=master)](https://travis-ci.com/zarusz/ESP_Thing)
 
 # What is ESP_Thing?
 It is meant for makers of IoT things. It is a basline implementation (C++) targeting the ESP8266 chip (Arduino Espressif8266 Framework).
