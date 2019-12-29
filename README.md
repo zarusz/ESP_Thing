@@ -1,3 +1,5 @@
+![Build Status](https://api.travis-ci.com/zarusz/ESP_Thing.svg?branch=master "Build Status")
+
 # What is ESP_Thing?
 It is meant for makers of IoT things. It is a basline implementation (C++) targeting the ESP8266 chip (Arduino Espressif8266 Framework).
 
@@ -43,7 +45,7 @@ Alternatively, you can use the Over the Air Updates (OTA) to push never firmware
 * In `MainApp.cpp` compose what pins are used (ideally in the future this will be configured):
 
 ```cpp
-if (_deviceConfig->UniqueId.startsWith("sonoff_") || _deviceConfig->UniqueId.startsWith("switch_")) {
+    if (_deviceConfig->UniqueId.startsWith("sonoff_") || _deviceConfig->UniqueId.startsWith("switch_")) {
       // Sonoff
       /*
       12 - Connected to RST (deep sleep)
