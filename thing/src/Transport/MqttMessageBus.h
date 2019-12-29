@@ -5,7 +5,7 @@
 #include <PubSubClient.h>
 #include <set>
 
-#include "..\DeviceConfig.h"
+#include "../DeviceConfig.h"
 #include "Buffer.h"
 #include "MessageBus.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\Utils\Colors.h"
+#include "../Utils/Colors.h"
 #include "FeatureController.h"
 
 class ColorStripFeatureController : public FeatureController {

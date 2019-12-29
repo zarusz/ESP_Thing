@@ -1,5 +1,5 @@
 #include "ColorStripOverWireFeatureController.h"
-#include "..\Utils\Colors.h"
+#include "../Utils/Colors.h"
 #include "Utils/TimeUtil.h"
 #include "Values.h"
 #include <Wire.h>

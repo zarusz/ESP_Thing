@@ -1,5 +1,5 @@
 #include "ColorStripFeatureController.h"
-#include "..\Utils\Colors.h"
+#include "../Utils/Colors.h"
 #include "Values.h"
 
 ColorStripFeatureController::ColorStripFeatureController(int port,
